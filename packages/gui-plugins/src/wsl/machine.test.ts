@@ -222,7 +222,7 @@ describe("updates", () => {
 
     expect(spawns(updated.effects)).toEqual([])
     expect(updated.effects).toContainEqual({ type: "resolve", attempt: "u1" })
-    expect(toServersState(updated.state).redcodeChecks.Debian).toEqual(check("Debian", "2"))
+    expect(toServersState(updated.state).opencodeChecks.Debian).toEqual(check("Debian", "2"))
   })
 
   test("a failed update keeps the check it read and leaves the server stopped", () => {

@@ -16,14 +16,14 @@ const opencodeLight = selectTheme(getRedCodeTheme(), "light")
 const opencodeDark = selectTheme(getRedCodeTheme(), "dark")
 const chromaticHues = ["gray", "red", "orange", "green", "cyan", "blue", "purple"] as const
 const light: ThemeDefinition = {
-  ...redcodeLight,
+  ...opencodeLight,
   categorical: ["blue", "purple"],
-  hue: { ...redcodeLight.hue, accent: "$hue.blue", interactive: "$hue.blue", neutral: "$hue.gray" },
+  hue: { ...opencodeLight.hue, accent: "$hue.blue", interactive: "$hue.blue", neutral: "$hue.gray" },
 }
 const dark: ThemeDefinition = {
-  ...redcodeDark,
+  ...opencodeDark,
   categorical: ["blue", "purple"],
-  hue: { ...redcodeDark.hue, accent: "$hue.blue", interactive: "$hue.blue", neutral: "$hue.gray" },
+  hue: { ...opencodeDark.hue, accent: "$hue.blue", interactive: "$hue.blue", neutral: "$hue.gray" },
 }
 
 test("orders light hues dark-to-light and dark hues light-to-dark", () => {

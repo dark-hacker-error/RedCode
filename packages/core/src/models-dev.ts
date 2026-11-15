@@ -254,7 +254,7 @@ function route(providerID: Provider.ID, model: SourceModel, unknown: Set<string>
   // opencode entrypoint for their type (`providers/<P>/images`) that this build can load, and are skipped
   // without one: a chat entrypoint loads a chat model, which can't generate images or decisions.
   const apis = entries(model.api, decodeApi).map(
-    ([protocol, entry]) => [protocol, entry, loadable(entry.sdk?.redcodeai, unknown)] as const,
+    ([protocol, entry]) => [protocol, entry, loadable(entry.sdk?.opencodeai, unknown)] as const,
   )
   const [protocol, api, opencodeai] =
     (model.type === "chat"
