@@ -47,4 +47,9 @@ Har kaam ki entry yahan: date, kya hua, affected files.
   chhode (wo `dev`/`production` branch par hi trigger hote hain, is repo me wo branch nahi hai).
 - PR #2 open/updated: https://github.com/Vempire-X/RedCode/pull/2 (`redcode/rebrand-and-installer` -> `main`).
   Merge **nahi** kiya (user approval baaki).
+- PR #2 **merge** ho gaya (squash) -> `main` = `e224c13 chore: full rebrand to RedCode, npm package and installer`.
+- PR #1 close kar diya (uske docs PR #2 ke through main me aa gaye).
+- `main` par tag: abhi koi nahi.
+- GitHub repo secret `NPM_TOKEN` set kiya (Actions secrets API + libsodium sealed box; value commit/disk par save nahi ki).
+- Next: `v0.1.0` tag push -> `.github/workflows/redcode-release.yml` build + npm publish + GitHub Release.
 
