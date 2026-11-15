@@ -41,14 +41,23 @@ jobs:
       - name: Check out
         uses: actions/checkout@v4
 
+      # Not the shared .github/actions/setup-bun composite action: it hard-codes
+      # `bun install --frozen-lockfile`, and the rebrand changed every workspace package name.
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
       - name: Set up Bun
-        uses: ./.github/actions/setup-bun
+        uses: oven-sh/setup-bun@v2
         with:
           bun-version: 1.4.4
-          # The rebrand renames every workspace package, which changes bun.lock. Regenerate it on
-          # the runner instead of failing the release on a stale lockfile. Flip this to
-          # `--frozen-lockfile` once a `bun install` commit has refreshed bun.lock.
-          install-flags: "--no-frozen-lockfile"
+
+      - name: Install dependencies
+        # Regenerate bun.lock on the runner instead of failing on a lockfile that has not been
+        # refreshed since the workspace rename. Flip to --frozen-lockfile after a `bun install`
+        # commit refreshes bun.lock.
+        run: bun install --no-frozen-lockfile
 
       - name: Resolve version
         id: version

@@ -12,7 +12,7 @@
       "devDependencies": {
         "@ast-grep/cli": "0.44.0",
         "@hona/strobe": "catalog:",
-        "redcode-aient": "workspace:*",
+        "@redcode/client": "workspace:*",
         "@oxlint/plugins": "1.60.0",
         "@tsconfig/bun": "catalog:",
         "@types/bun": "catalog:",
@@ -59,7 +59,7 @@
         "@dnd-kit/solid": "0.5.0",
         "@ibm/plex": "6.4.1",
         "@kobalte/core": "catalog:",
-        "redcode-aient": "workspace:*",
+        "@redcode/client": "workspace:*",
         "@redcode/gui-plugins": "workspace:*",
         "@redcode/plugin": "workspace:*",
         "@redcode/schema": "workspace:*",
@@ -116,7 +116,7 @@
         "@clack/core": "1.0.0-alpha.1",
         "@clack/prompts": "1.0.0-alpha.1",
         "@effect/platform-node": "catalog:",
-        "redcode-aient": "workspace:*",
+        "@redcode/client": "workspace:*",
         "@redcode/plugin": "workspace:*",
         "@opencode/pty": "0.5.2",
         "@redcode/schema": "workspace:*",
@@ -170,7 +170,7 @@
       },
     },
     "packages/client": {
-      "name": "redcode-aient",
+      "name": "@redcode/client",
       "version": "2.3.0",
       "dependencies": {
         "@redcode/protocol": "workspace:*",
@@ -355,7 +355,7 @@
         "@hona/strobe": "catalog:",
         "@lydell/node-pty": "catalog:",
         "@redcode/app": "workspace:*",
-        "redcode-aient": "workspace:*",
+        "@redcode/client": "workspace:*",
         "@redcode/gui-plugins": "workspace:*",
         "@redcode/plugin": "workspace:*",
         "@redcode/schema": "workspace:*",
@@ -396,7 +396,7 @@
         "@betteroffice/xlsx": "0.3.0",
         "@effect/platform-node": "catalog:",
         "@kobalte/core": "catalog:",
-        "redcode-aient": "workspace:*",
+        "@redcode/client": "workspace:*",
         "@redcode/plugin": "workspace:*",
         "@redcode/plugin-browser": "workspace:*",
         "@redcode/schema": "workspace:*",
@@ -522,7 +522,7 @@
       "dependencies": {
         "@ai-sdk/provider": "3.0.8",
         "@redcode/ai": "workspace:*",
-        "redcode-aient": "workspace:*",
+        "@redcode/client": "workspace:*",
         "@redcode/protocol": "workspace:*",
         "@redcode/schema": "workspace:*",
         "@redcode/util": "workspace:*",
@@ -634,7 +634,7 @@
       "name": "@redcode/sdk",
       "version": "2.3.0",
       "dependencies": {
-        "redcode-aient": "workspace:*",
+        "@redcode/client": "workspace:*",
         "@redcode/core": "workspace:*",
         "@redcode/plugin": "workspace:*",
         "@redcode/schema": "workspace:*",
@@ -665,7 +665,7 @@
         "effect": "catalog:",
       },
       "devDependencies": {
-        "redcode-aient": "workspace:*",
+        "@redcode/client": "workspace:*",
         "@redcode/plugin": "workspace:*",
         "@opencode/pty": "0.5.2",
         "@tsconfig/bun": "catalog:",
@@ -680,7 +680,7 @@
       "dependencies": {
         "@kitlangton/solid-motion": "0.2.2",
         "@kobalte/core": "catalog:",
-        "redcode-aient": "workspace:*",
+        "@redcode/client": "workspace:*",
         "@redcode/patchmark": "workspace:*",
         "@redcode/ui": "workspace:*",
         "@redcode/util": "workspace:*",
@@ -729,7 +729,7 @@
     "packages/stories": {
       "name": "@redcode/stories",
       "devDependencies": {
-        "redcode-aient": "workspace:*",
+        "@redcode/client": "workspace:*",
         "@redcode/session-ui": "workspace:*",
         "@redcode/ui": "workspace:*",
         "@playwright/test": "catalog:",
@@ -762,7 +762,7 @@
       "name": "@redcode/tui",
       "version": "2.3.0",
       "dependencies": {
-        "redcode-aient": "workspace:*",
+        "@redcode/client": "workspace:*",
         "@redcode/core": "workspace:*",
         "@redcode/latex": "workspace:*",
         "@redcode/merman": "workspace:*",
@@ -1790,7 +1790,7 @@
 
     "redcode-ai": ["redcode-ai@workspace:packages/cli"],
 
-    "redcode-aient": ["redcode-aient@workspace:packages/client"],
+    "@redcode/client": ["@redcode/client@workspace:packages/client"],
 
     "@redcode/codemode": ["@redcode/codemode@workspace:packages/codemode"],
 
