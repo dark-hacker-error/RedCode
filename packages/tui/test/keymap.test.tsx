@@ -192,11 +192,11 @@ test("re-registered commands keep inline slash objects until their fields change
   try {
     const first = registered()
     setVersion(1)
-    expect(registered()?.redcode).toBe(first?.redcode)
+    expect(registered()?.opencode).toBe(first?.opencode)
     expect(registered()?.slash).toBe(first?.slash)
 
     setAliases(["d", "dm"])
-    expect(registered()?.redcode).not.toBe(first?.redcode)
+    expect(registered()?.opencode).not.toBe(first?.opencode)
     expect(command()?.slash?.aliases).toEqual(["d", "dm"])
   } finally {
     app.renderer.destroy()
