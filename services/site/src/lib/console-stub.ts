@@ -15,7 +15,7 @@ export function installConsoleStub() {
   let loading: Promise<ReturnType<typeof install>> | undefined
   const load = () =>
     (loading ??= import("./console-api").then((module) => {
-      delete (window as { opencode?: unknown }).redcode
+      delete (window as { opencode?: unknown }).opencode
       return module.install()
     }))
   let greeted = false

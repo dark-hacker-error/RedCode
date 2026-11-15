@@ -681,7 +681,7 @@ export function Site(props: {
     const idle = window.requestIdleCallback ?? ((run: () => void) => setTimeout(run, 1500))
     // window.opencode and its hint for developers who open DevTools (Settings › Other › Console API).
     createEffect(() => {
-      if (siteSettings.consoleApi === "off") return void delete (window as { opencode?: unknown }).redcode
+      if (siteSettings.consoleApi === "off") return void delete (window as { opencode?: unknown }).opencode
       // Checked again when idle: saved settings load in a microtask after this first run.
       idle(() => siteSettings.consoleApi === "on" && installConsoleStub())
     })
