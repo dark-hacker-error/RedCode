@@ -32,7 +32,7 @@ export async function buildLocalWslCli(input: { version: string; script: string;
         windowsHide: true,
       },
     )
-    await copyFile(join(directory, `cli-${target}`, "bin", "opencode"), input.output)
+    await copyFile(join(directory, `redcode-ai-${target}`, "bin", "redcode"), input.output)
 
     return input.output
   }
