@@ -1,13 +1,13 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@opencode/plugin-browser",
+  "name": "@redcode/plugin-browser",
   "version": "2.3.0",
-  "description": "OpenCode's desktop browser plugin",
+  "description": "RedCode's desktop browser plugin",
   "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anomalyco/opencode.git",
+    "url": "git+https://github.com/Vempire-X/RedCode.git",
     "directory": "packages/plugin-browser"
   },
   "publishConfig": {
@@ -29,8 +29,8 @@
     "test": "bun test"
   },
   "dependencies": {
-    "@opencode/plugin": "workspace:*",
-    "@opencode/schema": "workspace:*",
+    "@redcode/plugin": "workspace:*",
+    "@redcode/schema": "workspace:*",
     "effect": "catalog:"
   },
   "devDependencies": {

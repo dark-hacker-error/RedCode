@@ -20,7 +20,7 @@ export function DocsCodeGallery(props: { reference?: boolean }) {
       </Item>
 
       <Item name="File name header" when="Tells the reader which file the code goes in.">
-        <CodeFrame variant="codeTitle" kind="file" label="opencode.jsonc" copy={configFile}>
+        <CodeFrame variant="codeTitle" kind="file" label="redcode.jsonc" copy={configFile}>
           <pre>
             <code>{configFile}</code>
           </pre>
@@ -131,19 +131,19 @@ export function DocsCodeGallery(props: { reference?: boolean }) {
       </Item>
 
       <Item name="Line numbers" when="Only when the text refers to lines by number.">
-        <CodeFrame variant="codeLines" kind="file" label=".opencode/tools/count-lines.ts" copy={countLines.join("\n")}>
+        <CodeFrame variant="codeLines" kind="file" label=".redcode/tools/count-lines.ts" copy={countLines.join("\n")}>
           <CodeLines lines={countLines} />
         </CodeFrame>
       </Item>
 
       <Item name="Highlighted lines" when="Points at the lines that matter in a longer example.">
-        <CodeFrame variant="codeLines" kind="file" label=".opencode/tools/count-lines.ts" copy={countLines.join("\n")}>
+        <CodeFrame variant="codeLines" kind="file" label=".redcode/tools/count-lines.ts" copy={countLines.join("\n")}>
           <CodeLines lines={countLines} mark={[4, 5]} plain />
         </CodeFrame>
       </Item>
 
       <Item name="Diff" when="Shows a change, like a renamed key, a migration or a fix.">
-        <CodeFrame variant="codeDiff" kind="file" label="opencode.jsonc" copy={diffAfter}>
+        <CodeFrame variant="codeDiff" kind="file" label="redcode.jsonc" copy={diffAfter}>
           <pre data-component="code-diff">
             <For each={diff}>
               {([sign, line]) => (
@@ -162,7 +162,7 @@ export function DocsCodeGallery(props: { reference?: boolean }) {
         <CodeFrame
           variant="codeLines"
           kind="file"
-          label="opencode.jsonc"
+          label="redcode.jsonc"
           copy={[...focusLines, ...hiddenLines].join("\n")}
         >
           <CodeCollapse
@@ -194,7 +194,7 @@ export function DocsCodeGallery(props: { reference?: boolean }) {
                   <CodeFrame
                     variant="codeLines"
                     kind="file"
-                    label="opencode.jsonc"
+                    label="redcode.jsonc"
                     copy={[...focusLines, ...hiddenLines].join("\n")}
                   >
                     <CodeCollapse
@@ -219,8 +219,8 @@ export function DocsCodeGallery(props: { reference?: boolean }) {
         />
       </Item>
 
-      <Item name="Config (opencode.jsonc)" when="Config is JSON with comments; $schema gives editor completion.">
-        <CodeFrame variant="codeTitle" kind="file" label="opencode.jsonc" copy={permissionsFile}>
+      <Item name="Config (redcode.jsonc)" when="Config is JSON with comments; $schema gives editor completion.">
+        <CodeFrame variant="codeTitle" kind="file" label="redcode.jsonc" copy={permissionsFile}>
           <pre>
             <code>{permissionsFile}</code>
           </pre>
@@ -268,7 +268,7 @@ export function DocsCodeGallery(props: { reference?: boolean }) {
       </Item>
 
       <Item name="Config reference table" when="Every option with its type, default and meaning.">
-        <CodeFrame variant="config" kind="config" label="opencode.jsonc options">
+        <CodeFrame variant="config" kind="config" label="redcode.jsonc options">
           <Table
             head={["Option", "Type", "Default", "Description"]}
             kinds={["code", "type", "code", "text"]}
@@ -291,7 +291,7 @@ export function DocsCodeGallery(props: { reference?: boolean }) {
           <strong>Tip</strong>
           <div>
             <p>Skip project instructions for one run.</p>
-            <Terminal lines={["$ OPENCODE_DISABLE_PROJECT_CONFIG=1 opencode"]} />
+            <Terminal lines={["$ REDCODE_DISABLE_PROJECT_CONFIG=1 opencode"]} />
           </div>
         </aside>
       </Item>
@@ -300,9 +300,9 @@ export function DocsCodeGallery(props: { reference?: boolean }) {
         <ol data-slot="gallery-steps">
           <li>
             <p>
-              <strong>Create the plugin.</strong> Add <code>.opencode/plugins/notify.ts</code>.
+              <strong>Create the plugin.</strong> Add <code>.redcode/plugins/notify.ts</code>.
             </p>
-            <CodeFrame variant="codeTitle" kind="file" label=".opencode/plugins/notify.ts" copy={notifyPlugin}>
+            <CodeFrame variant="codeTitle" kind="file" label=".redcode/plugins/notify.ts" copy={notifyPlugin}>
               <pre>
                 <code>{notifyPlugin}</code>
               </pre>
@@ -310,7 +310,7 @@ export function DocsCodeGallery(props: { reference?: boolean }) {
           </li>
           <li>
             <p>
-              <strong>Restart OpenCode.</strong> Plugins load on start.
+              <strong>Restart RedCode.</strong> Plugins load on start.
             </p>
             <Terminal lines={["$ opencode service restart"]} />
           </li>
@@ -319,7 +319,7 @@ export function DocsCodeGallery(props: { reference?: boolean }) {
 
       <Item name="Inline code" when="Names in running text: files, keys, commands.">
         <p>
-          Set <code>model</code> to <code>opencode/claude-opus-5-5</code> in <code>opencode.jsonc</code>, then run{" "}
+          Set <code>model</code> to <code>opencode/claude-opus-5-5</code> in <code>redcode.jsonc</code>, then run{" "}
           <code>opencode run "fix the tests"</code>.
         </p>
       </Item>
@@ -566,7 +566,7 @@ const configFile = `{
 }`
 
 const files = [
-  { label: "opencode.jsonc", code: configFile },
+  { label: "redcode.jsonc", code: configFile },
   {
     label: "AGENTS.md",
     code: `# Project instructions
@@ -575,7 +575,7 @@ const files = [
 - Keep database queries in \`src/database\`.`,
   },
   {
-    label: ".opencode/agents/reviewer.md",
+    label: ".redcode/agents/reviewer.md",
     code: `---
 description: Reviews changes for correctness and regressions
 mode: subagent
@@ -649,7 +649,7 @@ const permissionsFile = `{
   ],
 }`
 
-const workflow = `name: OpenCode review
+const workflow = `name: RedCode review
 on: [pull_request]
 
 jobs:
@@ -657,14 +657,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm install --global @opencode/cli
+      - run: npm install --global redcode-ai
       - run: opencode run --standalone --model opencode/claude-opus-5-5 "Review this repository"`
 
 const env = `# Loaded by your shell or CI, never committed
 ANTHROPIC_API_KEY=sk-ant-...
-OPENCODE_DISABLE_PROJECT_CONFIG=1`
+REDCODE_DISABLE_PROJECT_CONFIG=1`
 
-const tree = `.opencode/
+const tree = `.redcode/
 ├── agents/
 │   └── reviewer.md
 ├── commands/
@@ -673,7 +673,7 @@ const tree = `.opencode/
 │   └── notify.ts
 ├── tools/
 │   └── count-lines.ts
-└── opencode.jsonc`
+└── redcode.jsonc`
 
 const response = `[
   {

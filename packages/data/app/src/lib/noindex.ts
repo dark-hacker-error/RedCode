@@ -1,5 +1,5 @@
 import type { createMiddleware } from "@solidjs/start/middleware"
-import { Resource } from "@opencode/data-core/resource"
+import { Resource } from "@redcode/data-core/resource"
 
 // Only production may be indexed: dev.opencode.ai and the personal stages run unreleased builds, and
 // search engines must never list them in place of opencode.ai. Every response there asks them not

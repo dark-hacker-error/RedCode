@@ -1,20 +1,20 @@
 import fs from "fs/promises"
 import path from "path"
 import { expect } from "bun:test"
-import { LanguageModel, LLMClient } from "@opencode/ai/effect"
-import { OpenAIChat } from "@opencode/ai/protocols"
-import { TestLLM } from "@opencode/ai/testing"
-import { llmClient } from "@opencode/core/effect/app-node-platform"
-import { makeMemoryDriver } from "@opencode/core/environment/index"
-import { SessionRunnerModel } from "@opencode/core/session/runner/model"
-import { WorkspaceDriver } from "@opencode/core/workspace/driver"
-import { Plugin } from "@opencode/plugin/effect"
+import { LanguageModel, LLMClient } from "@redcode/ai/effect"
+import { OpenAIChat } from "@redcode/ai/protocols"
+import { TestLLM } from "@redcode/ai/testing"
+import { llmClient } from "@redcode/core/effect/app-node-platform"
+import { makeMemoryDriver } from "@redcode/core/environment/index"
+import { SessionRunnerModel } from "@redcode/core/session/runner/model"
+import { WorkspaceDriver } from "@redcode/core/workspace/driver"
+import { Plugin } from "@redcode/plugin/effect"
 import { makeDurableObjectStorage } from "../../core/test/fixture/durable-object-storage"
-import { OpenCodeWorkerd } from "../src/effect/workerd"
+import { RedCodeWorkerd } from "../src/effect/workerd"
 import { Deferred, Effect, Fiber, Latch, Layer, Option, Schedule, Stream } from "effect"
 import { testEffect } from "../../core/test/lib/effect"
 import { tmpdir } from "../../core/test/fixture/tmpdir"
-import type { OpenCodeEvent } from "../src/effect"
+import type { RedCodeEvent } from "../src/effect"
 
 const it = testEffect(Layer.empty)
 type Sdk = typeof import("../src/effect")
@@ -53,7 +53,7 @@ for (const selection of ["explicit", "default"] as const) {
         const llm = yield* TestLLM.Test.pipe(
           Effect.provide(TestLLM.testLayer({ fallback: TestLLM.text("ready", "answer") })),
         )
-        const opencode = yield* fixture.sdk.OpenCode.create(
+        const opencode = yield* fixture.sdk.RedCode.create(
           {
             config: {
               directory: fixture.directory,
@@ -119,7 +119,7 @@ it.live("seeds host plugins from CreateOptions and loads delayed model plugins w
               providers.update(fixture.sdk.Provider.ID.make("seeded"), (provider) => {
                 provider.name = "Seeded Provider"
                 provider.activation = "enabled"
-                provider.package = "@opencode/ai/providers/openai-compatible"
+                provider.package = "@redcode/ai/providers/openai-compatible"
                 provider.settings = { baseURL: "https://provider.example/v1", apiKey: "secret" }
               })
               providers.models.update(
@@ -132,7 +132,7 @@ it.live("seeds host plugins from CreateOptions and loads delayed model plugins w
             })
           }).pipe(Effect.orDie),
       })
-      const opencode = yield* fixture.sdk.OpenCode.create(
+      const opencode = yield* fixture.sdk.RedCode.create(
         {
           config: {
             directory: fixture.directory,
@@ -166,10 +166,10 @@ it.live("seeds host plugins from CreateOptions and loads delayed model plugins w
   ),
 )
 
-it.live("OpenCodeWorkerd seeds plugins before cold model resolution", () =>
+it.live("RedCodeWorkerd seeds plugins before cold model resolution", () =>
   withEmbedded("opencode-workerd-seeded-plugin-", (fixture) =>
     Effect.gen(function* () {
-      const opencode = yield* OpenCodeWorkerd.create({
+      const opencode = yield* RedCodeWorkerd.create({
         storage: makeDurableObjectStorage(),
         models: { fetch: false },
         config: { model: "workerd-seeded/fictional-chat" },
@@ -184,7 +184,7 @@ it.live("OpenCodeWorkerd seeds plugins before cold model resolution", () =>
                   providers.update(fixture.sdk.Provider.ID.make("workerd-seeded"), (provider) => {
                     provider.name = "Workerd Seeded"
                     provider.activation = "enabled"
-                    provider.package = "@opencode/ai/providers/openai-compatible"
+                    provider.package = "@redcode/ai/providers/openai-compatible"
                     provider.settings = { baseURL: "https://provider.example/v1", apiKey: "secret" }
                   })
                   providers.models.update(
@@ -218,7 +218,7 @@ it.live(
   () =>
     withEmbedded("opencode-embedded-", (fixture) =>
       Effect.gen(function* () {
-        const opencode = yield* fixture.sdk.OpenCode.create({ events: { persist: true } })
+        const opencode = yield* fixture.sdk.RedCode.create({ events: { persist: true } })
         const id = sessionID(fixture)
         const model = fixture.sdk.Model.Ref.make({
           id: fixture.sdk.Model.ID.make("embedded"),
@@ -324,7 +324,7 @@ it.live(
 it.live("embedded client exposes plugin-backed web search", () =>
   withEmbedded("opencode-embedded-websearch-", (fixture) =>
     Effect.gen(function* () {
-      const opencode = yield* fixture.sdk.OpenCode.create()
+      const opencode = yield* fixture.sdk.RedCode.create()
       const providerID = fixture.sdk.WebSearch.ID.make("embedded-websearch")
       yield* opencode.plugin({
         id: `embedded-websearch-${crypto.randomUUID()}`,
@@ -363,10 +363,10 @@ it.live(
   () =>
     withEmbedded("opencode-embedded-events-", (fixture) =>
       Effect.gen(function* () {
-        const opencode = yield* fixture.sdk.OpenCode.create()
+        const opencode = yield* fixture.sdk.RedCode.create()
         const id = sessionID(fixture)
         const connected = yield* Latch.make(false)
-        const prompted = yield* Deferred.make<Extract<OpenCodeEvent, { type: "session.inbox.delivered" }>>()
+        const prompted = yield* Deferred.make<Extract<RedCodeEvent, { type: "session.inbox.delivered" }>>()
 
         yield* opencode.events.subscribe().pipe(
           Stream.runForEach((event) =>
@@ -397,15 +397,15 @@ it.live(
   () =>
     withEmbedded("opencode-embedded-hosts-", (fixture) =>
       Effect.gen(function* () {
-        const first = yield* fixture.sdk.OpenCode.create()
-        const second = yield* fixture.sdk.OpenCode.create()
+        const first = yield* fixture.sdk.RedCode.create()
+        const second = yield* fixture.sdk.RedCode.create()
         const id = sessionID(fixture)
         const firstReady = yield* Latch.make(false)
         const secondReady = yield* Latch.make(false)
         const firstEvent = yield* Latch.make(false)
         const secondEvent = yield* Latch.make(false)
         const observe = (ready: Latch.Latch, event: Latch.Latch) =>
-          Stream.runForEach((notification: OpenCodeEvent) =>
+          Stream.runForEach((notification: RedCodeEvent) =>
             notification.type === "server.connected"
               ? ready.open
               : notification.type === "session.agent.selected" && notification.data.sessionID === id
@@ -430,10 +430,10 @@ it.live("embedded client is available as a Layer service", () =>
   withEmbedded("opencode-embedded-layer-", (fixture) => {
     const id = sessionID(fixture)
     return Effect.gen(function* () {
-      const opencode = yield* fixture.sdk.OpenCode.Service
+      const opencode = yield* fixture.sdk.RedCode.Service
       const created = yield* opencode.sessions.create({ id, location: location(fixture) })
       expect(created.id).toBe(id)
-    }).pipe(Effect.provide(fixture.sdk.OpenCode.layer()))
+    }).pipe(Effect.provide(fixture.sdk.RedCode.layer()))
   }),
 )
 
@@ -456,7 +456,7 @@ it.live("configures workspace providers through the SDK facade", () =>
           return Effect.void
         },
       })
-      const opencode = yield* fixture.sdk.OpenCode.create({ workspaceProviders: { fake: driver } })
+      const opencode = yield* fixture.sdk.RedCode.create({ workspaceProviders: { fake: driver } })
       const requestedID = fixture.sdk.Workspace.ID.create()
       const workspaceID = yield* opencode.workspace.create({ id: requestedID, provider: "fake" })
 
@@ -527,7 +527,7 @@ const workspaceModelScenario = (fixture: Fixture, policy: "eager" | "lazy") =>
     })
     const configDirectory = path.join(fixture.directory, "config")
     yield* Effect.promise(() => fs.mkdir(configDirectory))
-    const opencode = yield* fixture.sdk.OpenCode.create(
+    const opencode = yield* fixture.sdk.RedCode.create(
       {
         config: { directory: configDirectory, project: false, content: "{}" },
         workspaceProviders: { fake: driver },
@@ -628,7 +628,7 @@ it.live(
         })
         const configDirectory = path.join(fixture.directory, "config")
         yield* Effect.promise(() => fs.mkdir(configDirectory))
-        const opencode = yield* fixture.sdk.OpenCode.create(
+        const opencode = yield* fixture.sdk.RedCode.create(
           {
             config: { directory: configDirectory, project: false, content: "{}" },
             workspaceProviders: { fake: driver },
@@ -672,7 +672,7 @@ it.live(
 it.live("preserves unknown workspace provider errors", () =>
   withEmbedded("opencode-embedded-workspace-provider-", (fixture) =>
     Effect.gen(function* () {
-      const opencode = yield* fixture.sdk.OpenCode.create()
+      const opencode = yield* fixture.sdk.RedCode.create()
       const error = yield* opencode.workspace.create({ provider: "missing" }).pipe(Effect.flip)
       expect(error).toEqual(new WorkspaceDriver.ProviderNotFound({ provider: "missing" }))
     }),

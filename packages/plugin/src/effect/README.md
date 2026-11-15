@@ -1,14 +1,14 @@
-# OpenCode V2 Effect Plugin API
+# RedCode V2 Effect Plugin API
 
 The Effect plugin API grants plugins two in-process capabilities:
 
-- `hook` installs behavior at an OpenCode extension point.
+- `hook` installs behavior at an RedCode extension point.
 - `reload` reruns every transform hook for a stateful domain.
 
 ## Defining A Plugin
 
 ```ts
-import { Plugin } from "@opencode/plugin/effect"
+import { Plugin } from "@redcode/plugin/effect"
 import { Effect } from "effect"
 
 export default Plugin.define({

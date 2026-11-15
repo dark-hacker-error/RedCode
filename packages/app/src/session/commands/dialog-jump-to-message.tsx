@@ -1,5 +1,5 @@
-import type { SessionMessageUser } from "@opencode/client/promise"
-import { useDialog } from "@opencode/ui/context/dialog"
+import type { SessionMessageUser } from "@redcode/client/promise"
+import { useDialog } from "@redcode/ui/context/dialog"
 import { createEffect, createMemo, createSignal, onCleanup } from "solid-js"
 import { readPromptPresentation } from "@/composer/comment-note"
 import { useLanguage } from "@/runtime/i18n/language"

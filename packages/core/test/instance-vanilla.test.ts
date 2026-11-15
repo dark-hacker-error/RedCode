@@ -2,16 +2,16 @@ import fs from "fs/promises"
 import path from "path"
 import { describe, expect } from "bun:test"
 import { Duration, Effect, Layer, LayerMap } from "effect"
-import { AppNodeBuilder } from "@opencode/core/effect/app-node-builder"
-import { LayerNode } from "@opencode/util/effect/layer-node"
-import { Global } from "@opencode/util/global"
-import { Config } from "@opencode/core/config"
-import { Instance } from "@opencode/core/instance"
-import { InstructionDiscovery } from "@opencode/core/instruction-discovery"
-import { LocationServiceMap } from "@opencode/core/location-services"
-import { Location } from "@opencode/core/location"
-import { Plugin } from "@opencode/core/plugin"
-import { AbsolutePath } from "@opencode/core/schema"
+import { AppNodeBuilder } from "@redcode/core/effect/app-node-builder"
+import { LayerNode } from "@redcode/util/effect/layer-node"
+import { Global } from "@redcode/util/global"
+import { Config } from "@redcode/core/config"
+import { Instance } from "@redcode/core/instance"
+import { InstructionDiscovery } from "@redcode/core/instruction-discovery"
+import { LocationServiceMap } from "@redcode/core/location-services"
+import { Location } from "@redcode/core/location"
+import { Plugin } from "@redcode/core/plugin"
+import { AbsolutePath } from "@redcode/core/schema"
 import { tmpdirScoped } from "./fixture/tmpdir"
 import { tempGlobalLayer } from "./fixture/global"
 import { offlineModels } from "./fixture/models"
@@ -78,7 +78,7 @@ describe("Instance vanilla", () => {
             Effect.promise(async () => {
               const directory = path.join(dir.path, name)
               await fs.mkdir(directory)
-              await fs.writeFile(path.join(directory, "opencode.json"), "{}")
+              await fs.writeFile(path.join(directory, "redcode.json"), "{}")
               await fs.writeFile(path.join(directory, "AGENTS.md"), "planted instructions")
               return Location.Ref.make({ directory: AbsolutePath.make(directory) })
             })

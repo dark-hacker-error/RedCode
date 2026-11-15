@@ -1,5 +1,5 @@
 import { Schema } from "effect"
-import { Ipc } from "@opencode/plugin/gui"
+import { Ipc } from "@redcode/plugin/gui"
 
 export const WslServerConfig = Schema.Struct({ id: Schema.String, distro: Schema.String })
 
@@ -86,7 +86,7 @@ const Name = Schema.Struct({ name: Schema.NonEmptyString })
 
 const Id = Schema.Struct({ id: Schema.NonEmptyString })
 
-/** WSL runtime, distros, and the OpenCode servers the main process runs inside them. */
+/** WSL runtime, distros, and the RedCode servers the main process runs inside them. */
 export const Wsl = Ipc.define({
   id: "wsl",
   state: WslServersState,

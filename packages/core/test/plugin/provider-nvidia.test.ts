@@ -1,10 +1,10 @@
 import { describe, expect, test } from "bun:test"
 import { Effect } from "effect"
-import { Plugin } from "@opencode/core/plugin"
-import { PluginHost } from "@opencode/core/plugin/host"
-import { ProviderPlugins } from "@opencode/core/plugin/provider"
-import { NvidiaPlugin } from "@opencode/core/plugin/provider/nvidia"
-import { Provider } from "@opencode/core/provider"
+import { Plugin } from "@redcode/core/plugin"
+import { PluginHost } from "@redcode/core/plugin/host"
+import { ProviderPlugins } from "@redcode/core/plugin/provider"
+import { NvidiaPlugin } from "@redcode/core/plugin/provider/nvidia"
+import { Provider } from "@redcode/core/provider"
 import { testEffect } from "../lib/effect"
 import { PluginTestLayer } from "./fixture"
 
@@ -26,7 +26,7 @@ describe("NvidiaPlugin", () => {
       const catalog = yield* Provider.Service
       yield* catalog.transform((catalog) => {
         catalog.update(Provider.ID.make("nvidia"), (provider) => {
-          provider.package = "@opencode/ai/providers/openai-compatible"
+          provider.package = "@redcode/ai/providers/openai-compatible"
           provider.settings = { baseURL: "https://integrate.api.nvidia.com/v1" }
           provider.headers = { Existing: "value" }
         })
@@ -37,7 +37,7 @@ describe("NvidiaPlugin", () => {
         Existing: "value",
         "HTTP-Referer": "https://opencode.ai/",
         "X-Title": "opencode",
-        "X-BILLING-INVOKE-ORIGIN": "OpenCode",
+        "X-BILLING-INVOKE-ORIGIN": "RedCode",
       })
       expect((yield* catalog.get(Provider.ID.openrouter))?.headers).toBeUndefined()
     }),
@@ -48,7 +48,7 @@ describe("NvidiaPlugin", () => {
       const catalog = yield* Provider.Service
       yield* catalog.transform((catalog) => {
         catalog.update(Provider.ID.make("nvidia"), (provider) => {
-          provider.package = "@opencode/ai/providers/openai-compatible"
+          provider.package = "@redcode/ai/providers/openai-compatible"
           provider.settings = { baseURL: "https://integrate.api.nvidia.com/v1" }
         })
       })
@@ -57,7 +57,7 @@ describe("NvidiaPlugin", () => {
       expect((yield* catalog.get(Provider.ID.make("nvidia")))?.headers).toEqual({
         "HTTP-Referer": "https://opencode.ai/",
         "X-Title": "opencode",
-        "X-BILLING-INVOKE-ORIGIN": "OpenCode",
+        "X-BILLING-INVOKE-ORIGIN": "RedCode",
       })
     }),
   )
@@ -67,7 +67,7 @@ describe("NvidiaPlugin", () => {
       const catalog = yield* Provider.Service
       yield* catalog.transform((catalog) => {
         catalog.update(Provider.ID.make("nvidia"), (provider) => {
-          provider.package = "@opencode/ai/providers/openai-compatible"
+          provider.package = "@redcode/ai/providers/openai-compatible"
           provider.settings = { baseURL: "https://integrate.api.nvidia.com/v1" }
           provider.headers = { "X-BILLING-INVOKE-ORIGIN": "CustomOrigin" }
         })

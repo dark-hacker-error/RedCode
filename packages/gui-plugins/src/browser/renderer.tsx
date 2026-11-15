@@ -11,10 +11,10 @@ import {
   Switch,
   untrack,
 } from "solid-js"
-import { Button } from "@opencode/ui/button"
-import { Command, createKeyed, LinkHandler, MenuItem, Style, type Plugin } from "@opencode/plugin/gui"
-import { BuiltinCommand, BuiltinPanel, onIdle, type BuiltinPanelTab } from "@opencode/plugin/gui/builtin"
-import { Browser } from "@opencode/plugin/gui/browser"
+import { Button } from "@redcode/ui/button"
+import { Command, createKeyed, LinkHandler, MenuItem, Style, type Plugin } from "@redcode/plugin/gui"
+import { BuiltinCommand, BuiltinPanel, onIdle, type BuiltinPanelTab } from "@redcode/plugin/gui/builtin"
+import { Browser } from "@redcode/plugin/gui/browser"
 import type definition from "./index"
 import type { Model } from "./model"
 import {

@@ -1,10 +1,10 @@
 #!/usr/bin/env bun
 // Captures the official product screenshots from the real product with demo data, in light and dark,
-// at 2x, and writes a manifest (OpenCode version, date, size and hash of each file) next to them.
+// at 2x, and writes a manifest (RedCode version, date, size and hash of each file) next to them.
 // See script/assets/README.md. Run from packages/console/app:
 //   bun script/capture-assets.ts [--out ../../../../fresh-assets] [--surface terminal] [--surface terminal-film]
-// Needs: opencode (or OPENCODE_BIN), vhs, bun, git, zip. Only the terminal surfaces are automated so far.
-// Track the TUI on dev: OPENCODE_BIN=<a build of origin/dev's packages/cli> (bun run script/build.ts
+// Needs: opencode (or REDCODE_BIN), vhs, bun, git, zip. Only the terminal surfaces are automated so far.
+// Track the TUI on dev: REDCODE_BIN=<a build of origin/dev's packages/cli> (bun run script/build.ts
 // --single), plus --experiment for any TUI design behind a flag there.
 // terminal-film records the same run as video at the product video sizes, with a fixed frame (no camera),
 // for the locked-off product video cuts (see product-videos/cinematic next to the checkout).
@@ -26,12 +26,12 @@ const args = parseArgs({
     // TUI experiments to turn on in the capture's cli.json, e.g. --experiment new-designs (the
     // muted-blue dialogs with the left key line on dev).
     experiment: { type: "string", multiple: true, default: [] },
-    // The TUI theme. "opencode2" is the new-designs theme (offered only with that experiment on).
+    // The TUI theme. "redcode2" is the new-designs theme (offered only with that experiment on).
     theme: { type: "string", default: "opencode" },
   },
 }).values
 const out = path.resolve(args.out)
-const opencode = process.env.OPENCODE_BIN ?? "opencode"
+const opencode = process.env.REDCODE_BIN ?? "opencode"
 const modes = ["dark", "light"] as const
 
 // Logical window 1600x1000, rendered at 2x.
@@ -97,7 +97,7 @@ await Promise.all(
     await $`zip -q -X -j opencode-${surface}-screenshots.zip ${surface}/*.png manifest.json`.cwd(out)
   }),
 )
-console.log(`Captured ${manifest.assets.length} files from OpenCode ${manifest.opencodeVersion} into ${out}`)
+console.log(`Captured ${manifest.assets.length} files from RedCode ${manifest.opencodeVersion} into ${out}`)
 
 // Terminal: the real TUI in VHS (ttyd + headless Chrome), with an isolated HOME, a fixture repo and the
 // scripted model. Three beats per mode: the home screen with the prompt typed, the diff with the
@@ -197,8 +197,8 @@ function filmTape(home: string, film: (typeof films)[number], file: string) {
           `Sleep 700ms`,
           `Enter`,
           `Sleep 1500ms`,
-          // Below opencode2 in the list is "orng", the old orange: step past it in one burst.
-          ...(args.theme === "opencode2" ? [`Down@10ms 2`, `Sleep 900ms`] : ["Down", "Sleep 900ms"]),
+          // Below redcode2 in the list is "orng", the old orange: step past it in one burst.
+          ...(args.theme === "redcode2" ? [`Down@10ms 2`, `Sleep 900ms`] : ["Down", "Sleep 900ms"]),
           ...Array(5).fill(["Down", "Sleep 900ms"]).flat(),
           `Sleep 600ms`,
         ]
@@ -255,7 +255,7 @@ function isolatedEnv(home: string) {
     PS1: "$ ",
     TERM: "xterm-256color",
     COLORTERM: "truecolor",
-    OPENCODE_DISABLE_AUTOUPDATE: "1",
+    REDCODE_DISABLE_AUTOUPDATE: "1",
     BASH_SILENCE_DEPRECATION_WARNING: "1",
     TZ: "UTC",
     LANG: "en_US.UTF-8",
@@ -265,15 +265,15 @@ function isolatedEnv(home: string) {
 async function writeTerminalFixture(home: string, mode: string, port: number) {
   const repo = path.join(home, "my-app")
   const files: Record<string, string> = {
-    ".config/opencode/opencode.json": JSON.stringify(
+    ".config/redcode/redcode.json": JSON.stringify(
       {
         $schema: "https://opencode.ai/config.json",
         autoupdate: false,
         model: "demo/claude-opus-5-5",
         providers: {
           demo: {
-            name: "OpenCode",
-            package: "@opencode/ai/providers/openai-compatible",
+            name: "RedCode",
+            package: "@redcode/ai/providers/openai-compatible",
             settings: { baseURL: `http://127.0.0.1:${port}/v1`, apiKey: "demo" },
             models: { "claude-opus-5-5": { name: "Claude Opus 5.5" } },
           },
@@ -282,7 +282,7 @@ async function writeTerminalFixture(home: string, mode: string, port: number) {
       null,
       2,
     ),
-    ".config/opencode/cli.json": JSON.stringify(
+    ".config/redcode/cli.json": JSON.stringify(
       {
         $schema: "https://opencode.ai/v2/cli.json",
         theme: { name: args.theme, mode },
@@ -294,10 +294,10 @@ async function writeTerminalFixture(home: string, mode: string, port: number) {
       2,
     ),
     // Dismisses the sidebar's "Getting started" card (it shows while no real provider is connected).
-    ".local/state/opencode/latest/tui/plugin.opencode.sidebar.footer.getting-started.json": JSON.stringify({
+    ".local/state/redcode/latest/tui/plugin.opencode.sidebar.footer.getting-started.json": JSON.stringify({
       dismissed: true,
     }),
-    "my-app/opencode.json": JSON.stringify({
+    "my-app/redcode.json": JSON.stringify({
       $schema: "https://opencode.ai/config.json",
       permissions: [{ action: "shell", resource: "*", effect: "ask" }],
     }),

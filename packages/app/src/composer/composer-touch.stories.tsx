@@ -1,7 +1,7 @@
 import { For, Show, createMemo, onCleanup, onMount } from "solid-js"
 import { createStore } from "solid-js/store"
 import type { ModelSelection } from "@/providers/models/selection"
-import { STORY_MODEL } from "@opencode/session-ui/storybook"
+import { STORY_MODEL } from "@redcode/session-ui/storybook"
 import { Composer } from "./composer"
 import type { ComposerModel } from "./model"
 import { createComposerEditor } from "./editor/interaction"
@@ -61,7 +61,7 @@ const selectedModel = {
   headers: {},
   release_date: "2026-05-22",
   variants: { medium: {}, high: {} },
-  provider: { id: STORY_MODEL.providerID, name: "OpenCode", source: "custom", env: [], options: {}, models: {} },
+  provider: { id: STORY_MODEL.providerID, name: "RedCode", source: "custom", env: [], options: {}, models: {} },
   latest: true,
 } satisfies NonNullable<ReturnType<ModelSelection["current"]>>
 
@@ -274,7 +274,7 @@ function TouchStates(props: { state: State }) {
 }
 
 export default {
-  title: "OpenCode/Composer/Touch",
+  title: "RedCode/Composer/Touch",
   parameters: { layout: "fullscreen" },
   args: { state: "steer" },
   argTypes: { state: { control: "select", options: states.map((state) => state.id) } },

@@ -115,7 +115,7 @@ export default [
         return new Response(event.request.method === "HEAD" ? null : await robotsTxt(), {
           headers: textHeaders,
         })
-      // The people behind OpenCode (https://humanstxt.org). Served here because public/ files get no
+      // The people behind RedCode (https://humanstxt.org). Served here because public/ files get no
       // charset, and without one browsers garble its block characters.
       if (path === "/humans.txt")
         return new Response(event.request.method === "HEAD" ? null : humansTxt, {
@@ -157,7 +157,7 @@ const textHeaders = {
 }
 
 async function installScript() {
-  const response = await fetch("https://raw.githubusercontent.com/anomalyco/opencode/dev/install")
+  const response = await fetch("https://raw.githubusercontent.com/Vempire-X/RedCode/dev/install")
   const headers = new Headers(response.headers)
   headers.set("Cache-Control", "no-store")
   return new Response(response.body, { status: response.status, statusText: response.statusText, headers })

@@ -1,9 +1,9 @@
 #!/usr/bin/env bun
 
 import { NodeFileSystem } from "@effect/platform-node"
-import { Service } from "@opencode/client/effect/service"
-import { MCP_CLIENT_PATH } from "@opencode/protocol/groups/mcp"
-import { ServerInfo } from "@opencode/protocol/groups/server"
+import { Service } from "@redcode/client/effect/service"
+import { MCP_CLIENT_PATH } from "@redcode/protocol/groups/mcp"
+import { ServerInfo } from "@redcode/protocol/groups/server"
 import { Effect, Schema } from "effect"
 import fs from "node:fs/promises"
 import os from "node:os"
@@ -14,7 +14,7 @@ const target = `cli${nodeBuild ? "-node" : ""}-${process.platform === "win32" ? 
 const directory = path.join(import.meta.dir, "..", "dist", ...(nodeBuild ? ["node"] : []), target, "bin")
 const binary = path.join(
   directory,
-  `${nodeBuild ? "opencode2-node" : "opencode"}${process.platform === "win32" ? ".exe" : ""}`,
+  `${nodeBuild ? "redcode2-node" : "opencode"}${process.platform === "win32" ? ".exe" : ""}`,
 )
 if (!(await Bun.file(binary).exists())) throw new Error(`Missing compiled CLI in ${directory}`)
 
@@ -23,8 +23,8 @@ const env = {
   ...process.env,
   HOME: root,
   USERPROFILE: root,
-  OPENCODE_DB: path.join(root, "opencode.db"),
-  OPENCODE_TEST_HOME: root,
+  REDCODE_DB: path.join(root, "redcode.db"),
+  REDCODE_TEST_HOME: root,
   XDG_CACHE_HOME: path.join(root, "cache"),
   XDG_CONFIG_HOME: path.join(root, "config"),
   XDG_DATA_HOME: path.join(root, "data"),
@@ -34,7 +34,7 @@ const processes: Array<ReturnType<typeof Bun.spawn>> = []
 const errors: Array<Promise<string>> = []
 let failure: unknown
 try {
-  await fs.mkdir(path.join(root, ".opencode", "plugins"), { recursive: true })
+  await fs.mkdir(path.join(root, ".redcode", "plugins"), { recursive: true })
   spawnService()
   spawnService()
   const registration = await waitForRegistration()
@@ -56,7 +56,7 @@ try {
   if (tokenOpenApi.status !== 200) throw new Error("Compiled application rejected query authentication")
   await verifyWebUi(info.url)
   if ((await pluginIDs(info.url, headers)).includes("smoke")) throw new Error("Smoke plugin existed before creation")
-  const plugin = path.join(root, ".opencode", "plugins", "smoke.ts")
+  const plugin = path.join(root, ".redcode", "plugins", "smoke.ts")
   await fs.writeFile(plugin, pluginSource())
   await waitForPlugin(info.url, headers, plugin)
 

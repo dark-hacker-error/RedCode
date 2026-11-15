@@ -1,7 +1,7 @@
-import { Button } from "@opencode/ui/button"
-import { useDialog } from "@opencode/ui/context/dialog"
-import { Dialog, DialogTitle } from "@opencode/ui/dialog"
-import { ProviderIcon } from "@opencode/ui/provider-icon"
+import { Button } from "@redcode/ui/button"
+import { useDialog } from "@redcode/ui/context/dialog"
+import { Dialog, DialogTitle } from "@redcode/ui/dialog"
+import { ProviderIcon } from "@redcode/ui/provider-icon"
 import { useLanguage } from "@/runtime/i18n/language"
 import { usePlatform } from "@/runtime/platform/platform"
 

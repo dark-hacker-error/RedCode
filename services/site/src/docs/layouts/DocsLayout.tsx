@@ -80,8 +80,8 @@ export function DocsLayout(props: {
   const previous = at > 0 ? pages[at - 1] : undefined
   const next = at >= 0 ? pages[at + 1] : undefined
   const current = pages[at]
-  const description = props.description ?? `${props.title} documentation for OpenCode.`
-  const title = `${props.title} | OpenCode${props.set.id === "v1" ? " V1" : ""}`
+  const description = props.description ?? `${props.title} documentation for RedCode.`
+  const title = `${props.title} | RedCode${props.set.id === "v1" ? " V1" : ""}`
   const canonical = new URL(docsHref(props.currentSlug, props.set), "https://opencode.ai").href
   const contents = props.headings
     .filter((heading) => heading.depth === 2 || heading.depth === 3)

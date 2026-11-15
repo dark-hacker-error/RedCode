@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import { OpenCode } from "../src/promise"
+import { RedCode } from "../src/promise"
 import { createPersistentPtyClient } from "../src/solid"
 
 describe("createPersistentPtyClient", () => {
@@ -7,7 +7,7 @@ describe("createPersistentPtyClient", () => {
     let request: Request | undefined
     let socketURL: URL | undefined
     const socket = { binaryType: "blob" } as unknown as WebSocket
-    const api = OpenCode.make({
+    const api = RedCode.make({
       baseUrl: "https://server.example",
       headers: { Authorization: "Basic credential" },
       fetch: async (input, init) => {
@@ -36,7 +36,7 @@ describe("createPersistentPtyClient", () => {
 
   test("does not open a socket when ticket minting fails", async () => {
     let opened = false
-    const api = OpenCode.make({
+    const api = RedCode.make({
       baseUrl: "http://localhost:4096",
       fetch: async () => new Response(null, { status: 401 }),
     })
@@ -54,7 +54,7 @@ describe("createPersistentPtyClient", () => {
 
   test("keeps the server path prefix when opening the persistent terminal socket", async () => {
     let socketURL: URL | undefined
-    const api = OpenCode.make({
+    const api = RedCode.make({
       baseUrl: "https://server.example/base",
       fetch: async () => Response.json({ data: { ticket: "ticket-1", expires_in: 60 } }),
     })

@@ -13,28 +13,28 @@ import { CLI_BINARIES, nodePtyPackage } from "./script/utils"
 const { FileMatcher } = createRequire(import.meta.resolve("electron-builder"))("app-builder-lib/out/fileMatcher")
 
 const channels = [
-  { channel: "dev", appId: "ai.opencode.desktop.dev", feed: "dev" },
-  { channel: "beta", appId: "ai.opencode.desktop.beta", feed: "beta" },
-  { channel: "prod", appId: "ai.opencode.desktop", feed: "latest" },
+  { channel: "dev", appId: "ai.redcode.desktop.dev", feed: "dev" },
+  { channel: "beta", appId: "ai.redcode.desktop.beta", feed: "beta" },
+  { channel: "prod", appId: "ai.redcode.desktop", feed: "latest" },
 ] as const
 
 function load(channel: string, target?: string): Configuration {
-  const previous = process.env.OPENCODE_CHANNEL
-  const previousTarget = process.env.OPENCODE_TARGET
-  process.env.OPENCODE_CHANNEL = channel
+  const previous = process.env.REDCODE_CHANNEL
+  const previousTarget = process.env.REDCODE_TARGET
+  process.env.REDCODE_CHANNEL = channel
 
-  if (target !== undefined) process.env.OPENCODE_TARGET = target
-  else delete process.env.OPENCODE_TARGET
+  if (target !== undefined) process.env.REDCODE_TARGET = target
+  else delete process.env.REDCODE_TARGET
 
   try {
     return getConfig()
   } finally {
-    delete process.env.OPENCODE_CHANNEL
-    delete process.env.OPENCODE_TARGET
+    delete process.env.REDCODE_CHANNEL
+    delete process.env.REDCODE_TARGET
 
-    if (previous !== undefined) process.env.OPENCODE_CHANNEL = previous
+    if (previous !== undefined) process.env.REDCODE_CHANNEL = previous
 
-    if (previousTarget !== undefined) process.env.OPENCODE_TARGET = previousTarget
+    if (previousTarget !== undefined) process.env.REDCODE_TARGET = previousTarget
   }
 }
 
@@ -59,7 +59,7 @@ test.each(channels)("channel identity for $channel", ({ channel, appId, feed }) 
   expect(config.extraMetadata?.desktopName).toBe(`${appId}.desktop`)
   // The executable must never end in `.desktop`: libappimage resolves the
   // AppImage's desktop entry by globbing `*.desktop`, and an ELF matching
-  // that glob breaks integration (anomalyco/opencode#51867).
+  // that glob breaks integration (Vempire-X/RedCode#51867).
   expect(config.linux?.executableName).toBe(appId.replace(/\.desktop$/, ""))
   expect(config.linux?.executableName).not.toMatch(/\.desktop$/)
   // The installed `.desktop` filename still derives from `desktopName` so
@@ -70,7 +70,7 @@ test.each(channels)("channel identity for $channel", ({ channel, appId, feed }) 
   for (const fpm of [config.deb?.fpm, config.rpm?.fpm]) {
     expect(fpm).toContainEqual(expect.stringContaining(`/usr/share/metainfo/${appId}.metainfo.xml`))
     expect(
-      fpm?.some((entry) => entry.endsWith("opencode-desktop.desktop=/usr/share/applications/opencode-desktop.desktop")),
+      fpm?.some((entry) => entry.endsWith("redcode-desktop.desktop=/usr/share/applications/redcode-desktop.desktop")),
     ).toBe(channel === "prod")
   }
 
@@ -81,10 +81,10 @@ test.each(channels)("channel identity for $channel", ({ channel, appId, feed }) 
 })
 
 test("legacy Linux launcher stays hidden", async () => {
-  const desktop = await Bun.file(path.join(import.meta.dirname, "resources/linux/opencode-desktop.desktop")).text()
-  expect(desktop).toContain("Exec=/opt/OpenCode/ai.opencode %U")
+  const desktop = await Bun.file(path.join(import.meta.dirname, "resources/linux/redcode-desktop.desktop")).text()
+  expect(desktop).toContain("Exec=/opt/RedCode/ai.opencode %U")
   expect(desktop).toContain("Icon=ai.opencode")
-  expect(desktop).toContain("StartupWMClass=ai.opencode.desktop")
+  expect(desktop).toContain("StartupWMClass=ai.redcode.desktop")
   expect(desktop).toContain("NoDisplay=true")
 })
 

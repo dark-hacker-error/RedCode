@@ -1,18 +1,18 @@
 export * as Provider from "./provider.js"
 
 import { Context, Effect, Layer, Option, Schema, Stream, Struct } from "effect"
-import { Provider } from "@opencode/schema/provider"
-import { Model } from "@opencode/schema/model"
-import { makeLocationNode } from "@opencode/util/effect/app-node"
-import { HttpTimeout, type ProviderPackage } from "@opencode/ai/effect"
-import { Npm } from "@opencode/util/npm"
+import { Provider } from "@redcode/schema/provider"
+import { Model } from "@redcode/schema/model"
+import { makeLocationNode } from "@redcode/util/effect/app-node"
+import { HttpTimeout, type ProviderPackage } from "@redcode/ai/effect"
+import { Npm } from "@redcode/util/npm"
 import type { DeepMutable } from "./schema.js"
-import { importModule, resolveModule } from "@opencode/util/runtime-import"
+import { importModule, resolveModule } from "@redcode/util/runtime-import"
 import { Bus } from "./bus.js"
 import { Integration } from "./integration.js"
 import { State } from "./state.js"
 import { IntegrationConnection } from "./integration/connection.js"
-import { Credential } from "@opencode/schema/credential"
+import { Credential } from "@redcode/schema/credential"
 import { Location } from "./location.js"
 import { freeze } from "immer"
 import { AISDKNative } from "./aisdk-native.js"
@@ -29,170 +29,170 @@ export class LoadError extends Schema.TaggedError<LoadError>()("Provider.LoadErr
 
 const packages = new Map<string, Promise<unknown>>()
 const builtins = new Map<string, () => Promise<unknown>>([
-  ["@opencode/ai/providers/alibaba", () => import("@opencode/ai/providers/alibaba")],
-  ["@opencode/ai/providers/alibaba/chat", () => import("@opencode/ai/providers/alibaba/chat")],
-  ["@opencode/ai/providers/alibaba/messages", () => import("@opencode/ai/providers/alibaba/messages")],
-  ["@opencode/ai/providers/alibaba/responses", () => import("@opencode/ai/providers/alibaba/responses")],
-  ["@opencode/ai/providers/alibaba/images", () => import("@opencode/ai/providers/alibaba/images")],
-  ["@opencode/ai/providers/alibaba/embeddings", () => import("@opencode/ai/providers/alibaba/embeddings")],
-  ["@opencode/ai/providers/amazon-bedrock", () => import("@opencode/ai/providers/amazon-bedrock")],
-  ["@opencode/ai/providers/amazon-bedrock/mantle", () => import("@opencode/ai/providers/amazon-bedrock/mantle")],
+  ["@redcode/ai/providers/alibaba", () => import("@redcode/ai/providers/alibaba")],
+  ["@redcode/ai/providers/alibaba/chat", () => import("@redcode/ai/providers/alibaba/chat")],
+  ["@redcode/ai/providers/alibaba/messages", () => import("@redcode/ai/providers/alibaba/messages")],
+  ["@redcode/ai/providers/alibaba/responses", () => import("@redcode/ai/providers/alibaba/responses")],
+  ["@redcode/ai/providers/alibaba/images", () => import("@redcode/ai/providers/alibaba/images")],
+  ["@redcode/ai/providers/alibaba/embeddings", () => import("@redcode/ai/providers/alibaba/embeddings")],
+  ["@redcode/ai/providers/amazon-bedrock", () => import("@redcode/ai/providers/amazon-bedrock")],
+  ["@redcode/ai/providers/amazon-bedrock/mantle", () => import("@redcode/ai/providers/amazon-bedrock/mantle")],
   [
-    "@opencode/ai/providers/amazon-bedrock/mantle/chat",
-    () => import("@opencode/ai/providers/amazon-bedrock/mantle/chat"),
+    "@redcode/ai/providers/amazon-bedrock/mantle/chat",
+    () => import("@redcode/ai/providers/amazon-bedrock/mantle/chat"),
   ],
   [
-    "@opencode/ai/providers/amazon-bedrock/mantle/messages",
-    () => import("@opencode/ai/providers/amazon-bedrock/mantle/messages"),
+    "@redcode/ai/providers/amazon-bedrock/mantle/messages",
+    () => import("@redcode/ai/providers/amazon-bedrock/mantle/messages"),
   ],
   [
-    "@opencode/ai/providers/amazon-bedrock/mantle/responses",
-    () => import("@opencode/ai/providers/amazon-bedrock/mantle/responses"),
+    "@redcode/ai/providers/amazon-bedrock/mantle/responses",
+    () => import("@redcode/ai/providers/amazon-bedrock/mantle/responses"),
   ],
-  ["@opencode/ai/providers/anthropic", () => import("@opencode/ai/providers/anthropic")],
-  ["@opencode/ai/providers/anthropic-compatible", () => import("@opencode/ai/providers/anthropic-compatible")],
-  ["@opencode/ai/providers/azure", () => import("@opencode/ai/providers/azure")],
-  ["@opencode/ai/providers/azure/chat", () => import("@opencode/ai/providers/azure/chat")],
-  ["@opencode/ai/providers/azure/responses", () => import("@opencode/ai/providers/azure/responses")],
-  ["@opencode/ai/providers/azure/images", () => import("@opencode/ai/providers/azure/images")],
-  ["@opencode/ai/providers/azure/embeddings", () => import("@opencode/ai/providers/azure/embeddings")],
-  ["@opencode/ai/providers/azure/messages", () => import("@opencode/ai/providers/azure/messages")],
-  ["@opencode/ai/providers/baseten", () => import("@opencode/ai/providers/baseten")],
-  ["@opencode/ai/providers/baseten/decisions", () => import("@opencode/ai/providers/baseten/decisions")],
-  ["@opencode/ai/providers/byteplus/videos", () => import("@opencode/ai/providers/byteplus/videos")],
-  ["@opencode/ai/providers/cerebras", () => import("@opencode/ai/providers/cerebras")],
-  ["@opencode/ai/providers/cloudflare-ai-gateway", () => import("@opencode/ai/providers/cloudflare-ai-gateway")],
+  ["@redcode/ai/providers/anthropic", () => import("@redcode/ai/providers/anthropic")],
+  ["@redcode/ai/providers/anthropic-compatible", () => import("@redcode/ai/providers/anthropic-compatible")],
+  ["@redcode/ai/providers/azure", () => import("@redcode/ai/providers/azure")],
+  ["@redcode/ai/providers/azure/chat", () => import("@redcode/ai/providers/azure/chat")],
+  ["@redcode/ai/providers/azure/responses", () => import("@redcode/ai/providers/azure/responses")],
+  ["@redcode/ai/providers/azure/images", () => import("@redcode/ai/providers/azure/images")],
+  ["@redcode/ai/providers/azure/embeddings", () => import("@redcode/ai/providers/azure/embeddings")],
+  ["@redcode/ai/providers/azure/messages", () => import("@redcode/ai/providers/azure/messages")],
+  ["@redcode/ai/providers/baseten", () => import("@redcode/ai/providers/baseten")],
+  ["@redcode/ai/providers/baseten/decisions", () => import("@redcode/ai/providers/baseten/decisions")],
+  ["@redcode/ai/providers/byteplus/videos", () => import("@redcode/ai/providers/byteplus/videos")],
+  ["@redcode/ai/providers/cerebras", () => import("@redcode/ai/providers/cerebras")],
+  ["@redcode/ai/providers/cloudflare-ai-gateway", () => import("@redcode/ai/providers/cloudflare-ai-gateway")],
   [
-    "@opencode/ai/providers/cloudflare-ai-gateway/decisions",
-    () => import("@opencode/ai/providers/cloudflare-ai-gateway/decisions"),
+    "@redcode/ai/providers/cloudflare-ai-gateway/decisions",
+    () => import("@redcode/ai/providers/cloudflare-ai-gateway/decisions"),
   ],
-  ["@opencode/ai/providers/cloudflare-workers-ai", () => import("@opencode/ai/providers/cloudflare-workers-ai")],
+  ["@redcode/ai/providers/cloudflare-workers-ai", () => import("@redcode/ai/providers/cloudflare-workers-ai")],
   [
-    "@opencode/ai/providers/cloudflare-workers-ai/decisions",
-    () => import("@opencode/ai/providers/cloudflare-workers-ai/decisions"),
-  ],
-  [
-    "@opencode/ai/providers/cloudflare-workers-ai/images",
-    () => import("@opencode/ai/providers/cloudflare-workers-ai/images"),
-  ],
-  ["@opencode/ai/providers/cohere", () => import("@opencode/ai/providers/cohere")],
-  ["@opencode/ai/providers/cohere/chat", () => import("@opencode/ai/providers/cohere/chat")],
-  ["@opencode/ai/providers/cohere/embeddings", () => import("@opencode/ai/providers/cohere/embeddings")],
-  ["@opencode/ai/providers/deepinfra", () => import("@opencode/ai/providers/deepinfra")],
-  ["@opencode/ai/providers/deepinfra/embeddings", () => import("@opencode/ai/providers/deepinfra/embeddings")],
-  ["@opencode/ai/providers/deepseek", () => import("@opencode/ai/providers/deepseek")],
-  ["@opencode/ai/providers/digitalocean", () => import("@opencode/ai/providers/digitalocean")],
-  ["@opencode/ai/providers/digitalocean/decisions", () => import("@opencode/ai/providers/digitalocean/decisions")],
-  ["@opencode/ai/providers/digitalocean/embeddings", () => import("@opencode/ai/providers/digitalocean/embeddings")],
-  ["@opencode/ai/providers/digitalocean/images", () => import("@opencode/ai/providers/digitalocean/images")],
-  ["@opencode/ai/providers/digitalocean/responses", () => import("@opencode/ai/providers/digitalocean/responses")],
-  ["@opencode/ai/providers/fireworks", () => import("@opencode/ai/providers/fireworks")],
-  ["@opencode/ai/providers/fireworks/embeddings", () => import("@opencode/ai/providers/fireworks/embeddings")],
-  ["@opencode/ai/providers/google", () => import("@opencode/ai/providers/google")],
-  ["@opencode/ai/providers/google/decisions", () => import("@opencode/ai/providers/google/decisions")],
-  ["@opencode/ai/providers/google/interactions", () => import("@opencode/ai/providers/google/interactions")],
-  ["@opencode/ai/providers/google/embeddings", () => import("@opencode/ai/providers/google/embeddings")],
-  ["@opencode/ai/providers/google/images", () => import("@opencode/ai/providers/google/images")],
-  ["@opencode/ai/providers/google/videos", () => import("@opencode/ai/providers/google/videos")],
-  ["@opencode/ai/providers/google-vertex", () => import("@opencode/ai/providers/google-vertex")],
-  ["@opencode/ai/providers/google-vertex/chat", () => import("@opencode/ai/providers/google-vertex/chat")],
-  ["@opencode/ai/providers/google-vertex/gemini", () => import("@opencode/ai/providers/google-vertex/gemini")],
-  [
-    "@opencode/ai/providers/google-vertex/interactions",
-    () => import("@opencode/ai/providers/google-vertex/interactions"),
-  ],
-  ["@opencode/ai/providers/google-vertex/messages", () => import("@opencode/ai/providers/google-vertex/messages")],
-  ["@opencode/ai/providers/google-vertex/mistral", () => import("@opencode/ai/providers/google-vertex/mistral")],
-  ["@opencode/ai/providers/google-vertex/responses", () => import("@opencode/ai/providers/google-vertex/responses")],
-  ["@opencode/ai/providers/google-vertex/embeddings", () => import("@opencode/ai/providers/google-vertex/embeddings")],
-  ["@opencode/ai/providers/google-vertex/images", () => import("@opencode/ai/providers/google-vertex/images")],
-  ["@opencode/ai/providers/google-vertex-messages", () => import("@opencode/ai/providers/google-vertex-messages")],
-  ["@opencode/ai/providers/groq", () => import("@opencode/ai/providers/groq")],
-  ["@opencode/ai/providers/meta", () => import("@opencode/ai/providers/meta")],
-  ["@opencode/ai/providers/meta/chat", () => import("@opencode/ai/providers/meta/chat")],
-  ["@opencode/ai/providers/meta/images", () => import("@opencode/ai/providers/meta/images")],
-  ["@opencode/ai/providers/meta/messages", () => import("@opencode/ai/providers/meta/messages")],
-  ["@opencode/ai/providers/meta/responses", () => import("@opencode/ai/providers/meta/responses")],
-  ["@opencode/ai/providers/minimax", () => import("@opencode/ai/providers/minimax")],
-  ["@opencode/ai/providers/minimax/chat", () => import("@opencode/ai/providers/minimax/chat")],
-  ["@opencode/ai/providers/minimax/images", () => import("@opencode/ai/providers/minimax/images")],
-  ["@opencode/ai/providers/minimax/messages", () => import("@opencode/ai/providers/minimax/messages")],
-  ["@opencode/ai/providers/minimax/responses", () => import("@opencode/ai/providers/minimax/responses")],
-  ["@opencode/ai/providers/minimax/videos", () => import("@opencode/ai/providers/minimax/videos")],
-  ["@opencode/ai/providers/mistral", () => import("@opencode/ai/providers/mistral")],
-  ["@opencode/ai/providers/moonshot", () => import("@opencode/ai/providers/moonshot")],
-  ["@opencode/ai/providers/moonshot/chat", () => import("@opencode/ai/providers/moonshot/chat")],
-  ["@opencode/ai/providers/moonshot/messages", () => import("@opencode/ai/providers/moonshot/messages")],
-  ["@opencode/ai/providers/moonshot/responses", () => import("@opencode/ai/providers/moonshot/responses")],
-  ["@opencode/ai/providers/openai", () => import("@opencode/ai/providers/openai")],
-  ["@opencode/ai/providers/openai/chat", () => import("@opencode/ai/providers/openai/chat")],
-  ["@opencode/ai/providers/openai/responses", () => import("@opencode/ai/providers/openai/responses")],
-  ["@opencode/ai/providers/openai/images", () => import("@opencode/ai/providers/openai/images")],
-  ["@opencode/ai/providers/openai/embeddings", () => import("@opencode/ai/providers/openai/embeddings")],
-  ["@opencode/ai/providers/openai-compatible", () => import("@opencode/ai/providers/openai-compatible")],
-  [
-    "@opencode/ai/providers/openai-compatible/responses",
-    () => import("@opencode/ai/providers/openai-compatible/responses"),
-  ],
-  ["@opencode/ai/providers/openai-compatible/images", () => import("@opencode/ai/providers/openai-compatible/images")],
-  [
-    "@opencode/ai/providers/openai-compatible/decisions",
-    () => import("@opencode/ai/providers/openai-compatible/decisions"),
+    "@redcode/ai/providers/cloudflare-workers-ai/decisions",
+    () => import("@redcode/ai/providers/cloudflare-workers-ai/decisions"),
   ],
   [
-    "@opencode/ai/providers/openai-compatible/embeddings",
-    () => import("@opencode/ai/providers/openai-compatible/embeddings"),
+    "@redcode/ai/providers/cloudflare-workers-ai/images",
+    () => import("@redcode/ai/providers/cloudflare-workers-ai/images"),
+  ],
+  ["@redcode/ai/providers/cohere", () => import("@redcode/ai/providers/cohere")],
+  ["@redcode/ai/providers/cohere/chat", () => import("@redcode/ai/providers/cohere/chat")],
+  ["@redcode/ai/providers/cohere/embeddings", () => import("@redcode/ai/providers/cohere/embeddings")],
+  ["@redcode/ai/providers/deepinfra", () => import("@redcode/ai/providers/deepinfra")],
+  ["@redcode/ai/providers/deepinfra/embeddings", () => import("@redcode/ai/providers/deepinfra/embeddings")],
+  ["@redcode/ai/providers/deepseek", () => import("@redcode/ai/providers/deepseek")],
+  ["@redcode/ai/providers/digitalocean", () => import("@redcode/ai/providers/digitalocean")],
+  ["@redcode/ai/providers/digitalocean/decisions", () => import("@redcode/ai/providers/digitalocean/decisions")],
+  ["@redcode/ai/providers/digitalocean/embeddings", () => import("@redcode/ai/providers/digitalocean/embeddings")],
+  ["@redcode/ai/providers/digitalocean/images", () => import("@redcode/ai/providers/digitalocean/images")],
+  ["@redcode/ai/providers/digitalocean/responses", () => import("@redcode/ai/providers/digitalocean/responses")],
+  ["@redcode/ai/providers/fireworks", () => import("@redcode/ai/providers/fireworks")],
+  ["@redcode/ai/providers/fireworks/embeddings", () => import("@redcode/ai/providers/fireworks/embeddings")],
+  ["@redcode/ai/providers/google", () => import("@redcode/ai/providers/google")],
+  ["@redcode/ai/providers/google/decisions", () => import("@redcode/ai/providers/google/decisions")],
+  ["@redcode/ai/providers/google/interactions", () => import("@redcode/ai/providers/google/interactions")],
+  ["@redcode/ai/providers/google/embeddings", () => import("@redcode/ai/providers/google/embeddings")],
+  ["@redcode/ai/providers/google/images", () => import("@redcode/ai/providers/google/images")],
+  ["@redcode/ai/providers/google/videos", () => import("@redcode/ai/providers/google/videos")],
+  ["@redcode/ai/providers/google-vertex", () => import("@redcode/ai/providers/google-vertex")],
+  ["@redcode/ai/providers/google-vertex/chat", () => import("@redcode/ai/providers/google-vertex/chat")],
+  ["@redcode/ai/providers/google-vertex/gemini", () => import("@redcode/ai/providers/google-vertex/gemini")],
+  [
+    "@redcode/ai/providers/google-vertex/interactions",
+    () => import("@redcode/ai/providers/google-vertex/interactions"),
+  ],
+  ["@redcode/ai/providers/google-vertex/messages", () => import("@redcode/ai/providers/google-vertex/messages")],
+  ["@redcode/ai/providers/google-vertex/mistral", () => import("@redcode/ai/providers/google-vertex/mistral")],
+  ["@redcode/ai/providers/google-vertex/responses", () => import("@redcode/ai/providers/google-vertex/responses")],
+  ["@redcode/ai/providers/google-vertex/embeddings", () => import("@redcode/ai/providers/google-vertex/embeddings")],
+  ["@redcode/ai/providers/google-vertex/images", () => import("@redcode/ai/providers/google-vertex/images")],
+  ["@redcode/ai/providers/google-vertex-messages", () => import("@redcode/ai/providers/google-vertex-messages")],
+  ["@redcode/ai/providers/groq", () => import("@redcode/ai/providers/groq")],
+  ["@redcode/ai/providers/meta", () => import("@redcode/ai/providers/meta")],
+  ["@redcode/ai/providers/meta/chat", () => import("@redcode/ai/providers/meta/chat")],
+  ["@redcode/ai/providers/meta/images", () => import("@redcode/ai/providers/meta/images")],
+  ["@redcode/ai/providers/meta/messages", () => import("@redcode/ai/providers/meta/messages")],
+  ["@redcode/ai/providers/meta/responses", () => import("@redcode/ai/providers/meta/responses")],
+  ["@redcode/ai/providers/minimax", () => import("@redcode/ai/providers/minimax")],
+  ["@redcode/ai/providers/minimax/chat", () => import("@redcode/ai/providers/minimax/chat")],
+  ["@redcode/ai/providers/minimax/images", () => import("@redcode/ai/providers/minimax/images")],
+  ["@redcode/ai/providers/minimax/messages", () => import("@redcode/ai/providers/minimax/messages")],
+  ["@redcode/ai/providers/minimax/responses", () => import("@redcode/ai/providers/minimax/responses")],
+  ["@redcode/ai/providers/minimax/videos", () => import("@redcode/ai/providers/minimax/videos")],
+  ["@redcode/ai/providers/mistral", () => import("@redcode/ai/providers/mistral")],
+  ["@redcode/ai/providers/moonshot", () => import("@redcode/ai/providers/moonshot")],
+  ["@redcode/ai/providers/moonshot/chat", () => import("@redcode/ai/providers/moonshot/chat")],
+  ["@redcode/ai/providers/moonshot/messages", () => import("@redcode/ai/providers/moonshot/messages")],
+  ["@redcode/ai/providers/moonshot/responses", () => import("@redcode/ai/providers/moonshot/responses")],
+  ["@redcode/ai/providers/openai", () => import("@redcode/ai/providers/openai")],
+  ["@redcode/ai/providers/openai/chat", () => import("@redcode/ai/providers/openai/chat")],
+  ["@redcode/ai/providers/openai/responses", () => import("@redcode/ai/providers/openai/responses")],
+  ["@redcode/ai/providers/openai/images", () => import("@redcode/ai/providers/openai/images")],
+  ["@redcode/ai/providers/openai/embeddings", () => import("@redcode/ai/providers/openai/embeddings")],
+  ["@redcode/ai/providers/openai-compatible", () => import("@redcode/ai/providers/openai-compatible")],
+  [
+    "@redcode/ai/providers/openai-compatible/responses",
+    () => import("@redcode/ai/providers/openai-compatible/responses"),
+  ],
+  ["@redcode/ai/providers/openai-compatible/images", () => import("@redcode/ai/providers/openai-compatible/images")],
+  [
+    "@redcode/ai/providers/openai-compatible/decisions",
+    () => import("@redcode/ai/providers/openai-compatible/decisions"),
   ],
   [
-    "@opencode/ai/providers/openai-compatible-responses",
-    () => import("@opencode/ai/providers/openai-compatible-responses"),
-  ],
-  ["@opencode/ai/providers/opencode/decisions", () => import("@opencode/ai/providers/opencode/decisions")],
-  ["@opencode/ai/providers/openrouter", () => import("@opencode/ai/providers/openrouter")],
-  ["@opencode/ai/providers/openrouter/decisions", () => import("@opencode/ai/providers/openrouter/decisions")],
-  ["@opencode/ai/providers/openrouter/embeddings", () => import("@opencode/ai/providers/openrouter/embeddings")],
-  ["@opencode/ai/providers/openrouter/images", () => import("@opencode/ai/providers/openrouter/images")],
-  ["@opencode/ai/providers/openrouter/videos", () => import("@opencode/ai/providers/openrouter/videos")],
-  ["@opencode/ai/providers/openrouter/responses", () => import("@opencode/ai/providers/openrouter/responses")],
-  ["@opencode/ai/providers/togetherai", () => import("@opencode/ai/providers/togetherai")],
-  ["@opencode/ai/providers/typesafe-ai/decisions", () => import("@opencode/ai/providers/typesafe-ai/decisions")],
-  ["@opencode/ai/providers/venice", () => import("@opencode/ai/providers/venice")],
-  ["@opencode/ai/providers/venice/responses", () => import("@opencode/ai/providers/venice/responses")],
-  ["@opencode/ai/providers/volcengine/videos", () => import("@opencode/ai/providers/volcengine/videos")],
-  ["@opencode/ai/providers/vercel-ai-gateway", () => import("@opencode/ai/providers/vercel-ai-gateway")],
-  ["@opencode/ai/providers/vercel-ai-gateway/chat", () => import("@opencode/ai/providers/vercel-ai-gateway/chat")],
-  [
-    "@opencode/ai/providers/vercel-ai-gateway/messages",
-    () => import("@opencode/ai/providers/vercel-ai-gateway/messages"),
+    "@redcode/ai/providers/openai-compatible/embeddings",
+    () => import("@redcode/ai/providers/openai-compatible/embeddings"),
   ],
   [
-    "@opencode/ai/providers/vercel-ai-gateway/responses",
-    () => import("@opencode/ai/providers/vercel-ai-gateway/responses"),
+    "@redcode/ai/providers/openai-compatible-responses",
+    () => import("@redcode/ai/providers/openai-compatible-responses"),
+  ],
+  ["@redcode/ai/providers/opencode/decisions", () => import("@redcode/ai/providers/opencode/decisions")],
+  ["@redcode/ai/providers/openrouter", () => import("@redcode/ai/providers/openrouter")],
+  ["@redcode/ai/providers/openrouter/decisions", () => import("@redcode/ai/providers/openrouter/decisions")],
+  ["@redcode/ai/providers/openrouter/embeddings", () => import("@redcode/ai/providers/openrouter/embeddings")],
+  ["@redcode/ai/providers/openrouter/images", () => import("@redcode/ai/providers/openrouter/images")],
+  ["@redcode/ai/providers/openrouter/videos", () => import("@redcode/ai/providers/openrouter/videos")],
+  ["@redcode/ai/providers/openrouter/responses", () => import("@redcode/ai/providers/openrouter/responses")],
+  ["@redcode/ai/providers/togetherai", () => import("@redcode/ai/providers/togetherai")],
+  ["@redcode/ai/providers/typesafe-ai/decisions", () => import("@redcode/ai/providers/typesafe-ai/decisions")],
+  ["@redcode/ai/providers/venice", () => import("@redcode/ai/providers/venice")],
+  ["@redcode/ai/providers/venice/responses", () => import("@redcode/ai/providers/venice/responses")],
+  ["@redcode/ai/providers/volcengine/videos", () => import("@redcode/ai/providers/volcengine/videos")],
+  ["@redcode/ai/providers/vercel-ai-gateway", () => import("@redcode/ai/providers/vercel-ai-gateway")],
+  ["@redcode/ai/providers/vercel-ai-gateway/chat", () => import("@redcode/ai/providers/vercel-ai-gateway/chat")],
+  [
+    "@redcode/ai/providers/vercel-ai-gateway/messages",
+    () => import("@redcode/ai/providers/vercel-ai-gateway/messages"),
   ],
   [
-    "@opencode/ai/providers/vercel-ai-gateway/decisions",
-    () => import("@opencode/ai/providers/vercel-ai-gateway/decisions"),
+    "@redcode/ai/providers/vercel-ai-gateway/responses",
+    () => import("@redcode/ai/providers/vercel-ai-gateway/responses"),
   ],
-  ["@opencode/ai/providers/vercel-ai-gateway/images", () => import("@opencode/ai/providers/vercel-ai-gateway/images")],
   [
-    "@opencode/ai/providers/vercel-ai-gateway/embeddings",
-    () => import("@opencode/ai/providers/vercel-ai-gateway/embeddings"),
+    "@redcode/ai/providers/vercel-ai-gateway/decisions",
+    () => import("@redcode/ai/providers/vercel-ai-gateway/decisions"),
   ],
-  ["@opencode/ai/providers/xai", () => import("@opencode/ai/providers/xai")],
-  ["@opencode/ai/providers/xai/images", () => import("@opencode/ai/providers/xai/images")],
-  ["@opencode/ai/providers/zai", () => import("@opencode/ai/providers/zai")],
-  ["@opencode/ai/providers/zai/chat", () => import("@opencode/ai/providers/zai/chat")],
-  ["@opencode/ai/providers/zai/images", () => import("@opencode/ai/providers/zai/images")],
-  ["@opencode/ai/providers/zai-coding-plan", () => import("@opencode/ai/providers/zai-coding-plan")],
-  ["@opencode/ai/providers/zai-coding-plan/chat", () => import("@opencode/ai/providers/zai-coding-plan/chat")],
-  ["@opencode/ai/providers/zai-coding-plan/messages", () => import("@opencode/ai/providers/zai-coding-plan/messages")],
+  ["@redcode/ai/providers/vercel-ai-gateway/images", () => import("@redcode/ai/providers/vercel-ai-gateway/images")],
   [
-    "@opencode/ai/providers/zai-coding-plan/responses",
-    () => import("@opencode/ai/providers/zai-coding-plan/responses"),
+    "@redcode/ai/providers/vercel-ai-gateway/embeddings",
+    () => import("@redcode/ai/providers/vercel-ai-gateway/embeddings"),
+  ],
+  ["@redcode/ai/providers/xai", () => import("@redcode/ai/providers/xai")],
+  ["@redcode/ai/providers/xai/images", () => import("@redcode/ai/providers/xai/images")],
+  ["@redcode/ai/providers/zai", () => import("@redcode/ai/providers/zai")],
+  ["@redcode/ai/providers/zai/chat", () => import("@redcode/ai/providers/zai/chat")],
+  ["@redcode/ai/providers/zai/images", () => import("@redcode/ai/providers/zai/images")],
+  ["@redcode/ai/providers/zai-coding-plan", () => import("@redcode/ai/providers/zai-coding-plan")],
+  ["@redcode/ai/providers/zai-coding-plan/chat", () => import("@redcode/ai/providers/zai-coding-plan/chat")],
+  ["@redcode/ai/providers/zai-coding-plan/messages", () => import("@redcode/ai/providers/zai-coding-plan/messages")],
+  [
+    "@redcode/ai/providers/zai-coding-plan/responses",
+    () => import("@redcode/ai/providers/zai-coding-plan/responses"),
   ],
 ])
 
-/** Native `@opencode/ai/providers/*` entrypoints bundled with Core and loadable by name from config. */
+/** Native `@redcode/ai/providers/*` entrypoints bundled with Core and loadable by name from config. */
 export const builtinPackages: ReadonlySet<string> = new Set(builtins.keys())
 
 export const loadPackage = Effect.fn("Provider.loadPackage")(function* (input: string, npm?: Npm.Interface) {
@@ -200,7 +200,7 @@ export const loadPackage = Effect.fn("Provider.loadPackage")(function* (input: s
   const builtin = builtins.get(specifier)
   if (builtin) return yield* importPackage(specifier, specifier, builtin)
   const resolved = yield* Effect.sync(() => {
-    if (specifier.startsWith("file://") || specifier.startsWith("@opencode/ai/")) return specifier
+    if (specifier.startsWith("file://") || specifier.startsWith("@redcode/ai/")) return specifier
     try {
       return import.meta.resolve(specifier)
     } catch {
@@ -227,7 +227,7 @@ export const loadPackage = Effect.fn("Provider.loadPackage")(function* (input: s
 const settingsKeys = Struct.keys(Provider.Settings.schema.fields)
 const providerOnlyKeys = settingsKeys.filter((key) => !(key in Model.Settings.schema.fields))
 
-/** The provider options: every settings key OpenCode doesn't read itself. */
+/** The provider options: every settings key RedCode doesn't read itself. */
 export function nativeSettings(settings: Settings) {
   return Struct.omit(settings, settingsKeys)
 }
@@ -298,7 +298,7 @@ export type Info = Provider.Info
 
 export type MutableInfo = DeepMutable<Info>
 
-export { Event } from "@opencode/schema/provider"
+export { Event } from "@redcode/schema/provider"
 
 /** Provider metadata owns its drafts; model definitions remain immutable inputs. */
 export type Definition = {
@@ -338,7 +338,7 @@ export interface Interface extends State.Transformable<Editor> {
   readonly snapshot: () => Effect.Effect<Snapshot>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@opencode/Provider") {}
+export class Service extends Context.Service<Service, Interface>()("@redcode/Provider") {}
 
 // Every location references the same index for a shared immutable definition array.
 const definitions = new WeakMap<readonly Model.Info[], Map<ID, ReadonlyMap<Model.ID, Model.Info>>>()

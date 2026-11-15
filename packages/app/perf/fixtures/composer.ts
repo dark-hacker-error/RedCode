@@ -1,7 +1,7 @@
-import { base64Encode } from "@opencode/util/encode"
+import { base64Encode } from "@redcode/util/encode"
 import type { Page } from "@playwright/test"
 import { sessionHref } from "../../e2e/utils/app"
-import { mockOpenCodeServer } from "../../e2e/utils/mock-server"
+import { mockRedCodeServer } from "../../e2e/utils/mock-server"
 import { fixture } from "../../e2e/utils/session-fixture"
 
 const sessionID = "ses_perf_composer"
@@ -36,7 +36,7 @@ export async function mockLargeDraft(page: Page, server: string) {
     ).join("\n"),
   }))
 
-  await mockOpenCodeServer(page, {
+  await mockRedCodeServer(page, {
     server,
     directory: fixture.directory,
     project: fixture.project,
@@ -153,10 +153,10 @@ export async function seedHistory() {
   })
 
   const transaction = db.transaction(["documents", "blobs"], "readwrite")
-  transaction.objectStore("documents").put(JSON.stringify({ entries: normal }), "opencode.global.dat:prompt-history")
+  transaction.objectStore("documents").put(JSON.stringify({ entries: normal }), "redcode.global.dat:prompt-history")
   transaction
     .objectStore("documents")
-    .put(JSON.stringify({ entries: shell }), "opencode.global.dat:prompt-history-shell")
+    .put(JSON.stringify({ entries: shell }), "redcode.global.dat:prompt-history-shell")
   screenshots.forEach((screenshot) => transaction.objectStore("blobs").put(screenshot.blob, screenshot.id))
   await new Promise<void>((resolve, reject) => {
     transaction.oncomplete = () => resolve()

@@ -1,14 +1,14 @@
 import fs from "node:fs/promises"
 import path from "node:path"
 import { expect } from "bun:test"
-import { OpenCode } from "@opencode/client"
+import { RedCode } from "@redcode/client"
 import { Effect } from "effect"
 import { tmpdirScoped } from "../../core/test/fixture/tmpdir"
 import { it } from "../../core/test/lib/effect"
 import { serveRoutes } from "./fixture/routes"
 
 const client = (handler: (request: Request) => Promise<Response>) =>
-  OpenCode.make({
+  RedCode.make({
     baseUrl: "http://opencode.local",
     fetch: Object.assign((input: string | URL | Request, init?: RequestInit) => handler(new Request(input, init)), {
       preconnect: fetch.preconnect,
@@ -67,14 +67,14 @@ export default {
 `,
       )
       await fs.writeFile(
-        path.join(enabled, "opencode.json"),
+        path.join(enabled, "redcode.json"),
         JSON.stringify({
           plugins: [{ package: pluginDir }],
           experimental: { artifacts: true },
         }),
       )
       await fs.writeFile(
-        path.join(enabledOther, "opencode.json"),
+        path.join(enabledOther, "redcode.json"),
         JSON.stringify({
           experimental: { artifacts: true },
         }),
@@ -83,7 +83,7 @@ export default {
 
     const server = yield* serveRoutes({
       app: { version: "test" },
-      database: { path: path.join(dir, "opencode.db") },
+      database: { path: path.join(dir, "redcode.db") },
       config: { directory: global, project: true, claude: false },
       models: { fetch: false },
       fs: { filewatcher: false },

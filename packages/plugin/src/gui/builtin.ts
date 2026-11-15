@@ -331,7 +331,7 @@ export function builtinContext(ctx: Context): BuiltinContext {
  * builtinMainContext(ctx).storage.store("keepScreenActive", {
  *   schema: Schema.Boolean,
  *   initial: false,
- *   from: { state: ["opencode.settings", "keepScreenActive"] },
+ *   from: { state: ["redcode.settings", "keepScreenActive"] },
  * })
  * ```
  */
@@ -343,7 +343,7 @@ export type MainStoreFrom =
       readonly file?: string
     }
   | {
-      /** The storage namespace and the key in it, e.g. `["opencode.settings", "keepScreenActive"]`. */
+      /** The storage namespace and the key in it, e.g. `["redcode.settings", "keepScreenActive"]`. */
       readonly state: readonly [namespace: string, key: string]
     }
 

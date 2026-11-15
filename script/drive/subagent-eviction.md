@@ -17,8 +17,8 @@ and a dependency-installed V2 checkout. The script is an Effect program, run wit
 `opencode-drive run` (which typechecks before launch).
 
 ```sh
-OPENCODE_DRIVE_DB=proof.sqlite \
-OPENCODE_DRIVE_MEDIA_DIR=$PWD/.drive-output \
+REDCODE_DRIVE_DB=proof.sqlite \
+REDCODE_DRIVE_MEDIA_DIR=$PWD/.drive-output \
 DEMO_LABEL=AFTER \
 opencode-drive run script/drive/subagent-eviction.ts
 ```
@@ -26,9 +26,9 @@ opencode-drive run script/drive/subagent-eviction.ts
 Run that same script against an immutable base checkout:
 
 ```sh
-OPENCODE_DEV=/path/to/base-checkout \
-OPENCODE_DRIVE_DB=proof.sqlite \
-OPENCODE_DRIVE_MEDIA_DIR=$PWD/.drive-output \
+REDCODE_DEV=/path/to/base-checkout \
+REDCODE_DRIVE_DB=proof.sqlite \
+REDCODE_DRIVE_MEDIA_DIR=$PWD/.drive-output \
 DEMO_LABEL=BEFORE \
 opencode-drive run script/drive/subagent-eviction.ts
 ```
@@ -50,7 +50,7 @@ duplicate the notification.
 | Background marker    | completed, unacknowledged | absent                      |
 
 The dynamic hold tool avoids the static adapter loading issue in
-[opencode-drive#116](https://github.com/anomalyco/opencode-drive/issues/116).
+[opencode-drive#116](https://github.com/Vempire-X/RedCode-drive/issues/116).
 
 ## History
 

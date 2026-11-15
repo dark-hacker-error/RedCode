@@ -19,7 +19,7 @@ const descriptions: Record<string, string> = {
 // Rows the sidebar's secondary nav doesn't have, after it.
 const extra = [
   { label: "Humans", href: "/humans.txt", description: "the team and contributors" },
-  { label: "Anomaly", href: "https://anoma.ly", description: "the company behind OpenCode" },
+  { label: "Anomaly", href: "https://anoma.ly", description: "the company behind RedCode" },
 ]
 
 const secondaryDescriptions: Record<string, string> = {
@@ -72,7 +72,7 @@ export function forHumansRows() {
       `  ├── ${row.label.padEnd(15)}${row.description ? row.href.padEnd(path) + row.description : row.href}`.trimEnd(),
     ),
     "  │",
-    "  ├── Source         https://github.com/anomalyco/opencode",
-    "  └── Contribute     https://github.com/anomalyco/opencode/blob/dev/CONTRIBUTING.md",
+    "  ├── Source         https://github.com/Vempire-X/RedCode",
+    "  └── Contribute     https://github.com/Vempire-X/RedCode/blob/dev/CONTRIBUTING.md",
   ].join("\n")
 }

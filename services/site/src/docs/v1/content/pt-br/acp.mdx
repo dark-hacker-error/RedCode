@@ -25,14 +25,14 @@ Abaixo estão exemplos para editores populares que suportam ACP.
 
 ### Zed
 
-Instale o OpenCode pelo [Registro ACP do Zed](https://zed.dev/docs/ai/external-agents#registry) executando `zed: acp registry` na Paleta de Comandos.
+Instale o RedCode pelo [Registro ACP do Zed](https://zed.dev/docs/ai/external-agents#registry) executando `zed: acp registry` na Paleta de Comandos.
 
-Para usar um executável personalizado do OpenCode, adicione-o à configuração do [Zed](https://zed.dev) (`~/.config/zed/settings.json`):
+Para usar um executável personalizado do RedCode, adicione-o à configuração do [Zed](https://zed.dev) (`~/.config/zed/settings.json`):
 
 ```json title="~/.config/zed/settings.json"
 {
   "agent_servers": {
-    "OpenCode": {
+    "RedCode": {
       "type": "custom",
       "command": "opencode",
       "args": ["acp"]
@@ -54,7 +54,7 @@ Você também pode vincular um atalho de teclado editando seu `keymap.json`:
         {
           "agent": {
             "custom": {
-              "name": "OpenCode",
+              "name": "RedCode",
               "command": {
                 "command": "opencode",
                 "args": ["acp"]
@@ -77,7 +77,7 @@ Adicione ao seu acp.json do [JetBrains IDE](https://www.jetbrains.com/) de acord
 ```json title="acp.json"
 {
   "agent_servers": {
-    "OpenCode": {
+    "RedCode": {
       "command": "/absolute/path/bin/opencode",
       "args": ["acp"]
     }
@@ -113,7 +113,7 @@ Se você precisar passar variáveis de ambiente:
       command = "opencode",
       args = { "acp" },
       env = {
-        OPENCODE_API_KEY = os.getenv("OPENCODE_API_KEY")
+        REDCODE_API_KEY = os.getenv("REDCODE_API_KEY")
       }
     }
   }
@@ -141,7 +141,7 @@ require("codecompanion").setup({
 
 Esta configuração configura o CodeCompanion para usar opencode como o agente ACP para chat.
 
-Se você precisar passar variáveis de ambiente (como `OPENCODE_API_KEY`), consulte [Configurando Adaptadores: Variáveis de Ambiente](https://codecompanion.olimorris.dev/getting-started#setting-an-api-key) na documentação do CodeCompanion.nvim para detalhes completos.
+Se você precisar passar variáveis de ambiente (como `REDCODE_API_KEY`), consulte [Configurando Adaptadores: Variáveis de Ambiente](https://codecompanion.olimorris.dev/getting-started#setting-an-api-key) na documentação do CodeCompanion.nvim para detalhes completos.
 
 ## Suporte
 

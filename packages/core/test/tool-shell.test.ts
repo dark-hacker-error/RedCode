@@ -5,45 +5,45 @@ import path from "path"
 import { describe, expect } from "bun:test"
 import { Cause, Deferred, Duration, Effect, Exit, Fiber, Layer, Queue, Scope, Stream, Tracer } from "effect"
 import { TestClock } from "effect/testing"
-import { Money } from "@opencode/schema/money"
-import { AppNodeBuilder } from "@opencode/core/effect/app-node-builder"
-import { LayerNode } from "@opencode/util/effect/layer-node"
-import { makeGlobalNode, makeLocationNode } from "@opencode/util/effect/app-node"
-import { filesystem } from "@opencode/util/effect/app-node-platform"
-import { Database } from "@opencode/core/database/database"
-import { Bus } from "@opencode/core/bus"
-import { Config } from "@opencode/core/config"
-import { Environment } from "@opencode/core/environment/index"
-import { FSUtil } from "@opencode/util/fs-util"
-import { Global } from "@opencode/util/global"
-import { Location } from "@opencode/core/location"
-import { FileAccess } from "@opencode/core/file-access"
-import { Flag } from "@opencode/core/flag"
-import { LocationServiceMap } from "@opencode/core/location-service-map"
-import { Model } from "@opencode/core/model"
-import { Provider } from "@opencode/core/provider"
-import { AbsolutePath } from "@opencode/core/schema"
-import { Agent } from "@opencode/core/agent"
-import { Job } from "@opencode/core/job"
-import { Session } from "@opencode/core/session"
-import { SessionEvent } from "@opencode/core/session/event"
-import { SessionExecution } from "@opencode/core/session/execution"
-import { SessionMessage } from "@opencode/core/session/message"
-import { SessionStore } from "@opencode/core/session/store"
-import { Permission } from "@opencode/core/permission"
-import { PermissionSaved } from "@opencode/core/permission/saved"
-import { Plugin } from "@opencode/core/plugin"
-import { PluginSupervisor } from "@opencode/core/plugin/supervisor"
-import { Shell } from "@opencode/core/shell"
-import { ShellSelect } from "@opencode/core/shell/select"
-import { ShellResult } from "@opencode/core/shell/result"
-import { ID } from "@opencode/schema/shell"
-import { ShellTool } from "@opencode/core/tool/plugin/shell"
-import { ToolOutput } from "@opencode/core/tool-output"
-import { Tool } from "@opencode/core/tool"
-import { PluginHooks } from "@opencode/core/plugin/hooks"
-import { SessionStep } from "@opencode/core/session/runner/step"
-import { PersistentPty } from "@opencode/core/persistent-pty"
+import { Money } from "@redcode/schema/money"
+import { AppNodeBuilder } from "@redcode/core/effect/app-node-builder"
+import { LayerNode } from "@redcode/util/effect/layer-node"
+import { makeGlobalNode, makeLocationNode } from "@redcode/util/effect/app-node"
+import { filesystem } from "@redcode/util/effect/app-node-platform"
+import { Database } from "@redcode/core/database/database"
+import { Bus } from "@redcode/core/bus"
+import { Config } from "@redcode/core/config"
+import { Environment } from "@redcode/core/environment/index"
+import { FSUtil } from "@redcode/util/fs-util"
+import { Global } from "@redcode/util/global"
+import { Location } from "@redcode/core/location"
+import { FileAccess } from "@redcode/core/file-access"
+import { Flag } from "@redcode/core/flag"
+import { LocationServiceMap } from "@redcode/core/location-service-map"
+import { Model } from "@redcode/core/model"
+import { Provider } from "@redcode/core/provider"
+import { AbsolutePath } from "@redcode/core/schema"
+import { Agent } from "@redcode/core/agent"
+import { Job } from "@redcode/core/job"
+import { Session } from "@redcode/core/session"
+import { SessionEvent } from "@redcode/core/session/event"
+import { SessionExecution } from "@redcode/core/session/execution"
+import { SessionMessage } from "@redcode/core/session/message"
+import { SessionStore } from "@redcode/core/session/store"
+import { Permission } from "@redcode/core/permission"
+import { PermissionSaved } from "@redcode/core/permission/saved"
+import { Plugin } from "@redcode/core/plugin"
+import { PluginSupervisor } from "@redcode/core/plugin/supervisor"
+import { Shell } from "@redcode/core/shell"
+import { ShellSelect } from "@redcode/core/shell/select"
+import { ShellResult } from "@redcode/core/shell/result"
+import { ID } from "@redcode/schema/shell"
+import { ShellTool } from "@redcode/core/tool/plugin/shell"
+import { ToolOutput } from "@redcode/core/tool-output"
+import { Tool } from "@redcode/core/tool"
+import { PluginHooks } from "@redcode/core/plugin/hooks"
+import { SessionStep } from "@redcode/core/session/runner/step"
+import { PersistentPty } from "@redcode/core/persistent-pty"
 import { disabledPersistentPtyLayer } from "./fixture/persistent-pty"
 import { fakeDaemon } from "./fixture/persistent-pty-daemon"
 import { tmpdir, tmpdirScoped, withTempDir } from "./fixture/tmpdir"
@@ -287,7 +287,7 @@ const withSession = <A, E, R>(
     if (autoBackground !== undefined)
       yield* Effect.promise(() =>
         Bun.write(
-          path.join(directory, "opencode.json"),
+          path.join(directory, "redcode.json"),
           JSON.stringify({ experimental: { shell_timeout_background: autoBackground } }),
         ),
       )
@@ -964,11 +964,11 @@ describe("ShellTool", () => {
             const sessions = yield* Session.Service
             yield* sessions.environment({
               sessionID,
-              variables: { OPENCODE_SESSION_ENV_TEST: "from-session" },
+              variables: { REDCODE_SESSION_ENV_TEST: "from-session" },
             })
             const command = isWindows
-              ? "[Console]::Out.Write($env:OPENCODE_SESSION_ENV_TEST)"
-              : 'printf %s "$OPENCODE_SESSION_ENV_TEST"'
+              ? "[Console]::Out.Write($env:REDCODE_SESSION_ENV_TEST)"
+              : 'printf %s "$REDCODE_SESSION_ENV_TEST"'
 
             const settled = yield* executeTool(registry, call({ command }))
 
@@ -990,11 +990,11 @@ describe("ShellTool", () => {
             const sessions = yield* Session.Service
             yield* sessions.environment({
               sessionID,
-              variables: { AGENT: "0", OPENCODE: "0", AI_AGENT: "", OPENCODE_SESSION_ID: "stale" },
+              variables: { AGENT: "0", OPENCODE: "0", AI_AGENT: "", REDCODE_SESSION_ID: "stale" },
             })
             const command = isWindows
-              ? '[Console]::Out.Write("$env:AGENT|$env:OPENCODE|$env:AI_AGENT|$env:OPENCODE_SESSION_ID")'
-              : 'printf %s "$AGENT|$OPENCODE|$AI_AGENT|$OPENCODE_SESSION_ID"'
+              ? '[Console]::Out.Write("$env:AGENT|$env:OPENCODE|$env:AI_AGENT|$env:REDCODE_SESSION_ID")'
+              : 'printf %s "$AGENT|$OPENCODE|$AI_AGENT|$REDCODE_SESSION_ID"'
             const settled = yield* executeTool(registry, call({ command }))
 
             expect(settled.status).toBe("completed")
@@ -1666,7 +1666,7 @@ describe("ShellTool", () => {
       return Effect.gen(function* () {
         yield* Effect.promise(() =>
           Bun.write(
-            path.join(tmp.path, "opencode.json"),
+            path.join(tmp.path, "redcode.json"),
             JSON.stringify({ tool_output: { max_lines: 2, max_bytes: 1_000 } }),
           ),
         )

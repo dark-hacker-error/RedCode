@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import { nextDesktopZoomLevel } from "@opencode/app/desktop-menu"
+import { nextDesktopZoomLevel } from "@redcode/app/desktop-menu"
 import {
   createZoomState,
   selectRequestedZoom,

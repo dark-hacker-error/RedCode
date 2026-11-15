@@ -1,5 +1,5 @@
-import { useFilteredList } from "@opencode/ui/hooks"
-import { Switch } from "@opencode/ui/switch"
+import { useFilteredList } from "@redcode/ui/hooks"
+import { Switch } from "@redcode/ui/switch"
 import {
   type Component,
   createEffect,

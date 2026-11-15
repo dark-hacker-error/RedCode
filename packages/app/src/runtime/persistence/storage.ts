@@ -1,6 +1,6 @@
 import { Platform, usePlatform } from "@/runtime/platform/platform"
 import { messageSync, type AsyncStorage, type SyncStorage } from "@solid-primitives/storage"
-import { checksum } from "@opencode/util/encode"
+import { checksum } from "@redcode/util/encode"
 import { createSignal, onCleanup, untrack, type Accessor } from "solid-js"
 import { createStore, type SetStoreFunction, type Store } from "solid-js/store"
 import { Option, Predicate, Schema } from "effect"
@@ -48,7 +48,7 @@ type PickPart = (value: unknown) => unknown
 
 type CopyFrom = { key: string; storage?: string; pick?: PickPart }
 
-const GLOBAL_STORAGE = "opencode.global.dat"
+const GLOBAL_STORAGE = "redcode.global.dat"
 
 const WINDOW_STORAGE = "opencode.window"
 

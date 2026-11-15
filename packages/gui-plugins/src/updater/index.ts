@@ -1,7 +1,7 @@
-import { builtinCatalog } from "@opencode/plugin/gui/builtin"
+import { builtinCatalog } from "@redcode/plugin/gui/builtin"
 import { Schema } from "effect"
-import { Plugin, Store } from "@opencode/plugin/gui"
-import { BuiltinStore } from "@opencode/plugin/gui/builtin"
+import { Plugin, Store } from "@redcode/plugin/gui"
+import { BuiltinStore } from "@redcode/plugin/gui/builtin"
 import en from "./i18n/en"
 
 const ReleaseNotes = Schema.Struct({ enabled: Schema.Boolean })

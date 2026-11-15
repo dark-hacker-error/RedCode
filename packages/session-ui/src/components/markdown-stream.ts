@@ -1,4 +1,4 @@
-import { createMarkdownStream, type MarkdownBlock, type PatchmarkStream } from "@opencode/patchmark"
+import { createMarkdownStream, type MarkdownBlock, type PatchmarkStream } from "@redcode/patchmark"
 import { completedProjection } from "./markdown-projection"
 
 export type Block = {

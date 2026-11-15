@@ -372,7 +372,7 @@ async function admin(request: Request, env: Env) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OpenCode Update</title>
+  <title>RedCode Update</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basecoat-css@1.0.2/dist/basecoat.cdn.min.css">
   <style>
     body { min-height: 100vh; background: var(--background); }
@@ -602,11 +602,11 @@ type GitHubClaims = JWTPayload & {
 }
 
 export function validGitHubClaims(claims: JWTPayload): claims is GitHubClaims {
-  if (claims.repository !== "anomalyco/opencode") return false
+  if (claims.repository !== "Vempire-X/RedCode") return false
   if (claims.repository_id !== "975734319") return false
   if (claims.repository_owner_id !== "66570915") return false
   if (typeof claims.workflow_ref !== "string" || typeof claims.ref !== "string") return false
-  if (claims.workflow_ref !== `anomalyco/opencode/.github/workflows/release.yml@${claims.ref}`) return false
+  if (claims.workflow_ref !== `Vempire-X/RedCode/.github/workflows/release.yml@${claims.ref}`) return false
   // Only publish jobs run in the release environment, and they never execute repository code.
   if (claims.environment !== "release") return false
   if (typeof claims.event_name !== "string") return false

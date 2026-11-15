@@ -1,15 +1,15 @@
 import { brandSvgs } from "./brand"
 
 /**
- * The OpenCode nav menus, for every OpenCode site: opencode.ai and its docs, OpenCode Data, the Console's pages and
+ * The RedCode nav menus, for every RedCode site: opencode.ai and its docs, RedCode Data, the Console's pages and
  * the status page. Framework-free, so pages that never hydrate (the docs) and plain HTML (the status page) can use it.
  *
  * Mark the elements and call `installNavMenus()` once in the browser:
- * - `data-nav-logo` on the OpenCode logo link: right-click (or Shift+F10, the menu key or a long press) opens the
+ * - `data-nav-logo` on the RedCode logo link: right-click (or Shift+F10, the menu key or a long press) opens the
  *   logo menu, the brand files to download and the Brand, brand assets and Press links, as on opencode.ai.
  * - `data-nav-product="data"` on the product's name beside the logo: hovering it (a 150ms intent delay; it closes 200ms
  *   after the pointer leaves the name and the menu), ArrowDown on it, Shift+F10 or the menu key opens the product menu,
- *   the OpenCode products with the page's own one current. On touch screens, which have no hover, the name stays a plain
+ *   the RedCode products with the page's own one current. On touch screens, which have no hover, the name stays a plain
  *   link and a chevron after it (added here, `data-nav-product-toggle`) opens the menu.
  * - `data-nav-name` instead on a name that opens no menu (the status page's, which isn't one of the products): the
  *   lockup's look alone (nav-menus.css).
@@ -27,10 +27,10 @@ import { brandSvgs } from "./brand"
 export type Product = "opencode" | "console" | "data" | "docs"
 
 /**
- * The OpenCode products, in the menu's order, each at a `path` on opencode.ai (the host's `link` resolves it).
+ * The RedCode products, in the menu's order, each at a `path` on opencode.ai (the host's `link` resolves it).
  */
 export const products: { id: Product; name: string; path: string }[] = [
-  { id: "opencode", name: "OpenCode", path: "/" },
+  { id: "opencode", name: "RedCode", path: "/" },
   { id: "console", name: "Console", path: "/console" },
   { id: "data", name: "Data", path: "/data" },
   { id: "docs", name: "Docs", path: "/docs" },
@@ -147,7 +147,7 @@ export function installNavMenus(options: NavMenusOptions = {}) {
     const menu = document.createElement("div")
     menu.dataset.navMenu = kind
     menu.setAttribute("role", "menu")
-    menu.setAttribute("aria-label", kind === "logo" ? "Brand assets" : "OpenCode products")
+    menu.setAttribute("aria-label", kind === "logo" ? "Brand assets" : "RedCode products")
     menu.id = `nav-menu-${kind}`
     // Counts as an open menu for the host's floating things (opencode.ai's menu-open.ts).
     menu.setAttribute("data-menu-open", "")
@@ -467,7 +467,7 @@ export function addProductToggles() {
     chevron.dataset.navProductToggle = ""
     chevron.setAttribute("aria-haspopup", "menu")
     chevron.setAttribute("aria-expanded", "false")
-    chevron.setAttribute("aria-label", "OpenCode products")
+    chevron.setAttribute("aria-label", "RedCode products")
     chevron.innerHTML = `<svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg>`
     name.after(chevron)
   })

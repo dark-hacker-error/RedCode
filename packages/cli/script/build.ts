@@ -4,12 +4,12 @@ import { $ } from "bun"
 import { createHash } from "node:crypto"
 import { mkdir, rm } from "fs/promises"
 import path from "path"
-import { Script } from "@opencode/script"
-import { embed } from "@opencode/script/highlights"
+import { Script } from "@redcode/script"
+import { embed } from "@redcode/script/highlights"
 import { createSolidTransformPlugin } from "@opentui/solid/bun-plugin"
 import type { BunPlugin } from "bun"
 import pkg from "../package.json"
-import { discoverPluginRuntimeSpecifiers, pluginRuntimeLoaderCode } from "@opencode/plugin/runtime-modules"
+import { discoverPluginRuntimeSpecifiers, pluginRuntimeLoaderCode } from "@redcode/plugin/runtime-modules"
 import { buildAppArchive } from "./app-assets"
 import { verifyArtifact, verifySimulationGraph } from "./verify-artifact"
 import { resolveOpencodePty } from "./opencode-pty"
@@ -17,7 +17,7 @@ import { NativeArch } from "../../../script/native-arch"
 import { bundledModelsSnapshot, modelsSnapshotPlugin } from "../../core/script/models-snapshot"
 
 const dir = path.resolve(import.meta.dirname, "..")
-const binary = "opencode"
+const binary = "redcode"
 const outdir = path.resolve(
   dir,
   process.argv.find((arg) => arg.startsWith("--outdir="))?.slice("--outdir=".length) ?? "dist",
@@ -29,11 +29,11 @@ await rm(outdir, { recursive: true, force: true })
 
 const singleFlag = process.argv.includes("--single")
 const baselineFlag = process.argv.includes("--baseline")
-const requestedTarget = process.env.OPENCODE_TARGET
+const requestedTarget = process.env.REDCODE_TARGET
 const skipInstall = process.argv.includes("--skip-install")
 const skipWebUi = process.argv.includes("--skip-web-ui")
 const solidPlugin = createSolidTransformPlugin()
-const highlights = Script.preview ? undefined : embed(process.env.OPENCODE_RELEASE_NOTES)
+const highlights = Script.preview ? undefined : embed(process.env.REDCODE_RELEASE_NOTES)
 const releaseAssets = new Map<string, Promise<Map<string, string>>>()
 const modelsSnapshot = modelsSnapshotPlugin(await bundledModelsSnapshot())
 
@@ -109,7 +109,7 @@ const pluginRuntimePlugin: BunPlugin = {
     }))
     build.onLoad({ filter: /[/\\]internal[/\\]httpApi(?:Scalar|Swagger)\.js$/ }, () => ({
       contents:
-        'export const css = ""; export const javascript = \'document.body.textContent = "Scalar/Swagger UI assets are not bundled in OpenCode"\'',
+        'export const css = ""; export const javascript = \'document.body.textContent = "Scalar/Swagger UI assets are not bundled in RedCode"\'',
       loader: "js",
     }))
   },
@@ -166,7 +166,7 @@ export default { path: file, version: ${JSON.stringify(opencodePty.version)}, sh
     },
   }
   const target = targetName(item)
-  const name = target.replace(binary, "cli")
+  const name = target.replace(binary, "redcode-ai")
   const executablePath = await compileExecutable(item)
   console.log(`building ${name}`)
   const result = await Bun.build({
@@ -198,7 +198,7 @@ export default { path: file, version: ${JSON.stringify(opencodePty.version)}, sh
       outfile: path.join(outdir, name, "bin", binary),
       execArgv: [
         "--smol",
-        `--user-agent=opencode/${Script.channel}/${Script.version}/cli`,
+        `--user-agent=redcode/${Script.channel}/${Script.version}/cli`,
         "--use-system-ca",
         "--no-warnings",
         "--",
@@ -206,12 +206,12 @@ export default { path: file, version: ${JSON.stringify(opencodePty.version)}, sh
       windows: {},
     },
     define: {
-      OPENCODE_VERSION: `'${Script.version}'`,
-      OPENCODE_CLI_NAME: "'opencode'",
-      OPENCODE_CHANNEL: `'${Script.channel}'`,
-      OPENCODE_ARTIFACT: `'cli'`,
-      ...(highlights ? { OPENCODE_RELEASE_HIGHLIGHTS: JSON.stringify(highlights) } : {}),
-      OPENCODE_LIBC: item.os === "linux" ? `'${item.abi ?? "glibc"}'` : "undefined",
+      REDCODE_VERSION: `'${Script.version}'`,
+      REDCODE_CLI_NAME: "'redcode'",
+      REDCODE_CHANNEL: `'${Script.channel}'`,
+      REDCODE_ARTIFACT: `'cli'`,
+      ...(highlights ? { REDCODE_RELEASE_HIGHLIGHTS: JSON.stringify(highlights) } : {}),
+      REDCODE_LIBC: item.os === "linux" ? `'${item.abi ?? "glibc"}'` : "undefined",
       // FFF_LIBC selects the fff native lib variant: "musl" or "gnu".
       FFF_LIBC: item.os === "linux" ? `'${item.abi ?? "gnu"}'` : "undefined",
       ...(item.os === "linux" ? { "process.env.OPENTUI_LIBC": JSON.stringify(item.abi ?? "glibc") } : {}),
@@ -229,10 +229,10 @@ export default { path: file, version: ${JSON.stringify(opencodePty.version)}, sh
     path.join(outdir, name, "package.json"),
     JSON.stringify(
       {
-        name: `@opencode/${name}`,
+        name,
         version: Script.version,
         license: "MIT",
-        repository: { type: "git", url: "git+https://github.com/anomalyco/opencode.git" },
+        repository: { type: "git", url: "git+https://github.com/Vempire-X/RedCode.git" },
         os: [item.os],
         cpu: [item.arch],
       },

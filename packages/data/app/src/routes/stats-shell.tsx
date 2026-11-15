@@ -8,8 +8,8 @@ import { route, type Locale } from "../lib/language"
 export type HeaderLink = { href: string; label: string }
 
 export const githubLink = {
-  href: "https://github.com/anomalyco/opencode",
-  apiHref: "https://api.github.com/repos/anomalyco/opencode",
+  href: "https://github.com/Vempire-X/RedCode",
+  apiHref: "https://api.github.com/repos/Vempire-X/RedCode",
   fallbackStars: "220K",
 }
 export const themePreferences = ["dark", "light", "system"] as const
@@ -126,10 +126,10 @@ export function Header(props: { githubStars: string; links?: readonly HeaderLink
             data-slot="header-button"
             data-variant="contrast"
             href="https://opencode.ai/"
-            aria-label={i18n.t("header.tryOpenCode")}
+            aria-label={i18n.t("header.tryRedCode")}
           >
-            <strong data-slot="label">{i18n.t("header.tryOpenCode")}</strong>
-            <strong data-slot="label-short">{i18n.t("header.tryOpenCodeShort")}</strong>
+            <strong data-slot="label">{i18n.t("header.tryRedCode")}</strong>
+            <strong data-slot="label-short">{i18n.t("header.tryRedCodeShort")}</strong>
           </a>
           <a
             data-slot="github-mark"
@@ -173,7 +173,7 @@ export function Header(props: { githubStars: string; links?: readonly HeaderLink
   )
 }
 
-function OpenCodeMark() {
+function RedCodeMark() {
   return (
     <svg data-slot="opencode-mark" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
       <path d="M40 40H0V0H40V40Z" fill="var(--stats-logo-bg)" />
@@ -223,7 +223,7 @@ export function Footer(props: {
       <Show when={bridge()}>{(link) => <SectionBridge label={link().label} href={link().href} />}</Show>
       <div data-slot="footer-grid">
         <a data-slot="footer-mark" href="https://opencode.ai" aria-label={i18n.t("footer.homeAria")}>
-          <OpenCodeMark />
+          <RedCodeMark />
         </a>
         <FooterColumn title={i18n.t("footer.modelData")} links={modelStats} localHref={localHref} />
         <FooterColumn title={i18n.t("footer.legal")} links={legal} localHref={localHref} />

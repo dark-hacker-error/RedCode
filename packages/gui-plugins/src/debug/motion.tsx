@@ -3,10 +3,10 @@ import { Portal } from "solid-js/web"
 import { Option, Schema } from "effect"
 import { createRemoteControls, type ControlDescriptor, type State, type Value } from "knobs"
 import { KnobsPanel } from "knobs/solid"
-import { Icon } from "@opencode/ui/icon"
-import { IconButton } from "@opencode/ui/icon-button"
-import { springStyle } from "@opencode/ui/motion/solid"
-import { motionPresets, motionTuning, type MotionKnob } from "@opencode/ui/motion-tuning"
+import { Icon } from "@redcode/ui/icon"
+import { IconButton } from "@redcode/ui/icon-button"
+import { springStyle } from "@redcode/ui/motion/solid"
+import { motionPresets, motionTuning, type MotionKnob } from "@redcode/ui/motion-tuning"
 import {
   activeFeaturePreset,
   applyFeaturePreset,
@@ -17,9 +17,9 @@ import {
   reset,
   resetFeature,
   type MotionFeature,
-} from "@opencode/ui/motion-tuning-features"
-import { applyMotion } from "@opencode/ui/motion-tuning-fields"
-import { usePlugin } from "@opencode/plugin/gui"
+} from "@redcode/ui/motion-tuning-features"
+import { applyMotion } from "@redcode/ui/motion-tuning-fields"
+import { usePlugin } from "@redcode/plugin/gui"
 import {
   createMotionState,
   MOTION_WIDE_AT,

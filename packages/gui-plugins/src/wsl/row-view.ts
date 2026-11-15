@@ -3,7 +3,7 @@ import type { WslOpencodeCheck, WslServersState } from "./contract"
 /** A configured distro's settings row, from main's state alone. A server still starting can be updated or removed. */
 export function wslRowView(state: WslServersState | undefined, distro: string) {
   const job = state?.distroJobs[distro]
-  const check = state?.opencodeChecks[distro]
+  const check = state?.redcodeChecks[distro]
   const action = opencodeAction(check)
   const runtime = state?.servers.find((item) => item.config.distro === distro)?.runtime.kind
   const free = !job || job === "starting"

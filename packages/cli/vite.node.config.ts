@@ -42,7 +42,7 @@ import { getRawAsset, isSea } from "node:sea"
 export default () =>
   isSea()
     ? new Uint8Array(getRawAsset(${JSON.stringify(appArchiveAsset)}))
-    : readFileSync(path.join(process.env.OPENCODE_NODE_ASSETS_DIR, ${JSON.stringify(appArchiveAsset)}))`
+    : readFileSync(path.join(process.env.REDCODE_NODE_ASSETS_DIR, ${JSON.stringify(appArchiveAsset)}))`
     },
   }
 }
@@ -79,7 +79,7 @@ function fffNodePlugin(): Plugin {
         const start = code.indexOf("if (!nativeBinding) {")
         if (start === -1) this.error("Failed to rewrite ffi-rs native binding loader")
         return `const unavailable = () => { throw new Error("ffi-rs native binding unavailable") }
-const nativeBinding = globalThis.__OPENCODE_FFF_FFI ?? {
+const nativeBinding = globalThis.__REDCODE_FFF_FFI ?? {
   DataType: new Proxy({}, { get: (target, key) => target[key] ?? key }),
   PointerType: {},
   FFITypeTag: {},
@@ -133,7 +133,7 @@ function nodePrelude(input: NodeBuildInput) {
       : undefined
   const opencodePtyAsset = input.target.opencodePtyAsset
   const promiseModule = `const sdk = globalThis[Symbol.for("opencode.plugin.v2.promise")]
-if (!sdk) throw new Error("OpenCode Promise plugin SDK is unavailable")
+if (!sdk) throw new Error("RedCode Promise plugin SDK is unavailable")
 export const Agent = sdk.Agent
 export const Command = sdk.Command
 export const Connection = sdk.Connection
@@ -148,14 +148,14 @@ export const Skill = sdk.Skill`
     .replace("opencode.plugin.v2.promise", "opencode.plugin.v2.effect")
     .replace("Promise plugin", "Effect plugin")
   const promisePluginModule = `const sdk = globalThis[Symbol.for("opencode.plugin.v2.promise")]
-if (!sdk) throw new Error("OpenCode Promise plugin SDK is unavailable")
+if (!sdk) throw new Error("RedCode Promise plugin SDK is unavailable")
 export const define = sdk.Plugin.define`
   const effectPluginModule = promisePluginModule
     .replace("opencode.plugin.v2.promise", "opencode.plugin.v2.effect")
     .replace("Promise plugin", "Effect plugin")
   const promiseToolModule = `export {}`
   const effectToolModule = `const sdk = globalThis[Symbol.for("opencode.plugin.v2.effect")]
-if (!sdk) throw new Error("OpenCode Effect plugin SDK is unavailable")
+if (!sdk) throw new Error("RedCode Effect plugin SDK is unavailable")
 export const Error = sdk.Tool.Error
 `
   return `#!/usr/bin/env -S node ${nodeExecArgv.join(" ")}
@@ -169,12 +169,12 @@ const __filename = import.meta.filename
 const __dirname = import.meta.dirname
 const require = __cjs_mod__.createRequire(import.meta.url)
 const __ocPluginModules = ${JSON.stringify({
-    "@opencode/plugin": "opencode:plugin-v2",
-    "@opencode/plugin/promise/plugin": "opencode:plugin-promise-plugin",
-    "@opencode/plugin/promise/tool": "opencode:plugin-promise-tool",
-    "@opencode/plugin/effect": "opencode:plugin-v2-effect",
-    "@opencode/plugin/effect/plugin": "opencode:plugin-v2-effect-plugin",
-    "@opencode/plugin/effect/tool": "opencode:plugin-v2-effect-tool",
+    "@redcode/plugin": "opencode:plugin-v2",
+    "@redcode/plugin/promise/plugin": "opencode:plugin-promise-plugin",
+    "@redcode/plugin/promise/tool": "opencode:plugin-promise-tool",
+    "@redcode/plugin/effect": "opencode:plugin-v2-effect",
+    "@redcode/plugin/effect/plugin": "opencode:plugin-v2-effect-plugin",
+    "@redcode/plugin/effect/tool": "opencode:plugin-v2-effect-tool",
   })}
 const __ocPluginSources = ${JSON.stringify({
     "opencode:plugin-v2": promiseModule,
@@ -232,18 +232,18 @@ if (__ocIsSea()) {
     }
   }
 }
-process.env.OPENCODE_NODE_ASSETS_DIR = __ocAssetRoot
+process.env.REDCODE_NODE_ASSETS_DIR = __ocAssetRoot
 process.env.OTUI_ASSET_ROOT = __ocAssetRoot
-process.env.OPENCODE_NODE_PTY_PATH = __ocPath.join(__ocAssetRoot, ${JSON.stringify(input.target.nodePtyEntryAsset)})
-process.env.OPENCODE_PARCEL_WATCHER_PATH = __ocPath.join(__ocAssetRoot, ${JSON.stringify(input.target.parcelWatcherAsset)})
-process.env.OPENCODE_PHOTON_WASM_PATH = __ocPath.join(__ocAssetRoot, ${JSON.stringify(photonWasmAsset)})
+process.env.REDCODE_NODE_PTY_PATH = __ocPath.join(__ocAssetRoot, ${JSON.stringify(input.target.nodePtyEntryAsset)})
+process.env.REDCODE_PARCEL_WATCHER_PATH = __ocPath.join(__ocAssetRoot, ${JSON.stringify(input.target.parcelWatcherAsset)})
+process.env.REDCODE_PHOTON_WASM_PATH = __ocPath.join(__ocAssetRoot, ${JSON.stringify(photonWasmAsset)})
 process.env.FFF_BINARY_PATH = __ocPath.join(__ocAssetRoot, ${JSON.stringify(input.target.fffAsset)})
-process.env.OPENCODE_FFF_FFI_PATH = __ocPath.join(__ocAssetRoot, ${JSON.stringify(input.target.fffFfiAsset)})
-if (__ocPersistentPty && !process.env.OPENCODE_PTY_BIN) process.env.OPENCODE_PTY_BIN = __ocPath.join(__ocAssetRoot, __ocPersistentPty)
+process.env.REDCODE_FFF_FFI_PATH = __ocPath.join(__ocAssetRoot, ${JSON.stringify(input.target.fffFfiAsset)})
+if (__ocPersistentPty && !process.env.REDCODE_PTY_BIN) process.env.REDCODE_PTY_BIN = __ocPath.join(__ocAssetRoot, __ocPersistentPty)
 try {
-  globalThis.__OPENCODE_FFF_FFI = require(process.env.OPENCODE_FFF_FFI_PATH)
+  globalThis.__REDCODE_FFF_FFI = require(process.env.REDCODE_FFF_FFI_PATH)
 } catch {}
-globalThis.__OPENCODE_PHOTON_WASM_PATH = process.env.OPENCODE_PHOTON_WASM_PATH
+globalThis.__REDCODE_PHOTON_WASM_PATH = process.env.REDCODE_PHOTON_WASM_PATH
 if (process.platform === "linux") process.env.OPENTUI_LIBC = "glibc"`
 }
 
@@ -275,12 +275,12 @@ export function mainConfig(input: NodeBuildInput): UserConfig {
     resolve,
     esbuild: { jsx: "automatic" },
     define: {
-      OPENCODE_VERSION: JSON.stringify(input.version),
-      OPENCODE_CLI_NAME: JSON.stringify("opencode2-node"),
-      OPENCODE_CHANNEL: JSON.stringify(input.channel),
-      OPENCODE_ARTIFACT: JSON.stringify("cli-node"),
-      ...(input.highlights ? { OPENCODE_RELEASE_HIGHLIGHTS: JSON.stringify(input.highlights) } : {}),
-      OPENCODE_LIBC: input.target.platform === "linux" ? JSON.stringify("glibc") : "undefined",
+      REDCODE_VERSION: JSON.stringify(input.version),
+      REDCODE_CLI_NAME: JSON.stringify("redcode2-node"),
+      REDCODE_CHANNEL: JSON.stringify(input.channel),
+      REDCODE_ARTIFACT: JSON.stringify("cli-node"),
+      ...(input.highlights ? { REDCODE_RELEASE_HIGHLIGHTS: JSON.stringify(input.highlights) } : {}),
+      REDCODE_LIBC: input.target.platform === "linux" ? JSON.stringify("glibc") : "undefined",
       FFF_LIBC: input.target.platform === "linux" ? JSON.stringify("gnu") : "undefined",
       "process.env.WS_NO_BUFFER_UTIL": JSON.stringify("1"),
     },
@@ -299,8 +299,8 @@ export function mainConfig(input: NodeBuildInput): UserConfig {
 }
 
 export default mainConfig({
-  version: process.env.OPENCODE_VERSION ?? "local",
-  channel: process.env.OPENCODE_CHANNEL ?? "local",
+  version: process.env.REDCODE_VERSION ?? "local",
+  channel: process.env.REDCODE_CHANNEL ?? "local",
   assetHash: "local",
   target: nodeTarget(process.platform, process.arch),
 })

@@ -17,17 +17,17 @@ import {
   type RequestPermissionResponse,
   type SessionNotification,
 } from "@agentclientprotocol/sdk"
-import { OpenCode } from "@opencode/client/effect"
-import type { OpenCodeEventEncoded } from "@opencode/protocol/groups/event"
-import type { Agent } from "@opencode/schema/agent"
-import type { Command } from "@opencode/schema/command"
-import { Form } from "@opencode/schema/form"
-import type { Location } from "@opencode/schema/location"
-import type { Model } from "@opencode/schema/model"
-import type { Plugin } from "@opencode/schema/plugin"
-import type { Session } from "@opencode/schema/session"
-import type { SessionMessage } from "@opencode/schema/session-message"
-import type { TokenUsage } from "@opencode/schema/token-usage"
+import { RedCode } from "@redcode/client/effect"
+import type { RedCodeEventEncoded } from "@redcode/protocol/groups/event"
+import type { Agent } from "@redcode/schema/agent"
+import type { Command } from "@redcode/schema/command"
+import { Form } from "@redcode/schema/form"
+import type { Location } from "@redcode/schema/location"
+import type { Model } from "@redcode/schema/model"
+import type { Plugin } from "@redcode/schema/plugin"
+import type { Session } from "@redcode/schema/session"
+import type { SessionMessage } from "@redcode/schema/session-message"
+import type { TokenUsage } from "@redcode/schema/token-usage"
 import type { BunRequest } from "bun"
 import { createTwoFilesPatch } from "diff"
 import { Duration, Effect, Exit, Logger, Option, Schema, Scope } from "effect"
@@ -36,7 +36,7 @@ import { ACP } from "../../src/acp/agent"
 import { ACPTurn } from "../../src/acp/turn"
 
 // The fake server sends and stores the wire form of each value.
-type OpenCodeEvent = OpenCodeEventEncoded
+type RedCodeEvent = RedCodeEventEncoded
 type AgentInfo = typeof Agent.Info.Encoded
 type CommandInfo = typeof Command.Info.Encoded
 type LocationRef = typeof Location.PublicRef.Encoded
@@ -46,12 +46,12 @@ type PluginInfo = typeof Plugin.Info.Encoded
 type SessionInfo = typeof Session.Info.Encoded
 type SessionMessageInfo = typeof SessionMessage.Info.Encoded
 type TokenUsageInfo = typeof TokenUsage.Info.Encoded
-type DurableEvent = Extract<OpenCodeEvent, { durable: unknown }>
-type EphemeralEvent = Exclude<OpenCodeEvent, DurableEvent>
-type EventData<Type extends OpenCodeEvent["type"]> = Extract<OpenCodeEvent, { type: Type }>["data"]
+type DurableEvent = Extract<RedCodeEvent, { durable: unknown }>
+type EphemeralEvent = Exclude<RedCodeEvent, DurableEvent>
+type EventData<Type extends RedCodeEvent["type"]> = Extract<RedCodeEvent, { type: Type }>["data"]
 type AssistantMessage = Extract<SessionMessageInfo, { type: "assistant" }>
 
-type Events = ReadonlyArray<OpenCodeEvent> | void
+type Events = ReadonlyArray<RedCodeEvent> | void
 type Hook<Input> = (input: Input) => Events | Promise<Events>
 
 type ServerRequest = {
@@ -301,7 +301,7 @@ export const interrupted = (sessionID: string) =>
 export const failed = (sessionID: string, error: EventData<"session.execution.failed">["error"]) =>
   durableEvent("session.execution.failed", { sessionID, error })
 
-export function turn(sessionID: string, inboxID: string, ...events: OpenCodeEvent[]): OpenCodeEvent[] {
+export function turn(sessionID: string, inboxID: string, ...events: RedCodeEvent[]): RedCodeEvent[] {
   return [delivered(sessionID, inboxID), ...events, succeeded(sessionID)]
 }
 
@@ -434,7 +434,7 @@ export async function startWire(options: WireOptions = {}) {
   const logs: Array<Pick<Logger.Options<unknown>, "message" | "cause">> = []
   const agentScope = Scope.makeUnsafe()
   const agentConnection = await Effect.runPromise(
-    OpenCode.make({ baseUrl: server.url }).pipe(
+    RedCode.make({ baseUrl: server.url }).pipe(
       Effect.provide(FetchHttpClient.layer),
       Effect.flatMap((client) => ACP.connect(client, ndJsonStream(agentToClient.writable, clientToAgent.readable))),
       Scope.provide(agentScope),
@@ -618,7 +618,7 @@ function startServer(options: WireOptions, changed: () => void) {
     cancelledForms,
     repliedForms,
     mcp,
-    send(...events: ReadonlyArray<OpenCodeEvent>) {
+    send(...events: ReadonlyArray<RedCodeEvent>) {
       events.forEach((event) => {
         const seq = ++counter.events
         const stamped = {

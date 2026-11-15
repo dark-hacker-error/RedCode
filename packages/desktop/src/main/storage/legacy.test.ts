@@ -48,10 +48,10 @@ describe("legacy store import", () => {
   test("copies every namespace into state and removes the files", async () => {
     const root = tempRoot()
     const database = openDatabase(":memory:")
-    writeStore(root, "opencode.global.dat", JSON.stringify({ model: "m", layout: { sidebar: 1 } }))
+    writeStore(root, "redcode.global.dat", JSON.stringify({ model: "m", layout: { sidebar: 1 } }))
     writeStore(root, "opencode.window.w1.dat", JSON.stringify({ tabs: "[]" }))
     writeStore(root, "default.dat", JSON.stringify({ "settings.v3": "{}" }))
-    writeStore(root, "opencode.settings", JSON.stringify({ keep: true }))
+    writeStore(root, "redcode.settings", JSON.stringify({ keep: true }))
     writeStore(root, "unrelated.txt", "x")
 
     const result = await run(database.db, root)
@@ -59,35 +59,35 @@ describe("legacy store import", () => {
     expect(result.imported).toBe(4)
     expect(rows(database.db)).toEqual([
       { name: "default.dat", key: "settings.v3", value: "{}" },
-      { name: "opencode.global.dat", key: "layout", value: '{"sidebar":1}' },
-      { name: "opencode.global.dat", key: "model", value: "m" },
+      { name: "redcode.global.dat", key: "layout", value: '{"sidebar":1}' },
+      { name: "redcode.global.dat", key: "model", value: "m" },
       { name: "opencode.window.w1.dat", key: "tabs", value: "[]" },
     ])
-    expect(listing(root)).toEqual(["opencode.settings", "unrelated.txt"])
+    expect(listing(root)).toEqual(["redcode.settings", "unrelated.txt"])
   })
 
   test("does not overwrite state that already exists", async () => {
     const root = tempRoot()
     const database = openDatabase(":memory:")
-    database.db.run(sql`INSERT INTO state VALUES ('opencode.global.dat', 'model', 'new', 0)`)
-    writeStore(root, "opencode.global.dat", JSON.stringify({ model: "old" }))
+    database.db.run(sql`INSERT INTO state VALUES ('redcode.global.dat', 'model', 'new', 0)`)
+    writeStore(root, "redcode.global.dat", JSON.stringify({ model: "old" }))
 
     await run(database.db, root)
 
-    expect(rows(database.db)).toEqual([{ name: "opencode.global.dat", key: "model", value: "new" }])
+    expect(rows(database.db)).toEqual([{ name: "redcode.global.dat", key: "model", value: "new" }])
     expect(listing(root)).toEqual([])
   })
 
   test("leaves unreadable files in place", async () => {
     const root = tempRoot()
     const database = openDatabase(":memory:")
-    writeStore(root, "opencode.global.dat", "{not json")
+    writeStore(root, "redcode.global.dat", "{not json")
     writeStore(root, "opencode.workspace.x.dat", JSON.stringify({ terminal: "{}" }))
 
     const result = await run(database.db, root)
 
     expect(result.imported).toBe(1)
-    expect(listing(root)).toEqual(["opencode.global.dat"])
+    expect(listing(root)).toEqual(["redcode.global.dat"])
   })
 
   test("applies draft retention: skips empty, stale, and excess draft files", async () => {

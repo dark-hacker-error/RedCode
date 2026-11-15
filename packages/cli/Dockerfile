@@ -12,5 +12,5 @@ COPY dist/cli-linux-arm64-musl/bin/opencode /usr/local/bin/opencode
 
 ARG TARGETARCH
 FROM build-${TARGETARCH}
-RUN ln -s opencode /usr/local/bin/opencode2 && opencode --version && opencode2 --version
+RUN ln -s opencode /usr/local/bin/redcode2 && opencode --version && redcode2 --version
 ENTRYPOINT ["opencode"]

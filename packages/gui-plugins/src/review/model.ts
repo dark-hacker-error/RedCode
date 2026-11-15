@@ -1,9 +1,9 @@
-import type { FileDiffInfo } from "@opencode/client/promise"
-import type { SessionReviewLineComment } from "@opencode/session-ui/session-review"
-import { previewSelectedLines } from "@opencode/session-ui/pierre/selection-bridge"
-import { artifactMime } from "@opencode/util/artifact"
-import { bytesToBase64 } from "@opencode/util/base64"
-import { checksum } from "@opencode/util/encode"
+import type { FileDiffInfo } from "@redcode/client/promise"
+import type { SessionReviewLineComment } from "@redcode/session-ui/session-review"
+import { previewSelectedLines } from "@redcode/session-ui/pierre/selection-bridge"
+import { artifactMime } from "@redcode/util/artifact"
+import { bytesToBase64 } from "@redcode/util/base64"
+import { checksum } from "@redcode/util/encode"
 import { focusManager, useQueryClient } from "@tanstack/solid-query"
 import { debounce } from "@solid-primitives/scheduled"
 import { createMemo, createSignal, on, onCleanup, untrack, type Accessor } from "solid-js"
@@ -13,7 +13,7 @@ import {
   type MountedSession,
   type SessionScreen,
   type SetupContext,
-} from "@opencode/plugin/gui"
+} from "@redcode/plugin/gui"
 import type Review from "./index"
 import {
   filterRenderableDiff,

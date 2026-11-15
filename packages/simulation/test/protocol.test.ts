@@ -66,15 +66,15 @@ test("decodes ui.matches text params", () => {
       jsonrpc: "2.0",
       id: 1,
       method: "ui.matches",
-      params: { text: "OpenCode [ready].*" },
+      params: { text: "RedCode [ready].*" },
     }),
-  ).toMatchObject({ method: "ui.matches", params: { text: "OpenCode [ready].*" } })
+  ).toMatchObject({ method: "ui.matches", params: { text: "RedCode [ready].*" } })
   expect(() =>
     Frontend.decodeRequest({
       jsonrpc: "2.0",
       id: 1,
       method: "ui.matches",
-      params: { pattern: "OpenCode.*" },
+      params: { pattern: "RedCode.*" },
     }),
   ).toThrow()
 })

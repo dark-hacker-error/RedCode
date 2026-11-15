@@ -2,9 +2,9 @@ import { produce, reconcile, unwrap } from "solid-js/store"
 import { createEffect, createMemo } from "solid-js"
 import { createMediaQuery } from "@solid-primitives/media"
 import { Effect, Option, Predicate, Schema, SchemaGetter } from "effect"
-import { createSimpleContext } from "@opencode/ui/context"
-import { setNewIcons } from "@opencode/ui/icon"
-import { timelinePresets, type TimelineCategory, type TimelineDetail } from "@opencode/session-ui/timeline/detail"
+import { createSimpleContext } from "@redcode/ui/context"
+import { setNewIcons } from "@redcode/ui/icon"
+import { timelinePresets, type TimelineCategory, type TimelineDetail } from "@redcode/session-ui/timeline/detail"
 import { persisted } from "@/runtime/persistence/storage"
 import { Persistence } from "@/runtime/persistence/schema"
 import { usePlatform } from "@/runtime/platform/platform"
@@ -339,7 +339,7 @@ function withFallback<T>(read: () => T | undefined, fallback: T) {
 }
 
 /** Only local/dev desktop builds offer the Recent side-tab organization. */
-export function recentSessionsAvailable(platform: "web" | "desktop", channel: ImportMetaEnv["VITE_OPENCODE_CHANNEL"]) {
+export function recentSessionsAvailable(platform: "web" | "desktop", channel: ImportMetaEnv["VITE_REDCODE_CHANNEL"]) {
   return platform === "desktop" && (channel === "local" || channel === "dev")
 }
 
@@ -351,7 +351,7 @@ export const { use: useSettings, provider: SettingsProvider } = createSimpleCont
 
     const sidebarOrganizeOptions: SidebarOrganize[] = recentSessionsAvailable(
       usePlatform().platform,
-      import.meta.env.VITE_OPENCODE_CHANNEL,
+      import.meta.env.VITE_REDCODE_CHANNEL,
     )
       ? ["list", "projects", "customize", "recent"]
       : ["list", "projects", "customize"]

@@ -1,5 +1,5 @@
-import { Button } from "@opencode/ui/button"
-import { useDialog } from "@opencode/ui/context/dialog"
+import { Button } from "@redcode/ui/button"
+import { useDialog } from "@redcode/ui/context/dialog"
 import { onMount } from "solid-js"
 import {
   DialogStoryRuntime,

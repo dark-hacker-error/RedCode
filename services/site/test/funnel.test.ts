@@ -92,10 +92,10 @@ describe("funnel config", () => {
 
   test("names downloads by what they are", () => {
     expect(
-      downloadOf(new URL("https://opencode.ai/update/api/latest/desktop/opencode/opencode-desktop-mac-arm64.dmg")),
+      downloadOf(new URL("https://opencode.ai/update/api/latest/desktop/opencode/redcode-desktop-mac-arm64.dmg")),
     ).toEqual({
       target: "desktop",
-      properties: { file: "opencode-desktop-mac-arm64.dmg", channel: "latest", os_match: expect.any(Boolean) },
+      properties: { file: "redcode-desktop-mac-arm64.dmg", channel: "latest", os_match: expect.any(Boolean) },
     })
     expect(downloadOf(new URL("https://opencode.ai/update/api/beta/cli/opencode/opencode-linux-x64.tar.gz"))).toEqual({
       target: "cli",
@@ -109,7 +109,7 @@ describe("funnel config", () => {
       "ide",
     )
     expect(downloadOf(new URL("https://open-vsx.org/extension/sst-dev/opencode"))?.target).toBe("ide")
-    expect(downloadOf(new URL("https://github.com/anomalyco/opencode/releases"))).toBeUndefined()
+    expect(downloadOf(new URL("https://github.com/Vempire-X/RedCode/releases"))).toBeUndefined()
     expect(downloadOf(new URL("https://example.com/update/api/latest/desktop/opencode/x.dmg"))).toBeUndefined()
   })
 })

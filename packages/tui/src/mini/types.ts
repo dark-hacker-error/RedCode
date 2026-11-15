@@ -14,17 +14,17 @@
 import type {
   FormAnswer,
   FormInfo,
-  OpenCodeClient,
+  RedCodeClient,
   LocationGetOutput,
   LocationRef,
   PermissionRequest,
   ReferenceListOutput,
   SessionMessageAssistantTool,
-} from "@opencode/client/promise"
+} from "@redcode/client/promise"
 import type { Config } from "../config"
 import type { Todo } from "../util/todo"
 import type { CliRenderer } from "@opentui/core"
-import type { SessionInbox } from "@opencode/schema/session-inbox"
+import type { SessionInbox } from "@redcode/schema/session-inbox"
 
 export type RunFilePart = {
   type: "file"
@@ -111,7 +111,7 @@ export type RunAgent = {
 export type RunReference = ReferenceListOutput["data"][number]
 
 export type RunInput = {
-  sdk: OpenCodeClient
+  sdk: RedCodeClient
   location: LocationGetOutput
   agent: string | undefined
   model: PromptModel | undefined
@@ -389,7 +389,7 @@ export type FooterEvent =
       state: FooterSubagentState
     }
 
-export type PermissionReply = Parameters<OpenCodeClient["permission"]["reply"]>[0]
+export type PermissionReply = Parameters<RedCodeClient["permission"]["reply"]>[0]
 
 export type FormReply = {
   sessionID: string

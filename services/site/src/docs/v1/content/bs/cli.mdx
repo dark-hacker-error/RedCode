@@ -1,17 +1,17 @@
 ---
 title: CLI
-description: OpenCode CLI opcije i naredbe.
+description: RedCode CLI opcije i naredbe.
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components"
 
-OpenCode CLI po defaultu pokreće [TUI](/docs/tui) kada se pokrene bez ikakvih argumenata.
+RedCode CLI po defaultu pokreće [TUI](/docs/tui) kada se pokrene bez ikakvih argumenata.
 
 ```bash
 opencode
 ```
 
-Ali takođe prihvata naredbe kao što je dokumentovano na ovoj stranici. Ovo vam omogućava programsku interakciju sa OpenCode.
+Ali takođe prihvata naredbe kao što je dokumentovano na ovoj stranici. Ovo vam omogućava programsku interakciju sa RedCode.
 
 ```bash
 opencode run "Explain how closures work in JavaScript"
@@ -21,7 +21,7 @@ opencode run "Explain how closures work in JavaScript"
 
 ### tui
 
-Pokrenite OpenCode terminalski korisnički interfejs.
+Pokrenite RedCode terminalski korisnički interfejs.
 
 ```bash
 opencode [project]
@@ -44,19 +44,19 @@ opencode [project]
 
 ## Naredbe
 
-OpenCode CLI takođe ima sljedeće naredbe.
+RedCode CLI takođe ima sljedeće naredbe.
 
 ---
 
 ### attach
 
-Priključite terminal na već pokrenut OpenCode backend server pokrenut putem `serve` ili `web` naredbi.
+Priključite terminal na već pokrenut RedCode backend server pokrenut putem `serve` ili `web` naredbi.
 
 ```bash
 opencode attach [url]
 ```
 
-Ovo omogućava korištenje TUI-ja sa udaljenim OpenCode backend-om. Na primjer:
+Ovo omogućava korištenje TUI-ja sa udaljenim RedCode backend-om. Na primjer:
 
 ```bash
 # Start the backend server for web/mobile access
@@ -74,8 +74,8 @@ opencode attach http://10.20.30.40:4096
 | <nobr><code>{"--continue"}</code></nobr> | `-c`   | Nastavi posljednju sesiju                                                                     |
 | <nobr><code>{"--session"}</code></nobr>  | `-s`   | ID sesije za nastavak                                                                         |
 | <nobr><code>{"--fork"}</code></nobr>     |        | Forkuj sesiju prilikom nastavka (koristite sa `--continue` ili `--session`)                   |
-| <nobr><code>{"--password"}</code></nobr> | `-p`   | Lozinka za osnovnu autentifikaciju (zadano: `OPENCODE_SERVER_PASSWORD`)                       |
-| <nobr><code>{"--username"}</code></nobr> | `-u`   | Korisničko ime za osnovnu autentifikaciju (zadano: `OPENCODE_SERVER_USERNAME` ili `opencode`) |
+| <nobr><code>{"--password"}</code></nobr> | `-p`   | Lozinka za osnovnu autentifikaciju (zadano: `REDCODE_SERVER_PASSWORD`)                       |
+| <nobr><code>{"--username"}</code></nobr> | `-u`   | Korisničko ime za osnovnu autentifikaciju (zadano: `REDCODE_SERVER_USERNAME` ili `opencode`) |
 
 ---
 
@@ -91,13 +91,13 @@ opencode auth [command]
 
 #### login
 
-OpenCode pokreće lista provajdera na [Models.dev](https://models.dev), tako da možete koristiti `opencode auth login` da konfigurirate API ključeve za bilo kojeg provajdera kojeg želite koristiti. Ovo je pohranjeno u `~/.local/share/opencode/auth.json`.
+RedCode pokreće lista provajdera na [Models.dev](https://models.dev), tako da možete koristiti `opencode auth login` da konfigurirate API ključeve za bilo kojeg provajdera kojeg želite koristiti. Ovo je pohranjeno u `~/.local/share/redcode/auth.json`.
 
 ```bash
 opencode auth login
 ```
 
-Kada se OpenCode pokrene, učitava dobavljače iz datoteke vjerodajnica. I ako postoje neki ključevi definirani u vašim okruženjima ili `.env` fajl u vašem projektu.
+Kada se RedCode pokrene, učitava dobavljače iz datoteke vjerodajnica. I ako postoje neki ključevi definirani u vašim okruženjima ili `.env` fajl u vašem projektu.
 
 ---
 
@@ -270,7 +270,7 @@ opencode models anthropic
 | <nobr><code>{"--refresh"}</code></nobr> | Osvježite keš modela sa models.dev                                       |
 | <nobr><code>{"--verbose"}</code></nobr> | Koristite detaljniji izlaz modela (uključuje metapodatke poput troškova) |
 
-Koristite `--refresh` zastavicu da ažurirate keširanu listu modela. Ovo je korisno kada su novi modeli dodani provajderu i želite da ih vidite u OpenCode.
+Koristite `--refresh` zastavicu da ažurirate keširanu listu modela. Ovo je korisno kada su novi modeli dodani provajderu i želite da ih vidite u RedCode.
 
 ```bash
 opencode models --refresh
@@ -280,7 +280,7 @@ opencode models --refresh
 
 ### run
 
-Pokrenite OpenCode u neinteraktivnom modu tako što ćete direktno proslijediti prompt.
+Pokrenite RedCode u neinteraktivnom modu tako što ćete direktno proslijediti prompt.
 
 ```bash
 opencode run [message..]
@@ -315,9 +315,9 @@ opencode run --attach http://localhost:4096 "Explain async/await in JavaScript"
 | <nobr><code>{"--file"}</code></nobr>     | `-f`   | Fajlovi koje treba priložiti poruci                                                           |
 | <nobr><code>{"--format"}</code></nobr>   |        | Format: default (formatiran) ili json (sirovi JSON događaji)                                  |
 | <nobr><code>{"--title"}</code></nobr>    |        | Naslov sesije (koristi skraćeni prompt ako nije navedena vrijednost)                          |
-| <nobr><code>{"--attach"}</code></nobr>   |        | Priključite na pokrenuti OpenCode server (npr. http://localhost:4096)                         |
-| <nobr><code>{"--password"}</code></nobr> | `-p`   | Lozinka za osnovnu autentifikaciju (zadano: `OPENCODE_SERVER_PASSWORD`)                       |
-| <nobr><code>{"--username"}</code></nobr> | `-u`   | Korisničko ime za osnovnu autentifikaciju (zadano: `OPENCODE_SERVER_USERNAME` ili `opencode`) |
+| <nobr><code>{"--attach"}</code></nobr>   |        | Priključite na pokrenuti RedCode server (npr. http://localhost:4096)                         |
+| <nobr><code>{"--password"}</code></nobr> | `-p`   | Lozinka za osnovnu autentifikaciju (zadano: `REDCODE_SERVER_PASSWORD`)                       |
+| <nobr><code>{"--username"}</code></nobr> | `-u`   | Korisničko ime za osnovnu autentifikaciju (zadano: `REDCODE_SERVER_USERNAME` ili `opencode`) |
 | <nobr><code>{"--dir"}</code></nobr>      |        | Direktorij za pokretanje, ili putanja na udaljenom serveru pri spajanju                       |
 | <nobr><code>{"--variant"}</code></nobr>  |        | Varijanta modela (napor zaključivanja specifičan za provajdera)                               |
 | <nobr><code>{"--thinking"}</code></nobr> |        | Prikaži blokove razmišljanja                                                                  |
@@ -327,13 +327,13 @@ opencode run --attach http://localhost:4096 "Explain async/await in JavaScript"
 
 ### serve
 
-Pokrenite OpenCode headless server za API pristup. Pogledajte [server docs](/docs/server) za kompletan HTTP interfejs.
+Pokrenite RedCode headless server za API pristup. Pogledajte [server docs](/docs/server) za kompletan HTTP interfejs.
 
 ```bash
 opencode serve
 ```
 
-Ovo pokreće HTTP server koji pruža API pristup funkcionalnosti OpenCode-a bez TUI interfejsa. Postavite `OPENCODE_SERVER_PASSWORD` da omogućite HTTP osnovnu auth (korisničko ime je zadano na `opencode`).
+Ovo pokreće HTTP server koji pruža API pristup funkcionalnosti RedCode-a bez TUI interfejsa. Postavite `REDCODE_SERVER_PASSWORD` da omogućite HTTP osnovnu auth (korisničko ime je zadano na `opencode`).
 
 #### Opcije
 
@@ -348,7 +348,7 @@ Ovo pokreće HTTP server koji pruža API pristup funkcionalnosti OpenCode-a bez 
 
 ### session
 
-Upravljajte OpenCode sesijama.
+Upravljajte RedCode sesijama.
 
 ```bash
 opencode session [command]
@@ -358,7 +358,7 @@ opencode session [command]
 
 #### list
 
-Navedite sve OpenCode sesije.
+Navedite sve RedCode sesije.
 
 ```bash
 opencode session list
@@ -375,7 +375,7 @@ opencode session list
 
 ### stats
 
-Prikaži statistiku upotrebe tokena i troškova za vaše OpenCode sesije.
+Prikaži statistiku upotrebe tokena i troškova za vaše RedCode sesije.
 
 ```bash
 opencode stats
@@ -420,13 +420,13 @@ opencode import session.json
 
 ### web
 
-Pokrenite OpenCode headless server sa web interfejsom.
+Pokrenite RedCode headless server sa web interfejsom.
 
 ```bash
 opencode web
 ```
 
-Ovo pokreće HTTP server i otvara web pretraživač za pristup OpenCode-u preko web interfejsa. Postavite `OPENCODE_SERVER_PASSWORD` da omogućite HTTP osnovnu auth (korisničko ime je zadano na `opencode`).
+Ovo pokreće HTTP server i otvara web pretraživač za pristup RedCode-u preko web interfejsa. Postavite `REDCODE_SERVER_PASSWORD` da omogućite HTTP osnovnu auth (korisničko ime je zadano na `opencode`).
 
 #### Opcije
 
@@ -461,7 +461,7 @@ Ova naredba pokreće ACP server koji komunicira preko stdin/stdout koristeći nd
 
 ### uninstall
 
-Deinstalirajte OpenCode i uklonite sve povezane datoteke.
+Deinstalirajte RedCode i uklonite sve povezane datoteke.
 
 ```bash
 opencode uninstall
@@ -480,7 +480,7 @@ opencode uninstall
 
 ### upgrade
 
-Ažurira OpenCode na najnoviju verziju ili određenu verziju.
+Ažurira RedCode na najnoviju verziju ili određenu verziju.
 
 ```bash
 opencode upgrade [target]
@@ -508,7 +508,7 @@ opencode upgrade v0.1.48
 
 ## Globalne opcije
 
-OpenCode CLI prihvata sljedeće globalne zastavice.
+RedCode CLI prihvata sljedeće globalne zastavice.
 
 | Opcija                                     | Kratko | Opis                                      |
 | ------------------------------------------ | ------ | ----------------------------------------- |
@@ -521,33 +521,33 @@ OpenCode CLI prihvata sljedeće globalne zastavice.
 
 ## Varijable okruženja
 
-OpenCode se može konfigurirati pomoću varijabli okruženja.
+RedCode se može konfigurirati pomoću varijabli okruženja.
 
 | Varijabla                             | Tip     | Opis                                                               |
 | ------------------------------------- | ------- | ------------------------------------------------------------------ |
-| `OPENCODE_GIT_BASH_PATH`              | string  | Putanja do Git Bash izvršne datoteke na Windows-u                  |
-| `OPENCODE_CONFIG`                     | string  | Putanja do konfiguracijskog fajla                                  |
-| `OPENCODE_TUI_CONFIG`                 | string  | Putanja do TUI konfiguracijskog fajla                              |
-| `OPENCODE_CONFIG_DIR`                 | string  | Putanja do konfiguracijskog direktorija                            |
-| `OPENCODE_CONFIG_CONTENT`             | string  | Inline json konfiguracijski sadržaj                                |
-| `OPENCODE_DISABLE_AUTOUPDATE`         | boolean | Onemogući automatske provjere ažuriranja                           |
-| `OPENCODE_DISABLE_PRUNE`              | boolean | Onemogući brisanje (pruning) starih podataka                       |
-| `OPENCODE_DISABLE_TERMINAL_TITLE`     | boolean | Onemogući automatsko ažuriranje naslova terminala                  |
-| `OPENCODE_PERMISSION`                 | string  | Inline json konfiguracija dozvola                                  |
-| `OPENCODE_DISABLE_DEFAULT_PLUGINS`    | boolean | Onemogući podrazumijevane dodatke (plugins)                        |
-| `OPENCODE_DISABLE_LSP_DOWNLOAD`       | boolean | Onemogući automatsko preuzimanje LSP servera                       |
-| `OPENCODE_ENABLE_EXPERIMENTAL_MODELS` | boolean | Omogući eksperimentalne modele                                     |
-| `OPENCODE_DISABLE_AUTOCOMPACT`        | boolean | Onemogući automatsko sažimanje konteksta                           |
-| `OPENCODE_DISABLE_CLAUDE_CODE`        | boolean | Onemogući čitanje iz `.claude` (prompt + vještine)                 |
-| `OPENCODE_DISABLE_CLAUDE_CODE_PROMPT` | boolean | Onemogući čitanje `~/.claude/CLAUDE.md`                            |
-| `OPENCODE_DISABLE_CLAUDE_CODE_SKILLS` | boolean | Onemogući učitavanje `.claude/skills`                              |
-| `OPENCODE_DISABLE_MODELS_FETCH`       | boolean | Onemogući dohvaćanje modela iz udaljenih izvora                    |
-| `OPENCODE_FAKE_VCS`                   | string  | Lažni VCS provajder za potrebe testiranja                          |
-| `OPENCODE_CLIENT`                     | string  | Identifikator klijenta (zadano na `cli`)                           |
-| `OPENCODE_ENABLE_EXA`                 | boolean | Omogući Exa alate za web pretraživanje                             |
-| `OPENCODE_SERVER_PASSWORD`            | string  | Omogući osnovnu autentifikaciju za `serve`/`web`                   |
-| `OPENCODE_SERVER_USERNAME`            | string  | Poništi osnovno korisničko ime autentifikacije (zadano `opencode`) |
-| `OPENCODE_MODELS_URL`                 | string  | Prilagođeni URL za dohvaćanje konfiguracije modela                 |
+| `REDCODE_GIT_BASH_PATH`              | string  | Putanja do Git Bash izvršne datoteke na Windows-u                  |
+| `REDCODE_CONFIG`                     | string  | Putanja do konfiguracijskog fajla                                  |
+| `REDCODE_TUI_CONFIG`                 | string  | Putanja do TUI konfiguracijskog fajla                              |
+| `REDCODE_CONFIG_DIR`                 | string  | Putanja do konfiguracijskog direktorija                            |
+| `REDCODE_CONFIG_CONTENT`             | string  | Inline json konfiguracijski sadržaj                                |
+| `REDCODE_DISABLE_AUTOUPDATE`         | boolean | Onemogući automatske provjere ažuriranja                           |
+| `REDCODE_DISABLE_PRUNE`              | boolean | Onemogući brisanje (pruning) starih podataka                       |
+| `REDCODE_DISABLE_TERMINAL_TITLE`     | boolean | Onemogući automatsko ažuriranje naslova terminala                  |
+| `REDCODE_PERMISSION`                 | string  | Inline json konfiguracija dozvola                                  |
+| `REDCODE_DISABLE_DEFAULT_PLUGINS`    | boolean | Onemogući podrazumijevane dodatke (plugins)                        |
+| `REDCODE_DISABLE_LSP_DOWNLOAD`       | boolean | Onemogući automatsko preuzimanje LSP servera                       |
+| `REDCODE_ENABLE_EXPERIMENTAL_MODELS` | boolean | Omogući eksperimentalne modele                                     |
+| `REDCODE_DISABLE_AUTOCOMPACT`        | boolean | Onemogući automatsko sažimanje konteksta                           |
+| `REDCODE_DISABLE_CLAUDE_CODE`        | boolean | Onemogući čitanje iz `.claude` (prompt + vještine)                 |
+| `REDCODE_DISABLE_CLAUDE_CODE_PROMPT` | boolean | Onemogući čitanje `~/.claude/CLAUDE.md`                            |
+| `REDCODE_DISABLE_CLAUDE_CODE_SKILLS` | boolean | Onemogući učitavanje `.claude/skills`                              |
+| `REDCODE_DISABLE_MODELS_FETCH`       | boolean | Onemogući dohvaćanje modela iz udaljenih izvora                    |
+| `REDCODE_FAKE_VCS`                   | string  | Lažni VCS provajder za potrebe testiranja                          |
+| `REDCODE_CLIENT`                     | string  | Identifikator klijenta (zadano na `cli`)                           |
+| `REDCODE_ENABLE_EXA`                 | boolean | Omogući Exa alate za web pretraživanje                             |
+| `REDCODE_SERVER_PASSWORD`            | string  | Omogući osnovnu autentifikaciju za `serve`/`web`                   |
+| `REDCODE_SERVER_USERNAME`            | string  | Poništi osnovno korisničko ime autentifikacije (zadano `opencode`) |
+| `REDCODE_MODELS_URL`                 | string  | Prilagođeni URL za dohvaćanje konfiguracije modela                 |
 
 ---
 
@@ -557,20 +557,20 @@ Ove varijable okruženja omogućavaju eksperimentalne karakteristike koje se mog
 
 | Varijabla                                       | Tip     | Opis                                                    |
 | ----------------------------------------------- | ------- | ------------------------------------------------------- |
-| `OPENCODE_EXPERIMENTAL`                         | boolean | Omogući eksperimentalne funkcije pod zbirnom zastavicom |
-| `OPENCODE_EXPERIMENTAL_ICON_DISCOVERY`          | boolean | Omogući otkrivanje ikona                                |
-| `OPENCODE_EXPERIMENTAL_DISABLE_COPY_ON_SELECT`  | boolean | Onemogući kopiranje pri odabiru u TUI                   |
-| `OPENCODE_EXPERIMENTAL_BASH_DEFAULT_TIMEOUT_MS` | number  | Zadano vremensko ograničenje za bash naredbe u ms       |
-| `OPENCODE_EXPERIMENTAL_OUTPUT_TOKEN_MAX`        | number  | Maksimalni izlazni tokeni za LLM odgovore               |
-| `OPENCODE_EXPERIMENTAL_FILEWATCHER`             | boolean | Omogući praćenje datoteka za cijeli direktorij          |
-| `OPENCODE_EXPERIMENTAL_OXFMT`                   | boolean | Omogući oxfmt formatter                                 |
-| `OPENCODE_EXPERIMENTAL_LSP_TOOL`                | boolean | Omogući eksperimentalni LSP alat                        |
-| `OPENCODE_EXPERIMENTAL_DISABLE_FILEWATCHER`     | boolean | Onemogući praćenje datoteka                             |
-| `OPENCODE_EXPERIMENTAL_EXA`                     | boolean | Omogući eksperimentalne Exa funkcije                    |
-| `OPENCODE_EXPERIMENTAL_LSP_TY`                  | boolean | Omogući TY LSP za python datoteke                       |
-| `OPENCODE_EXPERIMENTAL_PLAN_MODE`               | boolean | Omogući Plan mod                                        |
-| `OPENCODE_EXPERIMENTAL_EVENT_SYSTEM`            | boolean | Omogući eksperimentalni sistem događaja                 |
-| `OPENCODE_EXPERIMENTAL_NATIVE_LLM`              | boolean | Omogući nativnu putanju LLM zahtjeva                    |
-| `OPENCODE_EXPERIMENTAL_PARALLEL`                | boolean | Omogući paralelno izvršavanje web pretrage              |
-| `OPENCODE_EXPERIMENTAL_SCOUT`                   | boolean | Omogući Scout subagenta                                 |
-| `OPENCODE_EXPERIMENTAL_WORKSPACES`              | boolean | Omogući podršku za radne prostore                       |
+| `REDCODE_EXPERIMENTAL`                         | boolean | Omogući eksperimentalne funkcije pod zbirnom zastavicom |
+| `REDCODE_EXPERIMENTAL_ICON_DISCOVERY`          | boolean | Omogući otkrivanje ikona                                |
+| `REDCODE_EXPERIMENTAL_DISABLE_COPY_ON_SELECT`  | boolean | Onemogući kopiranje pri odabiru u TUI                   |
+| `REDCODE_EXPERIMENTAL_BASH_DEFAULT_TIMEOUT_MS` | number  | Zadano vremensko ograničenje za bash naredbe u ms       |
+| `REDCODE_EXPERIMENTAL_OUTPUT_TOKEN_MAX`        | number  | Maksimalni izlazni tokeni za LLM odgovore               |
+| `REDCODE_EXPERIMENTAL_FILEWATCHER`             | boolean | Omogući praćenje datoteka za cijeli direktorij          |
+| `REDCODE_EXPERIMENTAL_OXFMT`                   | boolean | Omogući oxfmt formatter                                 |
+| `REDCODE_EXPERIMENTAL_LSP_TOOL`                | boolean | Omogući eksperimentalni LSP alat                        |
+| `REDCODE_EXPERIMENTAL_DISABLE_FILEWATCHER`     | boolean | Onemogući praćenje datoteka                             |
+| `REDCODE_EXPERIMENTAL_EXA`                     | boolean | Omogući eksperimentalne Exa funkcije                    |
+| `REDCODE_EXPERIMENTAL_LSP_TY`                  | boolean | Omogući TY LSP za python datoteke                       |
+| `REDCODE_EXPERIMENTAL_PLAN_MODE`               | boolean | Omogući Plan mod                                        |
+| `REDCODE_EXPERIMENTAL_EVENT_SYSTEM`            | boolean | Omogući eksperimentalni sistem događaja                 |
+| `REDCODE_EXPERIMENTAL_NATIVE_LLM`              | boolean | Omogući nativnu putanju LLM zahtjeva                    |
+| `REDCODE_EXPERIMENTAL_PARALLEL`                | boolean | Omogući paralelno izvršavanje web pretrage              |
+| `REDCODE_EXPERIMENTAL_SCOUT`                   | boolean | Omogući Scout subagenta                                 |
+| `REDCODE_EXPERIMENTAL_WORKSPACES`              | boolean | Omogući podršku za radne prostore                       |

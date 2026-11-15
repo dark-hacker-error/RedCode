@@ -15,9 +15,9 @@ model = "gpt-6.1-sol"
 model_provider = "opencode"
 
 [model_providers.opencode]
-name = "OpenCode Console"
+name = "RedCode Console"
 base_url = "https://opencode.ai/inference/openai/v1"
-env_key = "OPENCODE_API_KEY"
+env_key = "REDCODE_API_KEY"
 wire_api = "responses"
 ```
 
@@ -25,7 +25,7 @@ Codex appends `/responses` to the base URL and reads the key from `env_key`. Cre
 [personal API key](/console/harnesses#get-an-api-key), then export it.
 
 ```bash
-export OPENCODE_API_KEY="oc_sk_..."
+export REDCODE_API_KEY="oc_sk_..."
 codex
 ```
 
@@ -42,9 +42,9 @@ model = "kimi-k3"
 model_provider = "opencode-go"
 
 [model_providers.opencode-go]
-name = "OpenCode Go"
+name = "RedCode Go"
 base_url = "https://opencode.ai/inference/go/openai/v1"
-env_key = "OPENCODE_API_KEY"
+env_key = "REDCODE_API_KEY"
 wire_api = "responses"
 ```
 

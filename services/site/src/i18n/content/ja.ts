@@ -19,7 +19,7 @@ export const content = {
     },
     sdk: {
       name: "SDK",
-      body: "自分のスクリプト、CIジョブ、ツールからOpenCodeを操作できます。",
+      body: "自分のスクリプト、CIジョブ、ツールからRedCodeを操作できます。",
       action: "ドキュメント",
     },
     mini: {
@@ -30,9 +30,9 @@ export const content = {
   },
   productDetails: {
     desktop: {
-      title: "OpenCode | macOS、Windows、Linux向けデスクトップアプリ",
+      title: "RedCode | macOS、Windows、Linux向けデスクトップアプリ",
       description:
-        "OpenCodeエージェントを好きなだけ並列で実行し、すべての変更を横のブラウザで確認して、どのデバイスからでも再開できます。macOS、Windows、Linuxに対応。",
+        "RedCodeエージェントを好きなだけ並列で実行し、すべての変更を横のブラウザで確認して、どのデバイスからでも再開できます。macOS、Windows、Linuxに対応。",
       intro:
         "複数のエージェントを同時に実行し、セッションごとに専用のタブで管理できます。すべての変更を差分で確認し、任意の行にコメントして、内蔵ブラウザで結果をチェックできます。macOS、Windows、Linuxに対応しています。",
       showcase: {
@@ -50,16 +50,16 @@ export const content = {
         },
         "extend-it": {
           title: "拡張する",
-          body: "ツールやサービスを接続すれば、エージェントはどんなものでも扱えます。OpenCodeに自分用のプラグインを作らせ、サイドバーに専用のUIを表示することもできます。",
+          body: "ツールやサービスを接続すれば、エージェントはどんなものでも扱えます。RedCodeに自分用のプラグインを作らせ、サイドバーに専用のUIを表示することもできます。",
         },
       },
     },
     mobile: {
-      title: "OpenCode | Mobile、スマートフォンで操作するコーディングセッション",
+      title: "RedCode | Mobile、スマートフォンで操作するコーディングセッション",
       description:
-        "スマートフォンからOpenCodeのセッションを開始して操作できます。エージェントがコンピューターで動く間も、会話できます。",
+        "スマートフォンからRedCodeのセッションを開始して操作できます。エージェントがコンピューターで動く間も、会話できます。",
       intro:
-        "どこにいても、スマートフォンからセッションを開始して操作できます。セッションに通話してエージェントと話したり、セッションを開いて続きから再開できます。すべて自分のコンピューターで動くOpenCode上で行われます。",
+        "どこにいても、スマートフォンからセッションを開始して操作できます。セッションに通話してエージェントと話したり、セッションを開いて続きから再開できます。すべて自分のコンピューターで動くRedCode上で行われます。",
       features: {
         "notify-when-done": { title: "完了を通知", body: "開始したセッションが終わると、短い要約が届きます。" },
         "pair-from-anywhere": {
@@ -72,7 +72,7 @@ export const content = {
           body: "Siriやコントロールセンターから通話やセッションを開始できます。",
         },
         "follow-along": { title: "進捗を追う", body: "エージェントの作業に合わせてタイムラインが更新されます。" },
-        "your-computer": { title: "自分のPC", body: "自分のマシンで動くOpenCodeに接続します。" },
+        "your-computer": { title: "自分のPC", body: "自分のマシンで動くRedCodeに接続します。" },
         "share-sheet": { title: "共有シート", body: "アプリを開かずに、何でもセッションに共有できます。" },
         "mute-sessions": { title: "ミュート", body: "通知を受け取らずに、セッションをリストに残せます。" },
       },
@@ -84,9 +84,9 @@ export const content = {
       },
     },
     terminal: {
-      title: "OpenCode | オープンソースのコーディングエージェントのターミナルUI",
+      title: "RedCode | オープンソースのコーディングエージェントのターミナルUI",
       description:
-        "どのシェル、エディタ、リモートサーバーでも動く、OpenCodeの高速なターミナルUI。やりたいことを伝えれば、各編集を差分で確認し、コマンドを承認できます。",
+        "どのシェル、エディタ、リモートサーバーでも動く、RedCodeの高速なターミナルUI。やりたいことを伝えれば、各編集を差分で確認し、コマンドを承認できます。",
       intro:
         "どのシェル、エディタ、リモートサーバーでも動く高速なターミナルUI。やりたいことを普段の言葉で伝え、各編集が差分として反映される様子を確認し、どのコマンドを自動で実行するかを選べます。",
       features: {
@@ -111,7 +111,7 @@ export const content = {
           title: "自動承認",
           body: "--auto を付けて実行すると、拒否していないすべての操作を許可します。",
         },
-        "any-server": { title: "任意のサーバー", body: "--server でURLを指定してOpenCodeサーバーに接続できます。" },
+        "any-server": { title: "任意のサーバー", body: "--server でURLを指定してRedCodeサーバーに接続できます。" },
         "usage-stats": { title: "利用統計", body: "opencode stats で、共有できる利用統計を表示します。" },
       },
       showcase: {
@@ -131,28 +131,28 @@ export const content = {
       },
     },
     sdk: {
-      title: "OpenCode | スクリプト、CIジョブ、ツールのためのTypeScript SDK",
+      title: "RedCode | スクリプト、CIジョブ、ツールのためのTypeScript SDK",
       description:
-        "自分のスクリプト、CIジョブ、ツールからOpenCodeを操作できます。型付きのTypeScriptクライアントで、セッションの作成、プロンプトの送信、すべてのイベントのストリーミングを行えます。",
+        "自分のスクリプト、CIジョブ、ツールからRedCodeを操作できます。型付きのTypeScriptクライアントで、セッションの作成、プロンプトの送信、すべてのイベントのストリーミングを行えます。",
       intro:
-        "自分のスクリプト、CIジョブ、ツールからOpenCodeを操作できます。SDKはあなたの設定とモデルでOpenCodeをプロセス内で実行し、型付きクライアントでセッションの作成、プロンプトの送信、すべてのイベントのストリーミングを行えます。",
+        "自分のスクリプト、CIジョブ、ツールからRedCodeを操作できます。SDKはあなたの設定とモデルでRedCodeをプロセス内で実行し、型付きクライアントでセッションの作成、プロンプトの送信、すべてのイベントのストリーミングを行えます。",
       features: {
         "typescript-client": {
           title: "TypeScriptクライアント",
-          body: "型付きのリクエストとイベント。@opencode/client と同じ値を使います。",
+          body: "型付きのリクエストとイベント。@redcode/client と同じ値を使います。",
         },
         "sessions-from-code": {
           title: "コードでセッション",
           body: "どのスクリプトからでもセッションを作成し、プロンプトを送れます。",
         },
-        "any-model": { title: "任意のモデル", body: "OpenCodeの設定にあるモデルをそのまま使います。" },
+        "any-model": { title: "任意のモデル", body: "RedCodeの設定にあるモデルをそのまま使います。" },
         "npm-or-bun": {
           title: "npmまたはbun",
-          body: "npm i @opencode/sdk または bun add @opencode/sdk でインストールできます。",
+          body: "npm i @redcode/sdk または bun add @redcode/sdk でインストールできます。",
         },
         "in-process-host": {
           title: "インプロセスホスト",
-          body: "ネットワークを介さず、メモリ内でOpenCodeを実行します。",
+          body: "ネットワークを介さず、メモリ内でRedCodeを実行します。",
         },
         "your-plugins": {
           title: "自分のプラグイン",
@@ -161,13 +161,13 @@ export const content = {
         "promise-or-effect": { title: "PromiseかEffect", body: "同じ値を返すPromise APIとEffect API。" },
         "cloudflare-workers": {
           title: "Cloudflare Workers",
-          body: "Workers上のCloudflare Durable Object内でOpenCodeを実行できます。",
+          body: "Workers上のCloudflare Durable Object内でRedCodeを実行できます。",
         },
       },
       showcase: {
         "fix-ci-from-code": {
           title: "コードでCIを修正",
-          body: "短いスクリプトで、失敗したテストをOpenCodeに直させて再実行します。",
+          body: "短いスクリプトで、失敗したテストをRedCodeに直させて再実行します。",
         },
         "follow-every-step": {
           title: "すべてのステップを追う",
@@ -175,20 +175,20 @@ export const content = {
         },
         "build-your-own-tools": {
           title: "独自のツールを作る",
-          body: "数行のコードで、ボット、ダッシュボード、ワークフローにOpenCodeを組み込めます。",
+          body: "数行のコードで、ボット、ダッシュボード、ワークフローにRedCodeを組み込めます。",
         },
         "in-your-process": {
           title: "プロセス内で実行",
-          body: "あなたの設定とモデルで、OpenCodeをプロセス内で実行します。",
+          body: "あなたの設定とモデルで、RedCodeをプロセス内で実行します。",
         },
       },
     },
     mini: {
-      title: "OpenCode | Mini、エージェントのための最小限のターミナルUI",
+      title: "RedCode | Mini、エージェントのための最小限のターミナルUI",
       description:
-        "MiniはOpenCodeを最小限のターミナルインターフェースで実行します。返答はターミナル自体のスクロールバックに出力され、下にはプロンプトとステータス行だけが残ります。",
+        "MiniはRedCodeを最小限のターミナルインターフェースで実行します。返答はターミナル自体のスクロールバックに出力され、下にはプロンプトとステータス行だけが残ります。",
       intro:
-        "OpenCodeのための最小限のターミナルインターフェース。opencode mini を実行すると、返答がターミナル自体のスクロールバックに直接出力されるので、ほかの出力と同じようにスクロール、検索、コピーできます。下部に残るのはプロンプトとステータス行だけです。",
+        "RedCodeのための最小限のターミナルインターフェース。opencode mini を実行すると、返答がターミナル自体のスクロールバックに直接出力されるので、ほかの出力と同じようにスクロール、検索、コピーできます。下部に残るのはプロンプトとステータス行だけです。",
       features: {
         "your-scrollback": { title: "スクロールバック", body: "返答は通常のターミナル履歴になります。" },
         "one-prompt": {
@@ -204,7 +204,7 @@ export const content = {
           title: "後から再開",
           body: "-c で前回のセッションを、-s で任意のセッションを再開できます。",
         },
-        "same-opencode": { title: "同じOpenCode", body: "ほかのアプリと同じサーバー、エージェント、モデル。" },
+        "same-opencode": { title: "同じRedCode", body: "ほかのアプリと同じサーバー、エージェント、モデル。" },
         agents: { title: "エージェント", body: "プロンプトから直接エージェントを切り替えられます。" },
         compact: { title: "圧縮", body: "/compact で長いセッションを縮められます。" },
       },
@@ -212,16 +212,16 @@ export const content = {
   },
   extensionCard: {
     name: "拡張機能",
-    body: "VS CodeでOpenCodeを使えます。ZedなどのエディタではACP経由で使えます。",
+    body: "VS CodeでRedCodeを使えます。ZedなどのエディタではACP経由で使えます。",
     action: "インストール",
   },
   extensions: {
     browse: {
       name: "Browse",
       body: "エージェントが普段のブラウザを使えます。",
-      title: "OpenCode | Browse、コーディングエージェントが使う普段のブラウザ",
+      title: "RedCode | Browse、コーディングエージェントが使う普段のブラウザ",
       description:
-        "Browseを使うと、OpenCodeやほかのMCPクライアントが普段のブラウザを使えます。エージェントはPlaywrightでバックグラウンドのタブを操作し、ログインや2FAはあなたに任せます。",
+        "Browseを使うと、RedCodeやほかのMCPクライアントが普段のブラウザを使えます。エージェントはPlaywrightでバックグラウンドのタブを操作し、ログインや2FAはあなたに任せます。",
       intro:
         "MCPサーバーとChromium拡張機能で、エージェントが普段のブラウザを使えるようにします。あなたのタブ、ログイン、拡張機能をそのまま使えます。エージェントはPlaywrightでタブを開いて操作し、スクリーンショットを撮り、画面を録画します。タブはバックグラウンドでグループにまとめられ、作業の邪魔になりません。ログイン、2FAの入力、支払いなどあなたの番になると、エージェントはタブをあなたに渡し、「Continue」をクリックすると作業を再開します。",
       features: {
@@ -242,7 +242,7 @@ export const content = {
           title: "録画と記録",
           body: "スクリーンショット、画面録画、HAR形式のネットワーク通信。",
         },
-        "any-mcp-client": { title: "全MCPクライアント", body: "OpenCode、Claude Code、Cursor、Codex、Zedなど多数。" },
+        "any-mcp-client": { title: "全MCPクライアント", body: "RedCode、Claude Code、Cursor、Codex、Zedなど多数。" },
         "all-your-logins": {
           title: "ログインはそのまま",
           body: "エージェントは、すでにサインインしているサイトをそのまま使います。キーも設定も不要です。",
@@ -264,42 +264,42 @@ export const content = {
   },
   getStarted: {
     title: "はじめる",
-    lead: "いちばん簡単な始め方は、OpenCodeをダウンロードして無料モデルを使うことです。アカウントは不要です。もっと使いたいときは、お使いのサブスクリプションを持ち込むか、OpenCode Goを使えます。",
+    lead: "いちばん簡単な始め方は、RedCodeをダウンロードして無料モデルを使うことです。アカウントは不要です。もっと使いたいときは、お使いのサブスクリプションを持ち込むか、RedCode Goを使えます。",
     phrases: {
-      "download-opencode": { text: "OpenCodeをダウンロード" },
+      "download-opencode": { text: "RedCodeをダウンロード" },
       "free-models": { text: "無料モデル" },
       "your-own-subscription": { text: "お使いのサブスクリプション" },
       "a-subscription-you-already-have": { text: "すでにお持ちのサブスクリプション" },
-      "opencode-go": { text: "OpenCode Go" },
+      "opencode-go": { text: "RedCode Go" },
     },
     subscriptions: { "chatgpt-plus-pro": { name: "ChatGPT Plus/Pro" } },
     steps: {
       download: { title: "ダウンロード", line: "デスクトップ、ターミナル、モバイル。" },
       "use-free-models": {
         title: "無料モデルを使う",
-        line: "OpenCodeには無料モデルが付属しています。アカウントは不要です。",
+        line: "RedCodeには無料モデルが付属しています。アカウントは不要です。",
       },
       "add-more-models": {
         title: "モデルを追加",
-        line: "お使いのサブスクリプションを持ち込むか、月額$10からのOpenCode Goの厳選モデルを使えます。",
+        line: "お使いのサブスクリプションを持ち込むか、月額$10からのRedCode Goの厳選モデルを使えます。",
       },
     },
     sentence:
-      "OpenCodeをダウンロードして無料モデルから始め、もっと使いたくなったら、お使いのサブスクリプションかOpenCode Goを使えます。",
+      "RedCodeをダウンロードして無料モデルから始め、もっと使いたくなったら、お使いのサブスクリプションかRedCode Goを使えます。",
   },
   byos: {
     title: "サブスクリプションを持ち込む",
     headline: "すでにお持ちのサブスクリプションを使えます。",
-    line: "ChatGPT PlusまたはPro、あるいはGitHub Copilotでログインできます。OpenCodeのサブスクリプションも使えます。",
+    line: "ChatGPT PlusまたはPro、あるいはGitHub Copilotでログインできます。RedCodeのサブスクリプションも使えます。",
     yours: { label: "お使いのサブスクリプション", items: { "chatgpt-plus-pro": { name: "ChatGPT Plus/Pro" } } },
-    planLinks: ["OpenCodeのサブスクリプション", "OpenCode Go"],
-    ours: { label: "OpenCodeのプラン" },
+    planLinks: ["RedCodeのサブスクリプション", "RedCode Go"],
+    ours: { label: "RedCodeのプラン" },
   },
   brand: {
     hero: { copy: { text: "エージェント用ルール", copied: "コピーしました" } },
     naming: {
       title: "表記",
-      body: "OpenCodeは、大文字のOと大文字のCを使って1語で書きます。Opencode、Open Code、OpenCode AI、Open-Codeとは書きません。",
+      body: "RedCodeは、大文字のOと大文字のCを使って1語で書きます。Opencode、Open Code、RedCode AI、Open-Codeとは書きません。",
       code: "小文字の `opencode` は、`opencode-figma` や `@acme/opencode-plugin` のように、コードとパッケージ名でのみ使います。",
     },
     families: {
@@ -315,7 +315,7 @@ export const content = {
       },
       wordmark: {
         title: "ワードマーク",
-        body: "OpenCodeの字形で書いた正式名称。名前を書ききるスペースがある場所で使います。",
+        body: "RedCodeの字形で書いた正式名称。名前を書ききるスペースがある場所で使います。",
         assets: { light: { name: "ライト" }, dark: { name: "ダーク" } },
       },
       "simple-wordmark": {
@@ -412,7 +412,7 @@ export const content = {
     },
     integrations: {
       title: "連携",
-      body: "OpenCodeと連携するプラグイン、プロバイダー、ツールや、OpenCodeで作ったプロジェクトは、そのことを表示できます。バッジかパートナーロックアップを使い、プロジェクトがあなたのものだとわかる名前を付けてください。",
+      body: "RedCodeと連携するプラグイン、プロバイダー、ツールや、RedCodeで作ったプロジェクトは、そのことを表示できます。バッジかパートナーロックアップを使い、プロジェクトがあなたのものだとわかる名前を付けてください。",
       badges: {
         body: "README、ドキュメント、Webサイトにバッジを置き、opencode.aiにリンクしてください。背景に合わせてライトかダークのファイルを選び（HTMLは自動で切り替わります）、色やテキストは変更しないでください。",
         sizes: "どのスタイルも20、32、44px（Shieldsは20pxのみ）で、SVGと2倍サイズのPNGがあります。",
@@ -420,43 +420,43 @@ export const content = {
         groups: {
           "works-with": {
             title: "Works with",
-            alt: "Works with OpenCode",
-            body: "OpenCodeと一緒に動くプラグイン、プロバイダー、ツール向け。",
+            alt: "Works with RedCode",
+            body: "RedCodeと一緒に動くプラグイン、プロバイダー、ツール向け。",
           },
-          "built-with": { title: "Built with", alt: "Built with OpenCode", body: "OpenCodeで作ったプロジェクト向け。" },
+          "built-with": { title: "Built with", alt: "Built with RedCode", body: "RedCodeで作ったプロジェクト向け。" },
         },
         styles: { a: { name: "フレーム" }, c: { name: "セル" }, f: { name: "ソリッド" }, g: { name: "Shields" } },
       },
       lockup: {
         title: "パートナーロックアップ",
-        body: "OpenCodeのロゴとパートナーのロゴを、間に×を挟んで横に並べます。×の両側に3ストローク分の余白をとり、パートナーのロゴはOpenCodeのロゴと同じ高さに見えるように調整し、ロックアップ全体のまわりに余白を確保してください。",
+        body: "RedCodeのロゴとパートナーのロゴを、間に×を挟んで横に並べます。×の両側に3ストローク分の余白をとり、パートナーのロゴはRedCodeのロゴと同じ高さに見えるように調整し、ロックアップ全体のまわりに余白を確保してください。",
         partners: { github: { name: "GitHub" } },
       },
       naming: {
         title: "プロジェクトの名前",
         body: "プロジェクトがあなたのものだとわかるように、自分の名前を先に置きます。",
-        rule: "`Linear for OpenCode` と書くか、パッケージ名を `opencode-linear` にします。`OpenCode Linear` や `Linear by OpenCode` とは書きません。",
+        rule: "`Linear for RedCode` と書くか、パッケージ名を `opencode-linear` にします。`RedCode Linear` や `Linear by RedCode` とは書きません。",
       },
     },
     trademarks: {
       title: "商標",
-      body: "OpenCodeとOpenCodeのロゴはAnomalyの商標です。Anomalyがあなたを推奨または支援していると受け取られる使い方、製品名や会社名への使用、許可のない商品への使用はしないでください。",
+      body: "RedCodeとRedCodeのロゴはAnomalyの商標です。Anomalyがあなたを推奨または支援していると受け取られる使い方、製品名や会社名への使用、許可のない商品への使用はしないでください。",
       contact: { before: "ご質問は", after: "までメールでお送りください。" },
     },
   },
   press: {
-    title: "OpenCode | 企業情報とブランド素材のプレスキット",
+    title: "RedCode | 企業情報とブランド素材のプレスキット",
     description:
-      "OpenCodeのプレスキットです。OpenCodeと開発元のAnomalyに関する情報、ダウンロードできるロゴとワードマーク、報道関係のお問い合わせ先をまとめています。",
-    hero: { title: "プレス", body: "OpenCodeとAnomalyについて書くための情報、ブランド素材、連絡先。" },
+      "RedCodeのプレスキットです。RedCodeと開発元のAnomalyに関する情報、ダウンロードできるロゴとワードマーク、報道関係のお問い合わせ先をまとめています。",
+    hero: { title: "プレス", body: "RedCodeとAnomalyについて書くための情報、ブランド素材、連絡先。" },
     company: {
       title: "Anomalyについて",
-      lead: "AnomalyはOpenCodeを開発している会社です。開発者向けのオープンソースツールを作っています。",
+      lead: "AnomalyはRedCodeを開発している会社です。開発者向けのオープンソースツールを作っています。",
       more: "ほかにもSSTやOpenTUIなどのプロジェクトがあり、すべて[GitHub](github)でオープンソースとして公開しています。",
       learnMore: "詳しくは[anoma.ly](site)をご覧ください。",
       projects: {
         opencode: {
-          name: "OpenCode",
+          name: "RedCode",
           body: "オープンソースのコーディングエージェント。デスクトップ、ターミナル、モバイル向けのアプリとSDKがあります。MITライセンス、GitHubスター220,000以上。",
         },
         sst: {
@@ -465,7 +465,7 @@ export const content = {
         },
         opentui: {
           name: "OpenTUI",
-          body: "TypeScript、React、Solidでターミナル UIを作るためのライブラリで、コアはZigで書かれています。OpenCodeが本番環境で使っています。GitHubスターは13,000以上。",
+          body: "TypeScript、React、Solidでターミナル UIを作るためのライブラリで、コアはZigで書かれています。RedCodeが本番環境で使っています。GitHubスターは13,000以上。",
         },
         "models-dev": {
           name: "Models.dev",
@@ -482,31 +482,31 @@ export const content = {
       },
     },
     about: {
-      title: "OpenCodeについて",
-      body: "OpenCodeと各製品の紹介文です。長文版と短文版があり、そのままコピーして使えます。",
+      title: "RedCodeについて",
+      body: "RedCodeと各製品の紹介文です。長文版と短文版があり、そのままコピーして使えます。",
       boilerplate: {
-        long: "OpenCodeはオープンソースのコーディングエージェントです。デスクトップアプリ、ターミナルUI、モバイルアプリ、SDKとして提供され、Claude、GPT、Geminiなど、あらゆるプロバイダーのモデルで動作します。OpenCodeはMITライセンスで、Anomalyが開発しています。GitHubスターは220,000以上、コントリビューターは1,000人以上で、毎月2,200万人以上の開発者が利用しています。",
+        long: "RedCodeはオープンソースのコーディングエージェントです。デスクトップアプリ、ターミナルUI、モバイルアプリ、SDKとして提供され、Claude、GPT、Geminiなど、あらゆるプロバイダーのモデルで動作します。RedCodeはMITライセンスで、Anomalyが開発しています。GitHubスターは220,000以上、コントリビューターは1,000人以上で、毎月2,200万人以上の開発者が利用しています。",
         short:
-          "OpenCodeはAnomalyが開発するオープンソースのコーディングエージェントで、デスクトップ、ターミナル、モバイル向けのアプリとSDKがあります。",
+          "RedCodeはAnomalyが開発するオープンソースのコーディングエージェントで、デスクトップ、ターミナル、モバイル向けのアプリとSDKがあります。",
       },
       products: {
         "opencode-console": {
-          name: "OpenCode Console",
-          long: "OpenCode Consoleは、開発者やチームがOpenCodeやほかのコーディングエージェントで使うAIモデルへのアクセスを購入、管理するWebアプリです。フロンティアモデルとオープンウェイトモデルの従量課金制の推論（前払いクレジットからリクエストごとに課金）と、OpenCode Goのサブスクリプションを提供しています。チームは、Member、Admin、Ownerのロールを持つワークスペース、ワークスペース単位とユーザー単位の利用上限、Okta、Microsoft Entra ID、Google Workspaceによるシングルサインオン、SCIMを利用できます。Consoleは30以上のプロバイダーに対応しているため、チームはすでに持っているプロバイダーのアカウントを接続でき、Console自体の推論は任意です。URLはopencode.ai/consoleです。",
+          name: "RedCode Console",
+          long: "RedCode Consoleは、開発者やチームがRedCodeやほかのコーディングエージェントで使うAIモデルへのアクセスを購入、管理するWebアプリです。フロンティアモデルとオープンウェイトモデルの従量課金制の推論（前払いクレジットからリクエストごとに課金）と、RedCode Goのサブスクリプションを提供しています。チームは、Member、Admin、Ownerのロールを持つワークスペース、ワークスペース単位とユーザー単位の利用上限、Okta、Microsoft Entra ID、Google Workspaceによるシングルサインオン、SCIMを利用できます。Consoleは30以上のプロバイダーに対応しているため、チームはすでに持っているプロバイダーのアカウントを接続でき、Console自体の推論は任意です。URLはopencode.ai/consoleです。",
           short:
-            "OpenCode Consoleは、従量課金制のAIモデルアクセス、OpenCode Goのサブスクリプション、予算やシングルサインオンなどのチーム管理機能を提供するAnomalyのWebアプリです。",
+            "RedCode Consoleは、従量課金制のAIモデルアクセス、RedCode Goのサブスクリプション、予算やシングルサインオンなどのチーム管理機能を提供するAnomalyのWebアプリです。",
         },
         "opencode-go": {
-          name: "OpenCode Go",
-          long: "OpenCode Goは、コーディングモデルを月額固定で使いたい開発者向けのサブスクリプションです。Goは月額$10、上限が高いGo Plusは月額$40、Go Teamsはメンバー1人あたり月額$20です。各プランには、エージェント型コーディング向けにテストした厳選モデルが含まれます。利用上限はモデルごとの月額のドル建てで、5時間ごとと週ごとに、月間上限の20%と50%の枠が順次回復します。サブスクライバーはクレジットを追加でき、従量課金の残高に切り替えることも、いつでも解約することもできます。GoはOpenCodeとほかのエージェントで使えます。URLはopencode.ai/console/goです。",
+          name: "RedCode Go",
+          long: "RedCode Goは、コーディングモデルを月額固定で使いたい開発者向けのサブスクリプションです。Goは月額$10、上限が高いGo Plusは月額$40、Go Teamsはメンバー1人あたり月額$20です。各プランには、エージェント型コーディング向けにテストした厳選モデルが含まれます。利用上限はモデルごとの月額のドル建てで、5時間ごとと週ごとに、月間上限の20%と50%の枠が順次回復します。サブスクライバーはクレジットを追加でき、従量課金の残高に切り替えることも、いつでも解約することもできます。GoはRedCodeとほかのエージェントで使えます。URLはopencode.ai/console/goです。",
           short:
-            "OpenCode Goは、厳選したコーディングモデルを月間の利用上限つきで使える、Anomalyの月額サブスクリプションです。月額$10からです。",
+            "RedCode Goは、厳選したコーディングモデルを月間の利用上限つきで使える、Anomalyの月額サブスクリプションです。月額$10からです。",
         },
         "opencode-data": {
-          name: "OpenCode Data",
-          long: "OpenCode Dataは、開発者がOpenCodeでどのAIモデルを使っているか、その構成が時間とともにどう変わるかを示す公開ダッシュボードです。上位モデルのランキング、トークン使用量、セッションとトークンのコスト、キャッシュ率、市場シェア、国別の内訳を公開しています。数値は1時間ごとに集計され、日と週はUTCで区切られます。ユーザー数とセッション数は概算で、コストはOpenCodeのモデルカタログの定価を使っています。報道関係者は、ページに表示される更新時刻とともに、OpenCode Data（opencode.ai/data）として引用できます。",
+          name: "RedCode Data",
+          long: "RedCode Dataは、開発者がRedCodeでどのAIモデルを使っているか、その構成が時間とともにどう変わるかを示す公開ダッシュボードです。上位モデルのランキング、トークン使用量、セッションとトークンのコスト、キャッシュ率、市場シェア、国別の内訳を公開しています。数値は1時間ごとに集計され、日と週はUTCで区切られます。ユーザー数とセッション数は概算で、コストはRedCodeのモデルカタログの定価を使っています。報道関係者は、ページに表示される更新時刻とともに、RedCode Data（opencode.ai/data）として引用できます。",
           short:
-            "OpenCode Dataは、opencode.ai/dataで公開しているダッシュボードです。OpenCodeでの実際の利用量に基づいてAIモデルをランク付けし、トークン、コスト、市場シェアを1時間ごとに更新しています。",
+            "RedCode Dataは、opencode.ai/dataで公開しているダッシュボードです。RedCodeでの実際の利用量に基づいてAIモデルをランク付けし、トークン、コスト、市場シェアを1時間ごとに更新しています。",
         },
       },
     },
@@ -523,22 +523,22 @@ export const content = {
       items: {
         "first-release-v0-0-1": { date: "2025年4月", text: "初回リリース、v0.0.1" },
         "1-million-downloads": { date: "2025年10月", text: "ダウンロード数100万突破" },
-        "opencode-1-0": { date: "2025年10月", text: "OpenCode 1.0" },
+        "opencode-1-0": { date: "2025年10月", text: "RedCode 1.0" },
         "desktop-app-ships": { date: "2025年12月", text: "Desktopアプリ公開" },
         "10-million-downloads": { date: "2026年1月", text: "ダウンロード数1,000万突破" },
-        "opencode-2-0": { date: "2026年9月", text: "OpenCode 2.0" },
+        "opencode-2-0": { date: "2026年9月", text: "RedCode 2.0" },
         "220-000-github-stars": { date: "2026年11月", text: "GitHubスター220,000突破" },
       },
     },
     news: {
       title: "最新リリース",
-      intro: "OpenCodeは頻繁にリリースしています。新機能を含む最新のリリースを紹介します。",
+      intro: "RedCodeは頻繁にリリースしています。新機能を含む最新のリリースを紹介します。",
       changelog: { text: "変更履歴の全文" },
       feed: { text: "RSS" },
     },
     media: {
       title: "メディア",
-      intro: "実際の製品から収録した、各アプリの静止画と短い動画です。OpenCodeについて書く際にご利用いただけます。",
+      intro: "実際の製品から収録した、各アプリの静止画と短い動画です。RedCodeについて書く際にご利用いただけます。",
       note: "すべてダークテーマで収録しています。静止画とポスターは最大1920 × 1080（縦向きは1080 × 1350）のJPGです。動画は音声なしのMP4です。",
       products: {
         desktop: {
@@ -614,11 +614,11 @@ export const content = {
     brand: {
       title: "ブランド",
       before:
-        "OpenCodeのロゴとワードマークを1つのZIPファイルでダウンロードできます。個別のファイル、バリエーション、使用ルールについては、",
+        "RedCodeのロゴとワードマークを1つのZIPファイルでダウンロードできます。個別のファイル、バリエーション、使用ルールについては、",
       link: { text: "ブランドページ" },
       after: "をご覧ください。",
       usage:
-        "これらのファイルは、OpenCodeについて書くために使えます。ファイルを変更したり、OpenCodeがあなたの活動を推奨しているかのように示したりしないでください。",
+        "これらのファイルは、RedCodeについて書くために使えます。ファイルを変更したり、RedCodeがあなたの活動を推奨しているかのように示したりしないでください。",
     },
     product: {
       title: "製品",
@@ -629,7 +629,7 @@ export const content = {
         },
         mobile: {
           name: "Mobile",
-          body: "最新のOpenCodeアプリ。セッションに通話してエージェントと話し、どこにいてもスマートフォンから変更を確認、承認できます。",
+          body: "最新のRedCodeアプリ。セッションに通話してエージェントと話し、どこにいてもスマートフォンから変更を確認、承認できます。",
         },
         terminal: {
           name: "Terminal",
@@ -651,7 +651,7 @@ export const content = {
         support: {
           links: { "github-issues": { text: "GitHubのissue" }, "help-anoma-ly": { text: "help@anoma.ly" } },
           title: "サポート",
-          body: "OpenCodeについてのヘルプは、issueを作成するか、コミュニティで質問してください。アカウントや請求に関するご質問はメールでお送りください。",
+          body: "RedCodeについてのヘルプは、issueを作成するか、コミュニティで質問してください。アカウントや請求に関するご質問はメールでお送りください。",
         },
         security: {
           links: {
@@ -690,18 +690,18 @@ export const content = {
     sdk: { more: { label: "SDKのドキュメントを読む" } },
     mini: {
       commands: { curl: { name: "スクリプト" } },
-      lead: "MiniはOpenCode CLIに含まれています。次のいずれかでインストールし、opencode mini を実行してください。",
+      lead: "MiniはRedCode CLIに含まれています。次のいずれかでインストールし、opencode mini を実行してください。",
     },
   },
   pair: {
     title: "スマートフォンを接続",
     cardTitle: "1つのコマンドでスマートフォンとペアリング",
     intro:
-      "OpenCode Mobileは、コンピューター上のOpenCodeのリモコンです。セッションはコンピューターで動き続け、アプリはそれを表示して操作できるようにします。",
+      "RedCode Mobileは、コンピューター上のRedCodeのリモコンです。セッションはコンピューターで動き続け、アプリはそれを表示して操作できるようにします。",
     steps: {
       "get-the-app": {
         title: "アプリを入手",
-        body: "TestFlightからiPhoneにOpenCodeのベータ版をインストールします。Androidアプリは近日公開予定です。",
+        body: "TestFlightからiPhoneにRedCodeのベータ版をインストールします。Androidアプリは近日公開予定です。",
       },
       "run-this-on-your-computer": {
         title: "コンピューターで実行",
@@ -735,7 +735,7 @@ export const content = {
     },
     "steer-your-sessions-from-your-phone": {
       text: "スマートフォンからセッションを操作できます。",
-      link: "OpenCode Mobileを見る",
+      link: "RedCode Mobileを見る",
     },
     "a-refreshed-desktop-app": { text: "デスクトップアプリを刷新しました。", link: "2.2の新機能を見る" },
   },

@@ -1,4 +1,4 @@
-import { STEALTH_MODELS, statModel } from "@opencode/data-core/domain/model-normalization"
+import { STEALTH_MODELS, statModel } from "@redcode/data-core/domain/model-normalization"
 import { query } from "@solidjs/router"
 
 export const modelCatalogSourceUrl = "https://models.opencode.ai/catalog.json"
@@ -58,7 +58,7 @@ export type ModelCatalog = {
   models: ModelCatalogEntry[]
   aliases?: ModelCatalogEntry[]
   labs: ModelCatalogLab[]
-  // Stealth models stay out of the lab catalog, but their OpenCode listings publish limits and modalities.
+  // Stealth models stay out of the lab catalog, but their RedCode listings publish limits and modalities.
   stealthSpecs: Record<string, ModelCatalogSpecs>
 }
 

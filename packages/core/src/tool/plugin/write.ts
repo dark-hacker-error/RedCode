@@ -6,8 +6,8 @@
  */
 export * as WriteTool from "./write.js"
 
-import type { Context } from "@opencode/plugin/effect/plugin"
-import { ToolFailure } from "@opencode/ai/effect"
+import type { Context } from "@redcode/plugin/effect/plugin"
+import { ToolFailure } from "@redcode/ai/effect"
 import { Effect, Schema } from "effect"
 import { FileWrite } from "../../file-write.js"
 

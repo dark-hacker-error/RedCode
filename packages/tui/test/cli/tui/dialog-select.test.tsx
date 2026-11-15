@@ -12,8 +12,8 @@ import {
   type DialogSelectProps,
 } from "../../../src/ui/dialog-select"
 import { truncateFilePath } from "../../../src/ui/file-path"
-import { getOpenCodeTheme } from "../../../src/theme"
-import { resolveThemeDocument } from "@opencode/theme/tui"
+import { getRedCodeTheme } from "../../../src/theme"
+import { resolveThemeDocument } from "@redcode/theme/tui"
 import { stringWidth } from "../../../src/util/string-width"
 import { emptyThemeSource, tmpdir } from "../../fixture/fixture"
 import { TestTuiContexts } from "../../fixture/tui-environment"
@@ -380,7 +380,7 @@ test("dialog actions run without options while row actions still require a selec
 
 test("uses the base text color for the search cursor under new designs", async () => {
   await using tmp = await tmpdir()
-  const theme = resolveThemeDocument(getOpenCodeTheme(), "dark")
+  const theme = resolveThemeDocument(getRedCodeTheme(), "dark")
   const app = await renderSelect(
     tmp.path,
     [{ title: "First", value: "first" }],
@@ -632,7 +632,7 @@ test("shows no-match and still closes after a flat filter goes empty", async () 
     tmp.path,
     [
       { title: "models.dev", value: "models.dev", category: "Projects" },
-      { title: "opencode2", value: "opencode2", category: "Projects" },
+      { title: "redcode2", value: "redcode2", category: "Projects" },
     ],
     undefined,
     undefined,
@@ -642,7 +642,7 @@ test("shows no-match and still closes after a flat filter goes empty", async () 
   try {
     await select.app.waitForFrame((frame) => frame.includes("models.dev"))
     await select.app.mockInput.typeText("models")
-    await select.app.waitForFrame((frame) => frame.includes("models.dev") && !frame.includes("opencode2"))
+    await select.app.waitForFrame((frame) => frame.includes("models.dev") && !frame.includes("redcode2"))
     await select.app.mockInput.typeText(" missing")
     await select.app.waitForFrame((frame) => frame.includes("No results found"))
     expect(select.app.captureCharFrame()).not.toContain("models.dev")

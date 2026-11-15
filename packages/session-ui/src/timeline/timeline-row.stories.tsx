@@ -3,7 +3,7 @@ import type {
   SessionMessageAssistant,
   SessionMessageInfo,
   SessionMessageUser,
-} from "@opencode/client/promise"
+} from "@redcode/client/promise"
 import { createMemo, For, onCleanup, onMount } from "solid-js"
 import { createStore } from "solid-js/store"
 import type { SessionDocument } from "../document"
@@ -34,7 +34,7 @@ import {
 } from "../storybook/current-session-fixtures"
 
 export default {
-  title: "OpenCode/Conversation/Message states",
+  title: "RedCode/Conversation/Message states",
   id: "current-session-timeline-rows",
   component: SessionTimeline,
   parameters: {

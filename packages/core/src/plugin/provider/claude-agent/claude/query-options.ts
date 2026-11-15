@@ -19,14 +19,14 @@ const ISOLATION_ENV = {
   CLAUDE_CODE_DISABLE_REFUSAL_FALLBACK: "1",
   // Raised so opencode's own truncation applies instead
   MAX_MCP_OUTPUT_TOKENS: "200000",
-  // OpenCode changes the system prompt and tools mid-session (agent switches, instruction edits). Without this,
+  // RedCode changes the system prompt and tools mid-session (agent switches, instruction edits). Without this,
   // Claude Code replays thinking bound to the old prompt and the API rejects the request.
   CLAUDE_CODE_POLISHED_DEWDROP: "drop",
   // Skips OAuth, so the subscription would not be used
   CLAUDE_CODE_SIMPLE: undefined,
-  // A shell-level effort override would take precedence over OpenCode's live effort settings.
+  // A shell-level effort override would take precedence over RedCode's live effort settings.
   CLAUDE_CODE_EFFORT_LEVEL: undefined,
-  // Caps every OpenCode tool call, which would fail subagents and permission prompts that run longer
+  // Caps every RedCode tool call, which would fail subagents and permission prompts that run longer
   MCP_TOOL_TIMEOUT: undefined,
 }
 
@@ -64,7 +64,7 @@ export function base(input: {
     env: { ...input.io.env(), ...input.connection, ...ISOLATION_ENV },
     settingSources: [],
     settings: { disableAllHooks: true },
-    // Without summaries, OpenCode has no reasoning text to display
+    // Without summaries, RedCode has no reasoning text to display
     thinking: { type: "adaptive", display: "summarized" },
     strictMcpConfig: true,
     skills: [],

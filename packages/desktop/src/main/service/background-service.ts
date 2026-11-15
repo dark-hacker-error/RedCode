@@ -1,5 +1,5 @@
 import { app } from "electron"
-import type { Endpoint } from "@opencode/client/service"
+import type { Endpoint } from "@redcode/client/service"
 import { Context, Effect, FileSystem, Layer, Option, Path, Schema } from "effect"
 import { SidecarChanged } from "../../shared/ipc-rpc/events"
 import { CHANNEL } from "../constants"
@@ -101,15 +101,15 @@ const prepare = Effect.fn("BackgroundService.prepare")(function* (mode: Backgrou
   yield* Effect.logInfo("starting v2 background service")
   const path = yield* Path.Path
   const desktopCli = yield* DesktopCli.Service
-  const isolated = !app.isPackaged && process.env.OPENCODE_DESKTOP_ISOLATED_SERVER === "1"
+  const isolated = !app.isPackaged && process.env.REDCODE_DESKTOP_ISOLATED_SERVER === "1"
   const cli = yield* desktopCli.resolve
   const version = serviceVersion({ channel: CHANNEL, isolated, mode, version: cli.version })
 
   if (isolated) process.env.XDG_STATE_HOME = app.getPath("userData")
-  const client = yield* Effect.promise(() => import("@opencode/client/service"))
+  const client = yield* Effect.promise(() => import("@redcode/client/service"))
 
   const file =
-    process.env.OPENCODE_DESKTOP_SERVER_CHANNEL === "local"
+    process.env.REDCODE_DESKTOP_SERVER_CHANNEL === "local"
       ? path.join(
           process.env.XDG_STATE_HOME ?? path.join(app.getPath("home"), ".local", "state"),
           "opencode",

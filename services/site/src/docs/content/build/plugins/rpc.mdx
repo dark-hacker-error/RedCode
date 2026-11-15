@@ -11,7 +11,7 @@ called by other plugins or clients.
 Use `Rpc.define` to list the RPC's methods, errors, and events.
 
 ```ts title="src/rpc.ts"
-import { Rpc } from "@opencode/plugin/rpc"
+import { Rpc } from "@redcode/plugin/rpc"
 
 export const Acme = Rpc.define({
   id: "acme",
@@ -106,7 +106,7 @@ errors: {
 }
 ```
 
-Error names beginning with `rpc.` are reserved by OpenCode.
+Error names beginning with `rpc.` are reserved by RedCode.
 
 ### Events
 
@@ -130,7 +130,7 @@ Scalars, arrays, `null`, and `undefined` are not valid event data.
 Register the implementation inside `setup`:
 
 ```ts title="src/index.ts"
-import { Plugin } from "@opencode/plugin"
+import { Plugin } from "@redcode/plugin"
 import { Acme } from "./rpc.js"
 
 export default Plugin.define({
@@ -166,14 +166,14 @@ Once the RPC is registered, it can be called over HTTP or from another plugin.
 
 ### HTTP
 
-Create an OpenCode client, then use `client.rpc` to create a subclient for the
+Create an RedCode client, then use `client.rpc` to create a subclient for the
 RPC:
 
 ```ts
-import { OpenCode } from "@opencode/client"
+import { RedCode } from "@redcode/client"
 import { Acme } from "opencode-acme-plugin/rpc"
 
-const client = OpenCode.make({
+const client = RedCode.make({
   baseUrl: "http://localhost:4096",
 })
 
@@ -183,11 +183,11 @@ const result = await acme.search({ query: "hello" })
 
 ### Plugin
 
-Plugins already have an OpenCode client. For example, a TUI plugin can create
+Plugins already have an RedCode client. For example, a TUI plugin can create
 the same RPC subclient from `context.client`:
 
 ```ts title="src/tui.ts"
-import { Plugin } from "@opencode/plugin/tui"
+import { Plugin } from "@redcode/plugin/tui"
 import { Acme } from "opencode-acme-plugin/rpc"
 
 export default Plugin.define({
@@ -203,7 +203,7 @@ export default Plugin.define({
 A [GUI plugin](/build/plugins/gui) reads the client of the desktop app's own server from `ctx.client`:
 
 ```tsx title="src/gui.tsx"
-import { Command, Plugin } from "@opencode/plugin/gui"
+import { Command, Plugin } from "@redcode/plugin/gui"
 import { Acme } from "opencode-acme-plugin/rpc"
 
 export default Plugin.define({

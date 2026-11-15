@@ -1,10 +1,10 @@
 import { expect, test } from "bun:test"
-import { mediaHashFromUri, OpenCode, withMediaRefs } from "../src/promise/index"
+import { mediaHashFromUri, RedCode, withMediaRefs } from "../src/promise/index"
 
 test("withMediaRefs asks for media refs on message and inbox reads only", async () => {
   const requests: Array<{ path: string; headers: Headers }> = []
   const api = withMediaRefs(
-    OpenCode.make({
+    RedCode.make({
       baseUrl: "http://localhost:3000",
       headers: { Authorization: "Basic secret" },
       // SAFETY: the API client only calls fetch with a URL and init, which this stub accepts.

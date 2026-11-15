@@ -1,4 +1,4 @@
-import type { SessionMessageInfo } from "@opencode/client/promise"
+import type { SessionMessageInfo } from "@redcode/client/promise"
 import { expect, test, type Page } from "@playwright/test"
 import { REMOTE_SERVER, seed, sessionHref } from "../utils/app"
 import { fixture, mockStressTimeline } from "../utils/session-fixture"
@@ -204,8 +204,8 @@ test("the web session header leaves window dragging to the browser", async ({ pa
 })
 
 test.describe("location", () => {
-  const root = "C:/OpenCode/Location"
-  const worktree = "C:/OpenCode/Worktrees/location/quiet-falcon"
+  const root = "C:/RedCode/Location"
+  const worktree = "C:/RedCode/Worktrees/location/quiet-falcon"
   const trigger = (page: Page) => page.locator('[data-slot="session-location-trigger"]')
 
   const workspace = {
@@ -474,7 +474,7 @@ test.describe("location", () => {
         seed: {
           storage: {
             ...reviewTabs(worktree, "ses_location"),
-            "opencode.global.dat:plugin.file.app": { app: app.id },
+            "redcode.global.dat:plugin.file.app": { app: app.id },
           },
         },
       })
@@ -516,7 +516,7 @@ test.describe("location", () => {
     const mock = await mockWorkspace(page, {
       ...workspace,
       seed: {
-        storage: { ...reviewTabs(worktree, "ses_location"), "opencode.global.dat:plugin.file.app": { app: "vscode" } },
+        storage: { ...reviewTabs(worktree, "ses_location"), "redcode.global.dat:plugin.file.app": { app: "vscode" } },
       },
     })
 

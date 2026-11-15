@@ -1,7 +1,7 @@
 import { lazy, Show, Suspense } from "solid-js"
-import { Button } from "@opencode/ui/button"
-import { TextInput } from "@opencode/ui/text-input"
-import { Wordmark } from "@opencode/ui/wordmark"
+import { Button } from "@redcode/ui/button"
+import { TextInput } from "@redcode/ui/text-input"
+import { Wordmark } from "@redcode/ui/wordmark"
 import { useLanguage } from "@/runtime/i18n/language"
 import { createServerConnectController } from "./controller"
 import { ConnectMethodSwitch } from "./method"
@@ -18,7 +18,7 @@ export function ConnectServerScreen(props: { url?: string } = {}) {
   return (
     <main data-component="connect-server" aria-labelledby="server-connect-title">
       <div class="server-connect-content">
-        <div class="server-connect-brand" role="img" aria-label="OpenCode">
+        <div class="server-connect-brand" role="img" aria-label="RedCode">
           <Wordmark />
         </div>
         <header>

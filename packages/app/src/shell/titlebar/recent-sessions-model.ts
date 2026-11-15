@@ -1,4 +1,4 @@
-import type { OpenCodeEvent, SessionInfo } from "@opencode/client/promise"
+import type { RedCodeEvent, SessionInfo } from "@redcode/client/promise"
 import { ServerConnection } from "@/runtime/server/registry"
 
 const separator = "\u0000"
@@ -292,7 +292,7 @@ function finishLoading(
  * (except a shutdown, which leaves the server's times alone), a new root session, archive and unarchive. A run end
  * from a known subagent session does not; an unknown session may be a root, so it does.
  */
-export function recentReloadsOn(event: OpenCodeEvent, session: (sessionID: string) => SessionInfo | undefined) {
+export function recentReloadsOn(event: RedCodeEvent, session: (sessionID: string) => SessionInfo | undefined) {
   if (event.type === "session.created") return !event.data.parentID
 
   if (event.type === "session.archived" || event.type === "session.unarchived") return true

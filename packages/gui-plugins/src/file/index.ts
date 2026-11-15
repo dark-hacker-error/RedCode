@@ -1,5 +1,5 @@
-import { builtinCatalog } from "@opencode/plugin/gui/builtin"
-import { Plugin, Store } from "@opencode/plugin/gui"
+import { builtinCatalog } from "@redcode/plugin/gui/builtin"
+import { Plugin, Store } from "@redcode/plugin/gui"
 import { OpenAppPreferences } from "./apps"
 import en from "./i18n/en"
 

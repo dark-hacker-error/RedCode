@@ -1,3 +1,3 @@
-# @opencode/core
+# @redcode/core
 
-Core runtime services for OpenCode.
+Core runtime services for RedCode.

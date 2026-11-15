@@ -3,7 +3,7 @@ import type {
   SessionMessageAssistant,
   SessionMessageAssistantTool,
   SessionMessageInfo,
-} from "@opencode/client/promise"
+} from "@redcode/client/promise"
 import { createTwoFilesPatch, diffLines } from "diff"
 import type { SessionDocument } from "../../document"
 import {
@@ -185,7 +185,7 @@ const themeIndexAfter = themeIndexBefore.replace(
   "applyScheme, resolvedScheme, setScheme, storedScheme,",
 )
 
-const toggleFirst = `import { Switch } from "@opencode/ui/switch"
+const toggleFirst = `import { Switch } from "@redcode/ui/switch"
 import { useLanguage } from "@/runtime/i18n/language"
 import { resolvedScheme, setScheme } from "@/theme"
 

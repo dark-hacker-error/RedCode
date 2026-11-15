@@ -1,6 +1,6 @@
 import { expect } from "bun:test"
-import { OpenCode, type SessionMessageInfo } from "@opencode/client"
-import { Session } from "@opencode/schema/session"
+import { RedCode, type SessionMessageInfo } from "@redcode/client"
+import { Session } from "@redcode/schema/session"
 import { Effect } from "effect"
 import { it } from "../../core/test/lib/effect"
 import { ServerFetch } from "../src/fetch"
@@ -40,7 +40,7 @@ const setup = Effect.gen(function* () {
     models: { fetch: false },
     fs: { filewatcher: false },
   })
-  const api = OpenCode.make({
+  const api = RedCode.make({
     baseUrl: "http://opencode.local",
     fetch: Object.assign((input: string | URL | Request, init?: RequestInit) => handler(new Request(input, init)), {
       preconnect: fetch.preconnect,

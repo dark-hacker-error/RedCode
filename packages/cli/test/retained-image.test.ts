@@ -66,8 +66,8 @@ windows("installed accepts package-manager and curl binaries only", () =>
     const original = process.execPath
     yield* Effect.addFinalizer(() => Effect.sync(() => (process.execPath = original)))
     const cases = [
-      [path.join(home, ".bun", "install", "global", "node_modules", "@opencode", "cli", "bin", "opencode.exe"), true],
-      [path.join(home, ".opencode", "bin", "opencode.exe"), true],
+      [path.join(home, ".bun", "install", "global", "node_modules", "@opencode", "cli", "bin", "redcode.exe"), true],
+      [path.join(home, ".redcode", "bin", "redcode.exe"), true],
       [
         path.join(
           home,
@@ -76,12 +76,12 @@ windows("installed accepts package-manager and curl binaries only", () =>
           "Microsoft",
           "WinGet",
           "Packages",
-          "Anomaly.OpenCode_Microsoft.Winget.Source_8wekyb3d8bbwe",
-          "opencode.exe",
+          "Anomaly.RedCode_Microsoft.Winget.Source_8wekyb3d8bbwe",
+          "redcode.exe",
         ),
         true,
       ],
-      [path.join(home, "AppData", "Local", "Programs", "OpenCode", "resources", "opencode-cli.exe"), false],
+      [path.join(home, "AppData", "Local", "Programs", "RedCode", "resources", "opencode-cli.exe"), false],
       [path.join(home, "node_modules", "bun", "bin", "bun.exe"), false],
     ] as const
     const results = cases.map(([executable]) => {

@@ -1,10 +1,10 @@
 import { expect, test } from "@playwright/test"
 import { project, provider, sessionHref } from "../utils/app"
-import { mockOpenCodeServer } from "../utils/mock-server"
+import { mockRedCodeServer } from "../utils/mock-server"
 import { expectAppVisible } from "../utils/waits"
 import { openSession } from "../utils/workspace"
 
-const directory = "C:/OpenCode/NewProject"
+const directory = "C:/RedCode/NewProject"
 
 test("creates a session in a new project and selects its model", async ({ page }) => {
   // An empty draft must remain usable when the file viewer is unavailable.
@@ -14,7 +14,7 @@ test("creates a session in a new project and selects its model", async ({ page }
   const created = project({ id: "proj_model_selection_flow", directory, name: "NewProject" })
   // The server knows no project until the user adds this one.
   const projects: unknown[] = []
-  await mockOpenCodeServer(page, {
+  await mockRedCodeServer(page, {
     directory,
     project: created,
     projects: () => projects,
@@ -26,7 +26,7 @@ test("creates a session in a new project and selects its model", async ({ page }
       all: [
         {
           id: "opencode",
-          name: "OpenCode",
+          name: "RedCode",
           models: {
             "free-model": {
               id: "free-model",
@@ -38,7 +38,7 @@ test("creates a session in a new project and selects its model", async ({ page }
         },
         {
           id: "opencode-go",
-          name: "OpenCode Go",
+          name: "RedCode Go",
           models: {
             "go-model-1": {
               id: "go-model-1",
@@ -55,11 +55,11 @@ test("creates a session in a new project and selects its model", async ({ page }
     sessions: [],
     pageMessages: () => ({ items: [] }),
     // Listings are requested by absolute path and returned relative to the stable Location.
-    fileList: (path) => (path === "C:/OpenCode" ? [{ path: "./", type: "directory", ignored: false }] : []),
+    fileList: (path) => (path === "C:/RedCode" ? [{ path: "./", type: "directory", ignored: false }] : []),
   })
   await page.addInitScript(() => {
     localStorage.setItem(
-      "opencode.global.dat:model",
+      "redcode.global.dat:model",
       JSON.stringify({
         user: [
           { providerID: "opencode", modelID: "free-model", visibility: "show" },
@@ -81,7 +81,7 @@ test("creates a session in a new project and selects its model", async ({ page }
   const listing = page.waitForRequest((request) => {
     const url = new URL(request.url())
 
-    return url.pathname === "/api/fs/list" && url.searchParams.get("path") === "C:/OpenCode"
+    return url.pathname === "/api/fs/list" && url.searchParams.get("path") === "C:/RedCode"
   })
 
   await picker.getByRole("button", { name: "Parent", exact: true }).click()
@@ -90,7 +90,7 @@ test("creates a session in a new project and selects its model", async ({ page }
   await expect(directoryItem).toBeVisible()
   await directoryItem.click()
   await expect(directoryItem).toHaveAttribute("aria-selected", "true")
-  await expect(picker.getByText("C:\\OpenCode\\NewProject", { exact: true })).toBeVisible()
+  await expect(picker.getByText("C:\\RedCode\\NewProject", { exact: true })).toBeVisible()
   const selectFolder = picker.getByRole("button", { name: "Select folder", exact: true })
   await expect(selectFolder).toBeEnabled()
   await selectFolder.click()
@@ -169,8 +169,8 @@ test("restores each existing session's model and variant when switching tabs", a
 test("keeps a variant picked in another directory's session with that session across a reload", async ({ page }) => {
   // The session view stays mounted while its tabs switch between sessions in different directories.
   const sessions = [
-    { name: "Home", directory: "C:/OpenCode/ModelHome" },
-    { name: "Away", directory: "C:/OpenCode/ModelAway" },
+    { name: "Home", directory: "C:/RedCode/ModelHome" },
+    { name: "Away", directory: "C:/RedCode/ModelAway" },
   ].map((item) => ({
     id: `ses_model_${item.name.toLowerCase()}`,
     title: `${item.name} session`,

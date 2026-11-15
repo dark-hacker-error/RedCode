@@ -4,17 +4,17 @@ import os from "node:os"
 import path from "node:path"
 import { expect } from "bun:test"
 import { binaryPath } from "@opencode/pty"
-import { PersistentPty } from "@opencode/schema/persistent-pty"
-import { Session } from "@opencode/schema/session"
+import { PersistentPty } from "@redcode/schema/persistent-pty"
+import { Session } from "@redcode/schema/session"
 import { Effect, Exit, Schema, Scope } from "effect"
 import { HttpServer } from "effect/http"
-import { OpenCode } from "../../client/src/promise/index"
+import { RedCode } from "../../client/src/promise/index"
 import { fakeDaemon } from "../../core/test/fixture/persistent-pty-daemon"
 import { it } from "../../core/test/lib/effect"
 import { ServerProcess } from "../src/process"
 
 // These tests drive Unix shell commands, so they skip Windows; the package resolves no binary on unsupported platforms.
-const binary = process.platform === "win32" ? undefined : (process.env.OPENCODE_PTY_BIN ?? binaryPath)
+const binary = process.platform === "win32" ? undefined : (process.env.REDCODE_PTY_BIN ?? binaryPath)
 const smoke = binary !== undefined && existsSync(binary) ? it.live : it.live.skip
 
 smoke(
@@ -32,7 +32,7 @@ smoke(
         fs: { filewatcher: false },
       })
       const base = HttpServer.formatAddress(server.address)
-      const client = OpenCode.make({ baseUrl: base, headers: { authorization: `Basic ${btoa("opencode:secret")}` } })
+      const client = RedCode.make({ baseUrl: base, headers: { authorization: `Basic ${btoa("opencode:secret")}` } })
       const sessionID = "ses_terminal_read"
       expect(yield* Effect.promise(() => client.experimental.persistentPty.read({ sessionID }))).toBeNull()
       expect(existsSync(fixture.directory)).toBeFalse()
@@ -148,7 +148,7 @@ smoke(
         fs: { filewatcher: false },
       })
       const base = HttpServer.formatAddress(server.address)
-      const client = OpenCode.make({ baseUrl: base, headers: { authorization: `Basic ${btoa("opencode:secret")}` } })
+      const client = RedCode.make({ baseUrl: base, headers: { authorization: `Basic ${btoa("opencode:secret")}` } })
       const sessionID = Session.ID.make("ses_persistent_pty_rename")
       const terminal = yield* Effect.promise(() =>
         client.experimental.persistentPty.create({
@@ -247,7 +247,7 @@ it.live("renames without a feature check and hides unknown terminals", () =>
   }),
 )
 
-async function waitForTitle(client: ReturnType<typeof OpenCode.make>, ptyID: string, title: string) {
+async function waitForTitle(client: ReturnType<typeof RedCode.make>, ptyID: string, title: string) {
   for (let attempt = 0; attempt < 100; attempt++) {
     if ((await client.experimental.persistentPty.get({ ptyID })).title === title) return
     await Bun.sleep(20)
@@ -255,7 +255,7 @@ async function waitForTitle(client: ReturnType<typeof OpenCode.make>, ptyID: str
   throw new Error(`Terminal ${ptyID} did not report the title ${title}`)
 }
 
-async function waitForRead(client: ReturnType<typeof OpenCode.make>, sessionID: string, ptyID: string) {
+async function waitForRead(client: ReturnType<typeof RedCode.make>, sessionID: string, ptyID: string) {
   for (let attempt = 0; attempt < 100; attempt++) {
     const result = await client.experimental.persistentPty.read({ sessionID })
     if (result?.ptyID === ptyID) return result
@@ -621,12 +621,12 @@ smoke(
 function testDirectory() {
   return Effect.acquireRelease(
     Effect.promise(async () => {
-      const environment = { binary: process.env.OPENCODE_PTY_BIN, shell: process.env.SHELL }
+      const environment = { binary: process.env.REDCODE_PTY_BIN, shell: process.env.SHELL }
       const root = await fs.mkdtemp(path.join(os.tmpdir(), "opencode-pty-server-test-"))
-      process.env.OPENCODE_PTY_BIN = binary
+      process.env.REDCODE_PTY_BIN = binary
       process.env.SHELL = "/bin/sh"
       return {
-        database: path.join(root, "opencode.db"),
+        database: path.join(root, "redcode.db"),
         directory: path.join(root, "runtime"),
         environment,
         root,
@@ -635,7 +635,7 @@ function testDirectory() {
     (fixture) =>
       Effect.promise(async () => {
         await fs.rm(fixture.root, { recursive: true, force: true })
-        restore("OPENCODE_PTY_BIN", fixture.environment.binary)
+        restore("REDCODE_PTY_BIN", fixture.environment.binary)
         restore("SHELL", fixture.environment.shell)
       }),
   )

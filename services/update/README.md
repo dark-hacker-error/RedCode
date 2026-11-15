@@ -1,4 +1,4 @@
-# OpenCode Update
+# RedCode Update
 
 The update Worker serves all selected artifacts for a channel.
 
@@ -77,7 +77,7 @@ channel transparently resolves to `beta` for older clients.
 
 Choose a minimum that older clients can install and that can itself consume the active
 release. For the CLI package migration, retain a package-aware release published as
-`@opencode-ai/cli` as the minimum before activating releases under `@opencode/cli`.
+`@opencode-ai/cli` as the minimum before activating releases under `redcode-ai`.
 
 The admin pages are protected by the `update-admin-production` Cloudflare Access application
 on `opencode.ai/update/admin*`. The Worker also verifies the Access JWT

@@ -1,19 +1,19 @@
 export * as ServerWorkerd from "./workerd"
 
 import { Effect, Layer } from "effect"
-import { ConfigPluginSource } from "@opencode/core/config/plugin/source"
-import { Database } from "@opencode/core/database/database"
-import { sqliteLayer } from "@opencode/core/database/sqlite.workerd"
-import type { DurableObjectStorage } from "@opencode/core/database/sqlite.workerd"
-import { EnvironmentUnavailable } from "@opencode/core/environment/unavailable"
-import { FileSystem } from "@opencode/core/filesystem"
-import { FileSystemSearch } from "@opencode/core/filesystem/search"
-import { Pty } from "@opencode/core/pty"
-import { Snapshot } from "@opencode/core/snapshot"
-import { Vcs } from "@opencode/core/vcs"
-import { CrossSpawnSpawner } from "@opencode/util/cross-spawn-spawner"
-import type { LayerNode } from "@opencode/util/effect/layer-node"
-import { Npm } from "@opencode/util/npm"
+import { ConfigPluginSource } from "@redcode/core/config/plugin/source"
+import { Database } from "@redcode/core/database/database"
+import { sqliteLayer } from "@redcode/core/database/sqlite.workerd"
+import type { DurableObjectStorage } from "@redcode/core/database/sqlite.workerd"
+import { EnvironmentUnavailable } from "@redcode/core/environment/unavailable"
+import { FileSystem } from "@redcode/core/filesystem"
+import { FileSystemSearch } from "@redcode/core/filesystem/search"
+import { Pty } from "@redcode/core/pty"
+import { Snapshot } from "@redcode/core/snapshot"
+import { Vcs } from "@redcode/core/vcs"
+import { CrossSpawnSpawner } from "@redcode/util/cross-spawn-spawner"
+import type { LayerNode } from "@redcode/util/effect/layer-node"
+import { Npm } from "@redcode/util/npm"
 import { ServerFetch } from "./fetch"
 import type { ServerOptions } from "./options"
 
@@ -46,7 +46,7 @@ export interface Options {
   readonly config?: { readonly content?: string }
   /** models.dev catalog options; the bundled snapshot is the boot-time floor either way. */
   readonly models?: ServerOptions["models"]
-  /** Replaces `globalThis.fetch` for OpenCode's own HTTP requests, e.g. to route them through a Service Binding. */
+  /** Replaces `globalThis.fetch` for RedCode's own HTTP requests, e.g. to route them through a Service Binding. */
   readonly fetch?: ServerOptions["fetch"]
 }
 

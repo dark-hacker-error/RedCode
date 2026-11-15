@@ -1,15 +1,15 @@
 import { describe, expect, test } from "bun:test"
-import { Message, Media } from "@opencode/ai/effect"
-import { Model } from "@opencode/core/model"
-import { Provider } from "@opencode/core/provider"
-import { SessionMessage } from "@opencode/core/session/message"
-import { AgentAttachment, Base64, FileAttachment, SkillAttachment } from "@opencode/schema/prompt"
-import { Skill } from "@opencode/schema/skill"
-import { toLLMMessages } from "@opencode/core/session/runner/to-llm-message"
-import { Agent } from "@opencode/core/agent"
-import { Shell } from "@opencode/schema/shell"
-import { Location } from "@opencode/schema/location"
-import { AbsolutePath } from "@opencode/schema/schema"
+import { Message, Media } from "@redcode/ai/effect"
+import { Model } from "@redcode/core/model"
+import { Provider } from "@redcode/core/provider"
+import { SessionMessage } from "@redcode/core/session/message"
+import { AgentAttachment, Base64, FileAttachment, SkillAttachment } from "@redcode/schema/prompt"
+import { Skill } from "@redcode/schema/skill"
+import { toLLMMessages } from "@redcode/core/session/runner/to-llm-message"
+import { Agent } from "@redcode/core/agent"
+import { Shell } from "@redcode/schema/shell"
+import { Location } from "@redcode/schema/location"
+import { AbsolutePath } from "@redcode/schema/schema"
 import { DateTime } from "effect"
 import path from "path"
 import { pathToFileURL } from "url"
@@ -897,7 +897,7 @@ Earlier work
     ])
   })
 
-  test("replays flat state under an OpenCode hosted model's route key", () => {
+  test("replays flat state under an RedCode hosted model's route key", () => {
     const opencode = Model.Ref.make({ id: Model.ID.make("claude-fable-5"), providerID: Provider.ID.opencode })
     const messages = toLLMMessages(
       [

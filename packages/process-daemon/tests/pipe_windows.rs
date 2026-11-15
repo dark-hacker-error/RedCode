@@ -3,7 +3,7 @@
 //! Pipe mode on Windows: no console, one output pipe, job-based kills.
 //!
 //! The Unix suite in `tests/pipe.rs` keeps its own cases; these only run on
-//! Windows. Commands are passed the way OpenCode passes them (`cmd.exe /c
+//! Windows. Commands are passed the way RedCode passes them (`cmd.exe /c
 //! <command>`), and longer checks use a PowerShell script file. Windows
 //! PowerShell needs `SystemRoot` in its environment to start, so test
 //! children get a PATH, SystemRoot and TEMP, never the daemon's own.
@@ -95,7 +95,7 @@ fn pipe(
     }
 }
 
-/// A `cmd.exe /c <command>` request, the way OpenCode runs shell commands.
+/// A `cmd.exe /c <command>` request, the way RedCode runs shell commands.
 fn cmd(command: &str, output: &Path) -> CreatePipe {
     pipe(
         "cmd.exe",

@@ -1,32 +1,32 @@
 import { expect, test } from "bun:test"
 import { Schema } from "effect"
-import { Agent } from "@opencode/core/agent"
-import { Session } from "@opencode/core/session"
-import { SessionStore } from "@opencode/core/session/store"
-import { Location } from "@opencode/schema/location"
-import { Model } from "@opencode/schema/model"
-import { Provider } from "@opencode/schema/provider"
-import { Project } from "@opencode/schema/project"
-import { Worktree } from "@opencode/schema/worktree"
-import { Prompt } from "@opencode/schema/prompt"
-import { SessionInbox } from "@opencode/schema/session-inbox"
-import { SessionMessage } from "@opencode/schema/session-message"
-import { Workspace } from "@opencode/schema/workspace"
-import { Command } from "@opencode/schema/command"
-import { Connection } from "@opencode/schema/connection"
-import { Credential } from "@opencode/schema/credential"
-import { FileSystem } from "@opencode/schema/filesystem"
-import { Integration } from "@opencode/schema/integration"
-import { LLM } from "@opencode/schema/llm"
-import { Permission } from "@opencode/schema/permission"
-import { Pty } from "@opencode/schema/pty"
-import { Reference } from "@opencode/schema/reference"
-import { Skill } from "@opencode/schema/skill"
-import { AbsolutePath, optional, statics } from "@opencode/schema/schema"
+import { Agent } from "@redcode/core/agent"
+import { Session } from "@redcode/core/session"
+import { SessionStore } from "@redcode/core/session/store"
+import { Location } from "@redcode/schema/location"
+import { Model } from "@redcode/schema/model"
+import { Provider } from "@redcode/schema/provider"
+import { Project } from "@redcode/schema/project"
+import { Worktree } from "@redcode/schema/worktree"
+import { Prompt } from "@redcode/schema/prompt"
+import { SessionInbox } from "@redcode/schema/session-inbox"
+import { SessionMessage } from "@redcode/schema/session-message"
+import { Workspace } from "@redcode/schema/workspace"
+import { Command } from "@redcode/schema/command"
+import { Connection } from "@redcode/schema/connection"
+import { Credential } from "@redcode/schema/credential"
+import { FileSystem } from "@redcode/schema/filesystem"
+import { Integration } from "@redcode/schema/integration"
+import { LLM } from "@redcode/schema/llm"
+import { Permission } from "@redcode/schema/permission"
+import { Pty } from "@redcode/schema/pty"
+import { Reference } from "@redcode/schema/reference"
+import { Skill } from "@redcode/schema/skill"
+import { AbsolutePath, optional, statics } from "@redcode/schema/schema"
 
 test("Core reuses the canonical shared schemas", async () => {
-  const schemaAgent = await import("@opencode/schema/agent")
-  const schemaSession = await import("@opencode/schema/session")
+  const schemaAgent = await import("@redcode/schema/agent")
+  const schemaSession = await import("@redcode/schema/session")
   const [
     coreCommand,
     coreConnection,
@@ -48,25 +48,25 @@ test("Core reuses the canonical shared schemas", async () => {
     coreSchema,
     coreWorkspace,
   ] = await Promise.all([
-    import("@opencode/core/command"),
-    import("@opencode/core/integration/connection"),
-    import("@opencode/core/credential"),
-    import("@opencode/core/filesystem"),
-    import("@opencode/core/integration"),
-    import("@opencode/core/location"),
-    import("@opencode/ai/effect"),
-    import("@opencode/core/model"),
-    import("@opencode/core/permission"),
-    import("@opencode/core/worktree"),
-    import("@opencode/core/pty"),
-    import("@opencode/core/project/schema"),
-    import("@opencode/core/provider"),
-    import("@opencode/core/reference"),
-    import("@opencode/core/session/inbox"),
-    import("@opencode/core/session/message"),
-    import("@opencode/core/skill"),
-    import("@opencode/core/schema"),
-    import("@opencode/core/workspace"),
+    import("@redcode/core/command"),
+    import("@redcode/core/integration/connection"),
+    import("@redcode/core/credential"),
+    import("@redcode/core/filesystem"),
+    import("@redcode/core/integration"),
+    import("@redcode/core/location"),
+    import("@redcode/ai/effect"),
+    import("@redcode/core/model"),
+    import("@redcode/core/permission"),
+    import("@redcode/core/worktree"),
+    import("@redcode/core/pty"),
+    import("@redcode/core/project/schema"),
+    import("@redcode/core/provider"),
+    import("@redcode/core/reference"),
+    import("@redcode/core/session/inbox"),
+    import("@redcode/core/session/message"),
+    import("@redcode/core/skill"),
+    import("@redcode/core/schema"),
+    import("@redcode/core/workspace"),
   ])
 
   const schemas = [

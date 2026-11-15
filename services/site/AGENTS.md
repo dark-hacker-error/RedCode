@@ -12,7 +12,7 @@ Read the design-system rules in `DESIGN.md` (also shown at `/dev/components#rule
 
 ## Copy
 
-- Do not use colons in site copy (headings, leads, body text, buttons, captions, alt text). Rewrite the sentence instead, for example "The easiest way to start is to download OpenCode", not "The easiest way to start: download OpenCode". Colons in code, commands, URLs, times and data labels (such as "HEX") are fine.
+- Do not use colons in site copy (headings, leads, body text, buttons, captions, alt text). Rewrite the sentence instead, for example "The easiest way to start is to download RedCode", not "The easiest way to start: download RedCode". Colons in code, commands, URLs, times and data labels (such as "HEX") are fine.
 - Write statements, not rhetorical questions. Use "For more, bring your own subscription", not "Want more? Bring your own subscription". Real questions are fine where the reader is asking them, such as FAQ entries.
 
 ## UI states

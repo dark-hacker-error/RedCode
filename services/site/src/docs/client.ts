@@ -111,7 +111,7 @@ phone.addEventListener("change", () => {
   closeLockup()
 })
 
-// The logo menu and the product menu (on DOCS), shared with the site and the other OpenCode sites (packages/nav-menus),
+// The logo menu and the product menu (on DOCS), shared with the site and the other RedCode sites (packages/nav-menus),
 // loaded on first use (nav-intent.ts). Opening one closes the lockup's own menus, as the static pages' script closes
 // the site's (src/client/menus.ts).
 const navMenus = navMenusOnIntent({ link: (path) => path })

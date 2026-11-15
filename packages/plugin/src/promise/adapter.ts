@@ -1,7 +1,7 @@
-import { Tool } from "@opencode/schema/tool"
-import type { Rpc } from "@opencode/schema/rpc"
-import type { OpenCodeEvent } from "@opencode/client"
-import type { RpcCallOptions, RpcEventPayload, SelectedEvent, SubscribeOptions } from "@opencode/client/promise/api"
+import { Tool } from "@redcode/schema/tool"
+import type { Rpc } from "@redcode/schema/rpc"
+import type { RedCodeEvent } from "@redcode/client"
+import type { RpcCallOptions, RpcEventPayload, SelectedEvent, SubscribeOptions } from "@redcode/client/promise/api"
 import { Effect, Schema, SchemaAST, Stream } from "effect"
 import type { Scope } from "effect"
 import { HttpApiEndpoint, HttpApiSchema } from "effect/http-api"
@@ -220,10 +220,10 @@ export function fromPromise(plugin: Plugin) {
     id: plugin.id,
     effect: (host) =>
       Effect.gen(function* () {
-        const [{ ClientApi }, { OpenCodeEvent }] = yield* Effect.promise(() =>
-          Promise.all([import("@opencode/protocol/client"), import("@opencode/protocol/groups/event")]),
+        const [{ ClientApi }, { RedCodeEvent }] = yield* Effect.promise(() =>
+          Promise.all([import("@redcode/protocol/client"), import("@redcode/protocol/groups/event")]),
         )
-        const encodeOpenCodeEvent = Schema.encodeUnknownEffect(OpenCodeEvent)
+        const encodeRedCodeEvent = Schema.encodeUnknownEffect(RedCodeEvent)
         const AgentEndpoints = ClientApi.groups["server.agent"].endpoints
         const CommandEndpoints = ClientApi.groups["server.command"].endpoints
         const CredentialEndpoints = ClientApi.groups["server.credential"].endpoints
@@ -329,13 +329,13 @@ export function fromPromise(plugin: Plugin) {
             activate: adaptApiMethod(CredentialEndpoints["credential.activate"], host.credential.activate),
           },
           event: {
-            subscribe: <Type extends Exclude<OpenCodeEvent["type"], "server.connected">>(
+            subscribe: <Type extends Exclude<RedCodeEvent["type"], "server.connected">>(
               options?: SubscribeOptions<Type>,
             ) =>
               streams(
                 host.event.subscribe({ types: options?.types }).pipe(
-                  Stream.mapEffect((event) => encodeOpenCodeEvent(event)),
-                  Stream.map((event) => event as SelectedEvent<OpenCodeEvent, Type>),
+                  Stream.mapEffect((event) => encodeRedCodeEvent(event)),
+                  Stream.map((event) => event as SelectedEvent<RedCodeEvent, Type>),
                 ),
                 options,
               ),

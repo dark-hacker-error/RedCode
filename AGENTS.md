@@ -21,7 +21,7 @@
 - When a user asks for a TUI story, add a fixture-driven story under `packages/tui/src/feature-plugins/system/storybook` and register it in `index.tsx`.
 - Render the real production component rather than a visual copy. Keep submissions and other side effects local to the story so it is safe to explore repeatedly.
 - Expose the meaningful state dimensions through story keybindings and list them in `StoryFooter`; include a reset command when combinations can leave the fixture in a confusing state.
-- Run a specific story with `OPENCODE_STORY=<story-id> bun run dev:live` from the development worktree, and exercise narrow and wide terminal sizes when layout is relevant.
+- Run a specific story with `REDCODE_STORY=<story-id> bun run dev:live` from the development worktree, and exercise narrow and wide terminal sizes when layout is relevant.
 
 ## TUI Theme Tokens
 
@@ -87,9 +87,9 @@ const { a, b } = obj
 ### Imports
 
 - Never alias imports. Do not use `import { foo as bar } from "..."` or renamed imports like `resolve as pathResolve`.
-- Never use type-position `import("...")` references such as `Schema.declare<import("@opencode/plugin/effect/plugin").Plugin["effect"]>`. Only when two imports genuinely collide on a name and no other option exists, an aliased type import (`import type { Plugin as PluginDefinition } from "..."`) is permitted as a last resort — still strongly preferred not to.
+- Never use type-position `import("...")` references such as `Schema.declare<import("@redcode/plugin/effect/plugin").Plugin["effect"]>`. Only when two imports genuinely collide on a name and no other option exists, an aliased type import (`import type { Plugin as PluginDefinition } from "..."`) is permitted as a last resort — still strongly preferred not to.
 - Never use star imports. Do not use `import * as Foo from "..."` or `import type * as Foo from "..."`.
-- If a namespace-style value is needed, import the module's own exported namespace by name, for example `import { Project } from "@opencode/core/project"`, then reference `Project.ID`.
+- If a namespace-style value is needed, import the module's own exported namespace by name, for example `import { Project } from "@redcode/core/project"`, then reference `Project.ID`.
 - Prefer dynamic imports for heavy modules that are only needed in selected code paths, especially in startup-sensitive entrypoints. Destructure dynamic import bindings near the top of the narrowest scope that needs them so they read like normal imports. Avoid inline chains such as `await import("./module").then((mod) => mod.value())` or `(await import("./module")).value()`. Keep branch-specific imports inside the branch that needs them to preserve lazy loading.
 
 ### Variables
@@ -181,9 +181,9 @@ const table = sqliteTable("session", {
 ### Feature Flags
 
 - When you open a PR, decide whether the change needs a flag: new user-visible behavior, risky core changes, and anything not ready to release get one; fixes, refactors, docs and tests do not.
-- Gate risky behavior, or behavior that lands over several PRs, with a key and a description in `packages/schema/src/config/flag.ts`, and read it with `Flag.enabled("<key>")` from `@opencode/core/flag`.
-- Flags are on in local and dev builds and off in releases; `experimental.<key>` in config and `OPENCODE_FLAGS="key,-other"` override that.
-- Say in the PR body which flag guards the change. To try every flag at once, use `OPENCODE_FLAGS=all` or `experimental.all_flags: true`; a `-<key>` opt-out or `experimental.<key>: false` still wins, and neither `all` nor `all_flags` is a flag key.
+- Gate risky behavior, or behavior that lands over several PRs, with a key and a description in `packages/schema/src/config/flag.ts`, and read it with `Flag.enabled("<key>")` from `@redcode/core/flag`.
+- Flags are on in local and dev builds and off in releases; `experimental.<key>` in config and `REDCODE_FLAGS="key,-other"` override that.
+- Say in the PR body which flag guards the change. To try every flag at once, use `REDCODE_FLAGS=all` or `experimental.all_flags: true`; a `-<key>` opt-out or `experimental.<key>: false` still wins, and neither `all` nor `all_flags` is a flag key.
 - Ship a feature by deleting its flag and the checks that read it.
 
 ## Testing
@@ -191,7 +191,7 @@ const table = sqliteTable("session", {
 - Avoid mocks as much as possible, you shouldn't be using globalThis.\* at all unless it's the only option.
 - Test actual implementation, do not duplicate logic into tests
 - Tests cannot run from repo root (guard: `do-not-run-tests-from-root`); run from package directories such as `packages/core`.
-- Before writing or changing tests, read the matching skill in `.opencode/skills`: `unit-tests` (bun test), `tui-tests` (OpenTUI renderer tests), `app-e2e-tests` (Playwright in `packages/app/e2e`) or `component-tests` (Playwright on stories, `packages/stories`). They cover what has made tests slow or flaky in CI.
+- Before writing or changing tests, read the matching skill in `.redcode/skills`: `unit-tests` (bun test), `tui-tests` (OpenTUI renderer tests), `app-e2e-tests` (Playwright in `packages/app/e2e`) or `component-tests` (Playwright on stories, `packages/stories`). They cover what has made tests slow or flaky in CI.
 
 ## Checks
 

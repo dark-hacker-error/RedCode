@@ -14,7 +14,7 @@ export function startDeepLinks(api: ElectronAPI) {
 
 function emitDeepLinks(urls: string[]) {
   if (urls.length === 0) return
-  window.__OPENCODE__ ??= {}
-  window.__OPENCODE__.deepLinks = [...(window.__OPENCODE__.deepLinks ?? []), ...urls]
+  window.__REDCODE__ ??= {}
+  window.__REDCODE__.deepLinks = [...(window.__REDCODE__.deepLinks ?? []), ...urls]
   window.dispatchEvent(new CustomEvent(deepLinkEvent, { detail: { urls } }))
 }

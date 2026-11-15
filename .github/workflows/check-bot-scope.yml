@@ -45,7 +45,7 @@ jobs:
       - name: Check changed files
         if: steps.branch.outputs.bot == 'true'
         env:
-          BASE: ${{ github.base_ref || 'dev' }}
+          BASE: ${{ github.base_ref || 'main' }}
         run: |
           set -euo pipefail
           git fetch --no-tags --filter=blob:none origin "+refs/heads/$BASE:refs/remotes/origin/$BASE"

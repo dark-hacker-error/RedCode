@@ -11,15 +11,15 @@ export const legalHistory = {
       added: [
         "Effective date: Nov 9, 2026",
         "Not stored, except by hosted agents as described in Integrations with Third-Party Services",
-        "When you run OpenCode on your own device, OpenCode Console doesn't store the content you access through a Connected Service, such as messages, files, meetings, recordings or CRM records.",
+        "When you run RedCode on your own device, RedCode Console doesn't store the content you access through a Connected Service, such as messages, files, meetings, recordings or CRM records.",
         "Hosted agents.",
-        "When your workspace runs an OpenCode agent hosted by OpenCode Console, such as in Slack, GitHub, Discord, email or the Console itself, we store the content of each session (one conversation with the agent, such as a Slack thread).",
+        "When your workspace runs an RedCode agent hosted by RedCode Console, such as in Slack, GitHub, Discord, email or the Console itself, we store the content of each session (one conversation with the agent, such as a Slack thread).",
         "This includes the messages and files shared with the agent, the files in its sandbox (the isolated environment where it runs commands), and the results of its tool calls, including content it retrieves from Connected Services.",
         "We store this so the agent can finish its work and continue the conversation later.",
         "We delete a session and its sandbox 30 days after its last activity, such as a message to the agent, a scheduled run or a response it finishes.",
         "Reading a session doesn't count as activity.",
         "We delete them sooner when the agent, its service account or the workspace is deleted.",
-        "We also delete them sooner when the Slack, GitHub or email inbox connection the session came through is disconnected or removed, such as by uninstalling OpenCode from Slack, or when the agent no longer has a trigger (the setting that lets a Slack workspace, Discord server, GitHub repository, inbox, webhook or schedule start the agent) for the place the session came from.",
+        "We also delete them sooner when the Slack, GitHub or email inbox connection the session came through is disconnected or removed, such as by uninstalling RedCode from Slack, or when the agent no longer has a trigger (the setting that lets a Slack workspace, Discord server, GitHub repository, inbox, webhook or schedule start the agent) for the place the session came from.",
         "Pausing an agent or turning a trigger off doesn't delete its sessions.",
       ],
       removed: [
@@ -32,8 +32,8 @@ export const legalHistory = {
       addedCount: 23,
       removedCount: 5,
       source:
-        "https://github.com/anomalyco/opencode/blob/9e9b551e3a72b12b839ba3fe266a0db89c909602/services/site/src/lib/legal/privacy-policy.ts",
-      diff: "https://github.com/anomalyco/opencode/commit/9e9b551e3a72b12b839ba3fe266a0db89c909602#diff-13f1bdb3583f198406200946a0d6bde1bc1f9271e4e629272db2023a211e2819",
+        "https://github.com/Vempire-X/RedCode/blob/9e9b551e3a72b12b839ba3fe266a0db89c909602/services/site/src/lib/legal/privacy-policy.ts",
+      diff: "https://github.com/Vempire-X/RedCode/commit/9e9b551e3a72b12b839ba3fe266a0db89c909602#diff-13f1bdb3583f198406200946a0d6bde1bc1f9271e4e629272db2023a211e2819",
     },
     {
       sha: "9c7212c99a69b9d1c644fc30ad79068124aab1a7",
@@ -43,24 +43,24 @@ export const legalHistory = {
       first: false,
       added: [
         "Effective date: Nov 8, 2026",
-        "OpenCode is provided by Anomaly Innovations, Inc.",
-        '("Anomaly," "OpenCode," "we," "us" or "our").',
+        "RedCode is provided by Anomaly Innovations, Inc.",
+        '("Anomaly," "RedCode," "we," "us" or "our").',
         "We take your privacy seriously.",
         "Integrations with Third-Party Services",
-        'OpenCode Console lets a workspace connect third-party services ("Connected Services"), such as Slack, Zoom, HubSpot, GitHub, Google Workspace and Microsoft 365, so that its members\' OpenCode agents can use them.',
+        'RedCode Console lets a workspace connect third-party services ("Connected Services"), such as Slack, Zoom, HubSpot, GitHub, Google Workspace and Microsoft 365, so that its members\' RedCode agents can use them.',
         "This section explains how we handle data from Connected Services.",
         "It supplements the rest of this Privacy Policy and controls where they conflict.",
         "What we receive and store.",
-        "To connect a Connected Service, you sign in with that service and authorize OpenCode Console, or you or a workspace administrator enter an API key.",
-        "We encrypt and store the access and refresh tokens or API keys, and any OAuth client secret your workspace provides, and we record the permissions you granted, so that your OpenCode agent can act for you within them.",
+        "To connect a Connected Service, you sign in with that service and authorize RedCode Console, or you or a workspace administrator enter an API key.",
+        "We encrypt and store the access and refresh tokens or API keys, and any OAuth client secret your workspace provides, and we record the permissions you granted, so that your RedCode agent can act for you within them.",
         "Where a service gives us your user or workspace identifier when you sign in, as Slack and Zoom do, we store it too, so we can recognize your connection and act when the service tells us you removed our app.",
       ],
-      removed: ["Effective date: Nov 6, 2026", "At OpenCode, we take your privacy seriously."],
+      removed: ["Effective date: Nov 6, 2026", "At RedCode, we take your privacy seriously."],
       addedCount: 36,
       removedCount: 2,
       source:
-        "https://github.com/anomalyco/opencode/blob/9c7212c99a69b9d1c644fc30ad79068124aab1a7/services/site/src/lib/legal/privacy-policy.ts",
-      diff: "https://github.com/anomalyco/opencode/commit/9c7212c99a69b9d1c644fc30ad79068124aab1a7#diff-13f1bdb3583f198406200946a0d6bde1bc1f9271e4e629272db2023a211e2819",
+        "https://github.com/Vempire-X/RedCode/blob/9c7212c99a69b9d1c644fc30ad79068124aab1a7/services/site/src/lib/legal/privacy-policy.ts",
+      diff: "https://github.com/Vempire-X/RedCode/commit/9c7212c99a69b9d1c644fc30ad79068124aab1a7#diff-13f1bdb3583f198406200946a0d6bde1bc1f9271e4e629272db2023a211e2819",
     },
     {
       sha: "76ff9a6ab25fca4b8f0f5c43e4ef12bd0c10cc3e",
@@ -99,8 +99,8 @@ export const legalHistory = {
       addedCount: 16,
       removedCount: 12,
       source:
-        "https://github.com/anomalyco/opencode/blob/76ff9a6ab25fca4b8f0f5c43e4ef12bd0c10cc3e/services/site/src/lib/legal/privacy-policy.ts",
-      diff: "https://github.com/anomalyco/opencode/commit/76ff9a6ab25fca4b8f0f5c43e4ef12bd0c10cc3e#diff-13f1bdb3583f198406200946a0d6bde1bc1f9271e4e629272db2023a211e2819",
+        "https://github.com/Vempire-X/RedCode/blob/76ff9a6ab25fca4b8f0f5c43e4ef12bd0c10cc3e/services/site/src/lib/legal/privacy-policy.ts",
+      diff: "https://github.com/Vempire-X/RedCode/commit/76ff9a6ab25fca4b8f0f5c43e4ef12bd0c10cc3e#diff-13f1bdb3583f198406200946a0d6bde1bc1f9271e4e629272db2023a211e2819",
     },
     {
       sha: "926b2af0cc606398342b487a26ada2ee7badd39c",
@@ -114,7 +114,7 @@ export const legalHistory = {
         "Your answer to our cookie banner, or that we don't need to ask you",
         "180 days for an answer, 1 day otherwise",
         "If you're in the European Economic Area, the United Kingdom or Switzerland, or we can't tell where you are, we ask before setting these Cookies.",
-        "If you're signed in to OpenCode, we set them without asking.",
+        "If you're signed in to RedCode, we set them without asking.",
         "If you haven't accepted, we still record the events above, without these Cookies' IDs, so a visit's events can't be connected to each other or to earlier visits.",
         "If you're signed in, those events still carry your account ID.",
         "You can change your answer at any time with the Cookies button at the bottom of our marketing pages.",
@@ -122,8 +122,8 @@ export const legalHistory = {
       addedCount: 0,
       removedCount: 8,
       source:
-        "https://github.com/anomalyco/opencode/blob/926b2af0cc606398342b487a26ada2ee7badd39c/packages/console/app/src/routes/legal/privacy-policy/index.tsx",
-      diff: "https://github.com/anomalyco/opencode/commit/926b2af0cc606398342b487a26ada2ee7badd39c#diff-86623c1b761ddcf78790804023aeabaca6b33689a83d2402241105bf407fdc31",
+        "https://github.com/Vempire-X/RedCode/blob/926b2af0cc606398342b487a26ada2ee7badd39c/packages/console/app/src/routes/legal/privacy-policy/index.tsx",
+      diff: "https://github.com/Vempire-X/RedCode/commit/926b2af0cc606398342b487a26ada2ee7badd39c#diff-86623c1b761ddcf78790804023aeabaca6b33689a83d2402241105bf407fdc31",
     },
     {
       sha: "eb463de93ef91b3c9355ecfefe937c68556f0040",
@@ -137,7 +137,7 @@ export const legalHistory = {
         "When you visit pages under opencode.ai/console, including the sign-in pages, we record the pages you view, how long each page is visible, how long you're active on it and how far you scroll, the links and buttons you click, and the type of any sign-in error.",
         "In the Console we record the pages you open and the controls you use in its navigation, plan, billing and onboarding screens.",
         "We also record account and workspace events: when you sign up, sign in, verify your email, approve a device, create or delete a workspace, invite or remove members, create API keys, connect providers or clients, and start or complete a checkout or payment, including its amount and any decline reason.",
-        "We use these records to understand how people find OpenCode and where they stop before signing up or subscribing, so we can improve the Services.",
+        "We use these records to understand how people find RedCode and where they stop before signing up or subscribing, so we can improve the Services.",
         "With each record sent from your browser, we keep the country, region and time zone your request came from, the type of device, operating system and browser you used, and the size of your browser window.",
         "We use your IP address to determine your country and region and to limit requests, but we don't store it, your email address or anything you type in these records.",
         "We set the following first-party Cookies.",
@@ -149,8 +149,8 @@ export const legalHistory = {
       addedCount: 38,
       removedCount: 1,
       source:
-        "https://github.com/anomalyco/opencode/blob/eb463de93ef91b3c9355ecfefe937c68556f0040/packages/console/app/src/routes/legal/privacy-policy/index.tsx",
-      diff: "https://github.com/anomalyco/opencode/commit/eb463de93ef91b3c9355ecfefe937c68556f0040#diff-86623c1b761ddcf78790804023aeabaca6b33689a83d2402241105bf407fdc31",
+        "https://github.com/Vempire-X/RedCode/blob/eb463de93ef91b3c9355ecfefe937c68556f0040/packages/console/app/src/routes/legal/privacy-policy/index.tsx",
+      diff: "https://github.com/Vempire-X/RedCode/commit/eb463de93ef91b3c9355ecfefe937c68556f0040#diff-86623c1b761ddcf78790804023aeabaca6b33689a83d2402241105bf407fdc31",
     },
     {
       sha: "51070b6f598fc171636f5a52cb53f90f2cdccbc3",
@@ -167,8 +167,8 @@ export const legalHistory = {
       addedCount: 2,
       removedCount: 3,
       source:
-        "https://github.com/anomalyco/opencode/blob/51070b6f598fc171636f5a52cb53f90f2cdccbc3/packages/console/app/src/routes/legal/privacy-policy/index.tsx",
-      diff: "https://github.com/anomalyco/opencode/commit/51070b6f598fc171636f5a52cb53f90f2cdccbc3#diff-86623c1b761ddcf78790804023aeabaca6b33689a83d2402241105bf407fdc31",
+        "https://github.com/Vempire-X/RedCode/blob/51070b6f598fc171636f5a52cb53f90f2cdccbc3/packages/console/app/src/routes/legal/privacy-policy/index.tsx",
+      diff: "https://github.com/Vempire-X/RedCode/commit/51070b6f598fc171636f5a52cb53f90f2cdccbc3#diff-86623c1b761ddcf78790804023aeabaca6b33689a83d2402241105bf407fdc31",
     },
     {
       sha: "4863aedf3dfcabf02d7c193a5d5e4e4da0535717",
@@ -193,8 +193,8 @@ export const legalHistory = {
       addedCount: 5,
       removedCount: 5,
       source:
-        "https://github.com/anomalyco/opencode/blob/4863aedf3dfcabf02d7c193a5d5e4e4da0535717/packages/console/app/src/routes/legal/privacy-policy/index.tsx",
-      diff: "https://github.com/anomalyco/opencode/commit/4863aedf3dfcabf02d7c193a5d5e4e4da0535717#diff-86623c1b761ddcf78790804023aeabaca6b33689a83d2402241105bf407fdc31",
+        "https://github.com/Vempire-X/RedCode/blob/4863aedf3dfcabf02d7c193a5d5e4e4da0535717/packages/console/app/src/routes/legal/privacy-policy/index.tsx",
+      diff: "https://github.com/Vempire-X/RedCode/commit/4863aedf3dfcabf02d7c193a5d5e4e4da0535717#diff-86623c1b761ddcf78790804023aeabaca6b33689a83d2402241105bf407fdc31",
     },
     {
       sha: "b83282b9405fe3a89d483453c343ee7e4d645379",
@@ -212,8 +212,8 @@ export const legalHistory = {
       addedCount: 4,
       removedCount: 2,
       source:
-        "https://github.com/anomalyco/opencode/blob/b83282b9405fe3a89d483453c343ee7e4d645379/packages/console/app/src/routes/legal/privacy-policy/index.tsx",
-      diff: "https://github.com/anomalyco/opencode/commit/b83282b9405fe3a89d483453c343ee7e4d645379#diff-86623c1b761ddcf78790804023aeabaca6b33689a83d2402241105bf407fdc31",
+        "https://github.com/Vempire-X/RedCode/blob/b83282b9405fe3a89d483453c343ee7e4d645379/packages/console/app/src/routes/legal/privacy-policy/index.tsx",
+      diff: "https://github.com/Vempire-X/RedCode/commit/b83282b9405fe3a89d483453c343ee7e4d645379#diff-86623c1b761ddcf78790804023aeabaca6b33689a83d2402241105bf407fdc31",
     },
     {
       sha: "289b2b6a51c3a02b5263dbb10e8dc413c23867a4",
@@ -226,8 +226,8 @@ export const legalHistory = {
       addedCount: 352,
       removedCount: 0,
       source:
-        "https://github.com/anomalyco/opencode/blob/289b2b6a51c3a02b5263dbb10e8dc413c23867a4/packages/console/app/src/routes/legal/privacy-policy/index.tsx",
-      diff: "https://github.com/anomalyco/opencode/commit/289b2b6a51c3a02b5263dbb10e8dc413c23867a4#diff-86623c1b761ddcf78790804023aeabaca6b33689a83d2402241105bf407fdc31",
+        "https://github.com/Vempire-X/RedCode/blob/289b2b6a51c3a02b5263dbb10e8dc413c23867a4/packages/console/app/src/routes/legal/privacy-policy/index.tsx",
+      diff: "https://github.com/Vempire-X/RedCode/commit/289b2b6a51c3a02b5263dbb10e8dc413c23867a4#diff-86623c1b761ddcf78790804023aeabaca6b33689a83d2402241105bf407fdc31",
     },
   ],
   "/legal/terms-of-service": [
@@ -248,8 +248,8 @@ export const legalHistory = {
       addedCount: 2,
       removedCount: 2,
       source:
-        "https://github.com/anomalyco/opencode/blob/9c7212c99a69b9d1c644fc30ad79068124aab1a7/services/site/src/lib/legal/terms-of-service.ts",
-      diff: "https://github.com/anomalyco/opencode/commit/9c7212c99a69b9d1c644fc30ad79068124aab1a7#diff-209b8f3fa7d4510762a9da362f1ccd8ea7c8754348118dec83377de38a818b32",
+        "https://github.com/Vempire-X/RedCode/blob/9c7212c99a69b9d1c644fc30ad79068124aab1a7/services/site/src/lib/legal/terms-of-service.ts",
+      diff: "https://github.com/Vempire-X/RedCode/commit/9c7212c99a69b9d1c644fc30ad79068124aab1a7#diff-209b8f3fa7d4510762a9da362f1ccd8ea7c8754348118dec83377de38a818b32",
     },
     {
       sha: "24008abeb3df6d2bf7c9d39f69803558499062b2",
@@ -258,22 +258,22 @@ export const legalHistory = {
       effective: "Aug 15, 2026",
       first: false,
       added: [
-        'Certain of these large language models are provided by third parties ("Third Party Models") and certain of these models are provided directly by us if you use the OpenCode Models paid offering ("OpenCode Models").',
-        "Regardless of whether you use Third Party Models or OpenCode Models, OpenCode enables you to access the functionality of models through a coding agent running within your terminal.",
-        'Certain of our Services, including OpenCode Models, may be subject to payments now or in the future (the "Paid Services").',
+        'Certain of these large language models are provided by third parties ("Third Party Models") and certain of these models are provided directly by us if you use the RedCode Models paid offering ("RedCode Models").',
+        "Regardless of whether you use Third Party Models or RedCode Models, RedCode enables you to access the functionality of models through a coding agent running within your terminal.",
+        'Certain of our Services, including RedCode Models, may be subject to payments now or in the future (the "Paid Services").',
         "Please see our Paid Services page https://opencode.ai/console/models for a description of the current Paid Services.",
       ],
       removed: [
-        'Certain of these large language models are provided by third parties ("Third Party Models") and certain of these models are provided directly by us if you use the OpenCode Zen paid offering ("Zen").',
-        "Regardless of whether you use Third Party Models or Zen, OpenCode enables you to access the functionality of models through a coding agent running within your terminal.",
+        'Certain of these large language models are provided by third parties ("Third Party Models") and certain of these models are provided directly by us if you use the RedCode Zen paid offering ("Zen").',
+        "Regardless of whether you use Third Party Models or Zen, RedCode enables you to access the functionality of models through a coding agent running within your terminal.",
         'Certain of our Services, including Zen, may be subject to payments now or in the future (the "Paid Services").',
         "Please see our Paid Services page https://opencode.ai/zen for a description of the current Paid Services.",
       ],
       addedCount: 4,
       removedCount: 4,
       source:
-        "https://github.com/anomalyco/opencode/blob/24008abeb3df6d2bf7c9d39f69803558499062b2/services/site/src/lib/legal/terms-of-service.ts",
-      diff: "https://github.com/anomalyco/opencode/commit/24008abeb3df6d2bf7c9d39f69803558499062b2#diff-209b8f3fa7d4510762a9da362f1ccd8ea7c8754348118dec83377de38a818b32",
+        "https://github.com/Vempire-X/RedCode/blob/24008abeb3df6d2bf7c9d39f69803558499062b2/services/site/src/lib/legal/terms-of-service.ts",
+      diff: "https://github.com/Vempire-X/RedCode/commit/24008abeb3df6d2bf7c9d39f69803558499062b2#diff-209b8f3fa7d4510762a9da362f1ccd8ea7c8754348118dec83377de38a818b32",
     },
     {
       sha: "d0ceaef6aa44ce60b9b02a1084d6650e0decfb94",
@@ -289,8 +289,8 @@ export const legalHistory = {
       addedCount: 2,
       removedCount: 1,
       source:
-        "https://github.com/anomalyco/opencode/blob/d0ceaef6aa44ce60b9b02a1084d6650e0decfb94/packages/console/app/src/routes/legal/terms-of-service/index.tsx",
-      diff: "https://github.com/anomalyco/opencode/commit/d0ceaef6aa44ce60b9b02a1084d6650e0decfb94#diff-af798db409166356bf4ec3212cb527b5fe96befbd94700a605c3a4672fca2168",
+        "https://github.com/Vempire-X/RedCode/blob/d0ceaef6aa44ce60b9b02a1084d6650e0decfb94/packages/console/app/src/routes/legal/terms-of-service/index.tsx",
+      diff: "https://github.com/Vempire-X/RedCode/commit/d0ceaef6aa44ce60b9b02a1084d6650e0decfb94#diff-af798db409166356bf4ec3212cb527b5fe96befbd94700a605c3a4672fca2168",
     },
     {
       sha: "4863aedf3dfcabf02d7c193a5d5e4e4da0535717",
@@ -311,8 +311,8 @@ export const legalHistory = {
       addedCount: 3,
       removedCount: 3,
       source:
-        "https://github.com/anomalyco/opencode/blob/4863aedf3dfcabf02d7c193a5d5e4e4da0535717/packages/console/app/src/routes/legal/terms-of-service/index.tsx",
-      diff: "https://github.com/anomalyco/opencode/commit/4863aedf3dfcabf02d7c193a5d5e4e4da0535717#diff-af798db409166356bf4ec3212cb527b5fe96befbd94700a605c3a4672fca2168",
+        "https://github.com/Vempire-X/RedCode/blob/4863aedf3dfcabf02d7c193a5d5e4e4da0535717/packages/console/app/src/routes/legal/terms-of-service/index.tsx",
+      diff: "https://github.com/Vempire-X/RedCode/commit/4863aedf3dfcabf02d7c193a5d5e4e4da0535717#diff-af798db409166356bf4ec3212cb527b5fe96befbd94700a605c3a4672fca2168",
     },
     {
       sha: "b83282b9405fe3a89d483453c343ee7e4d645379",
@@ -322,20 +322,20 @@ export const legalHistory = {
       first: false,
       added: [
         "Effective date: Mar 6, 2026",
-        'Please read on to learn the rules and restrictions that govern your use of OpenCode\'s website, inference product and hosted software offering (the "Services").',
+        'Please read on to learn the rules and restrictions that govern your use of RedCode\'s website, inference product and hosted software offering (the "Services").',
         "For clarity, our open source software that is not provided to you on a hosted basis is subject to the open source license and terms set forth on the applicable repository where you access such open source software, and such license and terms will exclusively govern your use of such open source software.",
         "You have the right to opt out of the provisions of this Section by sending written notice of your decision to opt out to the following address: 2443 Fillmore St #380-6343, San Francisco, CA 94115, United States postmarked within thirty (30) days of first accepting these Terms.",
       ],
       removed: [
         "Effective date: Dec 16, 2025",
-        'Please read on to learn the rules and restrictions that govern your use of OpenCode (the "Services").',
+        'Please read on to learn the rules and restrictions that govern your use of RedCode (the "Services").',
         "You have the right to opt out of the provisions of this Section by sending written notice of your decision to opt out to the following address: [ADDRESS], [CITY], Canada [ZIP CODE] postmarked within thirty (30) days of first accepting these Terms.",
       ],
       addedCount: 4,
       removedCount: 3,
       source:
-        "https://github.com/anomalyco/opencode/blob/b83282b9405fe3a89d483453c343ee7e4d645379/packages/console/app/src/routes/legal/terms-of-service/index.tsx",
-      diff: "https://github.com/anomalyco/opencode/commit/b83282b9405fe3a89d483453c343ee7e4d645379#diff-af798db409166356bf4ec3212cb527b5fe96befbd94700a605c3a4672fca2168",
+        "https://github.com/Vempire-X/RedCode/blob/b83282b9405fe3a89d483453c343ee7e4d645379/packages/console/app/src/routes/legal/terms-of-service/index.tsx",
+      diff: "https://github.com/Vempire-X/RedCode/commit/b83282b9405fe3a89d483453c343ee7e4d645379#diff-af798db409166356bf4ec3212cb527b5fe96befbd94700a605c3a4672fca2168",
     },
     {
       sha: "289b2b6a51c3a02b5263dbb10e8dc413c23867a4",
@@ -348,8 +348,8 @@ export const legalHistory = {
       addedCount: 174,
       removedCount: 0,
       source:
-        "https://github.com/anomalyco/opencode/blob/289b2b6a51c3a02b5263dbb10e8dc413c23867a4/packages/console/app/src/routes/legal/terms-of-service/index.tsx",
-      diff: "https://github.com/anomalyco/opencode/commit/289b2b6a51c3a02b5263dbb10e8dc413c23867a4#diff-af798db409166356bf4ec3212cb527b5fe96befbd94700a605c3a4672fca2168",
+        "https://github.com/Vempire-X/RedCode/blob/289b2b6a51c3a02b5263dbb10e8dc413c23867a4/packages/console/app/src/routes/legal/terms-of-service/index.tsx",
+      diff: "https://github.com/Vempire-X/RedCode/commit/289b2b6a51c3a02b5263dbb10e8dc413c23867a4#diff-af798db409166356bf4ec3212cb527b5fe96befbd94700a605c3a4672fca2168",
     },
   ],
 } satisfies Record<string, LegalVersion[]>

@@ -4,7 +4,7 @@
  * Payloads are structured-clone values already encoded with the Ipc's schemas. The `ipc` fields name an Ipc by id.
  */
 
-import type { PluginInfo } from "@opencode/client/promise"
+import type { PluginInfo } from "@redcode/client/promise"
 import { Cause, Exit, Predicate, Schema } from "effect"
 import type { BuiltinStoreDeclaration } from "./builtin.js"
 import type { Cleanup, OS, PluginOptions } from "./core.js"
@@ -258,7 +258,7 @@ export function evaluatePluginBundle(code: string, host: PluginBundleHost): Plug
     const problem = Exit.isFailure(decoded) ? Cause.pretty(decoded.cause) : "it does not match"
 
     throw new Error(
-      `A plugin's ./gui-experimental bundle must default-export a \`Plugin.define\` from \`@opencode/plugin/gui\`: ${problem}`,
+      `A plugin's ./gui-experimental bundle must default-export a \`Plugin.define\` from \`@redcode/plugin/gui\`: ${problem}`,
     )
   }
 
@@ -395,7 +395,7 @@ export interface BridgePluginGui {
   readonly revision: string
   /** The bundle's CommonJS code. */
   readonly code: string
-  /** The plugin's options from `opencode.json`, its GUI's `ctx.options`. */
+  /** The plugin's options from `redcode.json`, its GUI's `ctx.options`. */
   readonly options: PluginOptions
 }
 

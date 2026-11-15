@@ -1,4 +1,4 @@
-import type { SessionMessageAssistant, SessionMessageShell } from "@opencode/client/promise"
+import type { SessionMessageAssistant, SessionMessageShell } from "@redcode/client/promise"
 import { Match } from "effect"
 import { createMemo, createSignal } from "solid-js"
 import { createStore } from "solid-js/store"
@@ -20,7 +20,7 @@ import { storyDocument, storyTool } from "../storybook/current-session-scenarios
 import { SessionTimeline } from "./session-timeline"
 
 export default {
-  title: "OpenCode/Work/Terminal",
+  title: "RedCode/Work/Terminal",
   id: "current-session-terminal-work",
   component: SessionTimeline,
   parameters: {

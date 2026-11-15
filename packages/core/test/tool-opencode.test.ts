@@ -1,20 +1,20 @@
 import { expect } from "bun:test"
 import fs from "fs/promises"
 import path from "path"
-import { Database } from "@opencode/core/database/database"
-import { Location } from "@opencode/core/location"
-import { Permission } from "@opencode/core/permission"
-import { Plugin } from "@opencode/core/plugin"
-import { PluginHost } from "@opencode/core/plugin/host"
-import { ProjectTable } from "@opencode/core/project/sql"
-import { Provider } from "@opencode/core/provider"
-import { AbsolutePath } from "@opencode/core/schema"
-import { Session } from "@opencode/core/session"
-import { Tool } from "@opencode/core/tool"
-import { OpenCodeTools } from "@opencode/core/tool/plugin/opencode"
-import { WorktreeTable } from "@opencode/core/worktree/sql"
-import { WorktreeStrategies } from "@opencode/core/worktree/strategies"
-import { Model } from "@opencode/schema/model"
+import { Database } from "@redcode/core/database/database"
+import { Location } from "@redcode/core/location"
+import { Permission } from "@redcode/core/permission"
+import { Plugin } from "@redcode/core/plugin"
+import { PluginHost } from "@redcode/core/plugin/host"
+import { ProjectTable } from "@redcode/core/project/sql"
+import { Provider } from "@redcode/core/provider"
+import { AbsolutePath } from "@redcode/core/schema"
+import { Session } from "@redcode/core/session"
+import { Tool } from "@redcode/core/tool"
+import { RedCodeTools } from "@redcode/core/tool/plugin/opencode"
+import { WorktreeTable } from "@redcode/core/worktree/sql"
+import { WorktreeStrategies } from "@redcode/core/worktree/strategies"
+import { Model } from "@redcode/schema/model"
 import { Effect } from "effect"
 import { initRepo } from "./fixture/git"
 import { tmpdirScoped } from "./fixture/tmpdir"
@@ -73,7 +73,7 @@ it.effect("groups available models by provider with paging", () =>
         model.enabled = false
       })
     })
-    yield* OpenCodeTools.Plugin.effect(pluginHost)
+    yield* RedCodeTools.Plugin.effect(pluginHost)
     // The caller runs on `test`, which sorts first despite `other` coming earlier alphabetically.
     const session = yield* sessions.create({
       location: Location.Ref.make({ directory: location.directory }),
@@ -188,7 +188,7 @@ worktreeIt.live("creates, lists, and removes worktrees for the plugin's project"
       .run()
       .pipe(Effect.orDie)
     yield* strategies.transform((editor) => editor.configure({ directory: AbsolutePath.make(parent.path) }))
-    yield* OpenCodeTools.Plugin.effect(yield* PluginHost.make(plugins, "test"))
+    yield* RedCodeTools.Plugin.effect(yield* PluginHost.make(plugins, "test"))
     const session = yield* sessions.create({ location: Location.Ref.make({ directory: location.directory }) })
     const registry = yield* Tool.Service
     const program = (code: string) =>

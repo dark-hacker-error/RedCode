@@ -95,19 +95,19 @@ try {
         main: "worker.js",
         compatibility_date: "2026-07-15",
         compatibility_flags: ["nodejs_compat"],
-        durable_objects: { bindings: [{ name: "OPENCODE", class_name: "OpenCodeDO" }] },
-        migrations: [{ tag: "v1", new_sqlite_classes: ["OpenCodeDO"] }],
+        durable_objects: { bindings: [{ name: "OPENCODE", class_name: "RedCodeDO" }] },
+        migrations: [{ tag: "v1", new_sqlite_classes: ["RedCodeDO"] }],
       }),
     ),
     Bun.write(
       join(consumer, "worker.js"),
-      `import { bodyDigest } from "@opencode/core/models-dev"
-import { OpenCodeWorkerd } from "@opencode/sdk/workerd"
+      `import { bodyDigest } from "@redcode/core/models-dev"
+import { RedCodeWorkerd } from "@redcode/sdk/workerd"
 
-export class OpenCodeDO {
+export class RedCodeDO {
   constructor(state) {
     this.configurations = 0
-    this.opencode = state.blockConcurrencyWhile(() => OpenCodeWorkerd.create({
+    this.opencode = state.blockConcurrencyWhile(() => RedCodeWorkerd.create({
       storage: state.storage,
       app: { version: "packed-workerd" },
       models: { fetch: false },
@@ -171,7 +171,7 @@ const miniflare = new Miniflare({
   compatibilityFlags: ["nodejs_compat"],
   modules: true,
   scriptPath: fileURLToPath(new URL("./dist/worker.js", import.meta.url)),
-  durableObjects: { OPENCODE: { className: "OpenCodeDO", useSQLite: true } },
+  durableObjects: { OPENCODE: { className: "RedCodeDO", useSQLite: true } },
 })
 
 try {
@@ -191,21 +191,21 @@ try {
     Bun.write(
       join(consumer, "imports.mjs"),
       `const modules = await Promise.all([
-  import("@opencode/sdk"),
-  import("@opencode/sdk/effect"),
-  import("@opencode/sdk/workerd"),
-  import("@opencode/sdk/workerd/effect"),
+  import("@redcode/sdk"),
+  import("@redcode/sdk/effect"),
+  import("@redcode/sdk/workerd"),
+  import("@redcode/sdk/workerd/effect"),
 ])
 
 for (const module of modules) {
-  const api = module.OpenCode ?? module.OpenCodeWorkerd
+  const api = module.RedCode ?? module.RedCodeWorkerd
   if (typeof api?.create !== "function") throw new Error("Packed SDK entrypoint is missing create()")
 }
 `,
     ),
   ])
 
-  const sdk = archives.get("@opencode/sdk")
+  const sdk = archives.get("@redcode/sdk")
   if (!sdk) throw new Error("Packed SDK archive was not created")
   await $`npm install --ignore-scripts --no-audit --no-fund --package-lock=false ${sdk} wrangler@4.110.0`.cwd(consumer)
   const runtimes = (await $`npm ls effect --all --parseable`.cwd(consumer).text()).trim().split("\n")

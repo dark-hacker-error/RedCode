@@ -1,5 +1,5 @@
-import type { ModelInfo, SessionMessageInfo } from "@opencode/client"
-import { lastAssistantWithUsage } from "@opencode/client/solid"
+import type { ModelInfo, SessionMessageInfo } from "@redcode/client"
+import { lastAssistantWithUsage } from "@redcode/client/solid"
 import { Locale } from "./locale"
 
 type SessionNode = {

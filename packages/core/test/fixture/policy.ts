@@ -1,23 +1,23 @@
-import { Config } from "@opencode/core/config"
-import { ConfigIntegration } from "@opencode/core/config/integration"
-import { ConfigPolicyPlugin } from "@opencode/core/config/plugin/policy"
-import { Integration } from "@opencode/core/integration"
-import { Mcp } from "@opencode/core/mcp/index"
-import { Skill } from "@opencode/core/skill"
-import { Info } from "@opencode/schema/config"
-import { ConfigPolicy } from "@opencode/schema/config/policy"
-import { ID } from "@opencode/schema/event"
-import { Credential } from "@opencode/core/credential"
-import { WebSearch } from "@opencode/core/websearch"
+import { Config } from "@redcode/core/config"
+import { ConfigIntegration } from "@redcode/core/config/integration"
+import { ConfigPolicyPlugin } from "@redcode/core/config/plugin/policy"
+import { Integration } from "@redcode/core/integration"
+import { Mcp } from "@redcode/core/mcp/index"
+import { Skill } from "@redcode/core/skill"
+import { Info } from "@redcode/schema/config"
+import { ConfigPolicy } from "@redcode/schema/config/policy"
+import { ID } from "@redcode/schema/event"
+import { Credential } from "@redcode/core/credential"
+import { WebSearch } from "@redcode/core/websearch"
 import { Effect, Schema, Stream } from "effect"
 import { host } from "../plugin/host"
 
-/** A connected organization's policy as the OpenCode Console delivers it: an integration config document. */
+/** A connected organization's policy as the RedCode Console delivers it: an integration config document. */
 export function organizationPolicy(policies: ConfigPolicy.Info[], organization?: string) {
   return new ConfigIntegration.Document({
     type: "document",
     integrationID: Integration.ID.make("opencode"),
-    connection: { type: "env", name: "OPENCODE_API_KEY" },
+    connection: { type: "env", name: "REDCODE_API_KEY" },
     organization,
     info: Schema.decodeUnknownSync(Info)({ policies }),
   })

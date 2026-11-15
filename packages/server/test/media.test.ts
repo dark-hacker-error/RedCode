@@ -3,8 +3,8 @@ import { createHash } from "node:crypto"
 import fs from "node:fs/promises"
 import path from "node:path"
 import { expect } from "bun:test"
-import { OpenCode, type SessionMessageInfo } from "@opencode/client"
-import { Session } from "@opencode/schema/session"
+import { RedCode, type SessionMessageInfo } from "@redcode/client"
+import { Session } from "@redcode/schema/session"
 import { Effect } from "effect"
 import { tmpdirScoped } from "../../core/test/fixture/tmpdir"
 import { it } from "../../core/test/lib/effect"
@@ -74,9 +74,9 @@ const serve = (database: string, mediaBlob: boolean) =>
   })
 
 const client = (handler: (request: Request) => Promise<Response>, capabilities?: string) =>
-  OpenCode.make({
+  RedCode.make({
     baseUrl: "http://opencode.local",
-    ...(capabilities === undefined ? {} : { headers: { "X-OpenCode-Capabilities": capabilities } }),
+    ...(capabilities === undefined ? {} : { headers: { "X-RedCode-Capabilities": capabilities } }),
     fetch: Object.assign((input: string | URL | Request, init?: RequestInit) => handler(new Request(input, init)), {
       preconnect: fetch.preconnect,
     }),
@@ -90,7 +90,7 @@ it.live("serves stored media as refs only to clients that opt in while experimen
     // Acquired first so it is removed after the servers below are released; Windows can't delete an open db.
     const dir = (yield* tmpdirScoped("opencode-media-wire-")).path
     yield* Effect.gen(function* () {
-      const database = path.join(dir, "opencode.db")
+      const database = path.join(dir, "redcode.db")
       const handler = yield* serve(database, true)
       const plain = client(handler)
       const opted = client(handler, "other, Experimental-Media-URI")
@@ -284,13 +284,13 @@ it.live("follows experimental.media_blob from the session's project config and s
   Effect.gen(function* () {
     const dir = (yield* tmpdirScoped("opencode-media-project-")).path
     yield* Effect.gen(function* () {
-      const database = path.join(dir, "opencode.db")
+      const database = path.join(dir, "redcode.db")
       const global = path.join(dir, "global")
       const project = path.join(dir, "project")
       yield* Effect.promise(async () => {
         await fs.mkdir(global, { recursive: true })
         await fs.mkdir(project, { recursive: true })
-        await fs.writeFile(path.join(project, "opencode.json"), JSON.stringify({ experimental: { media_blob: true } }))
+        await fs.writeFile(path.join(project, "redcode.json"), JSON.stringify({ experimental: { media_blob: true } }))
       })
       // The flag lives only in the project's config; the server's cwd and global config leave it off.
       const handler = yield* ServerFetch.make({

@@ -95,7 +95,7 @@ export function productDownloads(slug: PageSlug, route: (path: string) => string
           : slug === "mini"
             ? {
                 ...none,
-                lead: "Mini comes with the OpenCode CLI. Install it with any of these, then run opencode mini.",
+                lead: "Mini comes with the RedCode CLI. Install it with any of these, then run opencode mini.",
                 commands: [...installs, { id: "run", command: "opencode mini" }],
               }
             : none
@@ -146,7 +146,7 @@ function downloadAppsMarkdown(context: MarkdownContext) {
 }
 
 /**
- * Pairing a phone with OpenCode on a computer, for the Mobile page (pair-panel.tsx) and its Markdown.
+ * Pairing a phone with RedCode on a computer, for the Mobile page (pair-panel.tsx) and its Markdown.
  * From `opencode pair` (packages/cli/src/commands/handlers/pair.ts: one-time links that expire in 5
  * minutes, and a QR code of the reachable addresses; --remote pairs through the OpenTunnel address,
  * turning remote access on if needed) and the iOS app (scan the code or paste the link; Pair From
@@ -158,14 +158,14 @@ export function pairContent() {
     title: "Connect your phone",
     cardTitle: "Pair your phone with one command",
     intro:
-      "OpenCode Mobile is a remote for OpenCode on your computer. Your sessions keep running there; the app shows them and lets you steer them.",
+      "RedCode Mobile is a remote for RedCode on your computer. Your sessions keep running there; the app shows them and lets you steer them.",
     command,
     steps: [
       {
         title: "Get the app",
         body: androidSoon
-          ? "Install the OpenCode beta on your iPhone from TestFlight. The Android app is coming soon."
-          : "Install the OpenCode beta on your iPhone from TestFlight, or the app on your Android phone.",
+          ? "Install the RedCode beta on your iPhone from TestFlight. The Android app is coming soon."
+          : "Install the RedCode beta on your iPhone from TestFlight, or the app on your Android phone.",
       },
       {
         title: "Run this on your computer",

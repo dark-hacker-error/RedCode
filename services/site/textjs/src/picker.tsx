@@ -31,7 +31,7 @@ function Picker(props: Input & { onDone: (value?: string) => void }) {
   })
   return (
     <Box flexDirection="column" paddingX={1} paddingY={1}>
-      <Text bold>Install OpenCode</Text>
+      <Text bold>Install RedCode</Text>
       <Text color="muted">↑ ↓ choose · Enter copies · Esc closes</Text>
       <Box marginTop={1}>
         <Select

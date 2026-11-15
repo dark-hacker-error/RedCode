@@ -13,7 +13,7 @@ import {
 } from "@agentclientprotocol/sdk"
 import { Context, Deferred, Effect } from "effect"
 
-export const Responded = Context.Reference<Effect.Effect<void>>("@opencode/cli/acp/Connection/Responded", {
+export const Responded = Context.Reference<Effect.Effect<void>>("redcode-ai/acp/Connection/Responded", {
   defaultValue: () => Effect.void,
 })
 

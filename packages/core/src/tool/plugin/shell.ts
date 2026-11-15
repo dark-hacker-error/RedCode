@@ -1,11 +1,11 @@
 export * as ShellTool from "./shell.js"
 
-import { ToolFailure } from "@opencode/ai/effect"
-import type { Context } from "@opencode/plugin/effect/plugin"
-import type { SessionHooks } from "@opencode/plugin/effect/session"
-import type { ShellCreateBefore } from "@opencode/plugin/effect/shell"
-import type { Shell as ShellSchema } from "@opencode/schema/shell"
-import type { Tool } from "@opencode/schema/tool"
+import { ToolFailure } from "@redcode/ai/effect"
+import type { Context } from "@redcode/plugin/effect/plugin"
+import type { SessionHooks } from "@redcode/plugin/effect/session"
+import type { ShellCreateBefore } from "@redcode/plugin/effect/shell"
+import type { Shell as ShellSchema } from "@redcode/schema/shell"
+import type { Tool } from "@redcode/schema/tool"
 import { Clock, Deferred, Effect, Fiber, Option, Schema, Struct } from "effect"
 import { Environment } from "../../environment/index.js"
 import { Job } from "../../job.js"
@@ -399,7 +399,7 @@ export const Plugin = {
                         invocation.env.AGENT = "1"
                         invocation.env.OPENCODE = "1"
                         invocation.env.AI_AGENT ||= "opencode"
-                        invocation.env.OPENCODE_SESSION_ID = context.sessionID
+                        invocation.env.REDCODE_SESSION_ID = context.sessionID
                         // Asking for permission can take a while; a stop then ends the call before any command starts.
                         finalTimeout = yield* restore(
                           Effect.raceFirst(

@@ -1,12 +1,12 @@
 import { describe, expect, test } from "bun:test"
-import { dict } from "@opencode/ui/i18n/en"
+import { dict } from "@redcode/ui/i18n/en"
 import en from "@/runtime/i18n/en"
 import { settingsSearchIndex, type SettingsSearchServer } from "./search-index"
 import { rankSettings } from "./search-results"
 
 const strings = new Map(Object.entries({ ...dict, ...en }))
 
-const project = { id: "proj_opencode", name: "OpenCode", worktree: "/projects/opencode" }
+const project = { id: "proj_opencode", name: "RedCode", worktree: "/projects/opencode" }
 
 const servers: SettingsSearchServer[] = [
   { key: "local", name: "Local server", connected: true, projects: [project] },

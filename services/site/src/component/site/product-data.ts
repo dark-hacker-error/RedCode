@@ -4,20 +4,20 @@
 import { docsUrl } from "~/lib/docs"
 import { isMobile, requestPlatform } from "~/lib/platform"
 
-/** Where the SDK's "Read docs" action leads: the @opencode/sdk docs (the in-process host). */
+/** Where the SDK's "Read docs" action leads: the @redcode/sdk docs (the in-process host). */
 export const sdkDocs = docsUrl("/build/sdk/")
 
 export { installs } from "~/lib/install-commands"
 
-// The real v2 @opencode/sdk API (packages/sdk README, opencode.ai/docs/build/sdk), trimmed from
+// The real v2 @redcode/sdk API (packages/sdk README, opencode.ai/docs/build/sdk), trimmed from
 // the script in the SDK video. `sessions.create()` without a location uses the working directory.
 // Lines stay within 32 characters so the card sizes code to its width.
 export const sdkSnippet = [
-  `<span data-k>import</span> <span data-p>{</span> <span data-v>OpenCode</span> <span data-p>}</span>`,
-  `  <span data-k>from</span> <span data-s>"@opencode/sdk"</span>`,
+  `<span data-k>import</span> <span data-p>{</span> <span data-v>RedCode</span> <span data-p>}</span>`,
+  `  <span data-k>from</span> <span data-s>"@redcode/sdk"</span>`,
   ``,
   `<span data-k>await using</span> <span data-v>oc</span> <span data-o>=</span>`,
-  `  <span data-k>await</span> OpenCode<span data-p>.</span><span data-f>create</span><span data-p>()</span>`,
+  `  <span data-k>await</span> RedCode<span data-p>.</span><span data-f>create</span><span data-p>()</span>`,
   `<span data-k>const</span> <span data-v>s</span> <span data-o>=</span>`,
   `  <span data-k>await</span> <span data-v>oc</span><span data-p>.</span>sessions<span data-p>.</span><span data-f>create</span><span data-p>()</span>`,
   `<span data-k>await</span> <span data-v>oc</span><span data-p>.</span>sessions<span data-p>.</span><span data-f>prompt</span><span data-p>({</span>`,
@@ -59,7 +59,7 @@ export const products = [
   {
     slug: "sdk",
     name: "SDK",
-    body: "Drive OpenCode from your own scripts, CI jobs and tools.",
+    body: "Drive RedCode from your own scripts, CI jobs and tools.",
     action: "Read docs",
   },
 ] as const satisfies readonly {
@@ -100,12 +100,12 @@ export const allProductPages = [...products, ...moreProducts]
 export const productPages = allProductPages.filter((product) => product.slug !== "mini")
 
 /**
- * Settings › Extensions card: OpenCode inside editors. The VS Code extension is sdks/vscode
+ * Settings › Extensions card: RedCode inside editors. The VS Code extension is sdks/vscode
  * (publisher sst-dev); Zed and other ACP clients run `opencode acp` (docs: /cli/acp).
  */
 export const extensions = {
   name: "Extensions",
-  body: "Use OpenCode inside VS Code, or in Zed and other editors through ACP.",
+  body: "Use RedCode inside VS Code, or in Zed and other editors through ACP.",
   action: "Install",
   href: "https://marketplace.visualstudio.com/items?itemName=sst-dev.opencode",
 }

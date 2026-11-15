@@ -7,7 +7,7 @@ import {
   CloudflareWorkersAI,
   Google,
   OpenAI,
-  OpenCode,
+  RedCode,
   OpenRouter,
   TypeSafeAI,
   VercelAIGateway,
@@ -154,7 +154,7 @@ describe("Decision", () => {
   it.effect("sends a lone input object as the System One state and maps boolean choices back", () =>
     ai.decision
       .generate({
-        model: OpenCode.configure({ apiKey: "opencode-key", baseURL: "https://opencode.test/v1" }).decision("jev-1.13"),
+        model: RedCode.configure({ apiKey: "opencode-key", baseURL: "https://opencode.test/v1" }).decision("jev-1.13"),
         input: { ticket: "hello" },
         questions: [
           {

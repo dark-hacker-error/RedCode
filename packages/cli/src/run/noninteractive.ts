@@ -6,19 +6,19 @@ import {
   type JsonValue,
   type LocationRef,
   type ModelRef,
-  type OpenCodeClient,
+  type RedCodeClient,
   type PermissionRequest,
   type SessionMessageAssistantTool,
   type SessionMessageIdle,
   type SessionMessageInfo,
-} from "@opencode/client/promise"
-import { SessionMessage } from "@opencode/schema/session-message"
+} from "@redcode/client/promise"
+import { SessionMessage } from "@redcode/schema/session-message"
 import { EOL } from "node:os"
-import { toolOutputText, type MiniToolPart } from "@opencode/tui/mini/tool"
+import { toolOutputText, type MiniToolPart } from "@redcode/tui/mini/tool"
 import { UI } from "./ui"
 
 type Input = {
-  client: OpenCodeClient
+  client: RedCodeClient
   sessionID: string
   location: LocationRef
   message: string
@@ -337,7 +337,7 @@ function terminalOutcome(event: Event): Outcome | undefined {
   }
 }
 
-async function projectedMessages(client: OpenCodeClient, sessionID: string, messageID: string) {
+async function projectedMessages(client: RedCodeClient, sessionID: string, messageID: string) {
   const messages: SessionMessageInfo[] = []
   let cursor: string | undefined
   while (true) {

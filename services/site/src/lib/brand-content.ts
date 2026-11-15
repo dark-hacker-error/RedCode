@@ -52,7 +52,7 @@ export function brandContent(t: Translate) {
     },
     naming: {
       title: "Naming",
-      body: "Write OpenCode as one word, with a capital O and a capital C. Do not write Opencode, Open Code, OpenCode AI or Open-Code.",
+      body: "Write RedCode as one word, with a capital O and a capital C. Do not write Opencode, Open Code, RedCode AI or Open-Code.",
       // Names between backticks show as code.
       code: "Use the lowercase `opencode` only in code and package names, such as `opencode-figma` or `@acme/opencode-plugin`.",
     },
@@ -82,7 +82,7 @@ export function brandContent(t: Translate) {
       },
       {
         title: "Wordmark",
-        body: "The full name in the OpenCode letterforms. Use it wherever there is room to spell out the name.",
+        body: "The full name in the RedCode letterforms. Use it wherever there is room to spell out the name.",
         kind: "wordmark",
         assets: [
           {
@@ -300,7 +300,7 @@ export function brandContent(t: Translate) {
     },
     integrations: {
       title: "Integrations",
-      body: "Plugins, providers and tools that work with OpenCode, and projects built with it, can say so. Use a badge or a partner lockup, and name your project so it is clear that it is yours.",
+      body: "Plugins, providers and tools that work with RedCode, and projects built with it, can say so. Use a badge or a partner lockup, and name your project so it is clear that it is yours.",
       badges: {
         body: "Put a badge in your README, docs or website and link it to opencode.ai. Pick the light or dark file for your background (the HTML switches by itself), and do not change the colors or the text.",
         sizes: "Every style comes in 20, 32 and 44px (Shields only in 20px), as SVG and as PNG at 2×.",
@@ -309,14 +309,14 @@ export function brandContent(t: Translate) {
           {
             label: "works-with",
             title: "Works with",
-            alt: "Works with OpenCode",
-            body: "For plugins, providers and tools that run with OpenCode.",
+            alt: "Works with RedCode",
+            body: "For plugins, providers and tools that run with RedCode.",
           },
           {
             label: "built-with",
             title: "Built with",
-            alt: "Built with OpenCode",
-            body: "For projects made with OpenCode.",
+            alt: "Built with RedCode",
+            body: "For projects made with RedCode.",
           },
         ],
         // The styles David picked from the badge options (A, C, F, G); G is shields.io "flat", 20px only.
@@ -329,19 +329,19 @@ export function brandContent(t: Translate) {
       },
       lockup: {
         title: "Partner lockup",
-        body: "Put the OpenCode logo and the partner logo side by side, with a × between them. Leave 3 strokes of space on each side of the ×, size the partner logo to look as tall as the OpenCode logo, and keep clear space around the whole lockup.",
+        body: "Put the RedCode logo and the partner logo side by side, with a × between them. Leave 3 strokes of space on each side of the ×, size the partner logo to look as tall as the RedCode logo, and keep clear space around the whole lockup.",
         partners: [{ name: "GitHub", tones: ["light", "dark"] }],
       },
       naming: {
         title: "Naming your project",
         body: "Lead with your own name, so it is clear that the project is yours.",
         // Names between backticks show as code.
-        rule: "Write `Linear for OpenCode` or name the package `opencode-linear`. Do not write `OpenCode Linear` or `Linear by OpenCode`.",
+        rule: "Write `Linear for RedCode` or name the package `opencode-linear`. Do not write `RedCode Linear` or `Linear by RedCode`.",
       },
     },
     trademarks: {
       title: "Trademarks",
-      body: "OpenCode and the OpenCode logo are trademarks of Anomaly. Do not use them to suggest that Anomaly endorses or sponsors you, in your product or company name, or on merchandise without permission.",
+      body: "RedCode and the RedCode logo are trademarks of Anomaly. Do not use them to suggest that Anomaly endorses or sponsors you, in your product or company name, or on merchandise without permission.",
       contact: { before: "For questions, email ", email: pressEmail, after: "." },
     },
   }
@@ -539,9 +539,9 @@ export function brandMarkdown(context: MarkdownContext) {
 // For agents only: the "Rules for agent" copy and /brand.md end with it, and the page doesn't show it.
 // The values are the shared interface scale in site.css (--grey-1 to --grey-11), kept in step by
 // script/check-greys.ts, and the type tokens there (--fs-*). Change them together.
-const brandAgentStyle = `## Making it look like OpenCode
+const brandAgentStyle = `## Making it look like RedCode
 
-For agents that make a page, a slide, a document or an interface that should look like OpenCode. Partners who only use the logo can skip it.
+For agents that make a page, a slide, a document or an interface that should look like RedCode. Partners who only use the logo can skip it.
 
 ### Color
 
@@ -586,6 +586,6 @@ Use one grey scale. Each step has one job, the same in light and dark. Use no ot
 
 ### Writing
 
-- Write OpenCode as one word with a capital O and C. Call it an "open source coding agent".
+- Write RedCode as one word with a capital O and C. Call it an "open source coding agent".
 - Write statements, not rhetorical questions, and use no colons in headings, buttons or captions.
 - Write short, plain sentences.`

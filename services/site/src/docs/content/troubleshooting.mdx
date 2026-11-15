@@ -3,11 +3,11 @@ title: "Troubleshooting"
 ---
 
 <Callout type="tip">
-  You can ask OpenCode to debug itself. Describe the problem and ask it to use this troubleshooting page; it can read
+  You can ask RedCode to debug itself. Describe the problem and ask it to use this troubleshooting page; it can read
   the steps below, inspect its service and logs, and help identify the issue.
 </Callout>
 
-OpenCode uses a client-server architecture. A background server owns sessions, plugins, permissions, and other application
+RedCode uses a client-server architecture. A background server owns sessions, plugins, permissions, and other application
 state. Start by determining whether an issue is in a client, the shared server, or a specific project.
 
 ## Check the background service
@@ -38,7 +38,7 @@ opencode service start
 ```
 
 <Callout type="note">
-  OpenCode normally discovers or starts the shared background service automatically. The service commands are only
+  RedCode normally discovers or starts the shared background service automatically. The service commands are only
   needed when diagnosing its lifecycle.
 </Callout>
 
@@ -94,21 +94,21 @@ Pass a JSON request body with `--data` or `-d`, and add headers with `--header` 
 Installed builds write logs to:
 
 ```text
-~/.local/share/opencode/log/opencode.log
+~/.local/share/redcode/log/opencode.log
 ```
 
 Follow the log while reproducing the problem:
 
 ```bash
-tail -f ~/.local/share/opencode/log/opencode.log
+tail -f ~/.local/share/redcode/log/opencode.log
 ```
 
 Each line includes a process `run` ID and a `role` field. Use `role=server` for session, provider, plugin, permission, and
 tool activity.
 
 ```bash
-grep 'role=server' ~/.local/share/opencode/log/opencode.log
-grep 'run=8fc3b1d5' ~/.local/share/opencode/log/opencode.log
+grep 'role=server' ~/.local/share/redcode/log/opencode.log
+grep 'run=8fc3b1d5' ~/.local/share/redcode/log/opencode.log
 ```
 
 ## Capture a heap snapshot
@@ -122,7 +122,7 @@ opencode debug heap-dump
 The command waits until the snapshot is complete, then prints its path:
 
 ```text
-/home/me/.local/share/opencode/log/heap-48213-2026-10-23T013012345Z.heapsnapshot
+/home/me/.local/share/redcode/log/heap-48213-2026-10-23T013012345Z.heapsnapshot
 ```
 
 Write it somewhere else with `--directory`. The server creates the directory when it is missing:
@@ -132,7 +132,7 @@ opencode debug heap-dump --directory ./snapshots
 ```
 
 - It only uses a server that is already running. It never starts, replaces, or restarts one.
-- Use `--server <url>` to capture a server you started with `opencode serve`. Set `OPENCODE_PASSWORD` if it has one.
+- Use `--server <url>` to capture a server you started with `opencode serve`. Set `REDCODE_PASSWORD` if it has one.
   `--directory` is then a path on the server's machine.
 - Open the file in the Memory panel of Chrome DevTools.
 
@@ -165,7 +165,7 @@ opencode-heap-2026-10-23T013012345Z/
 
 ## Capture CPU and memory profiles
 
-On macOS and Linux, you can signal a running OpenCode process to capture diagnostic data. Get the background server PID
+On macOS and Linux, you can signal a running RedCode process to capture diagnostic data. Get the background server PID
 from the health endpoint:
 
 ```bash
@@ -203,22 +203,22 @@ log entry includes its complete path. You can inspect both file types in Chrome 
 The shared server registers itself at:
 
 ```text
-~/.local/state/opencode/service.json
+~/.local/state/redcode/service.json
 ```
 
 Its private service configuration is stored separately at:
 
 ```text
-~/.config/opencode/service.json
+~/.config/redcode/service.json
 ```
 
 The database normally lives at:
 
 ```text
-~/.local/share/opencode/opencode.db
+~/.local/share/redcode/redcode.db
 ```
 
-`OPENCODE_DB` can override the database location.
+`REDCODE_DB` can override the database location.
 
 <Callout type="warning">
   Do not delete or edit service files or the database while troubleshooting. Use the service commands to manage the
@@ -237,4 +237,4 @@ Include the following when reporting a reproducible problem:
 
 Remove API keys, authorization headers, prompts, file contents, and other sensitive data before sharing logs.
 
-File reproducible problems in [GitHub Issues](https://github.com/anomalyco/opencode/issues).
+File reproducible problems in [GitHub Issues](https://github.com/Vempire-X/RedCode/issues).

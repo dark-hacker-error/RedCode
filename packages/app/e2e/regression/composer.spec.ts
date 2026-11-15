@@ -66,7 +66,7 @@ test("a bare @ lists sessions, and a multi-word title matches while file search 
         id: "ses_0123456789otherprojecthome",
         title: "HOME elsewhere",
         projectID: "proj_other",
-        directory: "C:/OpenCode/Other",
+        directory: "C:/RedCode/Other",
         created: T0 + 3,
       },
     ],
@@ -167,7 +167,7 @@ test("the free usage limit opens the Go dialog once, swaps the composer for the 
       all: [
         {
           id: "opencode",
-          name: "OpenCode",
+          name: "RedCode",
           models: {
             "big-pickle": {
               id: "big-pickle",
@@ -182,7 +182,7 @@ test("the free usage limit opens the Go dialog once, swaps the composer for the 
               {
                 id: "opencode-go",
                 integrationID: "opencode-go",
-                name: "OpenCode Go",
+                name: "RedCode Go",
                 models: {
                   "glm-5-go": {
                     id: "glm-5-go",
@@ -201,15 +201,15 @@ test("the free usage limit opens the Go dialog once, swaps the composer for the 
     integrations: () => [
       {
         id: "opencode",
-        name: "OpenCode Console",
-        methods: [{ id: "device", type: "oauth", label: "OpenCode Console account" }],
+        name: "RedCode Console",
+        methods: [{ id: "device", type: "oauth", label: "RedCode Console account" }],
         connections: state.authorized
           ? [{ type: "credential", id: "cred_console", label: "Anomaly", method: "oauth" }]
           : [],
       },
       {
         id: "opencode-go",
-        name: "OpenCode Go",
+        name: "RedCode Go",
         methods: [{ type: "key" }],
         connections: state.authorized ? [{ type: "credential", id: "cred_go", label: "Go key", method: "key" }] : [],
       },
@@ -258,10 +258,10 @@ test("the free usage limit opens the Go dialog once, swaps the composer for the 
 
   // Subscribe -> Go API key -> Continue switches the model in the current session without opening a new draft tab.
   await upsell.getByRole("button", { name: "Subscribe", exact: true }).click()
-  const connect = page.getByRole("dialog", { name: "Connect OpenCode Go", exact: true })
+  const connect = page.getByRole("dialog", { name: "Connect RedCode Go", exact: true })
   await connect.getByPlaceholder("API key").fill("sk-go-test")
   await connect.getByRole("button", { name: "Continue", exact: true }).click()
-  const connected = page.getByRole("dialog", { name: "Connected to OpenCode Go" })
+  const connected = page.getByRole("dialog", { name: "Connected to RedCode Go" })
   await expect(connected.getByRole("radio", { name: "GLM-5 Go", exact: true })).toHaveAttribute("aria-checked", "true")
   await connected.getByRole("button", { name: "Continue", exact: true }).click()
   await expect(page.getByRole("dialog")).toHaveCount(0)
@@ -355,7 +355,7 @@ for (const action of ["tray", "picker"] as const) {
         all: [
           {
             id: "opencode",
-            name: "OpenCode",
+            name: "RedCode",
             models: {
               "big-pickle": {
                 id: "big-pickle",
@@ -367,7 +367,7 @@ for (const action of ["tray", "picker"] as const) {
           },
           {
             id: "opencode-go",
-            name: "OpenCode Go",
+            name: "RedCode Go",
             models: {
               "glm-5-go": {
                 id: "glm-5-go",
@@ -391,7 +391,7 @@ for (const action of ["tray", "picker"] as const) {
 
     await expect(page.getByText("Refactor the parser", { exact: true })).toBeVisible()
 
-    // The refusal OpenCode Console sends a Go subscriber at a limit, as core records it.
+    // The refusal RedCode Console sends a Go subscriber at a limit, as core records it.
     const body = {
       type: "error",
       error: { type: "GoUsageLimitError", message: "Go usage limit exceeded" },
@@ -410,7 +410,7 @@ for (const action of ["tray", "picker"] as const) {
           assistantMessageID: "msg_go_assistant",
           error: {
             type: "provider.go-limit",
-            message: "OpenCode Go 5 hour usage limit reached.",
+            message: "RedCode Go 5 hour usage limit reached.",
             status: 429,
             response: { body: JSON.stringify(body) },
             retryAfterMs: 3_600_000,
@@ -422,13 +422,13 @@ for (const action of ["tray", "picker"] as const) {
     const tray = page.locator('[data-component="session-go-limit-tray"]')
     await expect(tray).toContainText(/Go 5 hour usage limit reached\. It resets at .+?\./)
     await expect(
-      page.getByRole("status").filter({ hasText: /^You've reached your OpenCode Go usage limit\. It resets at / }),
+      page.getByRole("status").filter({ hasText: /^You've reached your RedCode Go usage limit\. It resets at / }),
     ).toBeVisible()
     await expect(view.editor).toHaveText("Refactor the parser")
-    await expect(page.getByText("OpenCode Go 5 hour usage limit reached.")).toHaveCount(0)
+    await expect(page.getByText("RedCode Go 5 hour usage limit reached.")).toHaveCount(0)
     await expect(page.getByRole("dialog")).toHaveCount(0)
 
-    // Extra Usage is turned on from the workspace's Go page in OpenCode Console.
+    // Extra Usage is turned on from the workspace's Go page in RedCode Console.
     const popup = page.waitForEvent("popup")
     await tray.getByRole("button", { name: "Turn on Extra Usage", exact: true }).click()
     await expect(await popup).toHaveURL("https://opencode.ai/console/wrk_go_limit/go")
@@ -513,7 +513,7 @@ test("a catalog refresh cannot replace an existing session's model", async ({ pa
     sessions: [{ id: sessionID, agent: "build", model: { id: "alpha", providerID: "opencode", variant: "high" } }],
     provider: () => catalog.current,
     onPrompt: (input) => void prompts.push(input.body),
-    seed: { storage: { "opencode.global.dat:model": { recent: [{ providerID: "opencode", modelID: "beta" }] } } },
+    seed: { storage: { "redcode.global.dat:model": { recent: [{ providerID: "opencode", modelID: "beta" }] } } },
   })
 
   const control = page.locator('[data-action="composer-model"]')
@@ -583,7 +583,7 @@ test("an existing session's model never shows a fallback while its agent loads",
     name: "AgentPending",
     sessions: [{ id: sessionID, agent: "build", model: { id: "alpha", providerID: "opencode" } }],
     provider: provider({ id: "alpha", name: "Alpha" }, { id: "beta", name: "Beta" }),
-    seed: { storage: { "opencode.global.dat:model": { recent: [{ providerID: "opencode", modelID: "beta" }] } } },
+    seed: { storage: { "redcode.global.dat:model": { recent: [{ providerID: "opencode", modelID: "beta" }] } } },
   })
   const agents = Promise.withResolvers<void>()
   await page.route(/\/api\/agent(\?|$)/, async (route) => {
@@ -674,7 +674,7 @@ test("a send pressed while the Location's plugins activate waits, Esc cancels it
 test("an opened session in another Location names its model from a loaded catalog before its agents load", async ({
   page,
 }) => {
-  const other = "C:/OpenCode/WarmOther"
+  const other = "C:/RedCode/WarmOther"
   await mockWorkspace(page, {
     name: "WarmOpen",
     sessions: [
@@ -763,7 +763,7 @@ test("a managed composer label follows direct connections, not picker filtering 
         {
           id: "opencode",
           integrationID: "opencode",
-          name: "Anomaly / OpenCode",
+          name: "Anomaly / RedCode",
           models: {},
         },
         {
@@ -789,7 +789,7 @@ test("a managed composer label follows direct connections, not picker filtering 
     onPrompt: (input) => void prompts.push(input.body),
     seed: {
       storage: {
-        "opencode.global.dat:model": {
+        "redcode.global.dat:model": {
           user: [
             { providerID: "console-openai", modelID: "gpt", visibility: "show" },
             { providerID: "openai", modelID: "direct-model", visibility: "show" },
@@ -821,15 +821,15 @@ test("a managed composer label follows direct connections, not picker filtering 
       data: {},
     },
   ])
-  await expect(control).toHaveText("OpenCode / OpenAI / GPT")
-  await expect(control).toHaveAccessibleName("OpenCode / OpenAI / GPT")
+  await expect(control).toHaveText("RedCode / OpenAI / GPT")
+  await expect(control).toHaveAccessibleName("RedCode / OpenAI / GPT")
   await control.click()
   const search = picker.getByRole("combobox", { name: "Search models", exact: true })
   await expect(picker.locator('[data-option-key="openai:direct-model"]')).toBeVisible()
   await search.fill("GPT")
   await expect(picker.locator('[data-option-key="openai:direct-model"]')).toHaveCount(0)
   await expect(selected).toHaveAttribute("aria-current", "true")
-  await expect(control).toHaveText("OpenCode / OpenAI / GPT")
+  await expect(control).toHaveText("RedCode / OpenAI / GPT")
   await search.press("Escape")
   await expect(picker).toBeHidden()
 
@@ -1177,7 +1177,7 @@ test("shows the dropzone and attaches a dropped file", async ({ page }) => {
     .toEqual([
       {
         path: expect.stringMatching(/\/uploads\/[0-9a-f-]{36}\/dropzone\.txt$/),
-        directory: "C:/OpenCode/ComposerDraft",
+        directory: "C:/RedCode/ComposerDraft",
         body: "Dropzone fixture",
       },
     ])
@@ -1315,7 +1315,7 @@ test("keeps focus in a dialog that replaces the model dialog and returns it to t
   await expect(editor).toHaveText("keep, me")
 })
 
-test("lists OpenCode's free models in the model picker however old they are", async ({ page }) => {
+test("lists RedCode's free models in the model picker however old they are", async ({ page }) => {
   await page.clock.setFixedTime(T0)
   const year = { released: T0 - 365 * 24 * 60 * 60 * 1000 }
   await openSession(page, {
@@ -1560,7 +1560,7 @@ test("marks a Console provider with its workspace only when it is also connected
     name: "ComposerConsoleProviders",
     provider: {
       all: [
-        managed("opencode", "opencode", "OpenCode", model("console-model", "Console Model")),
+        managed("opencode", "opencode", "RedCode", model("console-model", "Console Model")),
         managed("console-google", "google", "Google", model("managed-gemini", "Managed Gemini")),
         managed("console-openai", "openai", "OpenAI", model("managed-gpt", "Managed GPT")),
         { id: "google", canonical: "google", name: "Google", models: model("direct-gemini", "Direct Gemini") },
@@ -1570,7 +1570,7 @@ test("marks a Console provider with its workspace only when it is also connected
     },
     seed: {
       storage: {
-        "opencode.global.dat:model": {
+        "redcode.global.dat:model": {
           user: [
             ["opencode", "console-model"],
             ["console-google", "managed-gemini"],
@@ -1593,7 +1593,7 @@ test("marks a Console provider with its workspace only when it is also connected
   await expect(headings.filter({ hasText: /^GoogleAnomaly$/ })).toHaveCount(1)
   await expect(headings.filter({ hasText: /^Google$/ })).toHaveCount(1)
   await expect(headings.filter({ hasText: /^OpenAI$/ })).toHaveCount(1)
-  await expect(headings.filter({ hasText: /^OpenCode$/ })).toHaveCount(1)
+  await expect(headings.filter({ hasText: /^RedCode$/ })).toHaveCount(1)
   await expect(menu.getByText(/Anomaly \//)).toHaveCount(0)
 })
 

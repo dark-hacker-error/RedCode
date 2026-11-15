@@ -1,4 +1,4 @@
-import { OpenCode, withMediaRefs, type MediaRequestOptions } from "@opencode/client/promise"
+import { RedCode, withMediaRefs, type MediaRequestOptions } from "@redcode/client/promise"
 import type { ServerConnection } from "@/runtime/server/registry"
 import { decode64 } from "@/runtime/persistence/base64"
 
@@ -24,7 +24,7 @@ export type ServerRequestOptions = MediaRequestOptions
 
 export function createApiForServer(input: { server: ServerConnection.HttpBase; fetch?: typeof globalThis.fetch }) {
   return withMediaRefs(
-    OpenCode.make({
+    RedCode.make({
       baseUrl: input.server.url,
       fetch: input.fetch,
       headers: input.server.password

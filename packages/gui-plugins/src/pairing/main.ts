@@ -1,8 +1,8 @@
 import { execFile } from "node:child_process"
 import { powerSaveBlocker } from "electron"
 import { Schema } from "effect"
-import { builtinMainContext } from "@opencode/plugin/gui/builtin"
-import type { Plugin } from "@opencode/plugin/gui/main"
+import { builtinMainContext } from "@redcode/plugin/gui/builtin"
+import type { Plugin } from "@redcode/plugin/gui/main"
 import { Pairing } from "./contract"
 import { createDispatch } from "./dispatch"
 import {
@@ -21,7 +21,7 @@ const setup: Plugin.MainSetup = (ctx) => {
   const stored = builtinMainContext(ctx).storage.store("keepScreenActive", {
     schema: Schema.Boolean,
     initial: false,
-    from: { state: ["opencode.settings", "keepScreenActive"] },
+    from: { state: ["redcode.settings", "keepScreenActive"] },
   })
 
   const cli = ctx.cli

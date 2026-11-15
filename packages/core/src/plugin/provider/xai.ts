@@ -1,5 +1,5 @@
-import type { IntegrationOAuthMethodRegistration } from "@opencode/plugin/effect/integration"
-import { define } from "@opencode/plugin/effect/plugin"
+import type { IntegrationOAuthMethodRegistration } from "@redcode/plugin/effect/integration"
+import { define } from "@redcode/plugin/effect/plugin"
 import { Clock, Effect, Option, Schema } from "effect"
 import { App } from "../../app.js"
 import { Credential } from "../../credential.js"

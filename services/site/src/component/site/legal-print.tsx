@@ -195,7 +195,7 @@ function Exhibit(props: { info: Facts }) {
         <span>(EN)</span>
       </p>
       <div data-slot="brand">
-        <img src={wordmark} alt="OpenCode" />
+        <img src={wordmark} alt="RedCode" />
         <span>{entity}</span>
       </div>
     </>
@@ -274,7 +274,7 @@ export function ArchitectCover(props: {
         )}
       </Show>
       {/* One small logo: 4:5, above the 16 × 20px minimum; the interior pages repeat it here. */}
-      <img data-architect-part="logo" src={logoImage(cover().logo).source} alt="OpenCode" />
+      <img data-architect-part="logo" src={logoImage(cover().logo).source} alt="RedCode" />
       <div data-architect-part="title">
         <Editable key="kicker" as="p" />
         <div data-slot="cover-title">{props.info.title}</div>
@@ -365,7 +365,7 @@ function Letterhead(props: { info: Facts }) {
   return (
     <>
       <header data-slot="head">
-        <img src={wordmark} alt="OpenCode" />
+        <img src={wordmark} alt="RedCode" />
         <p>{props.info.effective}</p>
       </header>
       <div data-slot="grid">
@@ -427,9 +427,9 @@ function Modular(props: { info: Facts }) {
   return (
     <>
       <header data-slot="head">
-        <img src={logo} alt="OpenCode" />
+        <img src={logo} alt="RedCode" />
         <p>
-          OpenCode
+          RedCode
           <br />
           opencode.ai
         </p>
@@ -516,7 +516,7 @@ function Swiss(props: { info: Facts }) {
         </div>
       </dl>
       <div data-slot="brand">
-        <img src={wordmark} alt="OpenCode" />
+        <img src={wordmark} alt="RedCode" />
         <span>{entity}</span>
       </div>
     </>
@@ -577,7 +577,7 @@ function Colophon(props: {
           </div>
           <div>
             <dt>Type</dt>
-            <dd>Inter and OpenTUI Mono. Marks: the OpenCode logo, wordmark and font.</dd>
+            <dd>Inter and OpenTUI Mono. Marks: the RedCode logo, wordmark and font.</dd>
           </div>
         </dl>
       </div>
@@ -603,7 +603,7 @@ function DotMatrix(props: { columns: number; rows: number }) {
   )
 }
 
-/** A word set in the OpenCode font's modules: each glyph is 4 × 7 squares, ink and shade. */
+/** A word set in the RedCode font's modules: each glyph is 4 × 7 squares, ink and shade. */
 function ModuleWord(props: { word: string }) {
   const letters = () => [...props.word].filter((letter): letter is Letter => letter in modules)
   return (
@@ -669,7 +669,7 @@ function pageRules(style: LegalPrintStyle, info: Facts) {
     letterhead: {
       margin: "26mm 20mm 26mm",
       boxes: `
-        @top-left { content: ${text(`OpenCode — ${info.title}`)}; ${sans} }
+        @top-left { content: ${text(`RedCode — ${info.title}`)}; ${sans} }
         @top-right { content: ${text(info.effective)}; ${sans} }
         @bottom-left { content: ${text(entity)}; ${sans} border-top: 0.5pt solid #000; vertical-align: top; padding-top: 2mm; }
         @bottom-center { content: ${text(info.host)}; ${sans} border-top: 0.5pt solid #000; vertical-align: top; padding-top: 2mm; }

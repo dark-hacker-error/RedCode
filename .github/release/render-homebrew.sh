@@ -5,15 +5,15 @@
 
 macos=$1 archives=$2 tap=$3
 sum() { sha256 "$1" | cut -c1-64; }
-base="https://opencode.ai/files/bin/$OPENCODE_VERSION"
+base="https://opencode.ai/files/bin/$REDCODE_VERSION"
 cat > "$tap/opencode-v2.rb" <<FORMULA
 # typed: false
 # frozen_string_literal: true
 
 class OpencodeV2 < Formula
-  desc "OpenCode V2 - the AI coding agent for the terminal"
-  homepage "https://github.com/anomalyco/opencode"
-  version "$OPENCODE_VERSION"
+  desc "RedCode V2 - the AI coding agent for the terminal"
+  homepage "https://github.com/Vempire-X/RedCode"
+  version "$REDCODE_VERSION"
   license "MIT"
 
   depends_on "ripgrep"

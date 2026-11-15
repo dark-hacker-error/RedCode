@@ -1,5 +1,5 @@
-import { Icon } from "@opencode/ui/icon"
-import type { SkillInfo } from "@opencode/client/promise"
+import { Icon } from "@redcode/ui/icon"
+import type { SkillInfo } from "@redcode/client/promise"
 import { createEffect, onCleanup } from "solid-js"
 import { useLanguage } from "@/runtime/i18n/language"
 import { usePlatform } from "@/runtime/platform/platform"
@@ -10,7 +10,7 @@ import { consoleMcpLinks, consoleMcps, consoleSkillLink, consoleWorkspace } from
 import "@/settings/settings.css"
 
 /**
- * Which MCP servers and skills OpenCode Console delivers, read from config and the Console sign-in, for the Extensions
+ * Which MCP servers and skills RedCode Console delivers, read from config and the Console sign-in, for the Extensions
  * pages. `directory` is the Location whose config decides which same-named server wins; without one, the server's.
  */
 export function createConsoleSources(directory: () => string | undefined) {

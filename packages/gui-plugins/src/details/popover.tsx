@@ -1,10 +1,10 @@
 import { Popover } from "@kobalte/core/popover"
-import { Icon } from "@opencode/ui/icon"
-import { IconButton } from "@opencode/ui/icon-button"
-import { Keybind } from "@opencode/ui/keybind"
-import { Tooltip } from "@opencode/ui/tooltip"
+import { Icon } from "@redcode/ui/icon"
+import { IconButton } from "@redcode/ui/icon-button"
+import { Keybind } from "@redcode/ui/keybind"
+import { Tooltip } from "@redcode/ui/tooltip"
 import { createSignal, onCleanup, Show, Suspense, untrack, type Component } from "solid-js"
-import { Command, createKeyed, usePlugin, type MountedSession } from "@opencode/plugin/gui"
+import { Command, createKeyed, usePlugin, type MountedSession } from "@redcode/plugin/gui"
 import type { DetailsPanelProps } from "./panel"
 import {
   detailsPopoverFocusesContent,

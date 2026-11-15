@@ -1,5 +1,5 @@
-import type { Plugin } from "@opencode/plugin/tui"
-import { Goal } from "@opencode/schema/goal"
+import type { Plugin } from "@redcode/plugin/tui"
+import { Goal } from "@redcode/schema/goal"
 import { createEffect, createMemo, createSignal, on, onCleanup, Show, type Accessor } from "solid-js"
 import { Keymap } from "../../context/keymap"
 import { useTheme } from "../../context/theme"

@@ -1,12 +1,12 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "version": "2.3.0",
-  "name": "@opencode/sdk",
+  "name": "@redcode/sdk",
   "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anomalyco/opencode.git",
+    "url": "git+https://github.com/Vempire-X/RedCode.git",
     "directory": "packages/sdk"
   },
   "publishConfig": {
@@ -30,18 +30,18 @@
     "verify:package": "bun run script/verify-package.ts"
   },
   "dependencies": {
-    "@opencode/client": "workspace:*",
-    "@opencode/core": "workspace:*",
-    "@opencode/plugin": "workspace:*",
-    "@opencode/schema": "workspace:*",
-    "@opencode/server": "workspace:*",
-    "@opencode/util": "workspace:*",
+    "@redcode/client": "workspace:*",
+    "@redcode/core": "workspace:*",
+    "@redcode/plugin": "workspace:*",
+    "@redcode/schema": "workspace:*",
+    "@redcode/server": "workspace:*",
+    "@redcode/util": "workspace:*",
     "effect": "catalog:"
   },
   "devDependencies": {
-    "@opencode/ai": "workspace:*",
-    "@opencode/httpapi-codegen": "workspace:*",
-    "@opencode/protocol": "workspace:*",
+    "@redcode/ai": "workspace:*",
+    "@redcode/httpapi-codegen": "workspace:*",
+    "@redcode/protocol": "workspace:*",
     "@tsconfig/bun": "catalog:",
     "@types/bun": "catalog:",
     "@typescript/native": "catalog:"

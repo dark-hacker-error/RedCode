@@ -20,7 +20,7 @@ export const configure = (input: Config = {}) => {
     provider: id,
     providerMetadataKey: "opencode",
     endpoint: { baseURL: input.baseURL ?? baseURL },
-    auth: AuthOptions.bearer(input, "OPENCODE_API_KEY"),
+    auth: AuthOptions.bearer(input, "REDCODE_API_KEY"),
     // Zen forwards TypeSafe's image opt-in header; text-only requests are unchanged with it.
     headers: { "TypeSafe-Danger-Zone-Images": "true", ...input.headers },
     http: input.http,
@@ -38,4 +38,4 @@ export const decisionModel = (modelID: string, settings?: Settings) => {
   return configure(input).decision(modelID, input.providerOptions)
 }
 
-export * as OpenCode from "./opencode.js"
+export * as RedCode from "./opencode.js"

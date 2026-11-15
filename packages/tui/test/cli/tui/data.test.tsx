@@ -1,9 +1,9 @@
 /** @jsxImportSource @opentui/solid */
 import { expect, test } from "bun:test"
 import { testRender } from "@opentui/solid"
-import type { OpenCodeEvent } from "@opencode/client"
-import { SessionMessage } from "@opencode/core/session/message"
-import { Event } from "@opencode/schema/event"
+import type { RedCodeEvent } from "@redcode/client"
+import { SessionMessage } from "@redcode/core/session/message"
+import { Event } from "@redcode/schema/event"
 import { Expected } from "../../../../core/test/lib/session-message"
 import { createEffect, onMount, type ParentProps } from "solid-js"
 import { ConfigProvider } from "../../../src/config"
@@ -42,7 +42,7 @@ async function wait(fn: () => boolean, timeout = 2000) {
   }
 }
 
-function emitEvent(events: ReturnType<typeof createEventStream>, event: OpenCodeEvent) {
+function emitEvent(events: ReturnType<typeof createEventStream>, event: RedCodeEvent) {
   events.emit({ ...event, location: { directory } })
 }
 
@@ -173,7 +173,7 @@ test("proactively syncs project metadata most recently active first", async () =
       {
         id: "proj_test",
         canonical: worktree,
-        name: "OpenCode",
+        name: "RedCode",
         time: { created: 1, updated: 2, active: 2 },
         sandboxes: [],
       },
@@ -211,7 +211,7 @@ test("proactively syncs project metadata most recently active first", async () =
       {
         id: "proj_test",
         canonical: worktree,
-        name: "OpenCode",
+        name: "RedCode",
         time: { created: 1, updated: 2, active: 2 },
         sandboxes: [],
       },

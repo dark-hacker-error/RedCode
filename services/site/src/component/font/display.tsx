@@ -11,7 +11,7 @@ const pad = (value: number, length: number) => String(value).padStart(length, "0
 /** Plate 01: the specimen's cover, like the first page of a printed type specimen. */
 export function Cover() {
   const facts = [
-    ["Typeface", "OpenCode"],
+    ["Typeface", "RedCode"],
     ["Glyphs", "o p e n c d"],
     ["Grid", "4 × 7 modules"],
     ["Module", "120 / 1,000 em"],
@@ -82,7 +82,7 @@ export function Cover() {
 export function Poster() {
   return (
     <Plate id="poster" tone="blue" aside="Offset · 1 colour + paper">
-      <div data-slot="poster" role="img" aria-label="Poster: open, code, node, done, encoded, set in the OpenCode font">
+      <div data-slot="poster" role="img" aria-label="Poster: open, code, node, done, encoded, set in the RedCode font">
         <span data-slot="crop" data-corner="tl" />
         <span data-slot="crop" data-corner="tr" />
         <span data-slot="crop" data-corner="bl" />
@@ -603,10 +603,10 @@ export function Colophon() {
     })
   })
   const credits = [
-    ["Typeface", "OpenCode 1.001"],
+    ["Typeface", "RedCode 1.001"],
     ["Drawn on", "4 × 7 modules of 120 units"],
-    ["Source", "The OpenCode wordmark"],
-    ["Specimen set in", "OpenCode, OpenTUI Mono and Inter"],
+    ["Source", "The RedCode wordmark"],
+    ["Specimen set in", "RedCode, OpenTUI Mono and Inter"],
     ["Built with", "SVG and CSS, no images"],
     ["Published by", "Anomaly"],
   ]
@@ -625,7 +625,7 @@ export function Colophon() {
         </dl>
         <div data-slot="colophon-action">
           <button type="button" data-component="site-button" disabled={busy()} aria-busy={busy()} onClick={download}>
-            {fontContent.download} OpenCode.otf
+            {fontContent.download} RedCode.otf
           </button>
           <span data-slot="sr-only" role="status">
             {status()}

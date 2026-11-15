@@ -1,8 +1,8 @@
 import { expect, test, type Locator, type Page } from "@playwright/test"
-import type { OpenCodeEvent, SessionMessageInfo, WorktreeDirectory } from "@opencode/client/promise"
-import { timelinePresets } from "@opencode/session-ui/timeline/detail"
+import type { RedCodeEvent, SessionMessageInfo, WorktreeDirectory } from "@redcode/client/promise"
+import { timelinePresets } from "@redcode/session-ui/timeline/detail"
 import { draftHref, expectPath, holdRoute, NO_PROVIDER, project, provider, seed, sessionHref, T0 } from "../utils/app"
-import { mockOpenCodeServer } from "../utils/mock-server"
+import { mockRedCodeServer } from "../utils/mock-server"
 import {
   newSessionBranch,
   newSessionLocation,
@@ -12,9 +12,9 @@ import {
   type WorkspaceInput,
 } from "../utils/workspace"
 
-const directory = "C:/OpenCode/WorkspacePending"
+const directory = "C:/RedCode/WorkspacePending"
 
-const workspace = "C:/OpenCode/pending-workspace"
+const workspace = "C:/RedCode/pending-workspace"
 
 const projectID = "proj_workspace_pending"
 
@@ -35,7 +35,7 @@ const submit = (page: Page) => page.locator('[data-action="composer-submit"]')
 const tabLink = (page: Page, sessionID: string) =>
   page.locator(`[data-titlebar-tab-link][href="${sessionHref(sessionID)}"]`)
 
-// A draft on the local project (C:/OpenCode/WorkspacePending) beside one other session tab.
+// A draft on the local project (C:/RedCode/WorkspacePending) beside one other session tab.
 const pendingDraft = {
   name: "WorkspacePending",
   draftID,
@@ -60,7 +60,7 @@ test("the new session screen does not show session details", async ({ page }) =>
 })
 
 test("the location shortcuts choose worktrees from every state and keep cycling", async ({ page }) => {
-  const root = "C:/OpenCode/LocationShortcut"
+  const root = "C:/RedCode/LocationShortcut"
 
   const existing = `${root}/.worktrees/quiet-river`
 
@@ -98,7 +98,7 @@ test("the location shortcuts choose worktrees from every state and keep cycling"
   await expectBranchOnly()
   await view.editor.press(`${modifier}+Alt+KeyO`)
   await expect(search).toBeFocused()
-  await page.getByRole("option", { name: /LocationShortcut main C:\/OpenCode\/LocationShortcut$/ }).click()
+  await page.getByRole("option", { name: /LocationShortcut main C:\/RedCode\/LocationShortcut$/ }).click()
   await expect(newSessionBranch(page)).toHaveText("main")
   await expect(path).toHaveText(root)
   await view.editor.press(`${modifier}+Alt+KeyL`)
@@ -114,7 +114,7 @@ test("the location shortcuts choose worktrees from every state and keep cycling"
 })
 
 test("a draft opened in a worktree starts on the main checkout and targets it", async ({ page }) => {
-  const root = "C:/OpenCode/LocalFromWorktree"
+  const root = "C:/RedCode/LocalFromWorktree"
 
   const worktree = `${root}/.worktrees/quiet-river`
 
@@ -259,7 +259,7 @@ test("a detached HEAD keeps the branch chip and opens the worktree step", async 
 })
 
 test("picker scrollbars overlay full-width rows and support dragging", async ({ page }) => {
-  const root = "C:/OpenCode/OverlayMenus"
+  const root = "C:/RedCode/OverlayMenus"
 
   await openDraft(page, {
     name: "OverlayMenus",
@@ -312,7 +312,7 @@ test("picker scrollbars overlay full-width rows and support dragging", async ({ 
 for (const row of [
   {
     name: "POSIX",
-    directory: "/Users/alice/.local/share/opencode/worktree/123456/my-project",
+    directory: "/Users/alice/.local/share/redcode/worktree/123456/my-project",
     pattern: /^\/Users\/.*…\/123456\/my-project$/,
   },
   {
@@ -400,19 +400,19 @@ test("the dialog chooses the base branch for a new worktree", async ({ page }) =
     .poll(() => view.worktreeRequests.map((request) => request.body))
     .toEqual([expect.objectContaining({ from: view.directory, branch: "release/base" })])
   expect(searches).toContainEqual({ directory: view.directory, search: "release", limit: 50 })
-  view.worktree.resolve({ status: 200, json: { directory: "C:/OpenCode/BranchContext/.worktrees/stellar-orchid" } })
+  view.worktree.resolve({ status: 200, json: { directory: "C:/RedCode/BranchContext/.worktrees/stellar-orchid" } })
   await expect
     .poll(() => view.prompts)
     .toEqual([expect.objectContaining({ body: expect.objectContaining({ text: "Use the selected base" }) })])
 })
 
 test("the checkout branch opens the current project's worktree step", async ({ page }) => {
-  const existing = "C:/OpenCode/BranchWorktrees/.worktrees/quiet-river"
+  const existing = "C:/RedCode/BranchWorktrees/.worktrees/quiet-river"
 
   const view = await openDraft(page, {
     name: "BranchWorktrees",
     vcs: (directory) => ({ current: directory === existing ? "quiet-river-branch" : "dev", default: "main" }),
-    worktrees: () => [{ directory: "C:/OpenCode/BranchWorktrees" }, { directory: existing, strategy: "git" }],
+    worktrees: () => [{ directory: "C:/RedCode/BranchWorktrees" }, { directory: existing, strategy: "git" }],
   })
 
   const screen = page.locator('[data-component="new-session"]')
@@ -1060,7 +1060,7 @@ test("executes a selected slash command after creating its worktree", async ({ p
       },
     ])
   // The server owns command expansion; the client receives the expanded inbox item.
-  // SAFETY: the fixture event matches the generated OpenCodeEvent shape for its type.
+  // SAFETY: the fixture event matches the generated RedCodeEvent shape for its type.
   await mock.push([
     {
       id: "evt_workspace_review",
@@ -1072,7 +1072,7 @@ test("executes a selected slash command after creating its worktree", async ({ p
         inboxID: "msg_workspace_review",
         item: { type: "user", payload: { text: expanded }, delivery: "steer" },
       },
-    } as OpenCodeEvent,
+    } as RedCodeEvent,
   ])
   await expect(pending.shimmer).toHaveCount(0)
   await expect(page.locator('[data-slot="user-message-text"]')).toHaveText(expanded)
@@ -1095,12 +1095,12 @@ test("the location dialog separates added projects from server projects and tags
 
     if (url.origin === apollo && url.pathname === "/api/fs/list") files.push(url.pathname)
   })
-  await mockOpenCodeServer(page, {
+  await mockRedCodeServer(page, {
     server: apollo,
     directory: remote.worktree,
     project: remote,
     projects: () => [remote, entry("proj_apollo_sst", "/home/dax/sst", 3)],
-    worktrees: () => [{ directory: remote.worktree }, { directory: "/home/dax/opencode-beta", strategy: "git" }],
+    worktrees: () => [{ directory: remote.worktree }, { directory: "/home/dax/redcode-beta", strategy: "git" }],
     provider: NO_PROVIDER,
     sessions: [],
     pageMessages: () => ({ items: [] }),
@@ -1212,10 +1212,10 @@ test("the location dialog separates added projects from server projects and tags
     "opencode",
     "New worktree",
     "from main",
-    "opencode-beta",
+    "redcode-beta",
   ])
   await expect(dialog.getByRole("separator")).toHaveCount(1)
-  await search.fill("opencode-beta")
+  await search.fill("redcode-beta")
   await expect(options).toHaveCount(1)
   await expect(dialog.getByRole("separator")).toHaveCount(0)
   await search.fill("no-worktree-matches")
@@ -1234,7 +1234,7 @@ test("the location dialog separates added projects from server projects and tags
     "opencode",
     "New worktree",
     "from main",
-    "opencode-beta",
+    "redcode-beta",
   ])
   await expect(options.nth(0)).toHaveAttribute("aria-selected", "true")
   await search.fill("")
@@ -1288,7 +1288,7 @@ for (const binding of ["mod+alt+p", "none"]) {
   })
 }
 
-const accentRoot = "C:/OpenCode/WorkspaceAccent"
+const accentRoot = "C:/RedCode/WorkspaceAccent"
 
 const accentWorkspace = `${accentRoot}/.worktrees/feature`
 
@@ -1357,7 +1357,7 @@ for (const row of [
       (response) => new URL(response.url()).pathname === "/api/worktree" && response.request().method() === "GET",
     )
 
-    // SAFETY: the fixture event matches the generated OpenCodeEvent shape for its type.
+    // SAFETY: the fixture event matches the generated RedCodeEvent shape for its type.
     await view.push([
       {
         id: "evt_accent_inventory",
@@ -1365,12 +1365,12 @@ for (const row of [
         type: "worktree.updated",
         data: { projectID: "proj_workspaceaccent" },
       },
-    ] as OpenCodeEvent[])
+    ] as RedCodeEvent[])
     expect((await refreshed).ok()).toBe(true)
     await expect(page).toHaveURL(url)
     await expect(view.editor).toHaveText("Inspect this fixture workspace.")
     await expectBackground(send, "icon-button-contrast")
-    // SAFETY: the fixture event matches the generated OpenCodeEvent shape for its type.
+    // SAFETY: the fixture event matches the generated RedCodeEvent shape for its type.
     await view.push([
       {
         id: "evt_accent_running",
@@ -1379,7 +1379,7 @@ for (const row of [
         durable: { aggregateID: "ses_workspace_accent", seq: 1, version: 1 },
         data: { sessionID: "ses_workspace_accent" },
       },
-    ] as OpenCodeEvent[])
+    ] as RedCodeEvent[])
     await view.editor.fill("")
     const stop = composer.getByRole("button", { name: "Stop", exact: true })
     await expect(stop).toBeEnabled()
@@ -1388,7 +1388,7 @@ for (const row of [
 }
 
 function renamed(sessionID: string) {
-  // SAFETY: the fixture event matches the generated OpenCodeEvent shape for its type.
+  // SAFETY: the fixture event matches the generated RedCodeEvent shape for its type.
   return {
     id: "evt_generated_title",
     type: "session.renamed",
@@ -1396,7 +1396,7 @@ function renamed(sessionID: string) {
     location: { directory: workspace },
     durable: { aggregateID: sessionID, seq: 1, version: 1 },
     data: { sessionID, title: "Generated session title" },
-  } as OpenCodeEvent
+  } as RedCodeEvent
 }
 
 async function draftFollowUp(page: Page) {

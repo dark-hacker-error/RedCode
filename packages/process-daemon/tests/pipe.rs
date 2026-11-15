@@ -349,7 +349,7 @@ fn output_file_mode_follows_the_umask() {
     use std::os::unix::fs::PermissionsExt;
 
     // umask is process-wide: set it only in a child copy of this test.
-    if let Ok(umask) = env::var("OPENCODE_PTY_UMASK_TEST_CHILD") {
+    if let Ok(umask) = env::var("REDCODE_PTY_UMASK_TEST_CHILD") {
         let umask = u32::from_str_radix(&umask, 8).unwrap();
         // SAFETY: this child process runs only this test.
         unsafe { libc::umask(umask as libc::mode_t) };
@@ -364,7 +364,7 @@ fn output_file_mode_follows_the_umask() {
     for umask in ["022", "027"] {
         let output = std::process::Command::new(env::current_exe().unwrap())
             .args(["--exact", "output_file_mode_follows_the_umask"])
-            .env("OPENCODE_PTY_UMASK_TEST_CHILD", umask)
+            .env("REDCODE_PTY_UMASK_TEST_CHILD", umask)
             .output()
             .unwrap();
         assert!(

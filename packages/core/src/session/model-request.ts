@@ -16,8 +16,8 @@ import {
   ToolMessage,
   type ToolResultPart,
   UserMessage,
-} from "@opencode/ai/effect"
-import type { StreamOptions } from "@opencode/ai/route"
+} from "@redcode/ai/effect"
+import type { StreamOptions } from "@redcode/ai/route"
 import type {
   SessionCompaction,
   SessionContext,
@@ -26,13 +26,13 @@ import type {
   SessionRequestKind,
   SessionRequestMessage,
   SessionTitle,
-} from "@opencode/plugin/effect/session"
-import type { Agent } from "@opencode/schema/agent"
-import type { Model } from "@opencode/schema/model"
-import type { Content } from "@opencode/schema/tool"
+} from "@redcode/plugin/effect/session"
+import type { Agent } from "@redcode/schema/agent"
+import type { Model } from "@redcode/schema/model"
+import type { Content } from "@redcode/schema/tool"
 import { Cause, Context, Effect, Layer, Result, Stream } from "effect"
 import { HttpClientRequest, HttpClientResponse } from "effect/http"
-import { makeLocationNode } from "@opencode/util/effect/app-node"
+import { makeLocationNode } from "@redcode/util/effect/app-node"
 import { App } from "../app.js"
 import { Instructions } from "../instructions/index.js"
 import { Permission } from "../permission.js"
@@ -262,7 +262,7 @@ export interface Interface {
   readonly title: (input: Input) => Effect.Effect<Prepared<SessionTitle>>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@opencode/SessionModelRequest") {}
+export class Service extends Context.Service<Service, Interface>()("@redcode/SessionModelRequest") {}
 
 export const layer = Layer.effect(
   Service,

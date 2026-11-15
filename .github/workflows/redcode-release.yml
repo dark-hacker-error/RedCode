@@ -1,0 +1,128 @@
+name: release
+run-name: "${{ format('release {0}', inputs.version || github.ref_name) }}"
+
+# Builds the RedCode CLI for every supported platform on GitHub-hosted runners, packs the npm
+# tarballs and standalone archives, publishes the packages to npm and attaches the archives to a
+# GitHub Release. Runs on `v*` tags and on manual dispatch.
+#
+# Publishing needs the repository secret NPM_TOKEN (an npm automation token with publish access to
+# the `redcode-ai` package). Without it the npm step fails before anything is uploaded.
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to build (defaults to the pushed tag, or the packages/cli version)"
+        required: false
+        type: string
+      release_notes:
+        description: "Release notes for the GitHub Release"
+        required: false
+        type: string
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Bun
+        uses: ./.github/actions/setup-bun
+        with:
+          bun-version: 1.4.4
+          # The rebrand renames every workspace package, which changes bun.lock. Regenerate it on
+          # the runner instead of failing the release on a stale lockfile. Flip this to
+          # `--frozen-lockfile` once a `bun install` commit has refreshed bun.lock.
+          install-flags: "--no-frozen-lockfile"
+
+      - name: Resolve version
+        id: version
+        run: |
+          if [ -n "${{ inputs.version }}" ]; then
+            version="${{ inputs.version }}"
+          elif [ "${GITHUB_REF_TYPE}" = "tag" ]; then
+            version="${GITHUB_REF_NAME#v}"
+          else
+            version="$(node -p "require('./packages/cli/package.json').version")"
+          fi
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+          echo "Releasing ${version}"
+
+      - name: Fetch the models.dev catalog
+        run: bun packages/core/script/update-models-snapshot.ts .cache/models-catalog/api.json
+
+      - name: Build the CLI for every platform
+        working-directory: packages/cli
+        run: bun run build && rm -rf dist/.bun
+        env:
+          REDCODE_CHANNEL: latest
+          REDCODE_VERSION: ${{ steps.version.outputs.version }}
+          REDCODE_RELEASE_NOTES: ${{ inputs.release_notes }}
+          REDCODE_MODELS_SNAPSHOT: ${{ github.workspace }}/.cache/models-catalog/api.json
+          BUN_COMPILE_RELEASE: bun-v1.4.4
+          # Read-only, only raises the rate limit for Bun release downloads.
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Pack npm tarballs and standalone archives
+        run: bun run pack
+
+      - name: Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "The NPM_TOKEN repository secret is not set." >&2
+            exit 1
+          fi
+          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > "$HOME/.npmrc"
+
+          publish() {
+            local tarball="$1"
+            local base
+            base="$(basename "$tarball")"
+            local name="${base%-$VERSION.tgz}"
+            if npm view "${name}@${VERSION}" version >/dev/null 2>&1; then
+              echo "skip ${name}@${VERSION} (already published)"
+              return
+            fi
+            echo "publish ${name}@${VERSION}"
+            npm publish "$tarball" --access public --tag latest
+          }
+
+          # Platform packages first, then the wrapper packages that depend on them.
+          for tarball in dist/npm/redcode-ai-*.tgz; do
+            case "$(basename "$tarball")" in
+              "redcode-ai-$VERSION.tgz" | "redcode-ai-node-$VERSION.tgz") continue ;;
+            esac
+            publish "$tarball"
+          done
+          for wrapper in "dist/npm/redcode-ai-node-$VERSION.tgz" "dist/npm/redcode-ai-$VERSION.tgz"; do
+            [ -f "$wrapper" ] && publish "$wrapper"
+          done
+
+      - name: Create the GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+          NOTES: ${{ inputs.release_notes }}
+        run: |
+          gh release create "v${VERSION}" \
+            dist/archives/* dist/npm/*.tgz \
+            --title "RedCode v${VERSION}" \
+            --notes "${NOTES:-RedCode v${VERSION}}"

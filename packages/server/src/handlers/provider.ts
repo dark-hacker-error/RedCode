@@ -1,5 +1,5 @@
-import { Provider } from "@opencode/core/provider"
-import { ProviderNotFoundError } from "@opencode/protocol/errors"
+import { Provider } from "@redcode/core/provider"
+import { ProviderNotFoundError } from "@redcode/protocol/errors"
 import { Effect } from "effect"
 import { HttpApiBuilder } from "effect/http-api"
 import { Api } from "../api"

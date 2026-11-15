@@ -1,5 +1,5 @@
 /// <reference types="vite/client" />
-import { host } from "@opencode/cli/vite-host"
+import { host } from "redcode-ai/vite-host"
 import { configureErrorOverlay } from "./refresh"
 
 if (import.meta.hot) {

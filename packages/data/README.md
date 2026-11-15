@@ -1,4 +1,4 @@
-# OpenCode Data
+# RedCode Data
 
 The data site (opencode.ai/data) is separate from the console. Runtime, database, and domain services live in `core`; the SolidStart website lives in `app`; the Cloudflare Workers that sync its data live in `server`.
 

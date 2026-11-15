@@ -1,9 +1,9 @@
-import { Button } from "@opencode/ui/button"
-import { Dialog, DialogFooter, DialogHeader, DialogTitleGroup } from "@opencode/ui/dialog"
-import { Icon } from "@opencode/ui/icon"
-import { showToast, toaster } from "@opencode/ui/toast"
-import type { DialogHandle, IpcClient, SetupContext } from "@opencode/plugin/gui"
-import type { Updater } from "@opencode/plugin/gui/updater"
+import { Button } from "@redcode/ui/button"
+import { Dialog, DialogFooter, DialogHeader, DialogTitleGroup } from "@redcode/ui/dialog"
+import { Icon } from "@redcode/ui/icon"
+import { showToast, toaster } from "@redcode/ui/toast"
+import type { DialogHandle, IpcClient, SetupContext } from "@redcode/plugin/gui"
+import type { Updater } from "@redcode/plugin/gui/updater"
 import type definition from "./index"
 
 type Client = IpcClient<typeof Updater.spec>

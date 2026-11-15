@@ -1,4 +1,4 @@
-import type { EnableState } from "@opencode/plugin/gui/host"
+import type { EnableState } from "@redcode/plugin/gui/host"
 
 export const IpcTransportPort = "desktop-rpc-port"
 
@@ -34,7 +34,7 @@ export type WindowSnapshot = {
 // runs so the first render already has them; mirrors windowStorage() in
 // packages/app/src/runtime/persistence/storage.ts.
 export function storageSnapshotNames(windowID: string) {
-  return ["opencode.global.dat", "default.dat", windowDataFile(windowID)]
+  return ["redcode.global.dat", "default.dat", windowDataFile(windowID)]
 }
 
 export function windowDataFile(id: string) {

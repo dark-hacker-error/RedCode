@@ -1,16 +1,16 @@
-import { PersistentPty } from "@opencode/core/persistent-pty"
-import { PtyTicket } from "@opencode/core/pty/ticket"
+import { PersistentPty } from "@redcode/core/persistent-pty"
+import { PtyTicket } from "@redcode/core/pty/ticket"
 import {
   ForbiddenError,
   InvalidRequestError,
   PtyNotFoundError,
   ServiceUnavailableError,
-} from "@opencode/protocol/errors"
+} from "@redcode/protocol/errors"
 import {
   PTY_CONNECT_TICKET_QUERY,
   PTY_CONNECT_TOKEN_HEADER,
   PTY_CONNECT_TOKEN_HEADER_VALUE,
-} from "@opencode/protocol/groups/persistent-pty"
+} from "@redcode/protocol/groups/persistent-pty"
 import { Effect, Queue } from "effect"
 import { HttpServerRequest, HttpServerResponse } from "effect/http"
 import { HttpApiBuilder, HttpApiSchema } from "effect/http-api"

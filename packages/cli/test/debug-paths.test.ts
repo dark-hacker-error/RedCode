@@ -15,7 +15,7 @@ describe("debug paths command", () => {
   })
 
   test("prints resolved global paths without starting a server", async () => {
-    const root = await fs.mkdtemp(path.join(os.tmpdir(), "opencode-debug-paths-"))
+    const root = await fs.mkdtemp(path.join(os.tmpdir(), "redcode-debug-paths-"))
 
     try {
       const result = await cli(["debug", "paths"], {

@@ -1,9 +1,9 @@
-import { activeQuestionRequest, questionPendingDocument } from "@opencode/session-ui/storybook"
+import { activeQuestionRequest, questionPendingDocument } from "@redcode/session-ui/storybook"
 import { SessionPreview } from "./story-model"
 import { SettingsExperimental } from "@/settings/experimental/experimental"
 
 export default {
-  title: "OpenCode/Session/Question switch",
+  title: "RedCode/Session/Question switch",
   id: "session-question-switch",
   component: SessionPreview,
   parameters: {

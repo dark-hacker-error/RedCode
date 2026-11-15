@@ -1,13 +1,13 @@
-import { Badge } from "@opencode/ui/badge"
-import { Icon } from "@opencode/ui/icon"
-import { IconButton } from "@opencode/ui/icon-button"
-import { iconNames, type IconName } from "@opencode/ui/icons/provider"
-import { Menu } from "@opencode/ui/menu"
-import { ProviderIcon } from "@opencode/ui/provider-icon"
+import { Badge } from "@redcode/ui/badge"
+import { Icon } from "@redcode/ui/icon"
+import { IconButton } from "@redcode/ui/icon-button"
+import { iconNames, type IconName } from "@redcode/ui/icons/provider"
+import { Menu } from "@redcode/ui/menu"
+import { ProviderIcon } from "@redcode/ui/provider-icon"
 import type { JSX } from "solid-js"
 import { createMemo, For, Match, Show, Switch } from "solid-js"
 import { consoleProviderGroup, consoleProviderName } from "@/providers/catalog/console"
-import { OpenCodeLogo } from "@/providers/opencode-logo"
+import { RedCodeLogo } from "@/providers/opencode-logo"
 import { useLanguage } from "@/runtime/i18n/language"
 import customManagedProvider from "@/providers/custom-managed-provider.svg"
 import "@/settings/settings.css"
@@ -35,7 +35,7 @@ export function ProviderModelIcon(props: { provider: ModelProvider; class?: stri
   return (
     <Switch>
       <Match when={props.provider.id === "opencode"}>
-        <OpenCodeLogo class={`size-4 ${props.class ?? ""}`} />
+        <RedCodeLogo class={`size-4 ${props.class ?? ""}`} />
       </Match>
       <Match when={icon()} keyed>
         {(id) => <ProviderIcon id={id} width={16} height={16} class={props.class} />}
@@ -52,7 +52,7 @@ export function consoleModelGroup<T extends ModelItem>(items: readonly T[]) {
   return consoleProviderGroup([...new Map(items.map((item) => [item.provider.id, item.provider])).values()])
 }
 
-/** Provider sections for a model list, with Console workspace providers nested under one OpenCode Console section. */
+/** Provider sections for a model list, with Console workspace providers nested under one RedCode Console section. */
 export function ProviderModelSections<T extends ModelItem>(props: {
   groups: ModelGroup<T>[]
   managed: ReturnType<typeof consoleModelGroup<T>>
@@ -153,7 +153,7 @@ export function ProviderModelSections<T extends ModelItem>(props: {
             >
               <Header
                 id={CONSOLE_GROUP_KEY}
-                icon={<OpenCodeLogo class="size-4 shrink-0" />}
+                icon={<RedCodeLogo class="size-4 shrink-0" />}
                 title={language.t("provider.connect.opencode.name")}
                 badge={managed().group.workspace}
               />

@@ -17,7 +17,7 @@ export const content = {
       body: "Ein schnelles Terminal-UI für jede Shell, jeden Editor und jeden Remote-Server.",
       action: "Installieren",
     },
-    sdk: { body: "Steuere OpenCode aus deinen eigenen Skripten, CI-Jobs und Tools.", action: "Doku lesen" },
+    sdk: { body: "Steuere RedCode aus deinen eigenen Skripten, CI-Jobs und Tools.", action: "Doku lesen" },
     mini: {
       body: "Ein minimales Terminal-Interface. Antworten landen in deinem Scrollback, darunter steht ein Prompt.",
       action: "Installieren",
@@ -25,9 +25,9 @@ export const content = {
   },
   productDetails: {
     desktop: {
-      title: "OpenCode | Desktop-App für macOS, Windows und Linux",
+      title: "RedCode | Desktop-App für macOS, Windows und Linux",
       description:
-        "Lass so viele OpenCode-Agents parallel laufen, wie du willst, sieh jede Änderung im Browser daneben und mach auf jedem Gerät weiter. Für macOS, Windows und Linux.",
+        "Lass so viele RedCode-Agents parallel laufen, wie du willst, sieh jede Änderung im Browser daneben und mach auf jedem Gerät weiter. Für macOS, Windows und Linux.",
       intro:
         "Lass mehrere Agents gleichzeitig laufen, jede Session in einem eigenen Tab. Prüfe jede Änderung als Diff, kommentiere jede Zeile und kontrolliere das Ergebnis im integrierten Browser. Für macOS, Windows und Linux.",
       showcase: {
@@ -45,16 +45,16 @@ export const content = {
         },
         "extend-it": {
           title: "Erweitern",
-          body: "Verbinde deine Tools und Dienste, damit der Agent mit allem arbeiten kann. Oder lass OpenCode Plugins für sich selbst bauen, mit eigener Oberfläche in der Seitenleiste.",
+          body: "Verbinde deine Tools und Dienste, damit der Agent mit allem arbeiten kann. Oder lass RedCode Plugins für sich selbst bauen, mit eigener Oberfläche in der Seitenleiste.",
         },
       },
     },
     mobile: {
-      title: "OpenCode | Mobile, deine Coding-Sessions auf dem Smartphone",
+      title: "RedCode | Mobile, deine Coding-Sessions auf dem Smartphone",
       description:
-        "Starte und steuere OpenCode-Sessions vom Smartphone aus. Sprich mit dem Agent, während er auf deinem Computer läuft.",
+        "Starte und steuere RedCode-Sessions vom Smartphone aus. Sprich mit dem Agent, während er auf deinem Computer läuft.",
       intro:
-        "Starte und steuere Sessions vom Smartphone aus, wo immer du bist. Ruf eine Session an und sprich mit dem Agent, oder öffne eine Session und mach dort weiter, wo du aufgehört hast, alles mit OpenCode auf deinem eigenen Computer.",
+        "Starte und steuere Sessions vom Smartphone aus, wo immer du bist. Ruf eine Session an und sprich mit dem Agent, oder öffne eine Session und mach dort weiter, wo du aufgehört hast, alles mit RedCode auf deinem eigenen Computer.",
       features: {
         "notify-when-done": {
           title: "Benachrichtigung",
@@ -76,7 +76,7 @@ export const content = {
           title: "Mitverfolgen",
           body: "Sieh zu, wie sich die Timeline aktualisiert, während der Agent arbeitet.",
         },
-        "your-computer": { title: "Dein Computer", body: "Verbindet sich mit OpenCode auf deinem eigenen Rechner." },
+        "your-computer": { title: "Dein Computer", body: "Verbindet sich mit RedCode auf deinem eigenen Rechner." },
         "share-sheet": { title: "Teilen-Menü", body: "Teile alles mit einer Session, ohne die App zu öffnen." },
         "mute-sessions": {
           title: "Stummschalten",
@@ -97,9 +97,9 @@ export const content = {
       },
     },
     terminal: {
-      title: "OpenCode | Terminal-UI für den Open-Source-Coding-Agent",
+      title: "RedCode | Terminal-UI für den Open-Source-Coding-Agent",
       description:
-        "Ein schnelles Terminal-UI für OpenCode, das in jeder Shell, jedem Editor und auf jedem Remote-Server läuft. Beschreibe, was du willst, sieh jede Änderung als Diff und genehmige Befehle.",
+        "Ein schnelles Terminal-UI für RedCode, das in jeder Shell, jedem Editor und auf jedem Remote-Server läuft. Beschreibe, was du willst, sieh jede Änderung als Diff und genehmige Befehle.",
       intro:
         "Ein schnelles Terminal-UI für jede Shell, jeden Editor und jeden Remote-Server. Beschreibe in einfachen Worten, was du willst, sieh jede Änderung als Diff entstehen und lege fest, welche Befehle von selbst laufen.",
       features: {
@@ -127,7 +127,7 @@ export const content = {
           title: "Auto-Freigabe",
           body: "Mit --auto erlaubst du jede Aktion, die du nicht abgelehnt hast.",
         },
-        "any-server": { title: "Jeder Server", body: "Verbinde dich mit --server per URL mit einem OpenCode-Server." },
+        "any-server": { title: "Jeder Server", body: "Verbinde dich mit --server per URL mit einem RedCode-Server." },
         "usage-stats": { title: "Statistiken", body: "opencode stats zeigt teilbare Nutzungsstatistiken." },
       },
       showcase: {
@@ -147,28 +147,28 @@ export const content = {
       },
     },
     sdk: {
-      title: "OpenCode | TypeScript-SDK für Skripte, CI-Jobs und Tools",
+      title: "RedCode | TypeScript-SDK für Skripte, CI-Jobs und Tools",
       description:
-        "Steuere OpenCode aus deinen eigenen Skripten, CI-Jobs und Tools. Der typisierte TypeScript-Client erstellt Sessions, sendet Prompts und streamt jedes Event in Echtzeit.",
+        "Steuere RedCode aus deinen eigenen Skripten, CI-Jobs und Tools. Der typisierte TypeScript-Client erstellt Sessions, sendet Prompts und streamt jedes Event in Echtzeit.",
       intro:
-        "Steuere OpenCode aus deinen eigenen Skripten, CI-Jobs und Tools. Das SDK führt OpenCode in deinem Prozess aus, mit deiner Konfiguration und deinen Modellen, und sein typisierter Client erstellt Sessions, sendet Prompts und streamt jedes Event.",
+        "Steuere RedCode aus deinen eigenen Skripten, CI-Jobs und Tools. Das SDK führt RedCode in deinem Prozess aus, mit deiner Konfiguration und deinen Modellen, und sein typisierter Client erstellt Sessions, sendet Prompts und streamt jedes Event.",
       features: {
         "typescript-client": {
           title: "TypeScript-Client",
-          body: "Typisierte Requests und Events, mit denselben Werten wie @opencode/client.",
+          body: "Typisierte Requests und Events, mit denselben Werten wie @redcode/client.",
         },
         "sessions-from-code": {
           title: "Sessions aus Code",
           body: "Erstelle Sessions und sende Prompts aus jedem Skript.",
         },
-        "any-model": { title: "Jedes Modell", body: "Nutzt die Modelle, die dein OpenCode-Setup hat." },
+        "any-model": { title: "Jedes Modell", body: "Nutzt die Modelle, die dein RedCode-Setup hat." },
         "npm-or-bun": {
           title: "npm oder bun",
-          body: "Installiere es mit npm i @opencode/sdk oder bun add @opencode/sdk.",
+          body: "Installiere es mit npm i @redcode/sdk oder bun add @redcode/sdk.",
         },
         "in-process-host": {
           title: "In-Process-Host",
-          body: "Führt OpenCode im Speicher aus, ohne Umweg übers Netzwerk.",
+          body: "Führt RedCode im Speicher aus, ohne Umweg übers Netzwerk.",
         },
         "your-plugins": {
           title: "Deine Plugins",
@@ -180,13 +180,13 @@ export const content = {
         },
         "cloudflare-workers": {
           title: "Cloudflare Workers",
-          body: "Führe OpenCode in einem Cloudflare Durable Object auf Workers aus.",
+          body: "Führe RedCode in einem Cloudflare Durable Object auf Workers aus.",
         },
       },
       showcase: {
         "fix-ci-from-code": {
           title: "CI per Code reparieren",
-          body: "Ein Skript lässt OpenCode kaputte Tests reparieren und führt sie neu aus.",
+          body: "Ein Skript lässt RedCode kaputte Tests reparieren und führt sie neu aus.",
         },
         "follow-every-step": {
           title: "Jeden Schritt verfolgen",
@@ -194,20 +194,20 @@ export const content = {
         },
         "build-your-own-tools": {
           title: "Eigene Tools bauen",
-          body: "Binde OpenCode mit wenigen Zeilen in Bots, Dashboards und Workflows ein.",
+          body: "Binde RedCode mit wenigen Zeilen in Bots, Dashboards und Workflows ein.",
         },
         "in-your-process": {
           title: "In deinem Prozess",
-          body: "OpenCode läuft in deinem Prozess, mit deiner Config und deinen Modellen.",
+          body: "RedCode läuft in deinem Prozess, mit deiner Config und deinen Modellen.",
         },
       },
     },
     mini: {
-      title: "OpenCode | Mini, ein minimales Terminal-Interface für den Agent",
+      title: "RedCode | Mini, ein minimales Terminal-Interface für den Agent",
       description:
-        "Mini führt OpenCode in einem minimalen Terminal-Interface aus. Antworten landen im Scrollback deines Terminals, und nur ein Prompt und eine Statuszeile bleiben unten.",
+        "Mini führt RedCode in einem minimalen Terminal-Interface aus. Antworten landen im Scrollback deines Terminals, und nur ein Prompt und eine Statuszeile bleiben unten.",
       intro:
-        "Ein minimales Terminal-Interface für OpenCode. Führe opencode mini aus, und Antworten landen direkt im Scrollback deines Terminals. Du scrollst, suchst und kopierst sie wie jede andere Ausgabe. Nur der Prompt und eine Statuszeile bleiben unten.",
+        "Ein minimales Terminal-Interface für RedCode. Führe opencode mini aus, und Antworten landen direkt im Scrollback deines Terminals. Du scrollst, suchst und kopierst sie wie jede andere Ausgabe. Nur der Prompt und eine Statuszeile bleiben unten.",
       features: {
         "your-scrollback": { title: "Dein Scrollback", body: "Antworten werden zu normalem Terminal-Verlauf." },
         "one-prompt": { title: "Ein Prompt", body: "Agent, Modell, Kontext und Kosten in einer Statuszeile." },
@@ -221,7 +221,7 @@ export const content = {
           body: "Setze die letzte Session mit -c fort, oder eine beliebige mit -s.",
         },
         "same-opencode": {
-          title: "Dasselbe OpenCode",
+          title: "Dasselbe RedCode",
           body: "Derselbe Server, dieselben Agents und Modelle wie die anderen Apps.",
         },
         agents: { title: "Agents", body: "Wechsle Agents direkt im Prompt." },
@@ -231,15 +231,15 @@ export const content = {
   },
   extensionCard: {
     name: "Extensions",
-    body: "Nutze OpenCode in VS Code, oder über ACP in Zed und anderen Editoren.",
+    body: "Nutze RedCode in VS Code, oder über ACP in Zed und anderen Editoren.",
     action: "Installieren",
   },
   extensions: {
     browse: {
       body: "Lass Agents deinen echten Browser nutzen.",
-      title: "OpenCode | Browse, dein echter Browser für Coding-Agents",
+      title: "RedCode | Browse, dein echter Browser für Coding-Agents",
       description:
-        "Mit Browse nutzen OpenCode und andere MCP-Clients deinen echten Browser. Agents steuern Tabs im Hintergrund mit Playwright und geben Logins und 2FA an dich zurück.",
+        "Mit Browse nutzen RedCode und andere MCP-Clients deinen echten Browser. Agents steuern Tabs im Hintergrund mit Playwright und geben Logins und 2FA an dich zurück.",
       intro:
         "Ein MCP-Server und eine Chromium-Extension, mit denen deine Agents deinen echten Browser nutzen, mit deinen Tabs, Logins und Extensions. Sie öffnen und steuern Tabs mit Playwright, machen Screenshots und Bildschirmaufnahmen, in Hintergrund-Tabs, die gruppiert und dir aus dem Weg sind. Bist du dran, etwa für einen Login, eine 2FA-Abfrage oder eine Zahlung, geben sie dir den Tab zurück und machen weiter, sobald du auf Continue klickst.",
       features: {
@@ -262,7 +262,7 @@ export const content = {
         },
         "any-mcp-client": {
           title: "Jeder MCP-Client",
-          body: "OpenCode, Claude Code, Cursor, Codex, Zed und viele mehr.",
+          body: "RedCode, Claude Code, Cursor, Codex, Zed und viele mehr.",
         },
         "all-your-logins": {
           title: "Alle deine Logins",
@@ -285,9 +285,9 @@ export const content = {
   },
   getStarted: {
     title: "Loslegen",
-    lead: "Am einfachsten startest du, indem du OpenCode herunterlädst und die kostenlosen Modelle nutzt. Ohne Account. Für mehr bringst du dein eigenes Abo mit oder nutzt OpenCode Go.",
+    lead: "Am einfachsten startest du, indem du RedCode herunterlädst und die kostenlosen Modelle nutzt. Ohne Account. Für mehr bringst du dein eigenes Abo mit oder nutzt RedCode Go.",
     phrases: {
-      "download-opencode": { text: "OpenCode herunterlädst" },
+      "download-opencode": { text: "RedCode herunterlädst" },
       "free-models": { text: "kostenlosen Modelle" },
       "your-own-subscription": { text: "dein eigenes Abo" },
       "a-subscription-you-already-have": { text: "ein Abo, das du schon hast" },
@@ -297,29 +297,29 @@ export const content = {
       download: { title: "Download", line: "Desktop, Terminal oder Mobile." },
       "use-free-models": {
         title: "Gratis-Modelle nutzen",
-        line: "OpenCode bringt eine Reihe kostenloser Modelle mit. Ohne Account.",
+        line: "RedCode bringt eine Reihe kostenloser Modelle mit. Ohne Account.",
       },
       "add-more-models": {
         title: "Mehr Modelle",
-        line: "Bring dein eigenes Abo mit oder nutze die kuratierten Modelle von OpenCode Go ab $10/Monat.",
+        line: "Bring dein eigenes Abo mit oder nutze die kuratierten Modelle von RedCode Go ab $10/Monat.",
       },
     },
     sentence:
-      "Lade OpenCode herunter, starte mit kostenlosen Modellen und bring dein eigenes Abo oder OpenCode Go mit, wenn du mehr willst.",
+      "Lade RedCode herunter, starte mit kostenlosen Modellen und bring dein eigenes Abo oder RedCode Go mit, wenn du mehr willst.",
   },
   byos: {
     title: "Eigenes Abo mitbringen",
     headline: "Nutze die Abos, die du schon hast.",
-    line: "Melde dich mit ChatGPT Plus oder Pro oder mit GitHub Copilot an. Oder nutze ein OpenCode-Abo.",
+    line: "Melde dich mit ChatGPT Plus oder Pro oder mit GitHub Copilot an. Oder nutze ein RedCode-Abo.",
     yours: { label: "Dein Abo", items: { "chatgpt-plus-pro": { name: "ChatGPT Plus/Pro" } } },
-    planLinks: ["OpenCode-Abo"],
-    ours: { label: "OpenCode-Pläne" },
+    planLinks: ["RedCode-Abo"],
+    ours: { label: "RedCode-Pläne" },
   },
   brand: {
     hero: { copy: { text: "Regeln für Agents", copied: "Regeln kopiert" } },
     naming: {
       title: "Name",
-      body: "Schreib OpenCode als ein Wort, mit großem O und großem C. Schreib nicht Opencode, Open Code, OpenCode AI oder Open-Code.",
+      body: "Schreib RedCode als ein Wort, mit großem O und großem C. Schreib nicht Opencode, Open Code, RedCode AI oder Open-Code.",
       code: "Nutze das kleingeschriebene `opencode` nur in Code und Paketnamen, etwa `opencode-figma` oder `@acme/opencode-plugin`.",
     },
     families: {
@@ -335,7 +335,7 @@ export const content = {
       },
       wordmark: {
         title: "Wortmarke",
-        body: "Der volle Name in den OpenCode-Buchstabenformen. Nutze sie überall, wo Platz für den ausgeschriebenen Namen ist.",
+        body: "Der volle Name in den RedCode-Buchstabenformen. Nutze sie überall, wo Platz für den ausgeschriebenen Namen ist.",
         assets: { light: { name: "Hell" }, dark: { name: "Dunkel" } },
       },
       "simple-wordmark": {
@@ -446,7 +446,7 @@ export const content = {
     },
     integrations: {
       title: "Integrationen",
-      body: "Plugins, Anbieter und Tools, die mit OpenCode funktionieren, und Projekte, die damit gebaut sind, dürfen das sagen. Nutze ein Badge oder ein Partner-Lockup und benenne dein Projekt so, dass klar ist, dass es deins ist.",
+      body: "Plugins, Anbieter und Tools, die mit RedCode funktionieren, und Projekte, die damit gebaut sind, dürfen das sagen. Nutze ein Badge oder ein Partner-Lockup und benenne dein Projekt so, dass klar ist, dass es deins ist.",
       badges: {
         body: "Setz ein Badge in deine README, Doku oder Website und verlinke es auf opencode.ai. Wähle die helle oder dunkle Datei für deinen Hintergrund (das HTML wechselt von selbst) und ändere weder Farben noch Text.",
         sizes: "Jeder Stil kommt in 20, 32 und 44px (Shields nur in 20px), als SVG und als PNG in 2×.",
@@ -454,41 +454,41 @@ export const content = {
         groups: {
           "works-with": {
             title: "Läuft mit",
-            alt: "Funktioniert mit OpenCode",
-            body: "Für Plugins, Anbieter und Tools, die mit OpenCode laufen.",
+            alt: "Funktioniert mit RedCode",
+            body: "Für Plugins, Anbieter und Tools, die mit RedCode laufen.",
           },
           "built-with": {
             title: "Gebaut mit",
-            alt: "Gebaut mit OpenCode",
-            body: "Für Projekte, die mit OpenCode entstanden sind.",
+            alt: "Gebaut mit RedCode",
+            body: "Für Projekte, die mit RedCode entstanden sind.",
           },
         },
         styles: { a: { name: "Rahmen" }, c: { name: "Zellen" }, f: { name: "Vollfarbe" }, g: { name: "Shields" } },
       },
       lockup: {
         title: "Partner-Lockup",
-        body: "Stell das OpenCode-Logo und das Partnerlogo nebeneinander, mit einem × dazwischen. Lass auf jeder Seite des × 3 Striche Platz, skaliere das Partnerlogo so, dass es so hoch wirkt wie das OpenCode-Logo, und halte Schutzraum um das ganze Lockup.",
+        body: "Stell das RedCode-Logo und das Partnerlogo nebeneinander, mit einem × dazwischen. Lass auf jeder Seite des × 3 Striche Platz, skaliere das Partnerlogo so, dass es so hoch wirkt wie das RedCode-Logo, und halte Schutzraum um das ganze Lockup.",
       },
       naming: {
         title: "Dein Projekt benennen",
         body: "Stell deinen eigenen Namen voran, damit klar ist, dass das Projekt deins ist.",
-        rule: "Schreib `Linear for OpenCode` oder nenne das Paket `opencode-linear`. Schreib nicht `OpenCode Linear` oder `Linear by OpenCode`.",
+        rule: "Schreib `Linear for RedCode` oder nenne das Paket `opencode-linear`. Schreib nicht `RedCode Linear` oder `Linear by RedCode`.",
       },
     },
     trademarks: {
       title: "Marken",
-      body: "OpenCode und das OpenCode-Logo sind Marken von Anomaly. Nutze sie nicht, um zu suggerieren, dass Anomaly dich unterstützt oder sponsert, nicht in deinem Produkt- oder Firmennamen und nicht ohne Erlaubnis auf Merchandise.",
+      body: "RedCode und das RedCode-Logo sind Marken von Anomaly. Nutze sie nicht, um zu suggerieren, dass Anomaly dich unterstützt oder sponsert, nicht in deinem Produkt- oder Firmennamen und nicht ohne Erlaubnis auf Merchandise.",
       contact: { before: "Bei Fragen schreib an " },
     },
   },
   press: {
-    title: "OpenCode | Pressekit mit Fakten zum Unternehmen und Marken-Assets",
+    title: "RedCode | Pressekit mit Fakten zum Unternehmen und Marken-Assets",
     description:
-      "Das Pressekit von OpenCode, mit Fakten zu OpenCode und Anomaly, dem Unternehmen dahinter, dazu Logos und Wortmarken zum Download und ein Kontakt für Presseanfragen.",
-    hero: { title: "Presse", body: "Fakten, Marken-Assets und Kontakte für Berichte über OpenCode und Anomaly." },
+      "Das Pressekit von RedCode, mit Fakten zu RedCode und Anomaly, dem Unternehmen dahinter, dazu Logos und Wortmarken zum Download und ein Kontakt für Presseanfragen.",
+    hero: { title: "Presse", body: "Fakten, Marken-Assets und Kontakte für Berichte über RedCode und Anomaly." },
     company: {
       title: "Über Anomaly",
-      lead: "Anomaly ist das Unternehmen hinter OpenCode. Es baut Open-Source-Tools für Entwickler.",
+      lead: "Anomaly ist das Unternehmen hinter RedCode. Es baut Open-Source-Tools für Entwickler.",
       more: "Weitere Projekte sind SST und OpenTUI, alle als Open Source auf [GitHub](github).",
       learnMore: "Mehr erfährst du auf [anoma.ly](site).",
       projects: {
@@ -500,7 +500,7 @@ export const content = {
         },
         opentui: {
           name: "OpenTUI",
-          body: "Eine Bibliothek für Terminal-UIs in TypeScript, React oder Solid, mit einem Kern in Zig. OpenCode nutzt sie in Produktion. Über 13.000 GitHub-Sterne.",
+          body: "Eine Bibliothek für Terminal-UIs in TypeScript, React oder Solid, mit einem Kern in Zig. RedCode nutzt sie in Produktion. Über 13.000 GitHub-Sterne.",
         },
         "models-dev": {
           body: "Eine Open-Source-Datenbank mit Spezifikationen, Preisen und Fähigkeiten von KI-Modellen und einer öffentlichen API. Sie listet über 8.900 Modelle von über 200 Anbietern.",
@@ -514,30 +514,30 @@ export const content = {
       },
     },
     about: {
-      title: "Über OpenCode",
-      body: "Beschreibungen von OpenCode und seinen Produkten in langer und kurzer Fassung, bereit zum Kopieren.",
+      title: "Über RedCode",
+      body: "Beschreibungen von RedCode und seinen Produkten in langer und kurzer Fassung, bereit zum Kopieren.",
       boilerplate: {
-        long: "OpenCode ist ein Open-Source-Coding-Agent. Es gibt ihn als Desktop-App, Terminal-UI, Mobile-App und SDK, und er funktioniert mit Modellen jedes Anbieters, darunter Claude, GPT und Gemini. OpenCode ist MIT-lizenziert und wird von Anomaly entwickelt. Es hat über 220.000 GitHub-Sterne und mehr als 1.000 Mitwirkende, und über 22 Millionen Entwickler nutzen es jeden Monat.",
+        long: "RedCode ist ein Open-Source-Coding-Agent. Es gibt ihn als Desktop-App, Terminal-UI, Mobile-App und SDK, und er funktioniert mit Modellen jedes Anbieters, darunter Claude, GPT und Gemini. RedCode ist MIT-lizenziert und wird von Anomaly entwickelt. Es hat über 220.000 GitHub-Sterne und mehr als 1.000 Mitwirkende, und über 22 Millionen Entwickler nutzen es jeden Monat.",
         short:
-          "OpenCode ist ein Open-Source-Coding-Agent von Anomaly, mit Apps für Desktop, Terminal und Mobile sowie einem SDK.",
+          "RedCode ist ein Open-Source-Coding-Agent von Anomaly, mit Apps für Desktop, Terminal und Mobile sowie einem SDK.",
       },
       products: {
         "opencode-console": {
-          name: "OpenCode Console",
-          long: "OpenCode Console ist die Web-App, in der Entwickler und Teams Zugang zu KI-Modellen für OpenCode und andere Coding-Agents kaufen und verwalten. Sie bietet Pay-as-you-go-Inferenz für Frontier- und Open-Weight-Modelle, abgerechnet pro Request aus vorausbezahltem Guthaben, sowie Abos für OpenCode Go. Teams bekommen Workspaces mit den Rollen Member, Admin und Owner, Ausgabenlimits für Workspace und einzelne Nutzer, Single Sign-on mit Okta, Microsoft Entra ID oder Google Workspace sowie SCIM. Console unterstützt mehr als 30 Anbieter, sodass Teams vorhandene Anbieter-Accounts verbinden können, und die eigene Inferenz ist optional. Sie ist unter opencode.ai/console erreichbar.",
+          name: "RedCode Console",
+          long: "RedCode Console ist die Web-App, in der Entwickler und Teams Zugang zu KI-Modellen für RedCode und andere Coding-Agents kaufen und verwalten. Sie bietet Pay-as-you-go-Inferenz für Frontier- und Open-Weight-Modelle, abgerechnet pro Request aus vorausbezahltem Guthaben, sowie Abos für RedCode Go. Teams bekommen Workspaces mit den Rollen Member, Admin und Owner, Ausgabenlimits für Workspace und einzelne Nutzer, Single Sign-on mit Okta, Microsoft Entra ID oder Google Workspace sowie SCIM. Console unterstützt mehr als 30 Anbieter, sodass Teams vorhandene Anbieter-Accounts verbinden können, und die eigene Inferenz ist optional. Sie ist unter opencode.ai/console erreichbar.",
           short:
-            "OpenCode Console ist die Web-App von Anomaly für Pay-as-you-go-Zugang zu KI-Modellen, Abos für OpenCode Go und Team-Kontrollen wie Budgets und Single Sign-on.",
+            "RedCode Console ist die Web-App von Anomaly für Pay-as-you-go-Zugang zu KI-Modellen, Abos für RedCode Go und Team-Kontrollen wie Budgets und Single Sign-on.",
         },
         "opencode-go": {
-          long: "OpenCode Go ist ein Abo für Entwickler, die einen festen Monatspreis für Coding-Modelle wollen. Go kostet $10/Monat, Go Plus kostet $40/Monat mit höheren Limits, und Go Teams kostet $20/Monat pro Mitglied. Jeder Plan enthält eine kuratierte Auswahl an Modellen, die für agentisches Coding getestet sind. Die Nutzungslimits sind monatliche Dollarbeträge pro Modell, mit rollierenden 5-Stunden- und Wochenkontingenten von 20% und 50% des Monatslimits. Abonnenten können Guthaben aufladen, auf ein Pay-as-you-go-Guthaben ausweichen und jederzeit kündigen. Go funktioniert mit OpenCode und anderen Agents. Es ist unter opencode.ai/console/go erreichbar.",
+          long: "RedCode Go ist ein Abo für Entwickler, die einen festen Monatspreis für Coding-Modelle wollen. Go kostet $10/Monat, Go Plus kostet $40/Monat mit höheren Limits, und Go Teams kostet $20/Monat pro Mitglied. Jeder Plan enthält eine kuratierte Auswahl an Modellen, die für agentisches Coding getestet sind. Die Nutzungslimits sind monatliche Dollarbeträge pro Modell, mit rollierenden 5-Stunden- und Wochenkontingenten von 20% und 50% des Monatslimits. Abonnenten können Guthaben aufladen, auf ein Pay-as-you-go-Guthaben ausweichen und jederzeit kündigen. Go funktioniert mit RedCode und anderen Agents. Es ist unter opencode.ai/console/go erreichbar.",
           short:
-            "OpenCode Go ist ein Monatsabo von Anomaly, das Entwicklern monatliche Nutzungslimits für eine kuratierte Auswahl an Coding-Modellen gibt, ab $10/Monat.",
+            "RedCode Go ist ein Monatsabo von Anomaly, das Entwicklern monatliche Nutzungslimits für eine kuratierte Auswahl an Coding-Modellen gibt, ab $10/Monat.",
         },
         "opencode-data": {
-          name: "OpenCode Data",
-          long: "OpenCode Data ist ein öffentliches Dashboard, das zeigt, welche KI-Modelle Entwickler in OpenCode nutzen und wie sich diese Verteilung über die Zeit verändert. Es veröffentlicht eine Rangliste der Top-Modelle, Token-Nutzung, Kosten pro Session und Token, Cache-Quoten, Marktanteile und eine Aufschlüsselung nach Ländern. Die Zahlen werden stündlich aggregiert, Tage und Wochen in UTC. Nutzer- und Session-Zahlen sind Näherungswerte, und Kosten basieren auf Listenpreisen aus dem OpenCode-Modellkatalog. Journalisten können es als OpenCode Data (opencode.ai/data) mit dem auf der Seite angezeigten Aktualisierungszeitpunkt zitieren.",
+          name: "RedCode Data",
+          long: "RedCode Data ist ein öffentliches Dashboard, das zeigt, welche KI-Modelle Entwickler in RedCode nutzen und wie sich diese Verteilung über die Zeit verändert. Es veröffentlicht eine Rangliste der Top-Modelle, Token-Nutzung, Kosten pro Session und Token, Cache-Quoten, Marktanteile und eine Aufschlüsselung nach Ländern. Die Zahlen werden stündlich aggregiert, Tage und Wochen in UTC. Nutzer- und Session-Zahlen sind Näherungswerte, und Kosten basieren auf Listenpreisen aus dem RedCode-Modellkatalog. Journalisten können es als RedCode Data (opencode.ai/data) mit dem auf der Seite angezeigten Aktualisierungszeitpunkt zitieren.",
           short:
-            "OpenCode Data ist ein öffentliches Dashboard unter opencode.ai/data, das KI-Modelle nach echter Nutzung in OpenCode einordnet, mit Tokens, Kosten und Marktanteilen, stündlich aktualisiert.",
+            "RedCode Data ist ein öffentliches Dashboard unter opencode.ai/data, das KI-Modelle nach echter Nutzung in RedCode einordnet, mit Tokens, Kosten und Marktanteilen, stündlich aktualisiert.",
         },
       },
     },
@@ -554,23 +554,23 @@ export const content = {
       items: {
         "first-release-v0-0-1": { date: "Apr. 2025", text: "Erstes Release, v0.0.1" },
         "1-million-downloads": { date: "Okt. 2025", text: "Über 1 Million Downloads" },
-        "opencode-1-0": { date: "Okt. 2025", text: "OpenCode 1.0" },
+        "opencode-1-0": { date: "Okt. 2025", text: "RedCode 1.0" },
         "desktop-app-ships": { date: "Dez. 2025", text: "Desktop-App erscheint" },
         "10-million-downloads": { date: "Jan. 2026", text: "Über 10 Millionen Downloads" },
-        "opencode-2-0": { date: "Sep. 2026", text: "OpenCode 2.0" },
+        "opencode-2-0": { date: "Sep. 2026", text: "RedCode 2.0" },
         "220-000-github-stars": { date: "Nov. 2026", text: "Über 220.000 GitHub-Sterne" },
       },
     },
     news: {
       title: "Neueste Releases",
-      intro: "OpenCode erscheint oft. Das sind die neuesten Releases mit neuen Funktionen.",
+      intro: "RedCode erscheint oft. Das sind die neuesten Releases mit neuen Funktionen.",
       changelog: { text: "Ganzer Changelog" },
       feed: { text: "RSS-Feed" },
     },
     media: {
       title: "Medien",
       intro:
-        "Standbilder und kurze Videos jeder App, aufgenommen im echten Produkt. Du kannst sie für Berichte über OpenCode verwenden.",
+        "Standbilder und kurze Videos jeder App, aufgenommen im echten Produkt. Du kannst sie für Berichte über RedCode verwenden.",
       note: "Alle Aufnahmen nutzen das dunkle Design. Standbilder und Poster sind JPGs bis 1920 × 1080, oder 1080 × 1350 im Hochformat. Videos sind MP4-Clips ohne Ton.",
       products: {
         desktop: {
@@ -645,10 +645,10 @@ export const content = {
     brand: {
       title: "Marke",
       before:
-        "Lade die OpenCode-Logos und -Wortmarken in einer ZIP-Datei herunter. Einzelne Dateien, Varianten und Regeln zur Verwendung findest du auf der ",
+        "Lade die RedCode-Logos und -Wortmarken in einer ZIP-Datei herunter. Einzelne Dateien, Varianten und Regeln zur Verwendung findest du auf der ",
       link: { text: "Markenseite" },
       usage:
-        "Du kannst diese Dateien für Berichte über OpenCode verwenden. Ändere sie nicht und erwecke nicht den Eindruck, dass OpenCode deine Arbeit unterstützt.",
+        "Du kannst diese Dateien für Berichte über RedCode verwenden. Ändere sie nicht und erwecke nicht den Eindruck, dass RedCode deine Arbeit unterstützt.",
     },
     product: {
       title: "Produkt",
@@ -659,7 +659,7 @@ export const content = {
         },
         mobile: {
           name: "Mobile",
-          body: "Die neueste OpenCode-App. Ruf eine Session an, um mit dem Agent zu sprechen, und prüfe und genehmige seine Änderungen von überall auf dem Smartphone.",
+          body: "Die neueste RedCode-App. Ruf eine Session an, um mit dem Agent zu sprechen, und prüfe und genehmige seine Änderungen von überall auf dem Smartphone.",
         },
         terminal: {
           name: "Terminal",
@@ -676,7 +676,7 @@ export const content = {
         press: { title: "Presse", body: "Für Journalisten und Analysten. Wir antworten nur auf Medienanfragen." },
         support: {
           title: "Support",
-          body: "Für Hilfe mit OpenCode eröffne ein Issue oder frag die Community. Bei Fragen zu Account und Abrechnung schreib uns eine E-Mail.",
+          body: "Für Hilfe mit RedCode eröffne ein Issue oder frag die Community. Bei Fragen zu Account und Abrechnung schreib uns eine E-Mail.",
           links: { "github-issues": { text: "GitHub-Issues" }, "help-anoma-ly": { text: "help@anoma.ly" } },
         },
         security: {
@@ -709,18 +709,18 @@ export const content = {
     sdk: { more: { label: "SDK-Doku lesen" } },
     mini: {
       commands: { curl: { name: "Skript" } },
-      lead: "Mini ist Teil der OpenCode CLI. Installiere sie auf einem dieser Wege und führe dann opencode mini aus.",
+      lead: "Mini ist Teil der RedCode CLI. Installiere sie auf einem dieser Wege und führe dann opencode mini aus.",
     },
   },
   pair: {
     title: "Smartphone verbinden",
     cardTitle: "Koppel dein Smartphone mit einem Befehl",
     intro:
-      "OpenCode Mobile ist eine Fernbedienung für OpenCode auf deinem Computer. Deine Sessions laufen dort weiter, und die App zeigt sie dir und lässt dich sie steuern.",
+      "RedCode Mobile ist eine Fernbedienung für RedCode auf deinem Computer. Deine Sessions laufen dort weiter, und die App zeigt sie dir und lässt dich sie steuern.",
     steps: {
       "get-the-app": {
         title: "App holen",
-        body: "Installiere die OpenCode-Beta über TestFlight auf deinem iPhone. Die Android-App folgt bald.",
+        body: "Installiere die RedCode-Beta über TestFlight auf deinem iPhone. Die Android-App folgt bald.",
       },
       "run-this-on-your-computer": {
         title: "Auf dem Computer ausführen",
@@ -751,7 +751,7 @@ export const content = {
     "agents-can-now-generate-images": { text: "Agents können jetzt Bilder erzeugen.", link: "v2.2.1 ansehen" },
     "steer-your-sessions-from-your-phone": {
       text: "Steuere deine Sessions vom Smartphone aus.",
-      link: "OpenCode Mobile entdecken",
+      link: "RedCode Mobile entdecken",
     },
     "a-refreshed-desktop-app": { text: "Eine überarbeitete Desktop-App.", link: "Neu in 2.2 ansehen" },
   },

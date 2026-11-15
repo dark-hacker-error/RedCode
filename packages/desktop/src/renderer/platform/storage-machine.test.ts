@@ -53,13 +53,13 @@ describe("preload snapshot seed", () => {
 
   test("changes that arrive before the snapshot fold in only when newer than it", () => {
     const run = replay([
-      { type: "items.requested", name: "opencode.global.dat", reply: reply() },
+      { type: "items.requested", name: "redcode.global.dat", reply: reply() },
       { type: "store.changed", name: "default.dat", insert: { theme: "older" }, remove: [], revision: 2 },
       { type: "store.changed", name: "default.dat", insert: { theme: "dark" }, remove: [], revision: 3 },
       {
         type: "snapshot.settled",
         snapshot: {
-          "opencode.global.dat": { items: { a: "1" }, revision: 2 },
+          "redcode.global.dat": { items: { a: "1" }, revision: 2 },
           "default.dat": { items: { theme: "light", font: "mono" }, revision: 2 },
         },
       },

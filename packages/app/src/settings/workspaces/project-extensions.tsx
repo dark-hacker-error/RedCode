@@ -1,8 +1,8 @@
-import { Button } from "@opencode/ui/button"
-import { Icon } from "@opencode/ui/icon"
-import { Switch } from "@opencode/ui/switch"
-import { Tabs } from "@opencode/ui/tabs"
-import { isLocationNotFoundError } from "@opencode/client/promise"
+import { Button } from "@redcode/ui/button"
+import { Icon } from "@redcode/ui/icon"
+import { Switch } from "@redcode/ui/switch"
+import { Tabs } from "@redcode/ui/tabs"
+import { isLocationNotFoundError } from "@redcode/client/promise"
 import {
   type Component,
   For,
@@ -55,7 +55,7 @@ const ExtensionRow: Component<{
   /** An MCP server's status, shown as a dot in the icon's place, as on the server-wide page. */
   status?: string
   name: string
-  /** Where OpenCode Console manages it; the name links there. */
+  /** Where RedCode Console manages it; the name links there. */
   console?: string
   /** Console's server of the same name, which the user's config replaces. */
   replaces?: string

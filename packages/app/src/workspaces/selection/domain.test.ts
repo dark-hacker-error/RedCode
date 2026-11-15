@@ -122,7 +122,7 @@ test.each([
   ],
   [
     "recent deep tilde",
-    shortenPickerRecentPath("/home/luke/workspaces/anomalyco/opencode/packages/app", "/home/luke"),
+    shortenPickerRecentPath("/home/luke/workspaces/Vempire-X/RedCode/packages/app", "/home/luke"),
     "~/…/packages/app",
   ],
   [
@@ -135,7 +135,7 @@ test.each([
     shortenPickerRecentPath("/srv/clients/acme/services/payments-gateway", "/home/luke"),
     "/srv/…/services/payments-gateway",
   ],
-  ["recent short Windows", shortenPickerRecentPath("C:/OpenCode/NewProject", ""), "C:\\OpenCode\\NewProject"],
+  ["recent short Windows", shortenPickerRecentPath("C:/RedCode/NewProject", ""), "C:\\RedCode\\NewProject"],
   [
     "recent deep Windows",
     shortenPickerRecentPath("C:/Users/luke/work/acme/repo", "C:/Users/luke"),

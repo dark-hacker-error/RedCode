@@ -1,9 +1,9 @@
 import fs from "node:fs/promises"
 import path from "node:path"
 import { expect } from "bun:test"
-import { Config } from "@opencode/core/config"
-import { Generate } from "@opencode/core/generate"
-import { makeLocationNode } from "@opencode/util/effect/app-node"
+import { Config } from "@redcode/core/config"
+import { Generate } from "@redcode/core/generate"
+import { makeLocationNode } from "@redcode/util/effect/app-node"
 import { Effect, Layer, Predicate } from "effect"
 import { tmpdir } from "../../core/test/fixture/tmpdir"
 import { it } from "../../core/test/lib/effect"
@@ -40,8 +40,8 @@ it.live("uses base configuration without depending on process.cwd()", () =>
     yield* Effect.promise(() => Promise.all([fs.mkdir(global), fs.mkdir(project)]))
     yield* Effect.promise(() =>
       Promise.all([
-        fs.writeFile(path.join(global, "opencode.json"), JSON.stringify({ model: "base/default" })),
-        fs.writeFile(path.join(project, "opencode.json"), JSON.stringify({ model: "project/default" })),
+        fs.writeFile(path.join(global, "redcode.json"), JSON.stringify({ model: "base/default" })),
+        fs.writeFile(path.join(project, "redcode.json"), JSON.stringify({ model: "project/default" })),
       ]),
     )
     const handler = yield* ServerFetch.make(

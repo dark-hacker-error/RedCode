@@ -4,7 +4,7 @@ import type {
   IntegrationInfo,
   IntegrationMethod,
   IntegrationOauthConnectOutput,
-} from "@opencode/client/promise"
+} from "@redcode/client/promise"
 import {
   createProviderFormState,
   selectProviderFormView,

@@ -1,25 +1,25 @@
 import { describe, expect } from "bun:test"
 import fs from "fs/promises"
 import path from "path"
-import { Bus } from "@opencode/core/bus"
-import { Config } from "@opencode/core/config"
-import { Generate } from "@opencode/core/generate"
-import { Job } from "@opencode/core/job"
-import { Location } from "@opencode/core/location"
-import { Model } from "@opencode/core/model"
-import { Permission } from "@opencode/core/permission"
-import { Plugin } from "@opencode/core/plugin"
-import { PluginHost } from "@opencode/core/plugin/host"
-import { Provider } from "@opencode/core/provider"
-import { Session } from "@opencode/core/session"
-import { SessionEvent } from "@opencode/core/session/event"
-import { Tool } from "@opencode/core/tool"
-import { ImageGenerateTool } from "@opencode/core/tool/plugin/image-generate"
-import { OpenCodeTools } from "@opencode/core/tool/plugin/opencode"
-import { Document, Event, Info } from "@opencode/schema/config"
-import { ConfigExperimental } from "@opencode/schema/config/experimental"
-import type { ImageRequest, ImageResult } from "@opencode/schema/generate"
-import { Global } from "@opencode/util/global"
+import { Bus } from "@redcode/core/bus"
+import { Config } from "@redcode/core/config"
+import { Generate } from "@redcode/core/generate"
+import { Job } from "@redcode/core/job"
+import { Location } from "@redcode/core/location"
+import { Model } from "@redcode/core/model"
+import { Permission } from "@redcode/core/permission"
+import { Plugin } from "@redcode/core/plugin"
+import { PluginHost } from "@redcode/core/plugin/host"
+import { Provider } from "@redcode/core/provider"
+import { Session } from "@redcode/core/session"
+import { SessionEvent } from "@redcode/core/session/event"
+import { Tool } from "@redcode/core/tool"
+import { ImageGenerateTool } from "@redcode/core/tool/plugin/image-generate"
+import { RedCodeTools } from "@redcode/core/tool/plugin/opencode"
+import { Document, Event, Info } from "@redcode/schema/config"
+import { ConfigExperimental } from "@redcode/schema/config/experimental"
+import type { ImageRequest, ImageResult } from "@redcode/schema/generate"
+import { Global } from "@redcode/util/global"
 import { Effect, Layer, Schedule, Stream } from "effect"
 import { testEffect } from "./lib/effect"
 import { permissionLayer } from "./lib/permission"
@@ -98,7 +98,7 @@ const setup = (providerID = "test") =>
     const location = yield* Location.Service
     const host = yield* PluginHost.make(plugins, "test")
     yield* ImageGenerateTool.Plugin.effect(host)
-    yield* OpenCodeTools.Plugin.effect(host)
+    yield* RedCodeTools.Plugin.effect(host)
     const session = yield* sessions.create({
       location: Location.Ref.make({ directory: location.directory }),
       model: Model.Ref.make({ providerID: Provider.ID.make(providerID), id: Model.ID.make("chat") }),

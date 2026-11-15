@@ -1,7 +1,7 @@
-import { ClientError, OpenCode, type SessionStatsInfo } from "@opencode/client"
-import { Service } from "@opencode/client/effect/service"
-import { TokenUsage } from "@opencode/schema/token-usage"
-import { activityCalendar } from "@opencode/util/activity-calendar"
+import { ClientError, RedCode, type SessionStatsInfo } from "@redcode/client"
+import { Service } from "@redcode/client/effect/service"
+import { TokenUsage } from "@redcode/schema/token-usage"
+import { activityCalendar } from "@redcode/util/activity-calendar"
 import { Effect, Option } from "effect"
 import { EOL } from "node:os"
 import { Commands } from "../commands"
@@ -17,7 +17,7 @@ const handler = Effect.fn("cli.stats")(function* (input: Runtime.Input<typeof Co
     yield* Effect.fail(new Error("--days, --year, and --all cannot be combined"))
 
   const server = yield* ServerConnection.resolve()
-  const client = OpenCode.make({ baseUrl: server.endpoint.url, headers: Service.headers(server.endpoint) })
+  const client = RedCode.make({ baseUrl: server.endpoint.url, headers: Service.headers(server.endpoint) })
   const range = statsRange({ days, year, all: input.all })
   const projectID =
     project === "."

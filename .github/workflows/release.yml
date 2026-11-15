@@ -14,11 +14,16 @@ run-name: "${{ format('release {0}{1}', inputs.bump, inputs.version) }}"
 #   version on dev reaches latest.
 # .github/release/ and this file are the security boundary for releases.
 
+# Disabled by the RedCode rebrand: this pipeline publishes through upstream-only infrastructure
+# (AWS Secrets Manager role arn:aws:iam::604439173067:role/github/opencode-release, Cloudflare R2,
+# Apple/Windows signing certificates) and every job is guarded by `github.repository ==
+# 'anomalyco/opencode'`, so it can never run in this repository. The RedCode release pipeline lives
+# in .github/workflows/redcode-release.yml.
 on:
-  push:
-    branches: [beta]
-  schedule:
-    - cron: "17 */6 * * *"
+  # push:
+  #   branches: [beta]
+  # schedule:
+  #   - cron: "17 */6 * * *"
   workflow_dispatch:
     inputs:
       bump:
@@ -147,7 +152,7 @@ jobs:
   # Fetches the models.dev catalog once per run, so every CLI bundles the same copy.
   models-catalog:
     needs: [plan, tag]
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     env: *env
     steps:
@@ -170,7 +175,7 @@ jobs:
 
   build-cli:
     needs: [plan, tag, models-catalog]
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     env: *env
     steps:
@@ -210,11 +215,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { target: linux-arm64, host: blacksmith-4vcpu-ubuntu-2404-arm }
-          - { target: linux-x64, host: blacksmith-4vcpu-ubuntu-2404 }
-          - { target: darwin-arm64, host: blacksmith-6vcpu-macos-26 }
-          - { target: windows-arm64, host: blacksmith-4vcpu-windows-2025 }
-          - { target: windows-x64, host: blacksmith-4vcpu-windows-2025 }
+          - { target: linux-arm64, host: ubuntu-24.04-arm }
+          - { target: linux-x64, host: ubuntu-24.04 }
+          - { target: darwin-arm64, host: macos-15 }
+          - { target: windows-arm64, host: windows-2025 }
+          - { target: windows-x64, host: windows-2025 }
     runs-on: ${{ matrix.host }}
     env: *env
     steps:
@@ -238,7 +243,7 @@ jobs:
         run: bun run script/service-smoke.ts --node
       - name: Verify bundled models catalog
         if: matrix.target != 'windows-arm64'
-        run: bun packages/cli/script/catalog-smoke.ts "packages/cli/dist/node/cli-node-$OPENCODE_TARGET/bin/opencode2-node$EXE"
+        run: bun packages/cli/script/catalog-smoke.ts "packages/cli/dist/node/cli-node-$OPENCODE_TARGET/bin/redcode2-node$EXE"
         env:
           OPENCODE_TARGET: ${{ matrix.target }}
           EXE: ${{ startsWith(matrix.target, 'windows') && '.exe' || '' }}
@@ -254,7 +259,7 @@ jobs:
   build-npm:
     needs: [plan, tag, build-cli, build-node]
     if: ${{ !cancelled() && !failure() && needs.plan.outputs.cli == 'true' }}
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     env: *env
     steps:
@@ -290,7 +295,7 @@ jobs:
   build-docker:
     needs: [plan, tag, build-cli]
     if: needs.plan.outputs.release == 'true'
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    runs-on: ubuntu-24.04
     env: *env
     steps:
       - *checkout
@@ -323,16 +328,16 @@ jobs:
       matrix:
         include:
           - target: darwin-x64
-            host: ${{ (needs.plan.outputs.channel == 'dev' || needs.plan.outputs.channel == 'beta') && 'blacksmith-6vcpu-macos-26' || 'macos-26-intel' }}
+            host: ${{ (needs.plan.outputs.channel == 'dev' || needs.plan.outputs.channel == 'beta') && 'macos-15' || 'macos-26-intel' }}
             install: ${{ (needs.plan.outputs.channel == 'dev' || needs.plan.outputs.channel == 'beta') && '--os=darwin --cpu=*' || '--os=darwin --cpu=x64' }}
-          - { target: darwin-arm64, host: blacksmith-6vcpu-macos-26, install: --os=darwin --cpu=arm64 }
+          - { target: darwin-arm64, host: macos-15, install: --os=darwin --cpu=arm64 }
           # github-hosted: blacksmith lacks the ARM64 MSVC cross-compilation toolchain
           - target: windows-arm64
-            host: ${{ (needs.plan.outputs.channel == 'dev' || needs.plan.outputs.channel == 'beta') && 'blacksmith-4vcpu-windows-2025' || 'windows-2025' }}
+            host: ${{ (needs.plan.outputs.channel == 'dev' || needs.plan.outputs.channel == 'beta') && 'windows-2025' || 'windows-2025' }}
             install: --cpu=*
-          - { target: windows-x64, host: blacksmith-4vcpu-windows-2025 }
-          - { target: linux-x64, host: blacksmith-4vcpu-ubuntu-2404 }
-          - { target: linux-arm64, host: blacksmith-4vcpu-ubuntu-2404-arm }
+          - { target: windows-x64, host: windows-2025 }
+          - { target: linux-x64, host: ubuntu-24.04 }
+          - { target: linux-arm64, host: ubuntu-24.04-arm }
     runs-on: ${{ matrix.host }}
     env: *env
     steps:
@@ -381,9 +386,9 @@ jobs:
       matrix:
         include:
           - target: windows-arm64
-            host: ${{ (needs.plan.outputs.channel == 'dev' || needs.plan.outputs.channel == 'beta') && 'blacksmith-4vcpu-windows-2025' || 'windows-2025' }}
+            host: ${{ (needs.plan.outputs.channel == 'dev' || needs.plan.outputs.channel == 'beta') && 'windows-2025' || 'windows-2025' }}
             install: --cpu=*
-          - { target: windows-x64, host: blacksmith-4vcpu-windows-2025 }
+          - { target: windows-x64, host: windows-2025 }
     runs-on: ${{ matrix.host }}
     env: *env
     steps:
@@ -455,7 +460,7 @@ jobs:
         if: needs.plan.outputs.desktop == 'true'
         run: |
           bash .github/release/with-secrets.sh APPLE_NOTARY_KEY=shared/APPLE_NOTARY_KEY -- bash .github/release/sign-desktop-macos.sh "$RUNNER_TEMP/out" \
-            "$RUNNER_TEMP"/in/build-desktop-darwin-*/opencode-desktop-mac-*.app.tar
+            "$RUNNER_TEMP"/in/build-desktop-darwin-*/redcode-desktop-mac-*.app.tar
         env:
           AWS_ACCESS_KEY_ID: ${{ steps.aws.outputs.aws-access-key-id }}
           AWS_SECRET_ACCESS_KEY: ${{ steps.aws.outputs.aws-secret-access-key }}

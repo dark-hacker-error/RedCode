@@ -1,7 +1,7 @@
 import { createSignal, onCleanup, Show } from "solid-js"
 import { Schema } from "effect"
-import { Button } from "@opencode/ui/button"
-import { useDialog } from "@opencode/ui/context/dialog"
+import { Button } from "@redcode/ui/button"
+import { useDialog } from "@redcode/ui/context/dialog"
 import { useLanguage } from "@/runtime/i18n/language"
 import { usePlatform } from "@/runtime/platform/platform"
 import { Persist, persisted } from "@/runtime/persistence/storage"
@@ -12,7 +12,7 @@ import { limitResetAt } from "../usage-exceeded-dialogs"
 
 const GO_URL = "https://opencode.ai/go"
 
-// OpenCode Zen always says when free usage resets; this covers a refusal that doesn't, or a delay out of range.
+// RedCode Zen always says when free usage resets; this covers a refusal that doesn't, or a delay out of range.
 const FALLBACK_RESET_MS = 3_600_000
 
 const FreeLimitState = Persistence.struct({ resetAt: Schema.NullOr(Schema.Finite) })

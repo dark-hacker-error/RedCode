@@ -1,7 +1,7 @@
 import { createEffect, createMemo, createResource, createSignal, onCleanup, untrack } from "solid-js"
-import { writeClipboard } from "@opencode/session-ui/copy"
-import { useDialog } from "@opencode/ui/context/dialog"
-import { Tooltip } from "@opencode/ui/tooltip"
+import { writeClipboard } from "@redcode/session-ui/copy"
+import { useDialog } from "@redcode/ui/context/dialog"
+import { Tooltip } from "@redcode/ui/tooltip"
 import { useLanguage } from "@/runtime/i18n/language"
 import { usePlatform } from "@/runtime/platform/platform"
 import { ExternalLink } from "@/runtime/platform/external-link"
@@ -100,7 +100,7 @@ export function SettingsAbout(props: { active: boolean }) {
 
   const writerCredits = () => [
     ...writers.map(credit),
-    <ExternalLink href="https://github.com/anomalyco/opencode/graphs/contributors">
+    <ExternalLink href="https://github.com/Vempire-X/RedCode/graphs/contributors">
       {language.plural("settings.about.otherContributor", otherContributors.latest, {
         count: otherContributors.latest,
       })}

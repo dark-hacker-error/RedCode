@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import type { SessionMessageAssistant, SessionMessageInfo } from "@opencode/client/promise"
+import type { SessionMessageAssistant, SessionMessageInfo } from "@redcode/client/promise"
 import { TimelineRow } from "../timeline/timeline-row"
 import { timelineGaps } from "./spacing"
 

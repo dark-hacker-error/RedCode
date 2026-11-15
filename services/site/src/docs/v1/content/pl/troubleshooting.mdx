@@ -11,8 +11,8 @@ Aby debugować problemy z opencode, zacznij od sprawdzenia dzienników i danych 
 
 Pliki logów są zapisywane w:
 
-- **macOS/Linux**: `~/.local/share/opencode/log/`
-- **Windows**: Naciśnij `WIN+R` i wklej `%USERPROFILE%\.local\share\opencode\log`
+- **macOS/Linux**: `~/.local/share/redcode/log/`
+- **Windows**: Naciśnij `WIN+R` i wklej `%USERPROFILE%\.local\share\redcode\log`
 
 Nazwy plików dziennika zawierają znaczniki czasu (np. `2025-01-09T123456.log`) i przechowywanych jest 10 ostatnich plików dziennika.
 
@@ -24,8 +24,8 @@ Możesz ustawić poziom dziennika za pomocą opcji wiersza poleceń `--log-level
 
 opencode przechowuje dane sesji i inne dane aplikacji na dysku pod adresem:
 
-- **macOS/Linux**: `~/.local/share/opencode/`
-- **Windows**: Naciśnij `WIN+R` i wklej `%USERPROFILE%\.local\share\opencode`
+- **macOS/Linux**: `~/.local/share/redcode/`
+- **Windows**: Naciśnij `WIN+R` i wklej `%USERPROFILE%\.local\share\redcode`
 
 Ten katalog zawiera:
 
@@ -45,7 +45,7 @@ opencode Desktop uruchamia w tle lokalny serwer opencode (sidecar `opencode-cli`
 
 - Całkowicie zakończ i uruchom ponownie aplikację.
 - Jeśli aplikacja wyświetli ekran błędu, kliknij **Uruchom ponownie** i skopiuj szczegóły błędu.
-- Tylko macOS: menu `OpenCode` -> **Załaduj ponownie przeglądarkę internetową** (pomaga, jeśli interfejs użytkownika jest pusty/zawieszony).
+- Tylko macOS: menu `RedCode` -> **Załaduj ponownie przeglądarkę internetową** (pomaga, jeśli interfejs użytkownika jest pusty/zawieszony).
 
 ---
 
@@ -57,9 +57,9 @@ Jeśli aplikacja komputerowa ulega awarii podczas uruchamiania, zawiesza się lu
 
 Otwórz globalny plik konfiguracyjny i poszukaj klucza `plugin`.
 
-- **macOS/Linux**: `~/.config/opencode/opencode.jsonc` (lub `~/.config/opencode/opencode.json`)
-- **macOS/Linux** (starsze instalacje): `~/.local/share/opencode/opencode.jsonc`
-- **Windows**: Naciśnij `WIN+R` i wklej `%USERPROFILE%\.config\opencode\opencode.jsonc`
+- **macOS/Linux**: `~/.config/redcode/redcode.jsonc` (lub `~/.config/redcode/redcode.json`)
+- **macOS/Linux** (starsze instalacje): `~/.local/share/redcode/redcode.jsonc`
+- **Windows**: Naciśnij `WIN+R` i wklej `%USERPROFILE%\.config\redcode\redcode.jsonc`
 
 Jeśli masz skonfigurowane wtyczki, tymczasowo je wyłącz, usuwając klucz lub ustawiając go na pustą tablicę:
 
@@ -75,10 +75,10 @@ Jeśli masz skonfigurowane wtyczki, tymczasowo je wyłącz, usuwając klucz lub 
 opencode może także ładować lokalne wtyczki z dysku. Tymczasowo usuń je (lub zmień nazwę folderu) i uruchom ponownie aplikację komputerową:
 
 - **Wtyczki globalne**
-  - **macOS/Linux**: `~/.config/opencode/plugins/`
-  - **Windows**: Naciśnij `WIN+R` i wklej `%USERPROFILE%\.config\opencode\plugins`
+  - **macOS/Linux**: `~/.config/redcode/plugins/`
+  - **Windows**: Naciśnij `WIN+R` i wklej `%USERPROFILE%\.config\redcode\plugins`
 - **Wtyczki projektowe** (tylko jeśli używasz konfiguracji dla poszczególnych projektów)
-  - `<your-project>/.opencode/plugins/`
+  - `<your-project>/.redcode/plugins/`
 
 Jeśli aplikacja ponownie zacznie działać, włączaj ponownie wtyczki pojedynczo, aby dowiedzieć się, która powoduje problem.
 
@@ -91,9 +91,9 @@ Jeśli wyłączenie wtyczek nie pomoże (lub instalacja wtyczki utknęła), wycz
 1. Całkowicie zamknij opencode Desktop.
 2. Usuń katalog pamięci podręcznej:
 
-- **macOS**: Finder -> `Cmd+Shift+G` -> paste `~/.cache/opencode`
-- **Linux**: usuń `~/.cache/opencode` (lub uruchom `rm -rf ~/.cache/opencode`)
-- **Windows**: Naciśnij `WIN+R` i wklej `%USERPROFILE%\.cache\opencode`
+- **macOS**: Finder -> `Cmd+Shift+G` -> paste `~/.cache/redcode`
+- **Linux**: usuń `~/.cache/redcode` (lub uruchom `rm -rf ~/.cache/redcode`)
+- **Windows**: Naciśnij `WIN+R` i wklej `%USERPROFILE%\.cache\redcode`
 
 3. Uruchom ponownie opencode Desktop.
 
@@ -111,13 +111,13 @@ Na ekranie głównym kliknij nazwę serwera (z kropką stanu), aby otworzyć sel
 
 #### Usuń `server.port` / `server.hostname` ze swojej konfiguracji
 
-Jeśli Twój `opencode.json(c)` zawiera sekcję `server`, tymczasowo usuń ją i uruchom ponownie aplikację komputerową.
+Jeśli Twój `redcode.json(c)` zawiera sekcję `server`, tymczasowo usuń ją i uruchom ponownie aplikację komputerową.
 
 #### Sprawdź zmienne środowiskowe
 
-Jeśli w swoim środowisku masz ustawiony `OPENCODE_PORT`, aplikacja komputerowa spróbuje użyć tego portu dla serwera lokalnego.
+Jeśli w swoim środowisku masz ustawiony `REDCODE_PORT`, aplikacja komputerowa spróbuje użyć tego portu dla serwera lokalnego.
 
-- usuń `OPENCODE_PORT` (lub wybierz wolny port) i uruchom ponownie.
+- usuń `REDCODE_PORT` (lub wybierz wolny port) i uruchom ponownie.
 
 ---
 
@@ -158,8 +158,8 @@ Jeśli aplikacja nie uruchamia się i nie możesz wyczyścić ustawień w interf
 1. Zamknij całkowicie opencode Desktop.
 2. Znajdź i usuń te pliki (znajdują się w katalogu danych aplikacji opencode Desktop):
 
-- `opencode.settings.dat` (domyślny adres URL serwera na komputerze stacjonarnym)
-- `opencode.global.dat` i `opencode.workspace.*.dat` (stan interfejsu użytkownika, taki jak najnowsze serwery/projekty)
+- `redcode.settings.dat` (domyślny adres URL serwera na komputerze stacjonarnym)
+- `redcode.global.dat` i `opencode.workspace.*.dat` (stan interfejsu użytkownika, taki jak najnowsze serwery/projekty)
 
 Aby szybko znaleźć katalog:
 
@@ -177,7 +177,7 @@ Jeśli masz problemy z opencode:
 
    Najlepszym sposobem zgłaszania błędów lub zgłaszania żądań funkcji jest skorzystanie z naszego repozytorium GitHub:
 
-   [**github.com/anomalyco/opencode/issues**](https://github.com/anomalyco/opencode/issues)
+   [**github.com/Vempire-X/RedCode/issues**](https://github.com/Vempire-X/RedCode/issues)
 
    Przed utworzeniem nowego problemu przeszukaj istniejące i sprawdź, czy Twój problem nie został już zgłoszony.
 
@@ -241,10 +241,10 @@ Aby rozwiązać ten problem:
 2. Jeśli problem będzie się powtarzał, spróbuj wyczyścić zapisaną konfigurację:
 
    ```bash
-   rm -rf ~/.local/share/opencode
+   rm -rf ~/.local/share/redcode
    ```
 
-   W systemie Windows naciśnij `WIN+R` i usuń: `%USERPROFILE%\.local\share\opencode`
+   W systemie Windows naciśnij `WIN+R` i usuń: `%USERPROFILE%\.local\share\redcode`
 
 3. Ponownie uwierzytelnij się u swojego dostawcy za pomocą polecenia `/connect` w TUI.
 
@@ -259,10 +259,10 @@ Aby rozwiązać problemy z pakietem dostawcy:
 1. Wyczyść pamięć podręczną pakietu dostawcy:
 
    ```bash
-   rm -rf ~/.cache/opencode
+   rm -rf ~/.cache/redcode
    ```
 
-   W systemie Windows naciśnij `WIN+R` i usuń: `%USERPROFILE%\.cache\opencode`
+   W systemie Windows naciśnij `WIN+R` i usuń: `%USERPROFILE%\.cache\redcode`
 
 2. Uruchom ponownie kod opencode, aby ponownie zainstalować najnowsze pakiety dostawców
 

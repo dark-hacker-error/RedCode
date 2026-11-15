@@ -1,10 +1,10 @@
 import { isAbsolute, join, resolve } from "node:path"
 import { isDeepStrictEqual } from "node:util"
-import type { OpenCodeClient } from "@opencode/client/effect"
-import type { Permission } from "@opencode/schema/permission"
-import { AbsolutePath } from "@opencode/schema/schema"
-import type { Session } from "@opencode/schema/session"
-import { FSUtil } from "@opencode/util/fs-util"
+import type { RedCodeClient } from "@redcode/client/effect"
+import type { Permission } from "@redcode/schema/permission"
+import { AbsolutePath } from "@redcode/schema/schema"
+import type { Session } from "@redcode/schema/session"
+import { FSUtil } from "@redcode/util/fs-util"
 import { Effect, Option, Schema } from "effect"
 import { ACPClient } from "./client"
 import { ACPError } from "./error"
@@ -39,7 +39,7 @@ export function list(session: Pick<Session.Info, "metadata">) {
 }
 
 export const activate = Effect.fnUntraced(function* (
-  client: OpenCodeClient,
+  client: RedCodeClient,
   session: Session.Info,
   directories: readonly string[],
 ) {

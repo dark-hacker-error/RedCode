@@ -19,7 +19,7 @@ Enterprise inquiries use the company supplied by the visitor.
 
 Before applying to another org, retrieve and preserve that org's current LeadSource
 values, layouts, and LeadConvertSettings; these checked-in files are the additive
-changes prepared for the connected OpenCode org.
+changes prepared for the connected RedCode org.
 
 From this directory, deployment uses the existing Salesforce CLI authentication:
 

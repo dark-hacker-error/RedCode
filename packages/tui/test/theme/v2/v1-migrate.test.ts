@@ -9,13 +9,13 @@ import {
   themeModes,
   type HueScale,
   type ResolvedTheme,
-} from "@opencode/theme/tui"
-import { DEFAULT_THEMES, getOpenCodeTheme, resolveTheme as resolveV1 } from "../../../src/theme"
-import opencodeSource from "../../../src/theme/assets/opencode.json" with { type: "json" }
-import type { ThemeV1Json } from "@opencode/theme/tui/v1"
+} from "@redcode/theme/tui"
+import { DEFAULT_THEMES, getRedCodeTheme, resolveTheme as resolveV1 } from "../../../src/theme"
+import opencodeSource from "../../../src/theme/assets/redcode.json" with { type: "json" }
+import type { ThemeV1Json } from "@redcode/theme/tui/v1"
 
 const opencodeV1 = opencodeSource as ThemeV1Json
-const opencodeLight = resolveThemeDocument(getOpenCodeTheme(), "light")
+const opencodeLight = resolveThemeDocument(getRedCodeTheme(), "light")
 const opencodeLightHues = allHues(opencodeLight)
 
 test("migrates resolved V1 modes into V2 tokens", () => {
@@ -324,7 +324,7 @@ test("keeps both modes when a shared background has different contrast", () => {
   expect(themeModes(migrated)).toEqual(["light", "dark"])
 })
 
-test("lays out V1 colors on the opencode2 steps under new designs", () => {
+test("lays out V1 colors on the redcode2 steps under new designs", () => {
   const migrated = migrateV1NewDesigns(DEFAULT_THEMES.tokyonight!)
   expect(migrated.base.text?.base).toBe("$hue.neutral.100")
   expect(migrated.base.text?.muted).toBe("$hue.neutral.200")
@@ -340,7 +340,7 @@ test("lays out V1 colors on the opencode2 steps under new designs", () => {
     expect(hex(resolved.hue.interactive[400])).toBe(hex(legacy.primary))
     expect(hex(resolved.text.action.primary.selected)).toBe(hex(legacy.primary))
 
-    // Raised surfaces step away from the page the way opencode2's do, and selection is a quiet tint.
+    // Raised surfaces step away from the page the way redcode2's do, and selection is a quiet tint.
     const lightness = (color: RGBA) => rgbToOklch(color.r, color.g, color.b).l
     const direction = mode === "dark" ? 1 : -1
     const surfaces = [resolved.background.base, ...Object.values(resolved.background.raised)].map(lightness)

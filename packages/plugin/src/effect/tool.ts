@@ -1,7 +1,7 @@
-import { Tool } from "@opencode/schema/tool"
-import type { Agent } from "@opencode/schema/agent"
-import type { Session } from "@opencode/schema/session"
-import type { SessionMessage } from "@opencode/schema/session-message"
+import { Tool } from "@redcode/schema/tool"
+import type { Agent } from "@redcode/schema/agent"
+import type { Session } from "@redcode/schema/session"
+import type { SessionMessage } from "@redcode/schema/session-message"
 import type { Effect, Types } from "effect"
 import type { Hooks, Transform } from "./registration.js"
 

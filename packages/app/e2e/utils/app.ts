@@ -1,6 +1,6 @@
 import { expect, type Page, type Request } from "@playwright/test"
-import type { SessionMessageInfo } from "@opencode/client/promise"
-import { base64Encode, checksum } from "@opencode/util/encode"
+import type { SessionMessageInfo } from "@redcode/client/promise"
+import { base64Encode, checksum } from "@redcode/util/encode"
 
 // The mocked default server. Production builds connect to their own origin, so CI points this at the app.
 export const SERVER = `http://${process.env.PLAYWRIGHT_SERVER_HOST ?? "127.0.0.1"}:${process.env.PLAYWRIGHT_SERVER_PORT ?? "4096"}`
@@ -104,7 +104,7 @@ function storageEntries(input: SeedInput): [string, string, boolean][] {
   }
 
   const values: Record<string, unknown> = {
-    ...(Object.keys(server).length ? { "opencode.global.dat:server": server } : {}),
+    ...(Object.keys(server).length ? { "redcode.global.dat:server": server } : {}),
     ...(input.tabs ? { "opencode.window.browser.dat:tabs": input.tabs.map(tabEntry) } : {}),
     ...(input.panes
       ? {
@@ -114,7 +114,7 @@ function storageEntries(input: SeedInput): [string, string, boolean][] {
         }
       : {}),
     ...(input.settings ? { "settings.v3": input.settings } : {}),
-    ...(input.locale ? { "opencode.global.dat:language": { locale: input.locale } } : {}),
+    ...(input.locale ? { "redcode.global.dat:language": { locale: input.locale } } : {}),
     ...(input.theme ? { "opencode-theme-id": input.theme.id, "opencode-color-scheme": input.theme.scheme } : {}),
     ...input.storage,
   }
@@ -175,7 +175,7 @@ export function provider(...models: ModelSeed[]) {
     all: [
       {
         id: "opencode",
-        name: "OpenCode",
+        name: "RedCode",
         models: Object.fromEntries(all.map((model) => [model.id, { limit: { context: 200_000 }, ...model }])),
       },
     ],

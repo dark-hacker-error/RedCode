@@ -1,21 +1,21 @@
 import { describe, expect } from "bun:test"
-import { Document, Event, Info, type Entry } from "@opencode/schema/config"
-import { ConfigPolicy } from "@opencode/schema/config/policy"
-import { Permission } from "@opencode/schema/permission"
-import { Config } from "@opencode/core/config"
-import { Integration } from "@opencode/core/integration"
-import { ConfigPolicyPlugin } from "@opencode/core/config/plugin/policy"
-import { Bus } from "@opencode/core/bus"
-import { Plugin } from "@opencode/core/plugin"
-import { PluginHooks } from "@opencode/core/plugin/hooks"
-import { PluginHost } from "@opencode/core/plugin/host"
-import { Provider } from "@opencode/core/provider"
-import { Session } from "@opencode/core/session"
-import { Credential } from "@opencode/core/credential"
-import { ConfigIntegration } from "@opencode/core/config/integration"
-import { WebSearch } from "@opencode/core/websearch"
-import { WebSearchExa } from "@opencode/core/plugin/websearch/exa"
-import { WebSearchTinyFish } from "@opencode/core/plugin/websearch/tinyfish"
+import { Document, Event, Info, type Entry } from "@redcode/schema/config"
+import { ConfigPolicy } from "@redcode/schema/config/policy"
+import { Permission } from "@redcode/schema/permission"
+import { Config } from "@redcode/core/config"
+import { Integration } from "@redcode/core/integration"
+import { ConfigPolicyPlugin } from "@redcode/core/config/plugin/policy"
+import { Bus } from "@redcode/core/bus"
+import { Plugin } from "@redcode/core/plugin"
+import { PluginHooks } from "@redcode/core/plugin/hooks"
+import { PluginHost } from "@redcode/core/plugin/host"
+import { Provider } from "@redcode/core/provider"
+import { Session } from "@redcode/core/session"
+import { Credential } from "@redcode/core/credential"
+import { ConfigIntegration } from "@redcode/core/config/integration"
+import { WebSearch } from "@redcode/core/websearch"
+import { WebSearchExa } from "@redcode/core/plugin/websearch/exa"
+import { WebSearchTinyFish } from "@redcode/core/plugin/websearch/tinyfish"
 import { Effect, Schema } from "effect"
 import { FetchHttpClient } from "effect/http"
 import { waitUntil } from "../lib/eventually"
@@ -273,7 +273,7 @@ describe("integration policy", () => {
         execute: () => Effect.succeed([]),
       })
       yield* catalog.transform((catalog) => {
-        // The signed-out free tier enables OpenCode without any connection.
+        // The signed-out free tier enables RedCode without any connection.
         catalog.update(Provider.ID.opencode, (provider) => {
           provider.activation = "enabled"
         })
@@ -281,7 +281,7 @@ describe("integration policy", () => {
         catalog.update(Provider.ID.anthropic, (provider) => {
           provider.activation = "enabled"
         })
-        // A provider authored in opencode.json.
+        // A provider authored in redcode.json.
         catalog.update(Provider.ID.make("my-llm"), (provider) => {
           provider.activation = "enabled"
         })
@@ -371,13 +371,13 @@ describe("integration policy", () => {
             type: "document",
             integrationID: origin,
             info: decode({
-              providers: { "acme-gateway": { package: "@opencode/ai/providers/openai-compatible", models: {} } },
+              providers: { "acme-gateway": { package: "@redcode/ai/providers/openai-compatible", models: {} } },
             }),
           }),
           new Document({
             type: "document",
             info: decode({
-              providers: { "my-llm": { package: "@opencode/ai/providers/openai-compatible", models: {} } },
+              providers: { "my-llm": { package: "@redcode/ai/providers/openai-compatible", models: {} } },
             }),
           }),
         ])

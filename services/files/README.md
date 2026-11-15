@@ -78,8 +78,8 @@ to the production bucket for every release channel:
 R2 key: bin/0.0.0-dev-123/opencode-linux-x64.tar.gz
 URL:    https://opencode.ai/files/bin/0.0.0-dev-123/opencode-linux-x64.tar.gz
 
-R2 key: bin/2.0.0/opencode-desktop-mac-arm64.dmg
-URL:    https://opencode.ai/files/bin/2.0.0/opencode-desktop-mac-arm64.dmg
+R2 key: bin/2.0.0/redcode-desktop-mac-arm64.dmg
+URL:    https://opencode.ai/files/bin/2.0.0/redcode-desktop-mac-arm64.dmg
 ```
 
 CLI and Node CLI archives contain the standalone executable at their root.

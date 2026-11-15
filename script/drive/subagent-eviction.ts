@@ -1,17 +1,17 @@
 import { Deferred, Effect, Stream } from "effect"
-import { Llm, OpenCodeDriver } from "opencode-drive"
+import { Llm, RedCodeDriver } from "opencode-drive"
 import { AbsolutePath } from "../../packages/schema/src/schema"
 import { Database } from "bun:sqlite"
 
 const label = process.env.DEMO_LABEL ?? "AFTER"
 const evict = process.env.DEMO_EVICT !== "false"
 
-// Run with OPENCODE_DRIVE_DB=proof.sqlite. Only model output and fixture_hold are
+// Run with REDCODE_DRIVE_DB=proof.sqlite. Only model output and fixture_hold are
 // simulated. The debug endpoint closes the real graph without waiting an hour.
-// Dynamic tools avoid the static adapter issue: anomalyco/opencode-drive#116.
-export default OpenCodeDriver.use(
+// Dynamic tools avoid the static adapter issue: Vempire-X/RedCode-drive#116.
+export default RedCodeDriver.use(
   {
-    opencode: { dev: process.env.OPENCODE_DEV ?? process.cwd() },
+    opencode: { dev: process.env.REDCODE_DEV ?? process.cwd() },
     keepArtifacts: true,
     tui: { recording: true, viewport: { cols: 100, rows: 30 } },
     config: {

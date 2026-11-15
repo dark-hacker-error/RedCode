@@ -1,4 +1,4 @@
-import type { SessionMessageAssistant, SessionMessageAssistantTool, SessionMessageInfo } from "@opencode/client/promise"
+import type { SessionMessageAssistant, SessionMessageAssistantTool, SessionMessageInfo } from "@redcode/client/promise"
 import { currentToolFailed, currentToolGroupedRead, currentToolInput } from "../message/current-tool-state"
 import { timelineNoticeRequired, type TimelineDetail, type TimelinePlacement } from "../timeline/detail"
 import { isInterruptedError } from "../timeline/turn-phase-machine"

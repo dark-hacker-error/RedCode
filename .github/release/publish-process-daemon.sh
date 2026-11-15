@@ -8,12 +8,12 @@ registry=https://registry.npmjs.org
 packages=(pty-darwin-{arm64,x64} pty-linux-{arm64,x64}-{gnu,musl} pty-win32-{arm64,x64} pty)
 for package in "${packages[@]}"; do
   file="$1/opencode-$package-$version.tgz"
-  tar -xOzf "$file" package/package.json | jq -es --arg name "@opencode/$package" --arg version "$version" '
+  tar -xOzf "$file" package/package.json | jq -es --arg name "@redcode/$package" --arg version "$version" '
     length == 1 and (.[0] | .name == $name and .version == $version and
       ((.publishConfig // {}) | del(.access) == {}))' >/dev/null || die "Unexpected manifest for $package"
 done
 for package in "${packages[@]}"; do
-  if ! npm view --registry="$registry" "@opencode/$package@$version" version >/dev/null 2>&1; then
+  if ! npm view --registry="$registry" "@redcode/$package@$version" version >/dev/null 2>&1; then
     npm publish --registry="$registry" --ignore-scripts --access public --provenance "$1/opencode-$package-$version.tgz"
   fi
 done

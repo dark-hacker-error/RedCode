@@ -1,4 +1,4 @@
-import type { OpenCodeClient } from "@opencode/client/promise"
+import type { RedCodeClient } from "@redcode/client/promise"
 import type { Schema } from "effect"
 
 /**
@@ -38,10 +38,10 @@ export type Catalog = {
   readonly [locale: string]: Messages
 }
 
-/** A JSON value, as plugin options in `opencode.json` hold. */
+/** A JSON value, as plugin options in `redcode.json` hold. */
 export type Json = string | number | boolean | null | readonly Json[] | { readonly [key: string]: Json }
 
-/** A plugin's options from its `opencode.json` entry, as server and TUI plugins receive them. */
+/** A plugin's options from its `redcode.json` entry, as server and TUI plugins receive them. */
 export type PluginOptions = { readonly [key: string]: Json }
 
 /** The running app. One shape in the window and in main, with the fields server and TUI plugins get in `ctx.app`. */
@@ -328,7 +328,7 @@ export interface IpcProvider<S extends IpcSpec> {
  */
 export interface BaseContext {
   /**
-   * The plugin's options from `opencode.json`, as `ctx.options` in its server and TUI halves. Empty for a built-in.
+   * The plugin's options from `redcode.json`, as `ctx.options` in its server and TUI halves. Empty for a built-in.
    *
    * @example
    * ```ts
@@ -347,7 +347,7 @@ export interface BaseContext {
    * const result = await ctx.client.rpc(Acme).search({ query })
    * ```
    */
-  readonly client: OpenCodeClient
+  readonly client: RedCodeClient
   /**
    * The plugin's id, as its `Plugin.define` declares it.
    *

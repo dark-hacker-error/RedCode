@@ -1,11 +1,11 @@
-# @opencode/sdk
+# @redcode/sdk
 
-In-process OpenCode host for Promise and Effect applications. The SDK executes Server's assembled HTTP router in memory, opening no listener and adding no network hop.
+In-process RedCode host for Promise and Effect applications. The SDK executes Server's assembled HTTP router in memory, opening no listener and adding no network hop.
 
 ```ts
-import { OpenCode } from "@opencode/sdk"
+import { RedCode } from "@redcode/sdk"
 
-await using opencode = await OpenCode.create()
+await using opencode = await RedCode.create()
 const session = await opencode.sessions.create({
   location: { directory: "/workspace" },
 })
@@ -13,12 +13,12 @@ const session = await opencode.sessions.create({
 
 Pass imported Promise plugins in `plugins`, or register one later with `await opencode.plugin(plugin)`.
 
-The Promise API uses the same values, errors, request options, and `AsyncIterable` streams as `@opencode/client`.
+The Promise API uses the same values, errors, request options, and `AsyncIterable` streams as `@redcode/client`.
 
 Embedded hosts are silent by default. Set `log` to receive structured log entries:
 
 ```ts
-await using opencode = await OpenCode.create({
+await using opencode = await RedCode.create({
   log: {
     level: "warn",
     emit: (entry) => console.error(entry.message, entry.attributes, entry.cause),
@@ -33,11 +33,11 @@ await using opencode = await OpenCode.create({
 Use `instances` when Sessions in the same directory need different application plugins. The application selects a stable key from Session metadata; the SDK constructs and caches an instance for that key and the Session's current Location.
 
 ```ts
-import { OpenCode } from "@opencode/sdk"
+import { RedCode } from "@redcode/sdk"
 import { threads } from "./threads"
 import { slackPlugin } from "./slack-plugin"
 
-await using opencode = await OpenCode.create({
+await using opencode = await RedCode.create({
   database: { path: "./sessions.db" },
   instances: {
     key(session) {
@@ -80,15 +80,15 @@ Promise plugin resources should be acquired in `setup` and released by its clean
 Use the Workerd entrypoint inside a Cloudflare Durable Object. Hold one host for the lifetime of the object instance rather than creating one per request.
 
 ```ts
-import { OpenCodeWorkerd } from "@opencode/sdk/workerd"
+import { RedCodeWorkerd } from "@redcode/sdk/workerd"
 import myPlugin from "./my-plugin"
 
-export class OpenCodeDO {
-  private readonly opencode: Promise<OpenCodeWorkerd.Interface>
+export class RedCodeDO {
+  private readonly opencode: Promise<RedCodeWorkerd.Interface>
 
   constructor(state: DurableObjectState) {
     this.opencode = state.blockConcurrencyWhile(() =>
-      OpenCodeWorkerd.create({
+      RedCodeWorkerd.create({
         storage: state.storage,
         config: { default_agent: "build" },
         plugins: [myPlugin],
@@ -107,27 +107,27 @@ export class OpenCodeDO {
 
 ## Effect
 
-The Effect-native API remains available from `@opencode/sdk/effect`:
+The Effect-native API remains available from `@redcode/sdk/effect`:
 
 ```ts
-import { OpenCode } from "@opencode/sdk/effect"
+import { RedCode } from "@redcode/sdk/effect"
 
-const opencode = yield * OpenCode.create()
+const opencode = yield * RedCode.create()
 const session = yield * opencode.sessions.get({ sessionID })
 ```
 
-The Effect Workerd entrypoint is `@opencode/sdk/workerd/effect`.
+The Effect Workerd entrypoint is `@redcode/sdk/workerd/effect`.
 
-Effect configuration uses the same keys and lifetime rules, with canonical `Session.Info` values and an Effect-returning factory. `configure` may require services; `OpenCode.create` and `OpenCode.layer` carry those requirements, so the application satisfies them where it builds the SDK, as with any other Effect callback:
+Effect configuration uses the same keys and lifetime rules, with canonical `Session.Info` values and an Effect-returning factory. `configure` may require services; `RedCode.create` and `RedCode.layer` carry those requirements, so the application satisfies them where it builds the SDK, as with any other Effect callback:
 
 ```ts
-import { OpenCode } from "@opencode/sdk/effect"
+import { RedCode } from "@redcode/sdk/effect"
 import { Effect, Layer, Schema } from "effect"
 import { Threads } from "./threads-effect"
 import { slackPlugin } from "./slack-plugin-effect"
 
 const threadMetadata = Schema.decodeUnknownSync(Schema.Struct({ threadID: Schema.String }))
-const opencode = OpenCode.layer({
+const opencode = RedCode.layer({
   database: { path: "./sessions.db" },
   instances: {
     key: (session) => threadMetadata(session.metadata).threadID,
@@ -140,4 +140,4 @@ const opencode = OpenCode.layer({
 }).pipe(Layer.provide(Threads.layer))
 ```
 
-Resources acquired in `configure` still belong to the instance, not to the Scope the SDK was built in. Both Workerd entrypoints also accept `instances`. The public `OpenCode.InstanceOptions` and `OpenCode.InstanceConfiguration` types describe the corresponding Promise or Effect callbacks.
+Resources acquired in `configure` still belong to the instance, not to the Scope the SDK was built in. Both Workerd entrypoints also accept `instances`. The public `RedCode.InstanceOptions` and `RedCode.InstanceConfiguration` types describe the corresponding Promise or Effect callbacks.

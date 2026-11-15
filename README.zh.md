@@ -3,15 +3,15 @@
     <picture>
       <source srcset=".github/assets/logo-ornate-dark.svg" media="(prefers-color-scheme: dark)">
       <source srcset=".github/assets/logo-ornate-light.svg" media="(prefers-color-scheme: light)">
-      <img src=".github/assets/logo-ornate-light.svg" alt="OpenCode logo">
+      <img src=".github/assets/logo-ornate-light.svg" alt="RedCode logo">
     </picture>
   </a>
 </p>
 <p align="center">开源的 AI Coding Agent。</p>
 <p align="center">
   <a href="https://opencode.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
-  <a href="https://www.npmjs.com/package/@opencode/cli"><img alt="npm" src="https://img.shields.io/npm/v/@opencode/cli?style=flat-square" /></a>
-  <a href="https://github.com/anomalyco/opencode/actions/workflows/release.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/anomalyco/opencode/release.yml?style=flat-square&branch=dev" /></a>
+  <a href="https://www.npmjs.com/package/redcode-ai"><img alt="npm" src="https://img.shields.io/npm/v/redcode-ai?style=flat-square" /></a>
+  <a href="https://github.com/Vempire-X/RedCode/actions/workflows/release.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/Vempire-X/RedCode/release.yml?style=flat-square&branch=dev" /></a>
 </p>
 
 <p align="center">
@@ -39,7 +39,7 @@
   <a href="README.vi.md">Tiếng Việt</a>
 </p>
 
-[![OpenCode Terminal UI](services/site/public/v1/docs/assets/lander/screenshot.png)](https://opencode.ai)
+[![RedCode Terminal UI](services/site/public/v1/docs/assets/lander/screenshot.png)](https://opencode.ai)
 
 ---
 
@@ -50,13 +50,13 @@
 curl -fsSL https://opencode.ai/v2/install | bash
 
 # 软件包管理器
-npm i -g @opencode/cli@latest      # 也可使用 bun/pnpm/yarn
+npm i -g redcode-ai@latest      # 也可使用 bun/pnpm/yarn
 brew install anomalyco/tap/opencode-v2 # macOS 和 Linux（推荐，始终保持最新）
 brew install opencode              # macOS 和 Linux（官方 brew formula，更新频率较低）
 sudo pacman -S opencode            # Arch Linux (Stable)
-paru -S opencode-beta              # Arch Linux (Latest from AUR)
+paru -S redcode-beta              # Arch Linux (Latest from AUR)
 mise use -g opencode               # 任意系统
-nix run github:anomalyco/opencode  # Nix
+nix run github:Vempire-X/RedCode  # Nix
 ```
 
 > [!TIP]
@@ -64,27 +64,27 @@ nix run github:anomalyco/opencode  # Nix
 
 ### 桌面应用程序 (BETA)
 
-OpenCode 也提供桌面版应用。可从 [opencode.ai/download](https://opencode.ai/download) 下载。
+RedCode 也提供桌面版应用。可从 [opencode.ai/download](https://opencode.ai/download) 下载。
 
 | 平台                  | 下载文件                           |
 | --------------------- | ---------------------------------- |
-| macOS (Apple Silicon) | `opencode-desktop-mac-arm64.dmg`   |
-| macOS (Intel)         | `opencode-desktop-mac-x64.dmg`     |
-| Windows               | `opencode-desktop-win-x64.exe`     |
+| macOS (Apple Silicon) | `redcode-desktop-mac-arm64.dmg`   |
+| macOS (Intel)         | `redcode-desktop-mac-x64.dmg`     |
+| Windows               | `redcode-desktop-win-x64.exe`     |
 | Linux                 | `.deb`、`.rpm` 或 AppImage         |
 
 ```bash
 # macOS (Homebrew Cask)
-brew install --cask opencode-desktop
+brew install --cask redcode-desktop
 ```
 
 #### 安装目录
 
-安装脚本将 OpenCode 安装到 `$HOME/.opencode/bin`。
+安装脚本将 RedCode 安装到 `$HOME/.redcode/bin`。
 
 ### Agents
 
-OpenCode 内置两种 Agent，可用 `Tab` 键快速切换：
+RedCode 内置两种 Agent，可用 `Tab` 键快速切换：
 
 - **build** - 默认模式，具备完整权限，适合开发工作
 - **plan** - 只读模式，适合代码分析与探索
@@ -104,9 +104,9 @@ OpenCode 内置两种 Agent，可用 `Tab` 键快速切换：
 
 如有兴趣贡献代码，请在提交 PR 前阅读 [贡献指南 (Contributing Docs)](./CONTRIBUTING.md)。
 
-### 基于 OpenCode 进行开发
+### 基于 RedCode 进行开发
 
-如果你在项目名中使用了 “opencode”（如 “opencode-dashboard” 或 “opencode-mobile”），请在 README 里注明该项目不是 OpenCode 团队官方开发，且不存在隶属关系。
+如果你在项目名中使用了 “opencode”（如 “opencode-dashboard” 或 “opencode-mobile”），请在 README 里注明该项目不是 RedCode 团队官方开发，且不存在隶属关系。
 
 ---
 

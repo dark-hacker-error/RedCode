@@ -20,7 +20,7 @@ describe("pack", () => {
     await Bun.write(
       path.join(directory, "package.json"),
       JSON.stringify({
-        name: "@opencode/pack-fixture",
+        name: "@redcode/pack-fixture",
         version: "0.0.0-test",
         type: "module",
         scripts: { build: "true" },

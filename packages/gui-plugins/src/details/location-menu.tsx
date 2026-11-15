@@ -1,10 +1,10 @@
-import { DiffChanges } from "@opencode/ui/diff-changes"
-import { Icon } from "@opencode/ui/icon"
-import { Menu } from "@opencode/ui/menu"
+import { DiffChanges } from "@redcode/ui/diff-changes"
+import { Icon } from "@redcode/ui/icon"
+import { Menu } from "@redcode/ui/menu"
 import { createMemo, Match, onCleanup, Show, Switch } from "solid-js"
-import { createKeyed, usePlugin, type MountedSession, type SessionScreen } from "@opencode/plugin/gui"
+import { createKeyed, usePlugin, type MountedSession, type SessionScreen } from "@redcode/plugin/gui"
 import type Details from "./index"
-import { Changes } from "@opencode/plugin/gui/review"
+import { Changes } from "@redcode/plugin/gui/review"
 import { ReviewDetails } from "../review/contract"
 
 export default function SessionLocationMenu(props: { session: MountedSession; screen: SessionScreen; shown: boolean }) {

@@ -4,7 +4,7 @@ import { Commands } from "../commands"
 import { Runtime } from "../../framework/runtime"
 import { Updater } from "../../services/updater"
 import { handlePromptErrors } from "../../ui/prompt"
-import { OPENCODE_VERSION } from "../../version"
+import { REDCODE_VERSION } from "../../version"
 import { stripVTControlCharacters } from "node:util"
 
 export default Runtime.handler(
@@ -17,19 +17,19 @@ export default Runtime.handler(
       if (!method)
         return yield* Effect.fail(
           (yield* updater.managed(Option.getOrUndefined(input.target))) ??
-            new Error("Could not detect the installation method. Pass --method to choose how to upgrade OpenCode."),
+            new Error("Could not detect the installation method. Pass --method to choose how to upgrade RedCode."),
         )
 
       log.info(`Using method: ${method}`)
       const target = Option.getOrUndefined(input.target) ?? (yield* updater.latest(method))
       const version = target.trim().replace(/^v/, "")
-      if (version === OPENCODE_VERSION) {
-        log.warn(`OpenCode upgrade skipped: ${version} is already installed`)
+      if (version === REDCODE_VERSION) {
+        log.warn(`RedCode upgrade skipped: ${version} is already installed`)
         outro("Done")
         return
       }
 
-      log.info(`From ${OPENCODE_VERSION} → ${version}`)
+      log.info(`From ${REDCODE_VERSION} → ${version}`)
       const progress = spinner()
       progress.start("Upgrading...")
       yield* updater.upgrade(method, target).pipe(

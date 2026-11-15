@@ -1,14 +1,14 @@
 import { Effect, Stream } from "effect"
-import { Llm, OpenCodeDriver } from "opencode-drive"
+import { Llm, RedCodeDriver } from "opencode-drive"
 
 const label = process.env.DEMO_LABEL ?? "AFTER"
 
 // Run from the repository root with `opencode-drive run script/drive/shell-output.ts`.
-// Set OPENCODE_DEV to an immutable base worktree and DEMO_LABEL=BEFORE for comparison.
+// Set REDCODE_DEV to an immutable base worktree and DEMO_LABEL=BEFORE for comparison.
 // Only the conversation is simulated; shell execution and output reads are real.
-export default OpenCodeDriver.use(
+export default RedCodeDriver.use(
   {
-    opencode: { dev: process.env.OPENCODE_DEV ?? process.cwd() },
+    opencode: { dev: process.env.REDCODE_DEV ?? process.cwd() },
     keepArtifacts: true,
     tui: { recording: true, keypressOverlay: true, viewport: { cols: 90, rows: 30 } },
     config: { autoupdate: false, username: "Demo" },

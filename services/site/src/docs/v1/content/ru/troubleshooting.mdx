@@ -11,8 +11,8 @@ description: Распространенные проблемы и способы
 
 Лог-файлы записываются в:
 
-- **macOS/Linux**: `~/.local/share/opencode/log/`
-- **Windows**: нажмите `WIN+R` и вставьте `%USERPROFILE%\.local\share\opencode\log`.
+- **macOS/Linux**: `~/.local/share/redcode/log/`
+- **Windows**: нажмите `WIN+R` и вставьте `%USERPROFILE%\.local\share\redcode\log`.
 
 Файлам журналов присваиваются имена с метками времени (например, `2025-01-09T123456.log`), и сохраняются 10 последних файлов журналов.
 
@@ -24,8 +24,8 @@ description: Распространенные проблемы и способы
 
 opencode хранит данные сеанса и другие данные приложения на диске по адресу:
 
-- **macOS/Linux**: `~/.local/share/opencode/`
-- **Windows**: нажмите `WIN+R` и вставьте `%USERPROFILE%\.local\share\opencode`.
+- **macOS/Linux**: `~/.local/share/redcode/`
+- **Windows**: нажмите `WIN+R` и вставьте `%USERPROFILE%\.local\share\redcode`.
 
 Этот каталог содержит:
 
@@ -45,7 +45,7 @@ opencode Desktop запускает локальный сервер opencode (с
 
 - Полностью закройте и перезапустите приложение.
 - Если приложение отображает экран с ошибкой, нажмите **Перезапустить** и скопируйте сведения об ошибке.
-- Только для macOS: меню `OpenCode` -> **Обновить веб-просмотр** (помогает, если пользовательский интерфейс пуст или завис).
+- Только для macOS: меню `RedCode` -> **Обновить веб-просмотр** (помогает, если пользовательский интерфейс пуст или завис).
 
 ---
 
@@ -57,9 +57,9 @@ opencode Desktop запускает локальный сервер opencode (с
 
 Откройте файл глобальной конфигурации и найдите ключ `plugin`.
 
-- **macOS/Linux**: `~/.config/opencode/opencode.jsonc` (или `~/.config/opencode/opencode.json`)
-- **macOS/Linux** (более ранние версии): `~/.local/share/opencode/opencode.jsonc`
-- **Windows**: нажмите `WIN+R` и вставьте `%USERPROFILE%\.config\opencode\opencode.jsonc`.
+- **macOS/Linux**: `~/.config/redcode/redcode.jsonc` (или `~/.config/redcode/redcode.json`)
+- **macOS/Linux** (более ранние версии): `~/.local/share/redcode/redcode.jsonc`
+- **Windows**: нажмите `WIN+R` и вставьте `%USERPROFILE%\.config\redcode\redcode.jsonc`.
 
 Если у вас настроены плагины, временно отключите их, удалив ключ или установив для него пустой массив:
 
@@ -75,10 +75,10 @@ opencode Desktop запускает локальный сервер opencode (с
 opencode также может загружать локальные плагины с диска. Временно переместите их в сторону (или переименуйте папку) и перезапустите настольное приложение:
 
 - **Глобальные плагины**
-  - **macOS/Linux**: `~/.config/opencode/plugins/`
-  - **Windows**: нажмите `WIN+R` и вставьте `%USERPROFILE%\.config\opencode\plugins`.
+  - **macOS/Linux**: `~/.config/redcode/plugins/`
+  - **Windows**: нажмите `WIN+R` и вставьте `%USERPROFILE%\.config\redcode\plugins`.
 - **Плагины проекта** (только если вы используете конфигурацию для каждого проекта)
-  - `<your-project>/.opencode/plugins/`
+  - `<your-project>/.redcode/plugins/`
 
 Если приложение снова начнет работать, повторно включите плагины по одному, чтобы определить, какой из них вызывает проблему.
 
@@ -91,9 +91,9 @@ opencode также может загружать локальные плаги�
 1. Полностью закройте opencode Desktop.
 2. Удалите каталог кэша:
 
-- **macOS**: Finder -> `Cmd+Shift+G` -> вставить `~/.cache/opencode`.
-- **Linux**: удалите `~/.cache/opencode` (или запустите `rm -rf ~/.cache/opencode`).
-- **Windows**: нажмите `WIN+R` и вставьте `%USERPROFILE%\.cache\opencode`.
+- **macOS**: Finder -> `Cmd+Shift+G` -> вставить `~/.cache/redcode`.
+- **Linux**: удалите `~/.cache/redcode` (или запустите `rm -rf ~/.cache/redcode`).
+- **Windows**: нажмите `WIN+R` и вставьте `%USERPROFILE%\.cache\redcode`.
 
 3. Перезапустите рабочий стол opencode.
 
@@ -111,13 +111,13 @@ opencode Desktop может либо запустить собственный �
 
 #### Удалите `server.port`/`server.hostname` из вашей конфигурации.
 
-Если ваш `opencode.json(c)` содержит раздел `server`, временно удалите его и перезапустите настольное приложение.
+Если ваш `redcode.json(c)` содержит раздел `server`, временно удалите его и перезапустите настольное приложение.
 
 #### Проверьте переменные среды
 
-Если в вашей среде установлен `OPENCODE_PORT`, настольное приложение попытается использовать этот порт для локального сервера.
+Если в вашей среде установлен `REDCODE_PORT`, настольное приложение попытается использовать этот порт для локального сервера.
 
-- Отмените настройку `OPENCODE_PORT` (или выберите свободный порт) и перезапустите.
+- Отмените настройку `REDCODE_PORT` (или выберите свободный порт) и перезапустите.
 
 ---
 
@@ -158,8 +158,8 @@ opencode Desktop отображает системные уведомления 
 1. Закройте рабочий стол opencode.
 2. Найдите и удалите эти файлы (они находятся в каталоге данных приложения opencode Desktop):
 
-- `opencode.settings.dat` (URL-адрес сервера по умолчанию для рабочего стола)
-- `opencode.global.dat` и `opencode.workspace.*.dat` (состояние пользовательского интерфейса, например, недавние серверы/проекты)
+- `redcode.settings.dat` (URL-адрес сервера по умолчанию для рабочего стола)
+- `redcode.global.dat` и `opencode.workspace.*.dat` (состояние пользовательского интерфейса, например, недавние серверы/проекты)
 
 Чтобы быстро найти каталог:
 
@@ -177,7 +177,7 @@ opencode Desktop отображает системные уведомления 
 
    Лучший способ сообщить об ошибках или запросить новые функции — через наш репозиторий GitHub:
 
-   [**github.com/anomalyco/opencode/issues**](https://github.com/anomalyco/opencode/issues)
+   [**github.com/Vempire-X/RedCode/issues**](https://github.com/Vempire-X/RedCode/issues)
 
    Прежде чем создавать новую проблему, выполните поиск по существующим проблемам, чтобы узнать, не сообщалось ли уже о вашей проблеме.
 
@@ -241,10 +241,10 @@ opencode Desktop отображает системные уведомления 
 2. Если проблема не устранена, попробуйте очистить сохраненную конфигурацию:
 
    ```bash
-   rm -rf ~/.local/share/opencode
+   rm -rf ~/.local/share/redcode
    ```
 
-   В Windows нажмите `WIN+R` и удалите: `%USERPROFILE%\.local\share\opencode`.
+   В Windows нажмите `WIN+R` и удалите: `%USERPROFILE%\.local\share\redcode`.
 
 3. Повторно выполните аутентификацию у своего провайдера, используя команду `/connect` в TUI.
 
@@ -259,10 +259,10 @@ opencode Desktop отображает системные уведомления 
 1. Очистите кеш пакетов провайдера:
 
    ```bash
-   rm -rf ~/.cache/opencode
+   rm -rf ~/.cache/redcode
    ```
 
-   В Windows нажмите `WIN+R` и удалите: `%USERPROFILE%\.cache\opencode`.
+   В Windows нажмите `WIN+R` и удалите: `%USERPROFILE%\.cache\redcode`.
 
 2. Перезапустите opencode, чтобы переустановить последние пакеты поставщиков.
 

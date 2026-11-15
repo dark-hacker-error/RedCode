@@ -92,7 +92,7 @@ flowchart TD
   repo[Organization profile repo] --> build[Build]
   build --> worker[Isolated organization Worker]
   worker --> sessions[SessionDOs]
-  sessions --> opencode[OpenCode + native plugins]
+  sessions --> opencode[RedCode + native plugins]
   opencode --> modal[Modal workspaces]
 \`\`\``,
     syntaxStyle,

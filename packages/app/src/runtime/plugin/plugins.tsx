@@ -1,7 +1,7 @@
 import { createMemo, onCleanup, untrack } from "solid-js"
-import type { PluginOptions } from "@opencode/plugin/gui"
-import type { Bridge, BridgePluginGui, Entry } from "@opencode/plugin/gui/host"
-import type { OpenCodeClient } from "@opencode/client/promise"
+import type { PluginOptions } from "@redcode/plugin/gui"
+import type { Bridge, BridgePluginGui, Entry } from "@redcode/plugin/gui/host"
+import type { RedCodeClient } from "@redcode/client/promise"
 import { useGlobal } from "@/runtime/server/runtime"
 import { ServerConnection } from "@/runtime/server/registry"
 import { pluginDefinition } from "./module"
@@ -18,7 +18,7 @@ import {
 export type PluginGui = {
   readonly definition: Entry
   readonly options: PluginOptions
-  readonly client: () => OpenCodeClient | undefined
+  readonly client: () => RedCodeClient | undefined
 }
 
 /**

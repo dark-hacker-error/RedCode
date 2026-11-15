@@ -1,6 +1,6 @@
 import { Effect } from "effect"
-import { define } from "@opencode/plugin/effect/plugin"
-import { Npm } from "@opencode/util/npm"
+import { define } from "@redcode/plugin/effect/plugin"
+import { Npm } from "@redcode/util/npm"
 import { loadSDKFactory } from "./sdk-factory.js"
 
 export const DynamicProviderPlugin = define({

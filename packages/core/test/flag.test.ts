@@ -1,11 +1,11 @@
 import { describe, expect, test } from "bun:test"
-import { App } from "@opencode/core/app"
-import { Config } from "@opencode/core/config"
-import { Flag } from "@opencode/core/flag"
-import { Document, Info } from "@opencode/schema/config"
-import { ConfigExperimental } from "@opencode/schema/config/experimental"
-import { ConfigFlag } from "@opencode/schema/config/flag"
-import { makeLocationNode } from "@opencode/util/effect/app-node"
+import { App } from "@redcode/core/app"
+import { Config } from "@redcode/core/config"
+import { Flag } from "@redcode/core/flag"
+import { Document, Info } from "@redcode/schema/config"
+import { ConfigExperimental } from "@redcode/schema/config/experimental"
+import { ConfigFlag } from "@redcode/schema/config/flag"
+import { makeLocationNode } from "@redcode/util/effect/app-node"
 import { Effect, Layer, Record } from "effect"
 import { testEffect } from "./lib/effect"
 
@@ -48,7 +48,7 @@ describe("Flag.resolve", () => {
     expect(Flag.resolve({ entries: [], channel: "latest" })).toEqual(every({ enabled: false, source: "default" }))
   })
 
-  test("config overrides the default and OPENCODE_FLAGS overrides config", () => {
+  test("config overrides the default and REDCODE_FLAGS overrides config", () => {
     const entries = [document({ todo: true, schedules: false })]
     const flags = Flag.resolve({ entries, channel: "dev", overrides: " media_blob , -todo,unknown_flag" })
     expect(
@@ -69,7 +69,7 @@ describe("Flag.resolve", () => {
     expect([flags.todo.enabled, flags.todo.source]).toEqual([false, "default"])
   })
 
-  test("OPENCODE_FLAGS=all turns every flag on, and a -key in the same list still wins", () => {
+  test("REDCODE_FLAGS=all turns every flag on, and a -key in the same list still wins", () => {
     const entries = [document({ media_blob: false })]
     expect(Flag.resolve({ entries, channel: "latest", overrides: "all" })).toEqual(
       every({ enabled: true, source: "env" }),
@@ -83,7 +83,7 @@ describe("Flag.resolve", () => {
     )
   })
 
-  test("experimental.all_flags turns every flag on below OPENCODE_FLAGS and below a per-flag setting", () => {
+  test("experimental.all_flags turns every flag on below REDCODE_FLAGS and below a per-flag setting", () => {
     const entries = [document({ all_flags: true, media_blob: false })]
     expect(Flag.resolve({ entries, channel: "latest", overrides: "-artifacts" })).toEqual({
       ...every({ enabled: true, source: "config" }),
@@ -92,7 +92,7 @@ describe("Flag.resolve", () => {
     })
   })
 
-  test("experimental.all_flags: false is not a kill switch, and all_flags in OPENCODE_FLAGS does nothing", () => {
+  test("experimental.all_flags: false is not a kill switch, and all_flags in REDCODE_FLAGS does nothing", () => {
     expect(Flag.resolve({ entries: [document({ all_flags: false })], channel: "dev" })).toEqual(
       every({ enabled: true, source: "default" }),
     )
@@ -120,7 +120,7 @@ const it = testEffect(
 )
 
 describe("Flag.enabled", () => {
-  it.effect("reads the Config, channel and OPENCODE_FLAGS in scope and follows config updates", () =>
+  it.effect("reads the Config, channel and REDCODE_FLAGS in scope and follows config updates", () =>
     Effect.gen(function* () {
       const config = yield* Config.Test
       expect(yield* Flag.enabled("artifacts")).toBe(true)

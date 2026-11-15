@@ -1,16 +1,16 @@
 import { describe, expect, test } from "bun:test"
-import { SystemPart } from "@opencode/ai/effect"
-import { Agent } from "@opencode/core/agent"
-import { Plugin } from "@opencode/core/plugin"
-import { PluginHooks } from "@opencode/core/plugin/hooks"
-import { PluginHost } from "@opencode/core/plugin/host"
-import { IdentityPlugin } from "@opencode/core/plugin/identity"
-import { OptimizePlugin } from "@opencode/core/plugin/optimize"
-import { Session } from "@opencode/core/session"
-import { SessionSystemPrompt } from "@opencode/core/session/system-prompt"
-import type { SessionHooks } from "@opencode/plugin/effect/session"
-import { Model } from "@opencode/schema/model"
-import { Provider } from "@opencode/core/provider"
+import { SystemPart } from "@redcode/ai/effect"
+import { Agent } from "@redcode/core/agent"
+import { Plugin } from "@redcode/core/plugin"
+import { PluginHooks } from "@redcode/core/plugin/hooks"
+import { PluginHost } from "@redcode/core/plugin/host"
+import { IdentityPlugin } from "@redcode/core/plugin/identity"
+import { OptimizePlugin } from "@redcode/core/plugin/optimize"
+import { Session } from "@redcode/core/session"
+import { SessionSystemPrompt } from "@redcode/core/session/system-prompt"
+import type { SessionHooks } from "@redcode/plugin/effect/session"
+import { Model } from "@redcode/schema/model"
+import { Provider } from "@redcode/core/provider"
 import { Effect } from "effect"
 import { testEffect } from "../lib/effect"
 import { PluginTestLayer } from "./fixture"
@@ -128,7 +128,7 @@ describe("OptimizePlugin", () => {
         SessionSystemPrompt.render(PROMPT_GPT, Object.keys(event.tools)),
         "Project instructions",
       ])
-      expect(event.system[0]?.text).not.toContain("${OPENCODE_TOOL_GUIDANCE}")
+      expect(event.system[0]?.text).not.toContain("${REDCODE_TOOL_GUIDANCE}")
       expect(Object.keys(event.tools).sort()).toEqual(["edit", "glob", "grep", "patch", "read", "shell", "write"])
     }),
   )

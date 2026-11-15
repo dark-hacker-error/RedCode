@@ -13,19 +13,19 @@ import {
 import { createStore } from "solid-js/store"
 import { Dynamic } from "solid-js/web"
 import { createResizeObserver } from "@solid-primitives/resize-observer"
-import { PreviewControls } from "@opencode/ui/preview-controls"
-import { useDialog } from "@opencode/ui/context/dialog"
-import { FileIcon } from "@opencode/ui/file-icon"
-import { Icon } from "@opencode/ui/icon"
-import { IconButton } from "@opencode/ui/icon-button"
-import { ImagePreview } from "@opencode/ui/image-preview"
-import { Loader } from "@opencode/ui/loader"
-import { showToast } from "@opencode/ui/toast"
-import { Markdown } from "@opencode/session-ui/markdown"
-import { MarkdownProvider, useMarkdown } from "@opencode/session-ui/context/markdown"
-import { artifactKind } from "@opencode/util/artifact"
-import { getDirectory, getFilename } from "@opencode/util/path"
-import { createKeyed, usePlugin, type FileContent, type MountedSession, type SessionScreen } from "@opencode/plugin/gui"
+import { PreviewControls } from "@redcode/ui/preview-controls"
+import { useDialog } from "@redcode/ui/context/dialog"
+import { FileIcon } from "@redcode/ui/file-icon"
+import { Icon } from "@redcode/ui/icon"
+import { IconButton } from "@redcode/ui/icon-button"
+import { ImagePreview } from "@redcode/ui/image-preview"
+import { Loader } from "@redcode/ui/loader"
+import { showToast } from "@redcode/ui/toast"
+import { Markdown } from "@redcode/session-ui/markdown"
+import { MarkdownProvider, useMarkdown } from "@redcode/session-ui/context/markdown"
+import { artifactKind } from "@redcode/util/artifact"
+import { getDirectory, getFilename } from "@redcode/util/path"
+import { createKeyed, usePlugin, type FileContent, type MountedSession, type SessionScreen } from "@redcode/plugin/gui"
 import {
   blobUrlFromContent,
   bytesFromContent,
@@ -35,8 +35,8 @@ import {
   splitFrontmatter,
   type FrontmatterProperty,
 } from "./artifact"
-import { FileViewer } from "@opencode/plugin/gui/file"
-import { uuid } from "@opencode/util/uuid"
+import { FileViewer } from "@redcode/plugin/gui/file"
+import { uuid } from "@redcode/util/uuid"
 import { ArtifactToolbar } from "./artifact-toolbar"
 import {
   createArtifactViewerState,

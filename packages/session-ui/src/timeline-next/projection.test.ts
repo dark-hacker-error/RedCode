@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import type { SessionMessageAssistant, SessionMessageInfo, SessionMessageUser } from "@opencode/client/promise"
+import type { SessionMessageAssistant, SessionMessageInfo, SessionMessageUser } from "@redcode/client/promise"
 import { Predicate } from "effect"
 import { createRoot } from "solid-js"
 import { timelinePresets } from "../timeline/detail"

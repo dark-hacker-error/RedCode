@@ -16,8 +16,8 @@ import {
   prefersReducedMotion,
   Spring,
   type DurationOptions,
-} from "@opencode/ui/motion"
-import { motionTuning } from "@opencode/ui/motion-tuning"
+} from "@redcode/ui/motion"
+import { motionTuning } from "@redcode/ui/motion-tuning"
 import {
   createGrowState,
   createMorphState,

@@ -1,13 +1,13 @@
 import type { install } from "./console-api"
 
-/** Set when a visitor quits OpenCode Lite: it no longer starts on its own in this browser until opencode.try(). */
+/** Set when a visitor quits RedCode Lite: it no longer starts on its own in this browser until opencode.try(). */
 export const liteQuitKey = "opencode-lite-quit"
 
 /**
  * window.opencode before anyone uses it: one line in the console, and a getter that loads the console
  * API (console-api.ts) the first time `opencode` is read there. Until it has loaded, a call on any
  * path (opencode.help(), opencode.install.pick()) waits for it, so the first command typed works.
- * On desktop, Text.js's onConsoleIntent also starts OpenCode Lite once the visitor shows they want
+ * On desktop, Text.js's onConsoleIntent also starts RedCode Lite once the visitor shows they want
  * the console (console-api.ts).
  */
 export function installConsoleStub() {
@@ -15,7 +15,7 @@ export function installConsoleStub() {
   let loading: Promise<ReturnType<typeof install>> | undefined
   const load = () =>
     (loading ??= import("./console-api").then((module) => {
-      delete (window as { opencode?: unknown }).opencode
+      delete (window as { opencode?: unknown }).redcode
       return module.install()
     }))
   let greeted = false
@@ -45,7 +45,7 @@ export function installConsoleStub() {
       return later([])
     },
   })
-  console.log("Type opencode to install, download or try OpenCode from here.")
+  console.log("Type opencode to install, download or try RedCode from here.")
   if (matchMedia("(hover: none) and (pointer: coarse)").matches || localStorage.getItem(liteQuitKey)) return
   void import("@textjs/core/experimental").then((textjs) =>
     textjs.onConsoleIntent(

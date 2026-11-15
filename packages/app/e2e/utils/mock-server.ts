@@ -1,9 +1,9 @@
 import type { Page } from "@playwright/test"
-import type { OpenCodeEvent, SessionMessageInfo } from "@opencode/client/promise"
-import { Permission } from "@opencode/schema/permission"
-import { artifactKind, artifactMime } from "@opencode/util/artifact"
-import { Model } from "@opencode/schema/model"
-import { Worktree } from "@opencode/schema/worktree"
+import type { RedCodeEvent, SessionMessageInfo } from "@redcode/client/promise"
+import { Permission } from "@redcode/schema/permission"
+import { artifactKind, artifactMime } from "@redcode/util/artifact"
+import { Model } from "@redcode/schema/model"
+import { Worktree } from "@redcode/schema/worktree"
 import { Effect, Layer, Option, Predicate, Schema } from "effect"
 import { HttpRouter, HttpServer, HttpServerResponse } from "effect/http"
 import { HttpApiBuilder, HttpApiSchema } from "effect/http-api"
@@ -101,7 +101,7 @@ export interface MockServerConfig {
   onMessage?: (input: { sessionID: string; messageID: string }) => void
   onRevertStage?: (input: { sessionID: string; messageID: string }) => void
   onSession?: (sessionID: string) => void
-  events?: () => OpenCodeEvent[]
+  events?: () => RedCodeEvent[]
   eventRetry?: number
   // Idle event streams send a comment every 15 s like the real server. Set false only to test the client's stall watchdog.
   keepalive?: boolean
@@ -200,7 +200,7 @@ type MockStreamWindow = Window & {
   __mockServerStreams?: Record<string, MockStream>
 }
 
-export async function mockOpenCodeServer(page: Page, config: MockServerConfig) {
+export async function mockRedCodeServer(page: Page, config: MockServerConfig) {
   const server = config.server ?? SERVER
 
   mockedOrigins(page).add(server)
@@ -322,7 +322,7 @@ export async function mockOpenCodeServer(page: Page, config: MockServerConfig) {
 
   if (config.events) {
     // Batches stay queued until the page accepts them; failures other than a missing document fail the test.
-    const pending: OpenCodeEvent[] = []
+    const pending: RedCodeEvent[] = []
     const pump = { busy: false, pending }
 
     const timer = setInterval(() => {
@@ -498,7 +498,7 @@ export async function mockServers(page: Page, servers: Record<string, Omit<MockS
           keepalive: config.keepalive,
         })
 
-        const mock = await mockOpenCodeServer(page, { ...config, server: origin })
+        const mock = await mockRedCodeServer(page, { ...config, server: origin })
 
         return [origin, { transport, persistentPty: mock.persistentPty }] as const
       }),
@@ -945,7 +945,7 @@ function mockHandlers(
         configUpdate: () => noContent,
         websearchProviders: () =>
           Effect.sync(() => ({ location: location(config), data: resolve(config.websearchProviders ?? []) })),
-        // No scenario signs in to an OpenCode Console workspace, so none has usage limits.
+        // No scenario signs in to an RedCode Console workspace, so none has usage limits.
         usageLimits: () => Effect.succeed({ location: location(config), data: null }),
         worktreeList: () =>
           Effect.sync(() => {
@@ -1156,7 +1156,7 @@ function mockHandlers(
                 ? Effect.fail(
                     new MockPtyFeatureUnsupported({
                       feature: "rename",
-                      message: "Terminal renaming will be available after OpenCode's terminal service restarts",
+                      message: "Terminal renaming will be available after RedCode's terminal service restarts",
                     }),
                   )
                 : Effect.sync(() => ({ data: state.persistentPty.update(found.id, ctx.payload) })),

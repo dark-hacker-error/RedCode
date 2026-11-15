@@ -13,7 +13,7 @@ import { siteSettings } from "./settings"
 // after `gh repo fork --clone`. Output lines are what gh and git print (gh's "✓" marks left out: OpenTUI
 // Mono has no check mark); comments explain.
 const transcript = [
-  { kind: "command", text: "gh repo fork anomalyco/opencode --clone" },
+  { kind: "command", text: "gh repo fork Vempire-X/RedCode --clone" },
   { kind: "output", text: "Created fork you/opencode" },
   { kind: "output", text: "Cloning into 'opencode'..." },
   { kind: "output", text: "Cloned fork" },
@@ -26,7 +26,7 @@ const transcript = [
 
 /**
  * Settings › Open source variant "fork": a "fork it" block under the open source proof. A short
- * terminal transcript of forking and running OpenCode types in, line by line, the first time it
+ * terminal transcript of forking and running RedCode types in, line by line, the first time it
  * scrolls into view (the shared entrance, reveal.ts, in its "type" style; static with reduced
  * motion), beside three things a fork lets you do. In development it always renders and the
  * section's data-oss-variant (set before first paint from Settings) shows it; production renders it

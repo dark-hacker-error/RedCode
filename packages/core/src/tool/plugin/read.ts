@@ -1,10 +1,10 @@
 export * as ReadTool from "./read.js"
 
-import type { Context } from "@opencode/plugin/effect/plugin"
+import type { Context } from "@redcode/plugin/effect/plugin"
 import { basename, dirname, extname, isAbsolute, join, relative } from "path"
-import { ToolFailure } from "@opencode/ai/effect"
+import { ToolFailure } from "@redcode/ai/effect"
 import { Effect, Schema } from "effect"
-import { FSUtil } from "@opencode/util/fs-util"
+import { FSUtil } from "@redcode/util/fs-util"
 import { Location } from "../../location.js"
 import { FileAccess } from "../../file-access.js"
 import { Permission } from "../../permission.js"

@@ -9,7 +9,7 @@ import {
   type ProviderConnectTransition,
 } from "./machine"
 
-// The OpenCode Console account is the `opencode` integration. OpenCode Go is its own integration
+// The RedCode Console account is the `opencode` integration. RedCode Go is its own integration
 // and connects with its own methods, the same as the TUI.
 export const CONSOLE_INTEGRATION = "opencode"
 

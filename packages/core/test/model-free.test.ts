@@ -1,17 +1,17 @@
-import { Agent } from "@opencode/core/agent"
+import { Agent } from "@redcode/core/agent"
 import { expect } from "bun:test"
 import { DateTime, Effect, Layer } from "effect"
-import { AppNodeBuilder } from "@opencode/core/effect/app-node-builder"
-import { LayerNode } from "@opencode/util/effect/layer-node"
-import { Location } from "@opencode/core/location"
-import { Model } from "@opencode/core/model"
-import { ModelResolver } from "@opencode/core/model-resolver"
-import { Project } from "@opencode/core/project"
-import { Provider } from "@opencode/core/provider"
-import { AbsolutePath } from "@opencode/core/schema"
-import { Session } from "@opencode/core/session"
-import { SessionRunnerModel } from "@opencode/core/session/runner/model"
-import { Money } from "@opencode/schema/money"
+import { AppNodeBuilder } from "@redcode/core/effect/app-node-builder"
+import { LayerNode } from "@redcode/util/effect/layer-node"
+import { Location } from "@redcode/core/location"
+import { Model } from "@redcode/core/model"
+import { ModelResolver } from "@redcode/core/model-resolver"
+import { Project } from "@redcode/core/project"
+import { Provider } from "@redcode/core/provider"
+import { AbsolutePath } from "@redcode/core/schema"
+import { Session } from "@redcode/core/session"
+import { SessionRunnerModel } from "@redcode/core/session/runner/model"
+import { Money } from "@redcode/schema/money"
 import { withEnv } from "./fixture/env"
 import { location } from "./fixture/location"
 import { it } from "./lib/effect"
@@ -28,8 +28,8 @@ const other = Provider.ID.make("other")
 
 for (const flag of [undefined, "0", "1", "true"]) {
   for (const providerID of [Provider.ID.opencode, Provider.ID.make("opencode-go")])
-    it.effect(`${providerID} catalog with OPENCODE_DISABLE_FREE_MODELS=${flag}`, () =>
-      withEnv({ OPENCODE_DISABLE_FREE_MODELS: flag }, () =>
+    it.effect(`${providerID} catalog with REDCODE_DISABLE_FREE_MODELS=${flag}`, () =>
+      withEnv({ REDCODE_DISABLE_FREE_MODELS: flag }, () =>
         Effect.gen(function* () {
           const providers = yield* Provider.Service
           const models = yield* Model.Service

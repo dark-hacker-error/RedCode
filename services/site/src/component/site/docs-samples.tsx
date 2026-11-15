@@ -27,23 +27,23 @@ export function DocsSamples(props: {
     <>
       <props.Section id="typography">
         <props.Sample variant="typography">
-          <h1>Heading 1 · Configure OpenCode</h1>
+          <h1>Heading 1 · Configure RedCode</h1>
           <h2>Heading 2 · Providers</h2>
           <h3>Heading 3 · Local models</h3>
           <h4>Heading 4 · Ollama</h4>
           <h5>Heading 5 · Context limits</h5>
           <h6>Heading 6 · Notes</h6>
-          <p data-slot="lead">Lead · OpenCode is an open source coding agent for the terminal, desktop and web.</p>
+          <p data-slot="lead">Lead · RedCode is an open source coding agent for the terminal, desktop and web.</p>
           <p>
             Body · Run <code>opencode</code> in a project to open the terminal interface. See{" "}
             <a href="#config">Config</a> for every option, or read the{" "}
-            <a href="https://github.com/anomalyco/opencode" target="_blank">
+            <a href="https://github.com/Vempire-X/RedCode" target="_blank">
               source on GitHub
             </a>
             .
           </p>
           <p>
-            <small>Small · Requires OpenCode 2.0 or later.</small> The <abbr title="Agent Client Protocol">ACP</abbr>{" "}
+            <small>Small · Requires RedCode 2.0 or later.</small> The <abbr title="Agent Client Protocol">ACP</abbr>{" "}
             server speaks JSON-RPC.
           </p>
         </props.Sample>
@@ -55,7 +55,7 @@ export function DocsSamples(props: {
         </props.Sample>
         <props.Sample variant="inlineCode">
           <p>
-            Set <code>model</code> in <code>opencode.jsonc</code>, then run <code>opencode run "fix the tests"</code>.
+            Set <code>model</code> in <code>redcode.jsonc</code>, then run <code>opencode run "fix the tests"</code>.
           </p>
         </props.Sample>
       </props.Section>
@@ -78,7 +78,7 @@ export function DocsSamples(props: {
             <li>Sessions are saved, so you can come back to them.</li>
           </ul>
           <ol>
-            <li>Install OpenCode.</li>
+            <li>Install RedCode.</li>
             <li>
               Connect a provider with <code>/connect</code>.
             </li>
@@ -107,7 +107,7 @@ export function DocsSamples(props: {
         <props.Sample variant="blockquote">
           <blockquote>
             <p>
-              Homebrew's own <code>brew install opencode</code> formula also installs OpenCode 2. Each release publishes
+              Homebrew's own <code>brew install opencode</code> formula also installs RedCode 2. Each release publishes
               first to the <code>anomalyco/tap/opencode-v2</code> formula.
             </p>
           </blockquote>
@@ -147,12 +147,12 @@ export function DocsSamples(props: {
                 variant="terminal"
                 kind="terminal"
                 label="Terminal"
-                copy="$ OPENCODE_DISABLE_PROJECT_CONFIG=1 opencode"
+                copy="$ REDCODE_DISABLE_PROJECT_CONFIG=1 opencode"
               >
                 <pre data-component="code-block">
                   <code>
                     <span data-token="prompt">$ </span>
-                    <span data-token="flag">OPENCODE_DISABLE_PROJECT_CONFIG=1</span>{" "}
+                    <span data-token="flag">REDCODE_DISABLE_PROJECT_CONFIG=1</span>{" "}
                     <span data-token="command">opencode</span>
                   </code>
                 </pre>
@@ -197,7 +197,7 @@ export function DocsSamples(props: {
                 {
                   [
                     "curl -fsSL https://opencode.ai/v2/install | bash",
-                    "npm install -g @opencode/cli",
+                    "npm install -g redcode-ai",
                     "brew install anomalyco/tap/opencode-v2",
                   ][tab()]
                 }
@@ -207,7 +207,7 @@ export function DocsSamples(props: {
                 text={
                   [
                     "curl -fsSL https://opencode.ai/v2/install | bash",
-                    "npm install -g @opencode/cli",
+                    "npm install -g redcode-ai",
                     "brew install anomalyco/tap/opencode-v2",
                   ][tab()]
                 }
@@ -216,7 +216,7 @@ export function DocsSamples(props: {
           </div>
           <div data-component="code-tabs" data-files="">
             <div data-slot="tabs" role="tablist" aria-label="Files">
-              <For each={["opencode.jsonc", "AGENTS.md"]}>
+              <For each={["redcode.jsonc", "AGENTS.md"]}>
                 {(label, index) => (
                   <button
                     type="button"
@@ -315,11 +315,11 @@ export function DocsSamples(props: {
           <CodeFrame
             variant="codeTitle"
             kind="file"
-            label="opencode.jsonc"
+            label="redcode.jsonc"
             copy={`{\n  "$schema": "https://opencode.ai/config.json",\n  "model": "opencode/claude-opus-5-5",\n  "permission": { "bash": "ask" }\n}`}
           >
             <figure data-component="code-figure">
-              <figcaption>opencode.jsonc</figcaption>
+              <figcaption>redcode.jsonc</figcaption>
               <pre>
                 <code>{`{
   "$schema": "https://opencode.ai/config.json",
@@ -334,7 +334,7 @@ export function DocsSamples(props: {
           <CodeFrame
             variant="codeLines"
             kind="file"
-            label=".opencode/tools/count-lines.ts"
+            label=".redcode/tools/count-lines.ts"
             copy={countLines.join("\n")}
           >
             <pre data-component="code-lines">
@@ -353,7 +353,7 @@ export function DocsSamples(props: {
           <CodeFrame
             variant="codeDiff"
             kind="file"
-            label="opencode.jsonc"
+            label="redcode.jsonc"
             copy={'{\n  "model": "opencode/claude-opus-5-5",\n  "permission": { "bash": "ask" },\n}'}
           >
             <pre data-component="code-diff">
@@ -383,7 +383,7 @@ export function DocsSamples(props: {
         <props.Sample variant="fileTree">
           <CodeFrame variant="fileTree" kind="tree" label="Files">
             <FileTree
-              tree={`.opencode/
+              tree={`.redcode/
 └── plugins/
     ├── concise.ts
     ├── reviewer.js
@@ -398,9 +398,9 @@ export function DocsSamples(props: {
           <ol data-component="steps">
             <li>
               <p>
-                <strong>Create the plugin.</strong> Add <code>.opencode/plugins/notify.ts</code>.
+                <strong>Create the plugin.</strong> Add <code>.redcode/plugins/notify.ts</code>.
               </p>
-              <CodeFrame variant="codeTitle" kind="file" label=".opencode/plugins/notify.ts" copy={notifyPlugin}>
+              <CodeFrame variant="codeTitle" kind="file" label=".redcode/plugins/notify.ts" copy={notifyPlugin}>
                 <pre>
                   <code>{notifyPlugin}</code>
                 </pre>
@@ -413,7 +413,7 @@ export function DocsSamples(props: {
             </li>
             <li>
               <p>
-                <strong>Restart OpenCode.</strong> Plugins load on start.
+                <strong>Restart RedCode.</strong> Plugins load on start.
               </p>
               <CodeFrame variant="terminal" kind="terminal" label="Terminal" copy="$ opencode service restart">
                 <pre data-component="code-block">
@@ -434,8 +434,8 @@ export function DocsSamples(props: {
             <For
               each={[
                 ["Plugins", "Hook into sessions, tools and events."],
-                ["Client", "Talk to a running OpenCode server from JavaScript."],
-                ["SDK", "Embed OpenCode in your own app."],
+                ["Client", "Talk to a running RedCode server from JavaScript."],
+                ["SDK", "Embed RedCode in your own app."],
               ]}
             >
               {([title, body]) => (
@@ -528,7 +528,7 @@ export function DocsSamples(props: {
       <props.Section id="details">
         <props.Sample variant="details">
           <details>
-            <summary>Why does OpenCode ask before running commands?</summary>
+            <summary>Why does RedCode ask before running commands?</summary>
             <p>
               The default <code>bash</code> permission is <code>ask</code>, so nothing runs without your approval.
             </p>
@@ -543,8 +543,8 @@ export function DocsSamples(props: {
       <props.Section id="media">
         <props.Sample variant="media" label="image and video">
           <figure>
-            <img src={ogImage("/docs").src} alt="The OpenCode docs" width="1200" height="630" />
-            <figcaption>The OpenCode terminal interface.</figcaption>
+            <img src={ogImage("/docs").src} alt="The RedCode docs" width="1200" height="630" />
+            <figcaption>The RedCode terminal interface.</figcaption>
           </figure>
           <figure>
             <video controls muted playsinline preload="none" poster={ogImage("/docs").src} width="1200" height="630" />
@@ -561,7 +561,7 @@ export function DocsSamples(props: {
 
       <props.Section id="config">
         <props.Sample variant="config">
-          <CodeFrame variant="config" kind="config" label="opencode.jsonc options">
+          <CodeFrame variant="config" kind="config" label="redcode.jsonc options">
             <dl data-component="config-reference">
               <dt>
                 <code>model</code> <span data-component="badge">string</span>
@@ -586,7 +586,7 @@ export function DocsSamples(props: {
                 <code>opencode run [message..]</code>
               </pre>
             </CodeFrame>
-            <p>Run OpenCode with a message, without the terminal interface.</p>
+            <p>Run RedCode with a message, without the terminal interface.</p>
             <table>
               <thead>
                 <tr>
@@ -639,7 +639,7 @@ export function DocsSamples(props: {
         </props.Sample>
         <props.Sample variant="editLink" label="last updated">
           <p data-component="edit-link">
-            <a href="https://github.com/anomalyco/opencode" target="_blank">
+            <a href="https://github.com/Vempire-X/RedCode" target="_blank">
               Edit this page on GitHub
             </a>{" "}
             <span>Last updated 2 Nov 2026</span>

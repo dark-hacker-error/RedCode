@@ -1,7 +1,7 @@
-import { Job } from "@opencode/core/job"
-import { Session } from "@opencode/core/session"
-import { SessionBackground } from "@opencode/core/session/background"
-import type { ListQuery } from "@opencode/protocol/groups/job"
+import { Job } from "@redcode/core/job"
+import { Session } from "@redcode/core/session"
+import { SessionBackground } from "@redcode/core/session/background"
+import type { ListQuery } from "@redcode/protocol/groups/job"
 import { Effect, Option } from "effect"
 import { missingSession } from "./session-error"
 

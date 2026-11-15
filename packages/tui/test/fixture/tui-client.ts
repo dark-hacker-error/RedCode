@@ -1,4 +1,4 @@
-import { OpenCode, type OpenCodeEvent } from "@opencode/client"
+import { RedCode, type RedCodeEvent } from "@redcode/client"
 
 export const worktree = "/tmp/opencode"
 export const directory = `${worktree}/packages/tui`
@@ -51,7 +51,7 @@ export function createEventStream() {
   }
 
   return {
-    emit(event: OpenCodeEvent) {
+    emit(event: RedCodeEvent) {
       send(v2, pending, event)
     },
     v2() {
@@ -181,5 +181,5 @@ export function createFetch(override?: FetchHandler, events?: ReturnType<typeof 
 }
 
 export function createApi(fetch: typeof globalThis.fetch) {
-  return OpenCode.make({ baseUrl: "http://test", fetch })
+  return RedCode.make({ baseUrl: "http://test", fetch })
 }

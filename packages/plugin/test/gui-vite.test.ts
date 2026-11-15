@@ -43,10 +43,10 @@ test("the preset writes one CommonJS file that requires only what the app provid
   expect([...required].sort()).toEqual([...hosted, "electron", "node:fs"].sort())
 }, 60_000)
 
-test("the preset fails the build on an OpenCode, Effect or Solid module the app does not provide", async () => {
+test("the preset fails the build on an RedCode, Effect or Solid module the app does not provide", async () => {
   const root = await project({
     "src/gui.tsx": 'import { Schema } from "effect/Schema"\nexport default { id: "acme", Schema }',
   })
 
-  await expect(bundle(root)).rejects.toThrow("effect/Schema is not a module the OpenCode app provides")
+  await expect(bundle(root)).rejects.toThrow("effect/Schema is not a module the RedCode app provides")
 }, 60_000)

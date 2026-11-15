@@ -1,17 +1,17 @@
-import { Generate } from "@opencode/core/generate"
-import { Location } from "@opencode/core/location"
-import { LocationServiceMap } from "@opencode/core/location-services"
-import { AbsolutePath } from "@opencode/core/schema"
+import { Generate } from "@redcode/core/generate"
+import { Location } from "@redcode/core/location"
+import { LocationServiceMap } from "@redcode/core/location-services"
+import { AbsolutePath } from "@redcode/core/schema"
 import {
   InvalidRequestError,
   ModelNotFoundError,
   ProviderRequestError,
   ServiceUnavailableError,
   UnsupportedModelError,
-} from "@opencode/protocol/errors"
-import type { DecisionRequest, ImageRequest } from "@opencode/schema/generate"
-import { Global } from "@opencode/util/global"
-import { Model } from "@opencode/schema/model"
+} from "@redcode/protocol/errors"
+import type { DecisionRequest, ImageRequest } from "@redcode/schema/generate"
+import { Global } from "@redcode/util/global"
+import { Model } from "@redcode/schema/model"
 import { Effect } from "effect"
 import { HttpApiBuilder } from "effect/http-api"
 import { Api } from "../api"

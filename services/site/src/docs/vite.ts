@@ -28,7 +28,7 @@ const v1ConfigValues = {
   url: "https://opencode.ai",
   console: "https://opencode.ai/auth",
   email: "help@anoma.ly",
-  github: "https://github.com/anomalyco/opencode",
+  github: "https://github.com/Vempire-X/RedCode",
   discord: "https://opencode.ai/discord",
 }
 

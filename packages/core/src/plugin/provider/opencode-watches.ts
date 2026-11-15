@@ -1,10 +1,10 @@
 export * as OpencodeWatches from "./opencode-watches.js"
 
-import { ToolFailure } from "@opencode/ai/effect"
-import type { Context } from "@opencode/plugin/effect/plugin"
-import { Session } from "@opencode/schema/session"
-import { SessionMessage } from "@opencode/schema/session-message"
-import { Hash } from "@opencode/util/hash"
+import { ToolFailure } from "@redcode/ai/effect"
+import type { Context } from "@redcode/plugin/effect/plugin"
+import { Session } from "@redcode/schema/session"
+import { SessionMessage } from "@redcode/schema/session-message"
+import { Hash } from "@redcode/util/hash"
 import { Clock, Duration, Effect, Exit, Fiber, Option, Predicate, Schema, Scope, Stream } from "effect"
 import { HttpClient, HttpClientRequest, HttpClientResponse } from "effect/http"
 import { Socket } from "effect/socket"
@@ -102,7 +102,7 @@ interface Hub {
   fiber?: Fiber.Fiber<void>
 }
 
-// Every Location the OpenCode server loads runs this plugin; they share one connection per Console workspace.
+// Every Location the RedCode server loads runs this plugin; they share one connection per Console workspace.
 const hubs = new Map<string, Hub>()
 
 /**
@@ -215,7 +215,7 @@ export const make = Effect.fnUntraced(function* (ctx: Context, http: HttpClient.
               id: SessionMessage.ID.make(
                 `msg_watch_${Hash.sha256(`${event.sessionID}\n${refusal.message}`).slice(0, 26)}`,
               ),
-              text: `OpenCode Console didn't watch a pull request or push from this session, so its updates won't wake the session: ${refusal.message}`,
+              text: `RedCode Console didn't watch a pull request or push from this session, so its updates won't wake the session: ${refusal.message}`,
               metadata: { source: "console.watch" },
             }),
         ),
@@ -249,16 +249,16 @@ export const make = Effect.fnUntraced(function* (ctx: Context, http: HttpClient.
       const failure = (cause: unknown) =>
         cause instanceof ToolFailure
           ? cause
-          : new ToolFailure({ message: "OpenCode Console didn't answer", error: cause })
+          : new ToolFailure({ message: "RedCode Console didn't answer", error: cause })
       editor.namespace({
         name: namespace,
         description:
-          "Watch Slack threads, GitHub pull requests, issues, commits and Actions runs, and the workspace's MCP servers' events through OpenCode Console. The session wakes on its own when they change. A pull request it opened wakes it as each check finishes, so don't wait on CI with `gh pr checks --watch`, `gh run watch` or `sleep`.",
+          "Watch Slack threads, GitHub pull requests, issues, commits and Actions runs, and the workspace's MCP servers' events through RedCode Console. The session wakes on its own when they change. A pull request it opened wakes it as each check finishes, so don't wait on CI with `gh pr checks --watch`, `gh run watch` or `sleep`.",
       })
       editor.add({
         name: "watch",
         description:
-          "Wake this session when a Slack thread or a GitHub pull request, issue, commit or Actions run gets a reply or changes status, or one of the workspace's MCP servers sends an event `events` lists. Slack and GitHub writes through OpenCode Console, `gh pr create` and `git push` are already watched, a pull request's checks included, so don't watch what you just made (the session is told if Console refuses). Use it for anything else, such as a deploy's Actions run, `gh workflow run` or a link the user shared. People often answer a Slack post in the channel rather than its thread, so after each top-level post the channel's new top-level messages are watched for 15 minutes too. The session wakes with the update, so don't poll.",
+          "Wake this session when a Slack thread or a GitHub pull request, issue, commit or Actions run gets a reply or changes status, or one of the workspace's MCP servers sends an event `events` lists. Slack and GitHub writes through RedCode Console, `gh pr create` and `git push` are already watched, a pull request's checks included, so don't watch what you just made (the session is told if Console refuses). Use it for anything else, such as a deploy's Actions run, `gh workflow run` or a link the user shared. People often answer a Slack post in the channel rather than its thread, so after each top-level post the channel's new top-level messages are watched for 15 minutes too. The session wakes with the update, so don't poll.",
         input: Schema.Struct({
           target: Schema.optional(
             Schema.String.annotate({
@@ -601,8 +601,8 @@ function expectOk(response: HttpClientResponse.HttpClientResponse) {
         body?.limit !== undefined
           ? `This member already keeps the most watches Console allows (${body.limit}). Stop one with unwatch first.`
           : response.status === 404
-            ? "Event watches are off for this OpenCode Console workspace."
-            : (body?.message ?? `OpenCode Console answered ${response.status}`)
+            ? "Event watches are off for this RedCode Console workspace."
+            : (body?.message ?? `RedCode Console answered ${response.status}`)
       return Effect.fail(new ToolFailure({ message, metadata: { status: response.status } }))
     }),
   )
@@ -667,8 +667,8 @@ function line(text: string) {
 function wakeText(events: ReadonlyArray<WatchEvent>) {
   return [
     events.length === 1
-      ? "Something this session watches through OpenCode Console changed."
-      : `${events.length} updates arrived on something this session watches through OpenCode Console.`,
+      ? "Something this session watches through RedCode Console changed."
+      : `${events.length} updates arrived on something this session watches through RedCode Console.`,
     ...events.map(describe),
   ].join("\n\n")
 }

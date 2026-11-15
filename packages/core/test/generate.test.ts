@@ -10,22 +10,22 @@ import {
   QuotaExceededError,
   RateLimitError,
   TransportError,
-} from "@opencode/ai/effect"
-import { RequestExecutor } from "@opencode/ai/route"
-import { OpenAIChat } from "@opencode/ai/protocols"
-import { TestLLM } from "@opencode/ai/testing"
-import { AISDK } from "@opencode/core/aisdk"
-import { Credential } from "@opencode/core/credential"
-import { Generate } from "@opencode/core/generate"
-import { Integration } from "@opencode/core/integration"
-import { IntegrationConnection } from "@opencode/core/integration/connection"
-import { ModelResolver } from "@opencode/core/model-resolver"
-import { ModelsDev } from "@opencode/core/models-dev"
-import { ID, Info, Model, Ref, VariantID } from "@opencode/core/model"
-import { Provider } from "@opencode/core/provider"
-import { Variant } from "@opencode/core/variant"
-import { Money } from "@opencode/schema/money"
-import { Npm } from "@opencode/util/npm"
+} from "@redcode/ai/effect"
+import { RequestExecutor } from "@redcode/ai/route"
+import { OpenAIChat } from "@redcode/ai/protocols"
+import { TestLLM } from "@redcode/ai/testing"
+import { AISDK } from "@redcode/core/aisdk"
+import { Credential } from "@redcode/core/credential"
+import { Generate } from "@redcode/core/generate"
+import { Integration } from "@redcode/core/integration"
+import { IntegrationConnection } from "@redcode/core/integration/connection"
+import { ModelResolver } from "@redcode/core/model-resolver"
+import { ModelsDev } from "@redcode/core/models-dev"
+import { ID, Info, Model, Ref, VariantID } from "@redcode/core/model"
+import { Provider } from "@redcode/core/provider"
+import { Variant } from "@redcode/core/variant"
+import { Money } from "@redcode/schema/money"
+import { Npm } from "@redcode/util/npm"
 import { Effect, Exit, Fiber, Layer } from "effect"
 import { TestClock } from "effect/testing"
 import { HttpClient, HttpClientResponse } from "effect/http"
@@ -280,31 +280,31 @@ describe("image and decision generation", () => {
     Info.make({
       ...Info.default(Provider.ID.openai, ID.make("gpt-image-1-mini")),
       type: "image",
-      package: "@opencode/ai/providers/openai/images",
+      package: "@redcode/ai/providers/openai/images",
     }),
     Info.make({
       ...Info.default(Provider.ID.opencode, ID.make("gpt-image-2.5-sunburst")),
       type: "image",
-      package: "@opencode/ai/providers/openai/images",
+      package: "@redcode/ai/providers/openai/images",
     }),
     Info.make({
       ...Info.default(Provider.ID.make("zai"), ID.make("glm-image")),
       type: "image",
-      package: "@opencode/ai/providers/zai/images",
+      package: "@redcode/ai/providers/zai/images",
     }),
     Info.make({
       ...Info.default(Provider.ID.openai, ID.make("gpt-5")),
-      package: "@opencode/ai/providers/openai/responses",
+      package: "@redcode/ai/providers/openai/responses",
     }),
     Info.make({
       ...Info.default(Provider.ID.make("openrouter"), ID.make("typesafe/jev-1.13")),
       type: "decision",
-      package: "@opencode/ai/providers/openrouter/decisions",
+      package: "@redcode/ai/providers/openrouter/decisions",
     }),
     Info.make({
       ...Info.default(Provider.ID.make("lmstudio"), ID.make("openjev")),
       type: "decision",
-      package: "@opencode/ai/providers/openai-compatible/decisions",
+      package: "@redcode/ai/providers/openai-compatible/decisions",
     }),
   ].concat(
     decisionCatalog(),
@@ -312,7 +312,7 @@ describe("image and decision generation", () => {
       const gemini = Info.make({
         ...Info.default(Provider.ID.make("google"), ID.make("gemini-3.1-flash-image")),
         type: "image",
-        package: "@opencode/ai/providers/google/images",
+        package: "@redcode/ai/providers/google/images",
       })
       return [{ ...gemini, variants: Variant.resolve(gemini, Variant.supports({ supported: true, effort: ["high"] })) }]
     })(),
@@ -340,7 +340,7 @@ describe("image and decision generation", () => {
       ),
     available: (types) => Effect.succeed(catalog.filter((model) => (types ?? ["chat"]).includes(model.type ?? "chat"))),
   })
-  // An OpenCode Console login keeps its server and organization as credential metadata.
+  // An RedCode Console login keeps its server and organization as credential metadata.
   const mediaIntegrations = Layer.mock(Integration.Service, {
     revision: () => 0,
     connection: {
@@ -702,7 +702,7 @@ function decisionCatalog() {
     api: {
       systemone: {
         base_url: "https://api.typesafe.ai/v1",
-        sdk: { opencodeai: "@opencode/ai/providers/typesafe-ai/decisions" },
+        sdk: { opencodeai: "@redcode/ai/providers/typesafe-ai/decisions" },
         ...(compatibility ? { compatibility } : {}),
       },
     },
@@ -725,7 +725,7 @@ function decisionCatalog() {
               api: {
                 "gemini-decisions": {
                   base_url: "https://gemini.test/v1beta",
-                  sdk: { opencodeai: "@opencode/ai/providers/google/decisions" },
+                  sdk: { opencodeai: "@redcode/ai/providers/google/decisions" },
                 },
               },
             },

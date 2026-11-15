@@ -1,7 +1,7 @@
 export * as WebFetchTool from "./webfetch.js"
 
-import type { Context } from "@opencode/plugin/effect/plugin"
-import { ToolFailure } from "@opencode/ai/effect"
+import type { Context } from "@redcode/plugin/effect/plugin"
+import { ToolFailure } from "@redcode/ai/effect"
 import { Duration, Effect, Schema } from "effect"
 import { FetchHttpClient, HttpClient, HttpClientError, HttpClientRequest, HttpClientResponse } from "effect/http"
 import { Parser } from "htmlparser2"
@@ -57,7 +57,7 @@ const headers = (format: Format, userAgent: string) => ({
 })
 
 const openCodeUserAgent =
-  "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; OpenCode-User/1.0; +https://opencode.ai"
+  "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; RedCode-User/1.0; +https://opencode.ai"
 
 const isCloudflareChallenge = (error: unknown) => {
   if (!HttpClientError.isHttpClientError(error) || error.reason._tag !== "StatusCodeError") return false

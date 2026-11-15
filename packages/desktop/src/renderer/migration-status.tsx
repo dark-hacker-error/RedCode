@@ -1,7 +1,7 @@
-import { OpenCode } from "@opencode/client/promise"
-import { useLanguage } from "@opencode/app/desktop"
-import { Loader } from "@opencode/ui/loader"
-import { showToast, toaster, Toast } from "@opencode/ui/toast"
+import { RedCode } from "@redcode/client/promise"
+import { useLanguage } from "@redcode/app/desktop"
+import { Loader } from "@redcode/ui/loader"
+import { showToast, toaster, Toast } from "@redcode/ui/toast"
 import { createEffect, createRoot, createSignal, onCleanup, onMount } from "solid-js"
 import type { ServerReadyData } from "../shared/ipc-contract"
 import {
@@ -21,7 +21,7 @@ export function MigrationStatus(props: { server: ServerReadyData }) {
   const initial = createMigrationState()
   const [state, setState] = createSignal(initial.state)
   // The main process credentials sidecar requests; see `wireRendererHeaders`.
-  const client = OpenCode.make({ baseUrl: props.server.url })
+  const client = RedCode.make({ baseUrl: props.server.url })
   let timer: ReturnType<typeof setTimeout> | undefined
   let controller: AbortController | undefined
   // One handle per shown toast: a render that lands after the dismissal disposes its own root at once.

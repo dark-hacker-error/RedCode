@@ -1,7 +1,7 @@
 import { Show } from "solid-js"
-import { Icon } from "@opencode/ui/icon"
-import { Keybind } from "@opencode/ui/keybind"
-import { Tooltip } from "@opencode/ui/tooltip"
+import { Icon } from "@redcode/ui/icon"
+import { Keybind } from "@redcode/ui/keybind"
+import { Tooltip } from "@redcode/ui/tooltip"
 import { useLanguage } from "@/runtime/i18n/language"
 import { useCommand } from "@/shell/commands/command"
 

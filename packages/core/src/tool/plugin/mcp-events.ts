@@ -1,8 +1,8 @@
 export * as McpEventTools from "./mcp-events.js"
 
-import { ToolFailure } from "@opencode/ai/effect"
-import type { Context } from "@opencode/plugin/effect/plugin"
-import { Hash } from "@opencode/util/hash"
+import { ToolFailure } from "@redcode/ai/effect"
+import type { Context } from "@redcode/plugin/effect/plugin"
+import { Hash } from "@redcode/util/hash"
 import { Effect, Schedule, Schema, Scope, Stream } from "effect"
 import { Flag } from "../../flag.js"
 import { McpClient } from "../../mcp/client.js"

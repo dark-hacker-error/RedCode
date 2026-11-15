@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test"
 import path from "node:path"
-import { OPENCODE_VERSION } from "../src/version"
-import type { FormFields } from "@opencode/client"
+import { REDCODE_VERSION } from "../src/version"
+import type { FormFields } from "@redcode/client"
 
 const consoleForm = [
   { type: "string", key: "server", hidden: true, format: "uri", default: "https://opencode.ai/console" },
@@ -75,15 +75,15 @@ describe("auth command", () => {
     expect(requests.indexOf("/api/model/default")).toBeLessThan(requests.indexOf("/api/integration"))
   })
 
-  test("lists OpenCode Go before Zen and preserves the remaining integration order", async () => {
+  test("lists RedCode Go before Zen and preserves the remaining integration order", async () => {
     using server = authServer((request, url) => {
       if (url.pathname === "/api/integration") {
         return Response.json(
           located(
             [
-              { id: "opencode", name: "OpenCode Zen" },
+              { id: "opencode", name: "RedCode Zen" },
               { id: "anthropic", name: "Anthropic" },
-              { id: "opencode-go", name: "OpenCode Go" },
+              { id: "opencode-go", name: "RedCode Go" },
             ].map((integration) => ({
               ...integration,
               methods: [],
@@ -102,7 +102,7 @@ describe("auth command", () => {
         .trim()
         .split("\n")
         .map((line) => line.split(/\s{2,}/)[0]),
-    ).toEqual(["OpenCode Go", "OpenCode Zen", "Anthropic"])
+    ).toEqual(["RedCode Go", "RedCode Zen", "Anthropic"])
   })
 
   test("runs command authentication without interactive input", async () => {
@@ -359,7 +359,7 @@ function authServer(fetch: (request: Request, url: URL) => Response | Promise<Re
 }
 
 function status() {
-  return Response.json({ version: OPENCODE_VERSION, pid: process.pid, urls: [], paths: { tmp: "/tmp/opencode" } })
+  return Response.json({ version: REDCODE_VERSION, pid: process.pid, urls: [], paths: { tmp: "/tmp/opencode" } })
 }
 
 function located<T>(data: T) {

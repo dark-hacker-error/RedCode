@@ -1,12 +1,12 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@opencode/cli",
-  "version": "2.3.0",
+  "name": "redcode-ai",
+  "version": "0.1.0",
   "type": "module",
   "license": "MIT",
   "bin": {
-    "opencode": "./bin/opencode.cjs",
-    "opencode2": "./bin/opencode2.cjs"
+    "redcode": "./bin/redcode.cjs",
+    "redcode2": "./bin/redcode2.cjs"
   },
   "files": [
     "bin"
@@ -19,7 +19,7 @@
     "build": "bun run script/build.ts",
     "build:node": "bun run script/build-node.ts",
     "pack": "bun run script/pack.ts",
-    "pack:docker": "chmod +x dist/cli-linux-*-musl/bin/opencode && mkdir -p ../../dist/docker && docker buildx build --platform linux/amd64,linux/arm64 --output type=oci,dest=../../dist/docker/opencode-image.tar .",
+    "pack:docker": "chmod +x dist/redcode-ai-linux-*-musl/bin/redcode && mkdir -p ../../dist/docker && docker buildx build --platform linux/amd64,linux/arm64 --output type=oci,dest=../../dist/docker/redcode-image.tar .",
     "dev": "bun run src/index.ts",
     "test": "bun test --timeout 30000 --only-failures",
     "typecheck": "bun check --no-script -b",
@@ -30,13 +30,13 @@
     "@clack/core": "1.0.0-alpha.1",
     "@clack/prompts": "1.0.0-alpha.1",
     "@effect/platform-node": "catalog:",
-    "@opencode/client": "workspace:*",
-    "@opencode/plugin": "workspace:*",
+    "@redcode/client": "workspace:*",
+    "@redcode/plugin": "workspace:*",
     "@opencode/pty": "0.5.2",
-    "@opencode/schema": "workspace:*",
-    "@opencode/server": "workspace:*",
-    "@opencode/tui": "workspace:*",
-    "@opencode/util": "workspace:*",
+    "@redcode/schema": "workspace:*",
+    "@redcode/server": "workspace:*",
+    "@redcode/tui": "workspace:*",
+    "@redcode/util": "workspace:*",
     "@opentui/core": "catalog:",
     "@opentui/solid": "catalog:",
     "@opentunnel/client": "0.6.1",
@@ -52,8 +52,8 @@
     "ws": "8.21.0"
   },
   "devDependencies": {
-    "@opencode/script": "workspace:*",
-    "@opencode/protocol": "workspace:*",
+    "@redcode/script": "workspace:*",
+    "@redcode/protocol": "workspace:*",
     "@tsconfig/bun": "catalog:",
     "@types/bun": "catalog:",
     "@typescript/native": "catalog:",
@@ -84,7 +84,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anomalyco/opencode.git",
+    "url": "git+https://github.com/Vempire-X/RedCode.git",
     "directory": "packages/cli"
   }
 }

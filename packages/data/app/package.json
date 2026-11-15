@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@opencode/data-app",
+  "name": "@redcode/data-app",
   "version": "2.3.0",
   "private": true,
   "type": "module",
@@ -22,9 +22,9 @@
   },
   "dependencies": {
     "@kobalte/core": "catalog:",
-    "@opencode/nav-menus": "workspace:*",
-    "@opencode/data-core": "workspace:*",
-    "@opencode/ui": "workspace:*",
+    "@redcode/nav-menus": "workspace:*",
+    "@redcode/data-core": "workspace:*",
+    "@redcode/ui": "workspace:*",
     "@resvg/resvg-wasm": "2.6.2",
     "@solidjs/meta": "catalog:",
     "@solidjs/router": "catalog:",

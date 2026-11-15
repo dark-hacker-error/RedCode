@@ -6,7 +6,7 @@ let stop: () => void
 beforeEach(() => {
   document.body.innerHTML = `
     <header>
-      <a href="/" data-nav-logo aria-label="OpenCode home"><svg width="20" height="25"></svg></a>
+      <a href="/" data-nav-logo aria-label="RedCode home"><svg width="20" height="25"></svg></a>
       <span><a href="/data" data-nav-product="data" aria-haspopup="menu" aria-expanded="false">Data</a></span>
     </header>
     <main><a href="#elsewhere">Elsewhere</a></main>`
@@ -87,7 +87,7 @@ describe("product menu", () => {
     press(name(), "ArrowDown")
 
     expect(items(menus()[0]!).map((item) => [item.textContent, item.getAttribute("aria-current")])).toEqual([
-      ["OpenCode", null],
+      ["RedCode", null],
       ["Console", null],
       ["Data", "page"],
       ["Docs", null],

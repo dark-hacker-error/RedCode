@@ -4,22 +4,22 @@ import {
   mainOnlyModule,
   type PluginModule,
   type Entry,
-} from "@opencode/plugin/gui/host"
+} from "@redcode/plugin/gui/host"
 
 // Plugin bundles share the host's module instances, so tokens, contexts and schemas they import are the same objects
 // the host checks against. In a window, the main SDK's name resolves to the window SDK.
 const modules = {
   effect: () => import("effect"),
-  "@opencode/plugin/gui": () => import("@opencode/plugin/gui"),
-  "@opencode/plugin/gui/main": () => import("@opencode/plugin/gui"),
-  "@opencode/plugin/gui/file": () => import("@opencode/plugin/gui/file"),
-  "@opencode/plugin/gui/review": () => import("@opencode/plugin/gui/review"),
-  "@opencode/plugin/gui/browser": () => import("@opencode/plugin/gui/browser"),
-  "@opencode/plugin/rpc": () => import("@opencode/plugin/rpc"),
-  "@opencode/schema/rpc": () => import("@opencode/schema/rpc"),
-  "@opencode/client": () => import("@opencode/client"),
-  "@opencode/client/effect": () => import("@opencode/client/effect"),
-  "@opencode/client/solid": () => import("@opencode/client/solid"),
+  "@redcode/plugin/gui": () => import("@redcode/plugin/gui"),
+  "@redcode/plugin/gui/main": () => import("@redcode/plugin/gui"),
+  "@redcode/plugin/gui/file": () => import("@redcode/plugin/gui/file"),
+  "@redcode/plugin/gui/review": () => import("@redcode/plugin/gui/review"),
+  "@redcode/plugin/gui/browser": () => import("@redcode/plugin/gui/browser"),
+  "@redcode/plugin/rpc": () => import("@redcode/plugin/rpc"),
+  "@redcode/schema/rpc": () => import("@redcode/schema/rpc"),
+  "@redcode/client": () => import("@redcode/client"),
+  "@redcode/client/effect": () => import("@redcode/client/effect"),
+  "@redcode/client/solid": () => import("@redcode/client/solid"),
   "solid-js": () => import("solid-js"),
   "solid-js/web": () => import("solid-js/web"),
   "solid-js/store": () => import("solid-js/store"),

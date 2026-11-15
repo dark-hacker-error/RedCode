@@ -1,7 +1,7 @@
 export * as ClaudeProvider from "./provider.js"
 
 import type { AccountInfo } from "@anthropic-ai/claude-agent-sdk"
-import type { Context } from "@opencode/plugin/effect/plugin"
+import type { Context } from "@redcode/plugin/effect/plugin"
 import { Effect, Option, Schema, Stream, SubscriptionRef } from "effect"
 import { Model } from "../../../model.js"
 import { Provider } from "../../../provider.js"
@@ -11,7 +11,7 @@ import { ClaudeQueryOptions } from "./claude/query-options.js"
 import type { ClaudeStatus } from "./claude/status.js"
 
 export const ID = Provider.ID.claudeAgent
-export const PACKAGE = "@opencode/claude-agent"
+export const PACKAGE = "@redcode/claude-agent"
 
 // The model list we keep between starts, so opencode can list models without running `claude`
 const CatalogModel = Schema.Struct({
@@ -130,9 +130,9 @@ function toModel(model: CatalogModel, prices: ReadonlyMap<string, Model.Info> | 
   return {
     ...defaults,
     name: model.name,
-    // The SDK reports context windows before a prompt, but not output limits. 0 means unknown in OpenCode.
+    // The SDK reports context windows before a prompt, but not output limits. 0 means unknown in RedCode.
     limit: { context: model.contextWindow ?? defaults.limit.context, output: 0 },
-    // OpenCode picks the title model by family (Model.small).
+    // RedCode picks the title model by family (Model.small).
     family: model.id.includes("haiku") ? Model.Family.make("claude-haiku") : undefined,
     capabilities: { tools: true, input: ["text", "image", "pdf"], output: ["text"] },
     variants: model.efforts.map((effort) => ({ id: Model.VariantID.make(effort), settings: { effort } })),

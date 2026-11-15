@@ -2,8 +2,8 @@
 
 export * as SkillPlugin from "./skill.js"
 
-import { define, type Context } from "@opencode/plugin/effect/plugin"
-import { Document } from "@opencode/schema/config"
+import { define, type Context } from "@redcode/plugin/effect/plugin"
+import { Document } from "@redcode/schema/config"
 import { Effect } from "effect"
 import { AbsolutePath } from "../schema.js"
 import { Skill } from "../skill.js"
@@ -16,7 +16,7 @@ export const OpencodeContent = opencodeContent
 export const ReportContent = reportContent
 
 export const OpencodeDescription =
-  "Use this skill for any question about OpenCode itself, including how OpenCode works, using or configuring it, migrating from V1 to V2, troubleshooting it, developing plugins or integrations, using the OpenCode SDK, clients, server, or API, and contributing to the OpenCode codebase. Also use it for OpenCode agents, commands, skills, tools, permissions, MCP servers, providers, models, themes, keybinds, formatters, the CLI, TUI, desktop app, and web app."
+  "Use this skill for any question about RedCode itself, including how RedCode works, using or configuring it, migrating from V1 to V2, troubleshooting it, developing plugins or integrations, using the RedCode SDK, clients, server, or API, and contributing to the RedCode codebase. Also use it for RedCode agents, commands, skills, tools, permissions, MCP servers, providers, models, themes, keybinds, formatters, the CLI, TUI, desktop app, and web app."
 const REPORT_DESCRIPTION =
   "Use when the user wants to report an opencode issue or bug. Collect standard diagnostics, add user-specific reproduction context, and publish the issue with GitHub CLI."
 
@@ -28,7 +28,7 @@ export const Plugin = define({
       editor.add(
         Skill.Info.make({
           id: Skill.ID.make("opencode"),
-          name: Skill.Name.make("OpenCode"),
+          name: Skill.Name.make("RedCode"),
           description: OpencodeDescription,
           path: AbsolutePath.make("skill://opencode/SKILL.md"),
           content: OpencodeContent,

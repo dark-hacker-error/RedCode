@@ -87,7 +87,7 @@ export const Tls = Schema.Struct({
 }).annotate({ identifier: "Provider.Tls" })
 export type Tls = typeof Tls.Type
 
-// The named fields are the settings OpenCode reads itself; every other key is a provider option for the provider package.
+// The named fields are the settings RedCode reads itself; every other key is a provider option for the provider package.
 export const Settings = Schema.StructWithRest(
   Schema.Struct({
     timeout: Timeout,

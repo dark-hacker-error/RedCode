@@ -5,8 +5,8 @@ import {
   getStatsModelsComparisonData,
   type MarketDay,
   type TokenCostEntry,
-} from "@opencode/data-core/domain/home"
-import { statModel } from "@opencode/data-core/domain/model-normalization"
+} from "@redcode/data-core/domain/home"
+import { statModel } from "@redcode/data-core/domain/model-normalization"
 import { runStatsEffect } from "../stats-runtime"
 import {
   catalogSlug,

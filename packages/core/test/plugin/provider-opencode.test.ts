@@ -1,34 +1,34 @@
 import { describe, expect } from "bun:test"
-import { ai } from "@opencode/ai/effect"
-import { LLMClient, RequestExecutor } from "@opencode/ai/route"
-import { Document, Event, Info } from "@opencode/schema/config"
-import { ConfigPolicy } from "@opencode/schema/config/policy"
-import { Money } from "@opencode/schema/money"
+import { ai } from "@redcode/ai/effect"
+import { LLMClient, RequestExecutor } from "@redcode/ai/route"
+import { Document, Event, Info } from "@redcode/schema/config"
+import { ConfigPolicy } from "@redcode/schema/config/policy"
+import { Money } from "@redcode/schema/money"
 import { Effect, Fiber, Layer, Schema, Stream } from "effect"
 import { TestClock } from "effect/testing"
 import { HttpClient, HttpClientRequest, HttpClientResponse } from "effect/http"
-import { Agent } from "@opencode/core/agent"
-import { App } from "@opencode/core/app"
-import { Bus } from "@opencode/core/bus"
-import { Config } from "@opencode/core/config"
-import { ConfigIntegration } from "@opencode/core/config/integration"
-import { ConfigPolicyPlugin } from "@opencode/core/config/plugin/policy"
-import { ConfigProviderPlugin } from "@opencode/core/config/plugin/provider"
-import { ConfigWebSearchPlugin } from "@opencode/core/config/plugin/websearch"
-import { Credential } from "@opencode/core/credential"
-import { InstructionDiscovery } from "@opencode/core/instruction-discovery"
-import { Integration } from "@opencode/core/integration"
-import { Model } from "@opencode/core/model"
-import { ModelResolver } from "@opencode/core/model-resolver"
-import { Plugin } from "@opencode/core/plugin"
-import { PluginHooks } from "@opencode/core/plugin/hooks"
-import { PluginHost } from "@opencode/core/plugin/host"
-import { OpenAIPlugin } from "@opencode/core/plugin/provider/openai"
-import { OpencodePlugin } from "@opencode/core/plugin/provider/opencode"
-import { Provider } from "@opencode/core/provider"
-import { Session } from "@opencode/core/session"
-import { Skill } from "@opencode/core/skill"
-import { WebSearch } from "@opencode/core/websearch"
+import { Agent } from "@redcode/core/agent"
+import { App } from "@redcode/core/app"
+import { Bus } from "@redcode/core/bus"
+import { Config } from "@redcode/core/config"
+import { ConfigIntegration } from "@redcode/core/config/integration"
+import { ConfigPolicyPlugin } from "@redcode/core/config/plugin/policy"
+import { ConfigProviderPlugin } from "@redcode/core/config/plugin/provider"
+import { ConfigWebSearchPlugin } from "@redcode/core/config/plugin/websearch"
+import { Credential } from "@redcode/core/credential"
+import { InstructionDiscovery } from "@redcode/core/instruction-discovery"
+import { Integration } from "@redcode/core/integration"
+import { Model } from "@redcode/core/model"
+import { ModelResolver } from "@redcode/core/model-resolver"
+import { Plugin } from "@redcode/core/plugin"
+import { PluginHooks } from "@redcode/core/plugin/hooks"
+import { PluginHost } from "@redcode/core/plugin/host"
+import { OpenAIPlugin } from "@redcode/core/plugin/provider/openai"
+import { OpencodePlugin } from "@redcode/core/plugin/provider/opencode"
+import { Provider } from "@redcode/core/provider"
+import { Session } from "@redcode/core/session"
+import { Skill } from "@redcode/core/skill"
+import { WebSearch } from "@redcode/core/websearch"
 import { withEnv } from "../fixture/env"
 import { drain } from "../lib/clock"
 import { eventually } from "../lib/eventually"
@@ -52,7 +52,7 @@ const consoleDocument = (config: Config.Interface) =>
         entries.find((entry): entry is ConfigIntegration.Document => entry instanceof ConfigIntegration.Document),
       ),
     )
-const consoleSearch = { id: WebSearch.ID.make("opencode"), name: "OpenCode Web Search" }
+const consoleSearch = { id: WebSearch.ID.make("opencode"), name: "RedCode Web Search" }
 // A Console skill archive as the plugin downloads it: the version's files, with SKILL.md carrying the frontmatter.
 const skillBundle = {
   slug: "deploy",
@@ -151,7 +151,7 @@ describe("OpencodePlugin", () => {
         {
           id: Integration.MethodID.make("device"),
           type: "oauth",
-          label: "OpenCode Console account",
+          label: "RedCode Console account",
           form: [
             { key: "server", type: "string", format: "uri", hidden: true, default: "https://opencode.ai/console" },
           ],
@@ -273,7 +273,7 @@ describe("OpencodePlugin", () => {
             if (orgID === "org-missing") {
               expect(status).toMatchObject({
                 status: "failed",
-                message: "OpenCode organization not found: org-missing",
+                message: "RedCode organization not found: org-missing",
               })
               expect(yield* credentials.list(integrationID)).toEqual([])
               expect(config).toEqual([])
@@ -367,7 +367,7 @@ describe("OpencodePlugin", () => {
                 "/api/v2/config",
                 ...(scenario.orgID === "org-missing" ? [] : ["/api/v2/instructions", "/api/v2/skills"]),
               ])
-              // The refresh and every Console fetch say which OpenCode is asking.
+              // The refresh and every Console fetch say which RedCode is asking.
               expect(agents).toEqual(requests.map(() => "opencode/beta/1.2.3/test"))
             }).pipe(Effect.provideService(App.Service, App.make({ name: "test", version: "1.2.3", channel: "beta" }))),
           ({ server }) => Effect.promise(() => server.stop(true)),
@@ -375,7 +375,7 @@ describe("OpencodePlugin", () => {
     )
   }
 
-  it.effect("rejects non-HTTP OpenCode servers", () =>
+  it.effect("rejects non-HTTP RedCode servers", () =>
     Effect.gen(function* () {
       yield* addPlugin()
       const integrations = yield* Integration.Service
@@ -387,11 +387,11 @@ describe("OpencodePlugin", () => {
         })
         .pipe(Effect.flip)
       expect(error).toBeInstanceOf(Integration.AuthorizationError)
-      expect(String(error.cause)).toContain("Invalid OpenCode server URL: expected HTTP(S)")
+      expect(String(error.cause)).toContain("Invalid RedCode server URL: expected HTTP(S)")
     }),
   )
 
-  it.effect("rejects non-string OpenCode servers", () =>
+  it.effect("rejects non-string RedCode servers", () =>
     Effect.gen(function* () {
       yield* addPlugin()
       const integrations = yield* Integration.Service
@@ -407,7 +407,7 @@ describe("OpencodePlugin", () => {
     }),
   )
 
-  it.live("loads native V2 providers and models from the connected OpenCode server", () =>
+  it.live("loads native V2 providers and models from the connected RedCode server", () =>
     Effect.acquireUseRelease(
       Effect.sync(() => {
         const authorization: Array<string | null> = []
@@ -486,11 +486,11 @@ describe("OpencodePlugin", () => {
           const integrations = yield* Integration.Service
           yield* providers.transform((editor) => {
             editor.update(Provider.ID.openai, (provider) => {
-              provider.package = "@opencode/ai/providers/openai"
+              provider.package = "@redcode/ai/providers/openai"
               provider.integrationID = Integration.ID.make("openai")
             })
             editor.models.update(Provider.ID.openai, Model.ID.make("api-model"), (model) => {
-              model.package = "@opencode/ai/providers/openai"
+              model.package = "@redcode/ai/providers/openai"
               model.settings = { baseURL: "https://upstream.example/v1" }
               model.variants = [
                 {
@@ -522,7 +522,7 @@ describe("OpencodePlugin", () => {
             canonical: "openai",
             name: "Remote",
             integrationID: "opencode",
-            package: "@opencode/ai/providers/openai-compatible",
+            package: "@redcode/ai/providers/openai-compatible",
             settings: { baseURL: `${server.url.origin}/v1`, custom: "value" },
             headers: { "x-org-id": "org" },
           })
@@ -539,7 +539,7 @@ describe("OpencodePlugin", () => {
             capabilities: { tools: true, input: ["text", "image"], output: ["text"] },
             cost: [{ input: 1, output: 2, cache: { read: 0.1, write: 0 } }],
             limit: { context: 1000, output: 100 },
-            package: "@opencode/ai/providers/openai-compatible",
+            package: "@redcode/ai/providers/openai-compatible",
             settings: { baseURL: `${server.url.origin}/v1`, custom: "value", temperature: 0.5 },
             headers: { "x-org-id": "org" },
           })
@@ -550,7 +550,7 @@ describe("OpencodePlugin", () => {
             provider: "openai",
           })
           const override = required(yield* models.get(Provider.ID.make("remote"), Model.ID.make("override")))
-          expect(override.package).toBe("@opencode/ai/providers/anthropic")
+          expect(override.package).toBe("@redcode/ai/providers/anthropic")
           expect(override.settings?.baseURL).toBe(`${server.url.origin}/anthropic`)
           expect(model.variants).toEqual([
             {
@@ -667,16 +667,16 @@ describe("OpencodePlugin", () => {
             },
           ])
           const gpt = required(yield* models.get(Provider.ID.make("remote"), Model.ID.make("gpt")))
-          expect(gpt.package).toBe("@opencode/ai/providers/openai")
+          expect(gpt.package).toBe("@redcode/ai/providers/openai")
           expect(gpt.variants).toEqual(reasoner.variants)
           const claude = required(yield* models.get(Provider.ID.make("remote"), Model.ID.make("claude-sonnet-4-5")))
-          expect(claude.package).toBe("@opencode/ai/providers/anthropic")
+          expect(claude.package).toBe("@redcode/ai/providers/anthropic")
           expect(claude.variants).toEqual([
             { id: Model.VariantID.make("high"), settings: { thinking: { type: "enabled", budgetTokens: 16_000 } } },
             { id: Model.VariantID.make("max"), settings: { thinking: { type: "enabled", budgetTokens: 31_999 } } },
           ])
           const gemini = required(yield* models.get(Provider.ID.make("remote"), Model.ID.make("gemini-3.1-pro")))
-          expect(gemini.package).toBe("@opencode/ai/providers/google")
+          expect(gemini.package).toBe("@redcode/ai/providers/google")
           expect(gemini.variants).toEqual([
             {
               id: Model.VariantID.make("low"),
@@ -688,7 +688,7 @@ describe("OpencodePlugin", () => {
             },
           ])
           const magistral = required(yield* models.get(Provider.ID.make("remote"), Model.ID.make("magistral-medium")))
-          expect(magistral.package).toBe("@opencode/ai/providers/mistral")
+          expect(magistral.package).toBe("@redcode/ai/providers/mistral")
           expect(magistral.variants).toEqual([
             { id: Model.VariantID.make("low"), settings: { reasoningEffort: "low" } },
             { id: Model.VariantID.make("high"), settings: { reasoningEffort: "high" } },
@@ -1106,7 +1106,7 @@ describe("OpencodePlugin", () => {
 
           expect((yield* integrations.get(Integration.ID.make("opencode")))?.connections[0]?.status).toEqual({
             status: "needs_auth",
-            message: "Reconnect OpenCode Console to continue",
+            message: "Reconnect RedCode Console to continue",
           })
           expect((yield* credentials.get(credential.id))?.value).toMatchObject({ refresh: "revoked" })
         }),
@@ -1173,7 +1173,7 @@ describe("OpencodePlugin", () => {
           yield* addPlugin().pipe(inProcess(server))
           yield* drain
 
-          expect(yield* status()).toEqual({ status: "needs_auth", message: "Reconnect OpenCode Console to continue" })
+          expect(yield* status()).toEqual({ status: "needs_auth", message: "Reconnect RedCode Console to continue" })
           expect((yield* credentials.get(credential.id))?.value).toMatchObject({ access: "revoked" })
 
           state.revoked = false
@@ -1186,7 +1186,7 @@ describe("OpencodePlugin", () => {
     ),
   )
 
-  it.live("loads and executes hosted web search from the connected OpenCode server", () =>
+  it.live("loads and executes hosted web search from the connected RedCode server", () =>
     Effect.acquireUseRelease(
       Effect.sync(() => {
         const requests: Array<{
@@ -1227,8 +1227,8 @@ describe("OpencodePlugin", () => {
                 providerID: state.providerID,
                 results: [
                   {
-                    url: "https://github.com/anomalyco/opencode",
-                    title: "OpenCode",
+                    url: "https://github.com/Vempire-X/RedCode",
+                    title: "RedCode",
                     content: "Open source AI coding agent.",
                     time: { published: 1_700_000_000_000 },
                   },
@@ -1261,7 +1261,7 @@ describe("OpencodePlugin", () => {
           yield* addPlugin()
           expect(yield* websearch.providers()).toContainEqual({
             id: WebSearch.ID.make("opencode"),
-            name: "OpenCode Web Search",
+            name: "RedCode Web Search",
           })
           expect(yield* websearch.providers()).toContainEqual(consoleSearch)
           expect(yield* websearch.query({ query: "effect web search", providerID: consoleSearch.id })).toEqual(
@@ -1269,8 +1269,8 @@ describe("OpencodePlugin", () => {
               providerID: WebSearch.ID.make("opencode"),
               results: [
                 {
-                  url: "https://github.com/anomalyco/opencode",
-                  title: "OpenCode",
+                  url: "https://github.com/Vempire-X/RedCode",
+                  title: "RedCode",
                   content: "Open source AI coding agent.",
                   time: { published: 1_700_000_000_000 },
                 },
@@ -1648,7 +1648,7 @@ describe("OpencodePlugin", () => {
       const loaded = Effect.all([discovery.list(), skills.get(Skill.ID.make("deploy"))]).pipe(
         Effect.map(([files, skill]) => ({
           instructions: Array.isArray(files)
-            ? files.filter((file) => file.path.startsWith("OpenCode Console")).map((file) => file.content)
+            ? files.filter((file) => file.path.startsWith("RedCode Console")).map((file) => file.content)
             : [],
           skill: skill?.description,
         })),
@@ -1707,7 +1707,7 @@ describe("OpencodePlugin", () => {
         .pipe(
           Effect.map((files) =>
             Array.isArray(files)
-              ? files.filter((file) => file.path.startsWith("OpenCode Console")).map((file) => file.content)
+              ? files.filter((file) => file.path.startsWith("RedCode Console")).map((file) => file.content)
               : [],
           ),
         )
@@ -1770,7 +1770,7 @@ describe("OpencodePlugin", () => {
       const files = yield* discovery.list()
       expect(
         Array.isArray(files)
-          ? files.filter((file) => file.path.startsWith("OpenCode Console")).map((file) => file.content)
+          ? files.filter((file) => file.path.startsWith("RedCode Console")).map((file) => file.content)
           : [],
       ).toEqual(["Use tabs."])
     }),
@@ -1997,7 +1997,7 @@ describe("OpencodePlugin", () => {
   )
 
   it.effect("uses a public key and disables paid models without credentials", () =>
-    withEnv({ OPENCODE_API_KEY: undefined }, () =>
+    withEnv({ REDCODE_API_KEY: undefined }, () =>
       Effect.gen(function* () {
         const catalog = yield* Provider.Service
         const models = yield* Model.Service
@@ -2015,7 +2015,7 @@ describe("OpencodePlugin", () => {
   )
 
   it.effect("keeps free models without credentials", () =>
-    withEnv({ OPENCODE_API_KEY: undefined }, () =>
+    withEnv({ REDCODE_API_KEY: undefined }, () =>
       Effect.gen(function* () {
         const catalog = yield* Provider.Service
         const models = yield* Model.Service
@@ -2035,7 +2035,7 @@ describe("OpencodePlugin", () => {
   )
 
   it.effect("treats output-only cost as free without credentials", () =>
-    withEnv({ OPENCODE_API_KEY: undefined }, () =>
+    withEnv({ REDCODE_API_KEY: undefined }, () =>
       Effect.gen(function* () {
         const catalog = yield* Provider.Service
         const models = yield* Model.Service
@@ -2052,8 +2052,8 @@ describe("OpencodePlugin", () => {
     ),
   )
 
-  it.effect("uses OPENCODE_API_KEY as credentials", () =>
-    withEnv({ OPENCODE_API_KEY: "secret" }, () =>
+  it.effect("uses REDCODE_API_KEY as credentials", () =>
+    withEnv({ REDCODE_API_KEY: "secret" }, () =>
       Effect.gen(function* () {
         const catalog = yield* Provider.Service
         const models = yield* Model.Service
@@ -2061,7 +2061,7 @@ describe("OpencodePlugin", () => {
         yield* integrations.transform((editor) =>
           editor.method.update({
             integrationID: Integration.ID.make("opencode"),
-            method: { type: "env", names: ["OPENCODE_API_KEY"] },
+            method: { type: "env", names: ["REDCODE_API_KEY"] },
           }),
         )
         yield* catalog.transform((catalog) => {
@@ -2078,7 +2078,7 @@ describe("OpencodePlugin", () => {
   )
 
   it.effect("uses configured provider env vars as credentials", () =>
-    withEnv({ OPENCODE_API_KEY: undefined, CUSTOM_OPENCODE_API_KEY: "secret" }, () =>
+    withEnv({ REDCODE_API_KEY: undefined, CUSTOM_REDCODE_API_KEY: "secret" }, () =>
       Effect.gen(function* () {
         const catalog = yield* Provider.Service
         const models = yield* Model.Service
@@ -2086,7 +2086,7 @@ describe("OpencodePlugin", () => {
         yield* integrations.transform((editor) => {
           editor.method.update({
             integrationID: Integration.ID.make("opencode"),
-            method: { type: "env", names: ["CUSTOM_OPENCODE_API_KEY"] },
+            method: { type: "env", names: ["CUSTOM_REDCODE_API_KEY"] },
           })
         })
         yield* catalog.transform((catalog) => {
@@ -2105,7 +2105,7 @@ describe("OpencodePlugin", () => {
   )
 
   it.effect("uses configured apiKey as credentials", () =>
-    withEnv({ OPENCODE_API_KEY: undefined }, () =>
+    withEnv({ REDCODE_API_KEY: undefined }, () =>
       Effect.gen(function* () {
         const catalog = yield* Provider.Service
         const models = yield* Model.Service
@@ -2127,7 +2127,7 @@ describe("OpencodePlugin", () => {
   )
 
   it.effect("ignores non-opencode providers and models", () =>
-    withEnv({ OPENCODE_API_KEY: undefined }, () =>
+    withEnv({ REDCODE_API_KEY: undefined }, () =>
       Effect.gen(function* () {
         const catalog = yield* Provider.Service
         const models = yield* Model.Service
@@ -2390,7 +2390,7 @@ describe("OpencodePlugin with a Console config", () => {
             value: Credential.Key.make({ type: "key", key: "secret", metadata: { server: server.url.origin } }),
           })
           const host = yield* PluginHost.make(yield* Plugin.Service, "test")
-          // Registered in production order: the OpenCode and OpenAI provider plugins, then config in `post`.
+          // Registered in production order: the RedCode and OpenAI provider plugins, then config in `post`.
           yield* OpencodePlugin.effect(host).pipe(inProcess(server))
           yield* OpenAIPlugin.effect(host)
           yield* ConfigProviderPlugin.Plugin.effect(host)
@@ -2425,7 +2425,7 @@ describe("OpencodePlugin with a Console config", () => {
           const websearch = yield* WebSearch.Service
           const config = yield* Config.Test
           const bus = yield* Bus.Service
-          const opencode = { id: WebSearch.ID.make("opencode"), name: "OpenCode Web Search" }
+          const opencode = { id: WebSearch.ID.make("opencode"), name: "RedCode Web Search" }
           // Config.testLayer does not announce integration changes the way config reloads do.
           const announced = (expected: typeof opencode | undefined) =>
             bus
@@ -2538,7 +2538,7 @@ for (const key of [undefined, "secret"]) {
   testEffect(Layer.empty).effect(
     `disabled free models with ${key ? "an API key" : "a Console login after startup"}`,
     () =>
-      withEnv({ OPENCODE_DISABLE_FREE_MODELS: "true", OPENCODE_API_KEY: key }, () =>
+      withEnv({ REDCODE_DISABLE_FREE_MODELS: "true", REDCODE_API_KEY: key }, () =>
         Effect.gen(function* () {
           const catalog = yield* Provider.Service
           const models = yield* Model.Service
@@ -2547,7 +2547,7 @@ for (const key of [undefined, "secret"]) {
           yield* integrations.transform((editor) =>
             editor.method.update({
               integrationID: Integration.ID.make("opencode"),
-              method: { type: "env", names: ["OPENCODE_API_KEY"] },
+              method: { type: "env", names: ["REDCODE_API_KEY"] },
             }),
           )
           yield* catalog.transform((editor) => {

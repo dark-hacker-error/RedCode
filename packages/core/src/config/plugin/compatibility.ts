@@ -1,7 +1,7 @@
 export * as ConfigCompatibilityPlugin from "./compatibility.js"
 
-import { define } from "@opencode/plugin/effect/plugin"
-import { FSUtil } from "@opencode/util/fs-util"
+import { define } from "@redcode/plugin/effect/plugin"
+import { FSUtil } from "@redcode/util/fs-util"
 import path from "path"
 import { Effect, FiberMap, PubSub, Semaphore, Stream } from "effect"
 import { Config } from "../../config.js"

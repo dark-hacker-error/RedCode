@@ -1,7 +1,7 @@
 import { createSignal } from "solid-js"
 import { createStore } from "solid-js/store"
 import { createEventListener } from "@solid-primitives/event-listener"
-import type { Panel, PanelProps, SessionRef } from "@opencode/plugin/gui"
+import type { Panel, PanelProps, SessionRef } from "@redcode/plugin/gui"
 import { adjacentTabKey } from "@/shell/titlebar/tab-order"
 import type { SessionPane } from "@/shell/state/session-tabs"
 

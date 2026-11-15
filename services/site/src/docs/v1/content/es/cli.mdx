@@ -1,17 +1,17 @@
 ---
 title: CLI
-description: Opciones y comandos de la CLI de OpenCode.
+description: Opciones y comandos de la CLI de RedCode.
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components"
 
-La CLI de OpenCode de forma predeterminada inicia el [TUI](/docs/tui) cuando se ejecuta sin ningún argumento.
+La CLI de RedCode de forma predeterminada inicia el [TUI](/docs/tui) cuando se ejecuta sin ningún argumento.
 
 ```bash
 opencode
 ```
 
-Pero también acepta comandos como se documenta en esta página. Esto le permite interactuar con OpenCode mediante programación.
+Pero también acepta comandos como se documenta en esta página. Esto le permite interactuar con RedCode mediante programación.
 
 ```bash
 opencode run "Explain how closures work in JavaScript"
@@ -21,7 +21,7 @@ opencode run "Explain how closures work in JavaScript"
 
 ### tui
 
-Inicie la interfaz de usuario del terminal OpenCode.
+Inicie la interfaz de usuario del terminal RedCode.
 
 ```bash
 opencode [project]
@@ -44,19 +44,19 @@ opencode [project]
 
 ## Comandos
 
-La CLI de OpenCode también tiene los siguientes comandos.
+La CLI de RedCode también tiene los siguientes comandos.
 
 ---
 
 ### attach
 
-Conecte una terminal a un servidor backend OpenCode que ya se esté ejecutando y iniciado mediante los comandos `serve` o `web`.
+Conecte una terminal a un servidor backend RedCode que ya se esté ejecutando y iniciado mediante los comandos `serve` o `web`.
 
 ```bash
 opencode attach [url]
 ```
 
-Esto permite usar TUI con un backend remoto OpenCode. Por ejemplo:
+Esto permite usar TUI con un backend remoto RedCode. Por ejemplo:
 
 ```bash
 # Start the backend server for web/mobile access
@@ -74,8 +74,8 @@ opencode attach http://10.20.30.40:4096
 | <nobr><code>{"--continue"}</code></nobr> | `-c`  | Continuar la última sesión                                                                |
 | <nobr><code>{"--session"}</code></nobr>  | `-s`  | ID de sesión para continuar                                                               |
 | <nobr><code>{"--fork"}</code></nobr>     |       | Bifurcar la sesión al continuar (usar con `--continue` o `--session`)                     |
-| <nobr><code>{"--password"}</code></nobr> | `-p`  | Contraseña de autenticación básica (predeterminada: `OPENCODE_SERVER_PASSWORD`)           |
-| <nobr><code>{"--username"}</code></nobr> | `-u`  | Usuario de autenticación básica (predeterminado: `OPENCODE_SERVER_USERNAME` u `opencode`) |
+| <nobr><code>{"--password"}</code></nobr> | `-p`  | Contraseña de autenticación básica (predeterminada: `REDCODE_SERVER_PASSWORD`)           |
+| <nobr><code>{"--username"}</code></nobr> | `-u`  | Usuario de autenticación básica (predeterminado: `REDCODE_SERVER_USERNAME` u `opencode`) |
 
 ---
 
@@ -91,13 +91,13 @@ opencode auth [command]
 
 #### login
 
-OpenCode funciona con la lista de proveedores en [Models.dev](https://models.dev), por lo que puede usar `opencode auth login` para configurar las claves API para cualquier proveedor que desee utilizar. Esto se almacena en `~/.local/share/opencode/auth.json`.
+RedCode funciona con la lista de proveedores en [Models.dev](https://models.dev), por lo que puede usar `opencode auth login` para configurar las claves API para cualquier proveedor que desee utilizar. Esto se almacena en `~/.local/share/redcode/auth.json`.
 
 ```bash
 opencode auth login
 ```
 
-Cuando se inicia OpenCode, carga los proveedores desde el archivo de credenciales. Y si hay claves definidas en sus entornos o un archivo `.env` en su proyecto.
+Cuando se inicia RedCode, carga los proveedores desde el archivo de credenciales. Y si hay claves definidas en sus entornos o un archivo `.env` en su proyecto.
 
 ---
 
@@ -273,7 +273,7 @@ opencode models anthropic
 | <nobr><code>{"--refresh"}</code></nobr> | Actualizar la caché de modelos desde models.dev                             |
 | <nobr><code>{"--verbose"}</code></nobr> | Utilice una salida del modelo más detallada (incluye metadatos como costos) |
 
-Utilice el indicador `--refresh` para actualizar la lista de modelos almacenados en caché. Esto es útil cuando se han agregado nuevos modelos a un proveedor y desea verlos en OpenCode.
+Utilice el indicador `--refresh` para actualizar la lista de modelos almacenados en caché. Esto es útil cuando se han agregado nuevos modelos a un proveedor y desea verlos en RedCode.
 
 ```bash
 opencode models --refresh
@@ -319,8 +319,8 @@ opencode run --attach http://localhost:4096 "Explain async/await in JavaScript"
 | <nobr><code>{"--format"}</code></nobr>   |       | Formato: predeterminado (formateado) o json (eventos JSON sin formato)                    |
 | <nobr><code>{"--title"}</code></nobr>    |       | Título de la sesión (utiliza un mensaje truncado si no se proporciona ningún valor)       |
 | <nobr><code>{"--attach"}</code></nobr>   |       | Adjuntar a un servidor opencode en ejecución (por ejemplo, http://localhost:4096)         |
-| <nobr><code>{"--password"}</code></nobr> | `-p`  | Contraseña de autenticación básica (predeterminada: `OPENCODE_SERVER_PASSWORD`)           |
-| <nobr><code>{"--username"}</code></nobr> | `-u`  | Usuario de autenticación básica (predeterminado: `OPENCODE_SERVER_USERNAME` u `opencode`) |
+| <nobr><code>{"--password"}</code></nobr> | `-p`  | Contraseña de autenticación básica (predeterminada: `REDCODE_SERVER_PASSWORD`)           |
+| <nobr><code>{"--username"}</code></nobr> | `-u`  | Usuario de autenticación básica (predeterminado: `REDCODE_SERVER_USERNAME` u `opencode`) |
 | <nobr><code>{"--dir"}</code></nobr>      |       | Directorio de ejecución, o ruta en el servidor remoto al adjuntar                         |
 | <nobr><code>{"--variant"}</code></nobr>  |       | Variante del modelo (esfuerzo de razonamiento específico del proveedor)                   |
 | <nobr><code>{"--thinking"}</code></nobr> |       | Mostrar bloques de pensamiento                                                            |
@@ -330,13 +330,13 @@ opencode run --attach http://localhost:4096 "Explain async/await in JavaScript"
 
 ### serve
 
-Inicie un servidor OpenCode sin cabeza para acceso API. Consulte los [documentos del servidor](/docs/server) para conocer la interfaz HTTP completa.
+Inicie un servidor RedCode sin cabeza para acceso API. Consulte los [documentos del servidor](/docs/server) para conocer la interfaz HTTP completa.
 
 ```bash
 opencode serve
 ```
 
-Esto inicia un servidor HTTP que proporciona acceso API a la funcionalidad opencode sin la interfaz TUI. Configure `OPENCODE_SERVER_PASSWORD` para habilitar la autenticación básica HTTP (el nombre de usuario predeterminado es `opencode`).
+Esto inicia un servidor HTTP que proporciona acceso API a la funcionalidad opencode sin la interfaz TUI. Configure `REDCODE_SERVER_PASSWORD` para habilitar la autenticación básica HTTP (el nombre de usuario predeterminado es `opencode`).
 
 #### Opciones
 
@@ -351,7 +351,7 @@ Esto inicia un servidor HTTP que proporciona acceso API a la funcionalidad openc
 
 ### session
 
-Administrar OpenCode sesiones.
+Administrar RedCode sesiones.
 
 ```bash
 opencode session [command]
@@ -361,7 +361,7 @@ opencode session [command]
 
 #### list
 
-Enumere todas las sesiones OpenCode.
+Enumere todas las sesiones RedCode.
 
 ```bash
 opencode session list
@@ -378,7 +378,7 @@ opencode session list
 
 ### stats
 
-Muestre el uso de tokens y las estadísticas de costos para sus sesiones OpenCode.
+Muestre el uso de tokens y las estadísticas de costos para sus sesiones RedCode.
 
 ```bash
 opencode stats
@@ -423,13 +423,13 @@ opencode import session.json
 
 ### web
 
-Inicie un servidor OpenCode sin cabeza con una interfaz web.
+Inicie un servidor RedCode sin cabeza con una interfaz web.
 
 ```bash
 opencode web
 ```
 
-Esto inicia un servidor HTTP y abre un navegador web para acceder a OpenCode a través de una interfaz web. Configure `OPENCODE_SERVER_PASSWORD` para habilitar la autenticación básica HTTP (el nombre de usuario predeterminado es `opencode`).
+Esto inicia un servidor HTTP y abre un navegador web para acceder a RedCode a través de una interfaz web. Configure `REDCODE_SERVER_PASSWORD` para habilitar la autenticación básica HTTP (el nombre de usuario predeterminado es `opencode`).
 
 #### Opciones
 
@@ -464,7 +464,7 @@ Este comando inicia un servidor ACP que se comunica a través de stdin/stdout us
 
 ### uninstall
 
-Desinstale OpenCode y elimine todos los archivos relacionados.
+Desinstale RedCode y elimine todos los archivos relacionados.
 
 ```bash
 opencode uninstall
@@ -511,7 +511,7 @@ opencode upgrade v0.1.48
 
 ## Opciones globales
 
-La CLI de OpenCode toma las siguientes banderas globales.
+La CLI de RedCode toma las siguientes banderas globales.
 
 | Opción                                     | Corta | Descripción                                  |
 | ------------------------------------------ | ----- | -------------------------------------------- |
@@ -524,32 +524,32 @@ La CLI de OpenCode toma las siguientes banderas globales.
 
 ## Variables de entorno
 
-OpenCode se puede configurar mediante variables de entorno.
+RedCode se puede configurar mediante variables de entorno.
 
 | Variable                              | Type     | Description                                                                     |
 | ------------------------------------- | -------- | ------------------------------------------------------------------------------- |
-| `OPENCODE_GIT_BASH_PATH`              | cadena   | Ruta al ejecutable de Git Bash en Windows                                       |
-| `OPENCODE_CONFIG`                     | cadena   | Ruta al archivo de configuración                                                |
-| `OPENCODE_CONFIG_DIR`                 | cadena   | Ruta al directorio de configuración                                             |
-| `OPENCODE_CONFIG_CONTENT`             | cadena   | Contenido de configuración json en línea                                        |
-| `OPENCODE_DISABLE_AUTOUPDATE`         | booleano | Deshabilitar las comprobaciones automáticas de actualizaciones                  |
-| `OPENCODE_DISABLE_PRUNE`              | booleano | Deshabilitar la poda de datos antiguos                                          |
-| `OPENCODE_DISABLE_TERMINAL_TITLE`     | booleano | Deshabilitar las actualizaciones automáticas de títulos de terminal             |
-| `OPENCODE_PERMISSION`                 | cadena   | Configuración de permisos json incorporados                                     |
-| `OPENCODE_DISABLE_DEFAULT_PLUGINS`    | booleano | Deshabilitar complementos predeterminados                                       |
-| `OPENCODE_DISABLE_LSP_DOWNLOAD`       | booleano | Deshabilitar las descargas automáticas del servidor LSP                         |
-| `OPENCODE_ENABLE_EXPERIMENTAL_MODELS` | booleano | Habilitar modelos experimentales                                                |
-| `OPENCODE_DISABLE_AUTOCOMPACT`        | booleano | Deshabilitar la compactación automática de contexto                             |
-| `OPENCODE_DISABLE_CLAUDE_CODE`        | booleano | Deshabilitar la lectura desde `.claude` (mensaje + habilidades)                 |
-| `OPENCODE_DISABLE_CLAUDE_CODE_PROMPT` | booleano | Desactivar lectura `~/.claude/CLAUDE.md`                                        |
-| `OPENCODE_DISABLE_CLAUDE_CODE_SKILLS` | booleano | Deshabilitar la carga `.claude/skills`                                          |
-| `OPENCODE_DISABLE_MODELS_FETCH`       | booleano | Deshabilitar la recuperación de modelos desde fuentes remotas                   |
-| `OPENCODE_FAKE_VCS`                   | cadena   | Proveedor de VCS falso para fines de prueba                                     |
-| `OPENCODE_CLIENT`                     | cadena   | Identificador de cliente (por defecto `cli`)                                    |
-| `OPENCODE_ENABLE_EXA`                 | booleano | Habilitar las herramientas de búsqueda web de Exa                               |
-| `OPENCODE_SERVER_PASSWORD`            | cadena   | Habilite la autenticación básica para `serve`/`web`                             |
-| `OPENCODE_SERVER_USERNAME`            | cadena   | Anular el nombre de usuario de autenticación básica (predeterminado `opencode`) |
-| `OPENCODE_MODELS_URL`                 | cadena   | URL personalizada para buscar la configuración de modelos                       |
+| `REDCODE_GIT_BASH_PATH`              | cadena   | Ruta al ejecutable de Git Bash en Windows                                       |
+| `REDCODE_CONFIG`                     | cadena   | Ruta al archivo de configuración                                                |
+| `REDCODE_CONFIG_DIR`                 | cadena   | Ruta al directorio de configuración                                             |
+| `REDCODE_CONFIG_CONTENT`             | cadena   | Contenido de configuración json en línea                                        |
+| `REDCODE_DISABLE_AUTOUPDATE`         | booleano | Deshabilitar las comprobaciones automáticas de actualizaciones                  |
+| `REDCODE_DISABLE_PRUNE`              | booleano | Deshabilitar la poda de datos antiguos                                          |
+| `REDCODE_DISABLE_TERMINAL_TITLE`     | booleano | Deshabilitar las actualizaciones automáticas de títulos de terminal             |
+| `REDCODE_PERMISSION`                 | cadena   | Configuración de permisos json incorporados                                     |
+| `REDCODE_DISABLE_DEFAULT_PLUGINS`    | booleano | Deshabilitar complementos predeterminados                                       |
+| `REDCODE_DISABLE_LSP_DOWNLOAD`       | booleano | Deshabilitar las descargas automáticas del servidor LSP                         |
+| `REDCODE_ENABLE_EXPERIMENTAL_MODELS` | booleano | Habilitar modelos experimentales                                                |
+| `REDCODE_DISABLE_AUTOCOMPACT`        | booleano | Deshabilitar la compactación automática de contexto                             |
+| `REDCODE_DISABLE_CLAUDE_CODE`        | booleano | Deshabilitar la lectura desde `.claude` (mensaje + habilidades)                 |
+| `REDCODE_DISABLE_CLAUDE_CODE_PROMPT` | booleano | Desactivar lectura `~/.claude/CLAUDE.md`                                        |
+| `REDCODE_DISABLE_CLAUDE_CODE_SKILLS` | booleano | Deshabilitar la carga `.claude/skills`                                          |
+| `REDCODE_DISABLE_MODELS_FETCH`       | booleano | Deshabilitar la recuperación de modelos desde fuentes remotas                   |
+| `REDCODE_FAKE_VCS`                   | cadena   | Proveedor de VCS falso para fines de prueba                                     |
+| `REDCODE_CLIENT`                     | cadena   | Identificador de cliente (por defecto `cli`)                                    |
+| `REDCODE_ENABLE_EXA`                 | booleano | Habilitar las herramientas de búsqueda web de Exa                               |
+| `REDCODE_SERVER_PASSWORD`            | cadena   | Habilite la autenticación básica para `serve`/`web`                             |
+| `REDCODE_SERVER_USERNAME`            | cadena   | Anular el nombre de usuario de autenticación básica (predeterminado `opencode`) |
+| `REDCODE_MODELS_URL`                 | cadena   | URL personalizada para buscar la configuración de modelos                       |
 
 ---
 
@@ -559,20 +559,20 @@ Estas variables de entorno habilitan funciones experimentales que pueden cambiar
 
 | Variable                                        | Type     | Description                                                |
 | ----------------------------------------------- | -------- | ---------------------------------------------------------- |
-| `OPENCODE_EXPERIMENTAL`                         | booleano | Habilitar funciones experimentales de la bandera global    |
-| `OPENCODE_EXPERIMENTAL_ICON_DISCOVERY`          | booleano | Habilitar descubrimiento de íconos                         |
-| `OPENCODE_EXPERIMENTAL_DISABLE_COPY_ON_SELECT`  | booleano | Deshabilitar copia al seleccionar en TUI                   |
-| `OPENCODE_EXPERIMENTAL_BASH_DEFAULT_TIMEOUT_MS` | número   | Tiempo de espera predeterminado para comandos bash en ms   |
-| `OPENCODE_EXPERIMENTAL_OUTPUT_TOKEN_MAX`        | número   | Tokens de salida máximos para respuestas LLM               |
-| `OPENCODE_EXPERIMENTAL_FILEWATCHER`             | booleano | Habilite el observador de archivos para todo el directorio |
-| `OPENCODE_EXPERIMENTAL_OXFMT`                   | booleano | Habilitar el formateador oxfmt                             |
-| `OPENCODE_EXPERIMENTAL_LSP_TOOL`                | booleano | Habilitar herramienta experimental LSP                     |
-| `OPENCODE_EXPERIMENTAL_DISABLE_FILEWATCHER`     | booleano | Deshabilitar el observador de archivos                     |
-| `OPENCODE_EXPERIMENTAL_EXA`                     | booleano | Habilitar funciones experimentales de Exa                  |
-| `OPENCODE_EXPERIMENTAL_LSP_TY`                  | booleano | Habilitar Habilitar TY LSP para archivos python            |
-| `OPENCODE_EXPERIMENTAL_PLAN_MODE`               | booleano | Habilitar modo de plan                                     |
-| `OPENCODE_EXPERIMENTAL_EVENT_SYSTEM`            | booleano | Habilitar sistema de eventos experimental                  |
-| `OPENCODE_EXPERIMENTAL_NATIVE_LLM`              | booleano | Habilitar ruta nativa de solicitud LLM                     |
-| `OPENCODE_EXPERIMENTAL_PARALLEL`                | booleano | Habilitar ejecución paralela de búsqueda web               |
-| `OPENCODE_EXPERIMENTAL_SCOUT`                   | booleano | Habilitar subagente Scout                                  |
-| `OPENCODE_EXPERIMENTAL_WORKSPACES`              | booleano | Habilitar soporte de espacios de trabajo                   |
+| `REDCODE_EXPERIMENTAL`                         | booleano | Habilitar funciones experimentales de la bandera global    |
+| `REDCODE_EXPERIMENTAL_ICON_DISCOVERY`          | booleano | Habilitar descubrimiento de íconos                         |
+| `REDCODE_EXPERIMENTAL_DISABLE_COPY_ON_SELECT`  | booleano | Deshabilitar copia al seleccionar en TUI                   |
+| `REDCODE_EXPERIMENTAL_BASH_DEFAULT_TIMEOUT_MS` | número   | Tiempo de espera predeterminado para comandos bash en ms   |
+| `REDCODE_EXPERIMENTAL_OUTPUT_TOKEN_MAX`        | número   | Tokens de salida máximos para respuestas LLM               |
+| `REDCODE_EXPERIMENTAL_FILEWATCHER`             | booleano | Habilite el observador de archivos para todo el directorio |
+| `REDCODE_EXPERIMENTAL_OXFMT`                   | booleano | Habilitar el formateador oxfmt                             |
+| `REDCODE_EXPERIMENTAL_LSP_TOOL`                | booleano | Habilitar herramienta experimental LSP                     |
+| `REDCODE_EXPERIMENTAL_DISABLE_FILEWATCHER`     | booleano | Deshabilitar el observador de archivos                     |
+| `REDCODE_EXPERIMENTAL_EXA`                     | booleano | Habilitar funciones experimentales de Exa                  |
+| `REDCODE_EXPERIMENTAL_LSP_TY`                  | booleano | Habilitar Habilitar TY LSP para archivos python            |
+| `REDCODE_EXPERIMENTAL_PLAN_MODE`               | booleano | Habilitar modo de plan                                     |
+| `REDCODE_EXPERIMENTAL_EVENT_SYSTEM`            | booleano | Habilitar sistema de eventos experimental                  |
+| `REDCODE_EXPERIMENTAL_NATIVE_LLM`              | booleano | Habilitar ruta nativa de solicitud LLM                     |
+| `REDCODE_EXPERIMENTAL_PARALLEL`                | booleano | Habilitar ejecución paralela de búsqueda web               |
+| `REDCODE_EXPERIMENTAL_SCOUT`                   | booleano | Habilitar subagente Scout                                  |
+| `REDCODE_EXPERIMENTAL_WORKSPACES`              | booleano | Habilitar soporte de espacios de trabajo                   |

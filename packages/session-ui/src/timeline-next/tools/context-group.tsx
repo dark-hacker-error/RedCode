@@ -1,9 +1,9 @@
-import type { SessionMessageAssistantTool } from "@opencode/client/promise"
-import { AnimatedNumber } from "@opencode/ui/animated-number"
-import { Badge } from "@opencode/ui/badge"
-import { type UiI18n, useI18n } from "@opencode/ui/context/i18n"
-import { TextShimmer } from "@opencode/ui/text-shimmer"
-import { getFilename } from "@opencode/util/path"
+import type { SessionMessageAssistantTool } from "@redcode/client/promise"
+import { AnimatedNumber } from "@redcode/ui/animated-number"
+import { Badge } from "@redcode/ui/badge"
+import { type UiI18n, useI18n } from "@redcode/ui/context/i18n"
+import { TextShimmer } from "@redcode/ui/text-shimmer"
+import { getFilename } from "@redcode/util/path"
 import { Option, Schema } from "effect"
 import { createMemo, For, Index, Match, Show, Switch } from "solid-js"
 import { BasicTool } from "../../components/basic-tool"
@@ -357,7 +357,7 @@ function SkillsItem(props: { tools: SessionMessageAssistantTool[] }) {
     }),
   )
 
-  const marker = "__OPENCODE_LOADED_SKILL__"
+  const marker = "__REDCODE_LOADED_SKILL__"
   const loaded = createMemo(() => i18n.plural("ui.tool.loadedSkills", skills().length, { name: marker }))
 
   return (

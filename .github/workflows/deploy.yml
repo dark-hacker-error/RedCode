@@ -29,8 +29,8 @@ permissions:
 
 jobs:
   legacy-build:
-    if: github.repository == 'anomalyco/opencode' && (github.ref_name == 'dev' || github.ref_name == 'production')
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    if: github.repository == 'Vempire-X/RedCode' && (github.ref_name == 'dev' || github.ref_name == 'production')
+    runs-on: ubuntu-24.04
     outputs:
       digest: ${{ steps.upload.outputs.digest }}
     steps:
@@ -55,8 +55,8 @@ jobs:
 
   legacy-deploy:
     needs: legacy-build
-    if: github.repository == 'anomalyco/opencode' && (github.ref_name == 'dev' || github.ref_name == 'production')
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    if: github.repository == 'Vempire-X/RedCode' && (github.ref_name == 'dev' || github.ref_name == 'production')
+    runs-on: ubuntu-24.04
     environment: ${{ github.ref_name }}
     permissions:
       contents: read
@@ -122,8 +122,8 @@ jobs:
           bash .github/release/deploy-legacy.sh "$STAGE" "$RUNNER_TEMP/in/legacy-$STAGE" "$secrets"
 
   data-build:
-    if: github.repository == 'anomalyco/opencode' && (github.ref_name == 'dev' || github.ref_name == 'production')
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    if: github.repository == 'Vempire-X/RedCode' && (github.ref_name == 'dev' || github.ref_name == 'production')
+    runs-on: ubuntu-24.04
     outputs:
       digest: ${{ steps.upload.outputs.digest }}
     steps:
@@ -149,8 +149,8 @@ jobs:
   # The /data site, its OG image Worker and the sync Workflow (services/data).
   data-deploy:
     needs: data-build
-    if: github.repository == 'anomalyco/opencode' && (github.ref_name == 'dev' || github.ref_name == 'production')
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    if: github.repository == 'Vempire-X/RedCode' && (github.ref_name == 'dev' || github.ref_name == 'production')
+    runs-on: ubuntu-24.04
     environment: ${{ github.ref_name }}
     permissions:
       contents: read

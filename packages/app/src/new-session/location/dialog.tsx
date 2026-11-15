@@ -1,20 +1,20 @@
-import { Badge } from "@opencode/ui/badge"
-import { Dialog, DialogBody } from "@opencode/ui/dialog"
-import { useDialog } from "@opencode/ui/context/dialog"
-import { Icon } from "@opencode/ui/icon"
-import { Keybind } from "@opencode/ui/keybind"
-import { MenuScroll } from "@opencode/ui/menu-scroll"
+import { Badge } from "@redcode/ui/badge"
+import { Dialog, DialogBody } from "@redcode/ui/dialog"
+import { useDialog } from "@redcode/ui/context/dialog"
+import { Icon } from "@redcode/ui/icon"
+import { Keybind } from "@redcode/ui/keybind"
+import { MenuScroll } from "@redcode/ui/menu-scroll"
 import {
   displayName,
   getProjectAvatarGenerated,
   getProjectAvatarSource,
   getProjectAvatarVariant,
   ProjectAvatar,
-} from "@opencode/ui/project-avatar"
-import { TextInput } from "@opencode/ui/text-input"
-import { createTypeahead } from "@opencode/ui/typeahead"
+} from "@redcode/ui/project-avatar"
+import { TextInput } from "@redcode/ui/text-input"
+import { createTypeahead } from "@redcode/ui/typeahead"
 import { createEventListener } from "@solid-primitives/event-listener"
-import { getFilename } from "@opencode/util/path"
+import { getFilename } from "@redcode/util/path"
 import {
   createEffect,
   createMemo,

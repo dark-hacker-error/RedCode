@@ -1,10 +1,10 @@
-import { Button } from "@opencode/ui/button"
-import { Badge } from "@opencode/ui/badge"
-import { useDialog } from "@opencode/ui/context/dialog"
-import { Icon } from "@opencode/ui/icon"
-import { IconButton } from "@opencode/ui/icon-button"
-import { Menu } from "@opencode/ui/menu"
-import { OpenCodeLogo } from "@/providers/opencode-logo"
+import { Button } from "@redcode/ui/button"
+import { Badge } from "@redcode/ui/badge"
+import { useDialog } from "@redcode/ui/context/dialog"
+import { Icon } from "@redcode/ui/icon"
+import { IconButton } from "@redcode/ui/icon-button"
+import { Menu } from "@redcode/ui/menu"
+import { RedCodeLogo } from "@/providers/opencode-logo"
 import { showToast } from "@/shell/notifications/toast"
 import { popularProviders, useProviders } from "@/providers/catalog/providers"
 import { consoleProviderGroup } from "@/providers/catalog/console"
@@ -517,7 +517,7 @@ export const SettingsProviders: Component<{
                         <div class="settings-provider-console group">
                           <div class="settings-provider-console-header">
                             <div class="settings-provider-lead">
-                              <OpenCodeLogo class="settings-provider-icon size-4 shrink-0" />
+                              <RedCodeLogo class="settings-provider-icon size-4 shrink-0" />
                               <div class="settings-provider-console-summary">
                                 <div class="settings-provider-main">
                                   <span class="settings-provider-name truncate">

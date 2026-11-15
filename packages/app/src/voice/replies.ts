@@ -1,4 +1,4 @@
-import type { SessionMessageInfo } from "@opencode/client/promise"
+import type { SessionMessageInfo } from "@redcode/client/promise"
 
 export type SentPrompt = { sessionID: string; promptID: string; title: string; instruction: string }
 

@@ -71,14 +71,14 @@ Environment options:
 
 ## Server mode
 
-`VITE_OPENCODE_SERVER_MODE` controls which server the web build provides at startup:
+`VITE_REDCODE_SERVER_MODE` controls which server the web build provides at startup:
 
 | Mode               | Initial server                                                                       |
 | ------------------ | ------------------------------------------------------------------------------------ |
 | `none`             | No initial server.                                                                   |
 | `origin` (default) | The current page's origin. CLI builds explicitly use this mode for `opencode serve`. |
 
-In Vite development mode, `origin` uses `VITE_OPENCODE_SERVER_HOST` / `VITE_OPENCODE_SERVER_PORT`
+In Vite development mode, `origin` uses `VITE_REDCODE_SERVER_HOST` / `VITE_REDCODE_SERVER_PORT`
 (default: `http://localhost:4096`) instead of the frontend origin. Both modes restore user-added servers
 from storage. Desktop provides the local server it discovers or starts through native initialization.
 
@@ -96,7 +96,7 @@ opencode pair --url https://opencode.example.com
 ```
 
 This replaces the addresses in the printed links and QR code.
-The proxy URL must reach the OpenCode API, not just the frontend. For separate frontend and API processes,
+The proxy URL must reach the RedCode API, not just the frontend. For separate frontend and API processes,
 route `/api` to the service while preserving the `/api` prefix. No machine-specific app or CLI build is required.
 
 When an HTTPS page fails to connect to a non-loopback HTTP server, the connection forms show a specific

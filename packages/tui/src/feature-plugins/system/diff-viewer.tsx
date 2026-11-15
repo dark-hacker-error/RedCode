@@ -1,8 +1,8 @@
 /** @jsxImportSource @opentui/solid */
-import type { FileDiffInfo, LocationRef } from "@opencode/client"
-import type { Vcs } from "@opencode/schema/vcs"
-import { Plugin } from "@opencode/plugin/tui"
-import type { KeymapCommand, PanelInput, Route } from "@opencode/plugin/tui/context"
+import type { FileDiffInfo, LocationRef } from "@redcode/client"
+import type { Vcs } from "@redcode/schema/vcs"
+import { Plugin } from "@redcode/plugin/tui"
+import type { KeymapCommand, PanelInput, Route } from "@redcode/plugin/tui/context"
 import {
   MouseButton,
   TextAttributes,

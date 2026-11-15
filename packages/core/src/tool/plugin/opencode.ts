@@ -1,12 +1,12 @@
-export * as OpenCodeTools from "./opencode.js"
+export * as RedCodeTools from "./opencode.js"
 
-import { SystemPart, ToolFailure } from "@opencode/ai/effect"
-import type { Context } from "@opencode/plugin/effect/plugin"
-import type { SessionHooks } from "@opencode/plugin/effect/session"
-import { Model } from "@opencode/schema/model"
-import { AbsolutePath } from "@opencode/schema/schema"
-import { Session } from "@opencode/schema/session"
-import { FSUtil } from "@opencode/util/fs-util"
+import { SystemPart, ToolFailure } from "@redcode/ai/effect"
+import type { Context } from "@redcode/plugin/effect/plugin"
+import type { SessionHooks } from "@redcode/plugin/effect/session"
+import { Model } from "@redcode/schema/model"
+import { AbsolutePath } from "@redcode/schema/schema"
+import { Session } from "@redcode/schema/session"
+import { FSUtil } from "@redcode/util/fs-util"
 import { Effect, Schema } from "effect"
 import { toolFailure } from "../runtime.js"
 import { FileAccess } from "../../file-access.js"
@@ -95,7 +95,7 @@ const ModelsOutput = Schema.Struct({
 
 export const Plugin = {
   id: "opencode.tools",
-  effect: Effect.fn("OpenCodeTools.Plugin")(function* (ctx: Context) {
+  effect: Effect.fn("RedCodeTools.Plugin")(function* (ctx: Context) {
     const access = yield* FileAccess.Service
     const permission = yield* Permission.Service
     const hook = (event: SessionHooks["context"]) =>
@@ -114,7 +114,7 @@ export const Plugin = {
         draft.namespace({
           name: "opencode",
           description:
-            "Tools for managing OpenCode itself, such as working with sessions and worktrees, searching the available models, and reading MCP resources.",
+            "Tools for managing RedCode itself, such as working with sessions and worktrees, searching the available models, and reading MCP resources.",
         })
         draft.add({
           name: "session_rename",

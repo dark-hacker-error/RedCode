@@ -16,7 +16,7 @@ export const content = {
     },
     "steer-your-sessions-from-your-phone": {
       text: "Oturumlarınızı telefonunuzdan yönetin.",
-      link: "OpenCode Mobile ile tanışın",
+      link: "RedCode Mobile ile tanışın",
     },
     "a-refreshed-desktop-app": {
       text: "Yenilenmiş masaüstü uygulaması.",
@@ -41,7 +41,7 @@ export const content = {
     },
     sdk: {
       name: "SDK",
-      body: "OpenCode'u kendi betiklerinizden, CI işlerinizden ve araçlarınızdan yönetin.",
+      body: "RedCode'u kendi betiklerinizden, CI işlerinizden ve araçlarınızdan yönetin.",
       action: "Dokümanlar",
     },
     mini: {
@@ -52,9 +52,9 @@ export const content = {
   },
   productDetails: {
     desktop: {
-      title: "OpenCode | macOS, Windows ve Linux için masaüstü uygulaması",
+      title: "RedCode | macOS, Windows ve Linux için masaüstü uygulaması",
       description:
-        "İstediğiniz kadar OpenCode ajanını paralel çalıştırın, her değişikliği yanlarındaki tarayıcıda görün ve her cihazdan devam edin. macOS, Windows ve Linux için.",
+        "İstediğiniz kadar RedCode ajanını paralel çalıştırın, her değişikliği yanlarındaki tarayıcıda görün ve her cihazdan devam edin. macOS, Windows ve Linux için.",
       intro:
         "Birden fazla ajanı aynı anda, her oturumu kendi sekmesinde çalıştırın. Her değişikliği diff olarak inceleyin, istediğiniz satıra yorum yapın ve sonucu yerleşik tarayıcıda kontrol edin. macOS, Windows ve Linux için.",
       showcase: {
@@ -72,16 +72,16 @@ export const content = {
         },
         "extend-it": {
           title: "Genişletin",
-          body: "Araçlarınızı ve hizmetlerinizi bağlayın, ajan her şeyle çalışabilsin. Ya da OpenCode'un kendisi için kenar çubuğunda kendi arayüzü olan eklentiler yapmasını sağlayın.",
+          body: "Araçlarınızı ve hizmetlerinizi bağlayın, ajan her şeyle çalışabilsin. Ya da RedCode'un kendisi için kenar çubuğunda kendi arayüzü olan eklentiler yapmasını sağlayın.",
         },
       },
     },
     mobile: {
-      title: "OpenCode | Mobile, kodlama oturumlarınız telefonunuzda",
+      title: "RedCode | Mobile, kodlama oturumlarınız telefonunuzda",
       description:
-        "OpenCode oturumlarını telefonunuzdan başlatın ve yönetin. Ajan bilgisayarınızda çalışırken onunla konuşun.",
+        "RedCode oturumlarını telefonunuzdan başlatın ve yönetin. Ajan bilgisayarınızda çalışırken onunla konuşun.",
       intro:
-        "Nerede olursanız olun oturumları telefonunuzdan başlatın ve yönetin. Bir oturumu arayıp ajanla konuşun ya da bir oturum açıp kaldığınız yerden devam edin, hepsi kendi bilgisayarınızdaki OpenCode üzerinde.",
+        "Nerede olursanız olun oturumları telefonunuzdan başlatın ve yönetin. Bir oturumu arayıp ajanla konuşun ya da bir oturum açıp kaldığınız yerden devam edin, hepsi kendi bilgisayarınızdaki RedCode üzerinde.",
       features: {
         "notify-when-done": {
           title: "Bitince haber ver",
@@ -105,7 +105,7 @@ export const content = {
         },
         "your-computer": {
           title: "Bilgisayarınız",
-          body: "Kendi makinenizde çalışan OpenCode'a bağlanır.",
+          body: "Kendi makinenizde çalışan RedCode'a bağlanır.",
         },
         "share-sheet": {
           title: "Paylaşım menüsü",
@@ -136,9 +136,9 @@ export const content = {
       },
     },
     terminal: {
-      title: "OpenCode | Açık kaynaklı kodlama ajanı için terminal arayüzü",
+      title: "RedCode | Açık kaynaklı kodlama ajanı için terminal arayüzü",
       description:
-        "OpenCode için her kabukta, editörde ya da uzak sunucuda çalışan hızlı bir terminal arayüzü. Ne istediğinizi anlatın, her düzenlemeyi diff olarak görün ve komutları onaylayın.",
+        "RedCode için her kabukta, editörde ya da uzak sunucuda çalışan hızlı bir terminal arayüzü. Ne istediğinizi anlatın, her düzenlemeyi diff olarak görün ve komutları onaylayın.",
       intro:
         "Her kabukta, editörde ya da uzak sunucuda çalışan hızlı bir terminal arayüzü. Ne istediğinizi sade bir dille anlatın, her düzenlemenin diff olarak gelişini izleyin ve hangi komutların kendiliğinden çalışacağını seçin.",
       features: {
@@ -168,7 +168,7 @@ export const content = {
         },
         "any-server": {
           title: "Her sunucu",
-          body: "--server ile bir OpenCode sunucusuna URL üzerinden bağlanın.",
+          body: "--server ile bir RedCode sunucusuna URL üzerinden bağlanın.",
         },
         "usage-stats": {
           title: "İstatistikler",
@@ -195,15 +195,15 @@ export const content = {
       },
     },
     sdk: {
-      title: "OpenCode | Betikler, CI işleri ve araçlar için TypeScript SDK",
+      title: "RedCode | Betikler, CI işleri ve araçlar için TypeScript SDK",
       description:
-        "OpenCode'u kendi betiklerinizden, CI işlerinizden ve araçlarınızdan yönetin. Tipli TypeScript istemcisi oturum oluşturur, prompt gönderir ve her olayı anında aktarır.",
+        "RedCode'u kendi betiklerinizden, CI işlerinizden ve araçlarınızdan yönetin. Tipli TypeScript istemcisi oturum oluşturur, prompt gönderir ve her olayı anında aktarır.",
       intro:
-        "OpenCode'u kendi betiklerinizden, CI işlerinizden ve araçlarınızdan yönetin. SDK, OpenCode'u kendi yapılandırmanız ve modellerinizle sürecinizin içinde çalıştırır. Tipli istemcisi oturum oluşturur, prompt gönderir ve her olayı aktarır.",
+        "RedCode'u kendi betiklerinizden, CI işlerinizden ve araçlarınızdan yönetin. SDK, RedCode'u kendi yapılandırmanız ve modellerinizle sürecinizin içinde çalıştırır. Tipli istemcisi oturum oluşturur, prompt gönderir ve her olayı aktarır.",
       features: {
         "typescript-client": {
           title: "TypeScript istemcisi",
-          body: "@opencode/client ile aynı değerlere sahip tipli istekler ve olaylar.",
+          body: "@redcode/client ile aynı değerlere sahip tipli istekler ve olaylar.",
         },
         "sessions-from-code": {
           title: "Koddan oturumlar",
@@ -211,15 +211,15 @@ export const content = {
         },
         "any-model": {
           title: "Her model",
-          body: "OpenCode kurulumunuzdaki modelleri kullanır.",
+          body: "RedCode kurulumunuzdaki modelleri kullanır.",
         },
         "npm-or-bun": {
           title: "npm ya da bun",
-          body: "npm i @opencode/sdk ya da bun add @opencode/sdk ile kurun.",
+          body: "npm i @redcode/sdk ya da bun add @redcode/sdk ile kurun.",
         },
         "in-process-host": {
           title: "Süreç içi host",
-          body: "OpenCode'u ağ adımı olmadan bellekte çalıştırır.",
+          body: "RedCode'u ağ adımı olmadan bellekte çalıştırır.",
         },
         "your-plugins": {
           title: "Eklentileriniz",
@@ -231,13 +231,13 @@ export const content = {
         },
         "cloudflare-workers": {
           title: "Cloudflare Workers",
-          body: "OpenCode'u Workers üzerinde bir Cloudflare Durable Object içinde çalıştırın.",
+          body: "RedCode'u Workers üzerinde bir Cloudflare Durable Object içinde çalıştırın.",
         },
       },
       showcase: {
         "fix-ci-from-code": {
           title: "CI'ı koddan düzelt",
-          body: "Kısa bir betik OpenCode'dan başarısız testleri düzeltmesini ister ve testleri yeniden çalıştırır.",
+          body: "Kısa bir betik RedCode'dan başarısız testleri düzeltmesini ister ve testleri yeniden çalıştırır.",
         },
         "follow-every-step": {
           title: "Her adımı izle",
@@ -245,20 +245,20 @@ export const content = {
         },
         "build-your-own-tools": {
           title: "Kendi araçların",
-          body: "OpenCode'u birkaç satırla botlara, panolara ve iş akışlarına bağlayın.",
+          body: "RedCode'u birkaç satırla botlara, panolara ve iş akışlarına bağlayın.",
         },
         "in-your-process": {
           title: "Kendi sürecinizde",
-          body: "OpenCode'u kendi yapılandırmanız ve modellerinizle sürecinizin içinde çalıştırır.",
+          body: "RedCode'u kendi yapılandırmanız ve modellerinizle sürecinizin içinde çalıştırır.",
         },
       },
     },
     mini: {
-      title: "OpenCode | Mini, ajan için minimal bir terminal arayüzü",
+      title: "RedCode | Mini, ajan için minimal bir terminal arayüzü",
       description:
-        "Mini, OpenCode'u minimal bir terminal arayüzünde çalıştırır. Yanıtlar terminalin kendi kaydırma geçmişine yazılır, altta yalnızca bir prompt ve bir durum satırı kalır.",
+        "Mini, RedCode'u minimal bir terminal arayüzünde çalıştırır. Yanıtlar terminalin kendi kaydırma geçmişine yazılır, altta yalnızca bir prompt ve bir durum satırı kalır.",
       intro:
-        "OpenCode için minimal bir terminal arayüzü. opencode mini'yi çalıştırın, yanıtlar doğrudan terminalinizin kaydırma geçmişine yazılsın. Onları diğer çıktılar gibi kaydırır, arar ve kopyalarsınız. Altta yalnızca prompt ve bir durum satırı kalır.",
+        "RedCode için minimal bir terminal arayüzü. opencode mini'yi çalıştırın, yanıtlar doğrudan terminalinizin kaydırma geçmişine yazılsın. Onları diğer çıktılar gibi kaydırır, arar ve kopyalarsınız. Altta yalnızca prompt ve bir durum satırı kalır.",
       features: {
         "your-scrollback": {
           title: "Kaydırma geçmişi",
@@ -281,7 +281,7 @@ export const content = {
           body: "Son oturuma -c ile, herhangi birine -s ile devam edin.",
         },
         "same-opencode": {
-          title: "Aynı OpenCode",
+          title: "Aynı RedCode",
           body: "Diğer uygulamalarla aynı sunucu, ajanlar ve modeller.",
         },
         agents: {
@@ -297,16 +297,16 @@ export const content = {
   },
   extensionCard: {
     name: "Eklentiler",
-    body: "OpenCode'u VS Code'da ya da ACP ile Zed ve diğer editörlerde kullanın.",
+    body: "RedCode'u VS Code'da ya da ACP ile Zed ve diğer editörlerde kullanın.",
     action: "Kur",
   },
   extensions: {
     browse: {
       name: "Browse",
       body: "Ajanlar gerçek tarayıcınızı kullansın.",
-      title: "OpenCode | Browse, kodlama ajanları için gerçek tarayıcınız",
+      title: "RedCode | Browse, kodlama ajanları için gerçek tarayıcınız",
       description:
-        "Browse, OpenCode'un ve diğer MCP istemcilerinin gerçek tarayıcınızı kullanmasını sağlar. Ajanlar arka plan sekmelerini Playwright ile yönetir, girişleri ve 2FA'yı size bırakır.",
+        "Browse, RedCode'un ve diğer MCP istemcilerinin gerçek tarayıcınızı kullanmasını sağlar. Ajanlar arka plan sekmelerini Playwright ile yönetir, girişleri ve 2FA'yı size bırakır.",
       intro:
         "Ajanlarınızın gerçek tarayıcınızı, yani sekmelerinizi, oturum açmış hesaplarınızı ve eklentilerinizi kullanmasını sağlayan bir MCP sunucusu ve bir Chromium eklentisi. Sekmeleri Playwright ile açıp yönetir, ekran görüntüsü alır ve ekranı kaydederler. Bunu yolunuza çıkmayan, gruplanmış arka plan sekmelerinde yaparlar. Sıra size geldiğinde, örneğin bir giriş, 2FA istemi ya da ödeme için, sekmeyi size verirler ve siz Continue'ya tıklayınca devam ederler.",
       features: {
@@ -332,7 +332,7 @@ export const content = {
         },
         "any-mcp-client": {
           title: "Her MCP istemcisi",
-          body: "OpenCode, Claude Code, Cursor, Codex, Zed ve çok daha fazlası.",
+          body: "RedCode, Claude Code, Cursor, Codex, Zed ve çok daha fazlası.",
         },
         "all-your-logins": {
           title: "Tüm oturum açmalarınız",
@@ -367,10 +367,10 @@ export const content = {
   },
   getStarted: {
     title: "Başlayın",
-    lead: "Başlamanın en kolay yolu OpenCode'u indirip ücretsiz modelleri kullanmak. Hesap gerekmez. Daha fazlası için kendi aboneliğinizi getirin ya da OpenCode Go kullanın.",
+    lead: "Başlamanın en kolay yolu RedCode'u indirip ücretsiz modelleri kullanmak. Hesap gerekmez. Daha fazlası için kendi aboneliğinizi getirin ya da RedCode Go kullanın.",
     phrases: {
       "download-opencode": {
-        text: "OpenCode'u indirip",
+        text: "RedCode'u indirip",
       },
       "free-models": {
         text: "ücretsiz modelleri",
@@ -382,7 +382,7 @@ export const content = {
         text: "zaten sahip olduğunuz bir abonelik",
       },
       "opencode-go": {
-        text: "OpenCode Go",
+        text: "RedCode Go",
       },
     },
     subscriptions: {
@@ -395,10 +395,10 @@ export const content = {
     },
     plans: {
       "opencode-go": {
-        name: "OpenCode Go",
+        name: "RedCode Go",
       },
       "opencode-go-plus": {
-        name: "OpenCode Go Plus",
+        name: "RedCode Go Plus",
       },
     },
     steps: {
@@ -408,20 +408,20 @@ export const content = {
       },
       "use-free-models": {
         title: "Ücretsiz modeller",
-        line: "OpenCode bir dizi ücretsiz modelle gelir. Hesap gerekmez.",
+        line: "RedCode bir dizi ücretsiz modelle gelir. Hesap gerekmez.",
       },
       "add-more-models": {
         title: "Model ekle",
-        line: "Kendi aboneliğinizi getirin ya da aylık 10 $'dan başlayan OpenCode Go seçkisini kullanın.",
+        line: "Kendi aboneliğinizi getirin ya da aylık 10 $'dan başlayan RedCode Go seçkisini kullanın.",
       },
     },
     sentence:
-      "OpenCode'u indirin, ücretsiz modellerle başlayın, daha fazlasını istediğinizde kendi aboneliğinizi ya da OpenCode Go'yu kullanın.",
+      "RedCode'u indirin, ücretsiz modellerle başlayın, daha fazlasını istediğinizde kendi aboneliğinizi ya da RedCode Go'yu kullanın.",
   },
   byos: {
     title: "Kendi aboneliğinizi getirin",
     headline: "Zaten sahip olduğunuz abonelikleri kullanın.",
-    line: "ChatGPT Plus ya da Pro veya GitHub Copilot ile giriş yapın. Ya da bir OpenCode aboneliği kullanın.",
+    line: "ChatGPT Plus ya da Pro veya GitHub Copilot ile giriş yapın. Ya da bir RedCode aboneliği kullanın.",
     yours: {
       label: "Aboneliğiniz",
       items: {
@@ -433,9 +433,9 @@ export const content = {
         },
       },
     },
-    planLinks: ["OpenCode aboneliği", "OpenCode Go"],
+    planLinks: ["RedCode aboneliği", "RedCode Go"],
     ours: {
-      label: "OpenCode planları",
+      label: "RedCode planları",
     },
   },
   brand: {
@@ -447,7 +447,7 @@ export const content = {
     },
     naming: {
       title: "Ad",
-      body: "OpenCode'u büyük O ve büyük C ile tek kelime olarak yazın. Opencode, Open Code, OpenCode AI ya da Open-Code yazmayın.",
+      body: "RedCode'u büyük O ve büyük C ile tek kelime olarak yazın. Opencode, Open Code, RedCode AI ya da Open-Code yazmayın.",
       code: "Küçük harfli `opencode` adını yalnızca kodda ve `opencode-figma` ya da `@acme/opencode-plugin` gibi paket adlarında kullanın.",
     },
     families: {
@@ -471,7 +471,7 @@ export const content = {
       },
       wordmark: {
         title: "Yazı logosu",
-        body: "OpenCode harf biçimleriyle yazılmış tam ad. Adı tam yazacak yer olan her yerde kullanın.",
+        body: "RedCode harf biçimleriyle yazılmış tam ad. Adı tam yazacak yer olan her yerde kullanın.",
         assets: {
           light: {
             name: "Açık",
@@ -676,7 +676,7 @@ export const content = {
     },
     integrations: {
       title: "Entegrasyonlar",
-      body: "OpenCode ile çalışan eklentiler, sağlayıcılar ve araçlar ile onunla yapılmış projeler bunu belirtebilir. Bir rozet ya da ortaklık logosu kullanın ve projenize sizin olduğu açıkça anlaşılacak bir ad verin.",
+      body: "RedCode ile çalışan eklentiler, sağlayıcılar ve araçlar ile onunla yapılmış projeler bunu belirtebilir. Bir rozet ya da ortaklık logosu kullanın ve projenize sizin olduğu açıkça anlaşılacak bir ad verin.",
       badges: {
         body: "README'nize, dokümanlarınıza ya da sitenize bir rozet koyun ve opencode.ai'ye bağlayın. Arka planınıza göre açık ya da koyu dosyayı seçin (HTML kendiliğinden geçiş yapar) ve renkleri ya da metni değiştirmeyin.",
         sizes: "Her stil 20, 32 ve 44px boyutlarında (Shields yalnızca 20px), SVG ve 2× PNG olarak gelir.",
@@ -684,13 +684,13 @@ export const content = {
         groups: {
           "works-with": {
             title: "Uyumlu",
-            alt: "OpenCode ile uyumlu",
-            body: "OpenCode ile çalışan eklentiler, sağlayıcılar ve araçlar için.",
+            alt: "RedCode ile uyumlu",
+            body: "RedCode ile çalışan eklentiler, sağlayıcılar ve araçlar için.",
           },
           "built-with": {
             title: "Yapıldı",
-            alt: "OpenCode ile yapıldı",
-            body: "OpenCode ile yapılmış projeler için.",
+            alt: "RedCode ile yapıldı",
+            body: "RedCode ile yapılmış projeler için.",
           },
         },
         styles: {
@@ -710,7 +710,7 @@ export const content = {
       },
       lockup: {
         title: "Ortak logo",
-        body: "OpenCode logosunu ve ortak logosunu aralarında bir × ile yan yana koyun. ×'in her iki yanında 3 çizgi boşluk bırakın, ortak logosunu OpenCode logosu kadar yüksek görünecek şekilde boyutlandırın ve tüm bileşimin çevresinde boş alan bırakın.",
+        body: "RedCode logosunu ve ortak logosunu aralarında bir × ile yan yana koyun. ×'in her iki yanında 3 çizgi boşluk bırakın, ortak logosunu RedCode logosu kadar yüksek görünecek şekilde boyutlandırın ve tüm bileşimin çevresinde boş alan bırakın.",
         partners: {
           github: {
             name: "GitHub",
@@ -720,12 +720,12 @@ export const content = {
       naming: {
         title: "Projenizi adlandırma",
         body: "Projenin size ait olduğu anlaşılsın diye kendi adınızla başlayın.",
-        rule: "`Linear for OpenCode` yazın ya da paketi `opencode-linear` olarak adlandırın. `OpenCode Linear` ya da `Linear by OpenCode` yazmayın.",
+        rule: "`Linear for RedCode` yazın ya da paketi `opencode-linear` olarak adlandırın. `RedCode Linear` ya da `Linear by RedCode` yazmayın.",
       },
     },
     trademarks: {
       title: "Markalar",
-      body: "OpenCode ve OpenCode logosu Anomaly'nin ticari markalarıdır. Bunları Anomaly'nin sizi desteklediğini ya da sponsorluğunu yaptığını ima edecek şekilde, ürün ya da şirket adınızda ya da izinsiz ürünlerde kullanmayın.",
+      body: "RedCode ve RedCode logosu Anomaly'nin ticari markalarıdır. Bunları Anomaly'nin sizi desteklediğini ya da sponsorluğunu yaptığını ima edecek şekilde, ürün ya da şirket adınızda ya da izinsiz ürünlerde kullanmayın.",
       contact: {
         before: "Sorularınız için e-posta gönderin, ",
         after: ".",
@@ -733,21 +733,21 @@ export const content = {
     },
   },
   press: {
-    title: "OpenCode | Şirket bilgileri ve marka dosyalarıyla basın kiti",
+    title: "RedCode | Şirket bilgileri ve marka dosyalarıyla basın kiti",
     description:
-      "OpenCode basın kiti. OpenCode ve onu geliştiren şirket Anomaly hakkında bilgiler, indirilebilir logolar ve yazı logoları, basın soruları için bir iletişim adresi.",
+      "RedCode basın kiti. RedCode ve onu geliştiren şirket Anomaly hakkında bilgiler, indirilebilir logolar ve yazı logoları, basın soruları için bir iletişim adresi.",
     hero: {
       title: "Basın",
-      body: "OpenCode ve Anomaly hakkında yazmak için bilgiler, marka dosyaları ve iletişim.",
+      body: "RedCode ve Anomaly hakkında yazmak için bilgiler, marka dosyaları ve iletişim.",
     },
     company: {
       title: "Anomaly hakkında",
-      lead: "Anomaly, OpenCode'u geliştiren şirkettir. Geliştiriciler için açık kaynak araçlar yapar.",
+      lead: "Anomaly, RedCode'u geliştiren şirkettir. Geliştiriciler için açık kaynak araçlar yapar.",
       more: "Diğer projeler arasında SST ve OpenTUI var, hepsi [GitHub](github) üzerinde açık kaynak.",
       learnMore: "Daha fazlası için [anoma.ly](site) adresine gidin.",
       projects: {
         opencode: {
-          name: "OpenCode",
+          name: "RedCode",
           body: "Masaüstü, terminal ve mobil uygulamaları ile bir SDK'sı olan açık kaynaklı kodlama ajanı. MIT lisanslı, 220.000'den fazla GitHub yıldızı.",
         },
         sst: {
@@ -756,7 +756,7 @@ export const content = {
         },
         opentui: {
           name: "OpenTUI",
-          body: "Zig ile yazılmış bir çekirdekle TypeScript, React ya da Solid'de terminal arayüzleri için bir kitaplık. OpenCode onu üretimde kullanır. 13.000'den fazla GitHub yıldızı.",
+          body: "Zig ile yazılmış bir çekirdekle TypeScript, React ya da Solid'de terminal arayüzleri için bir kitaplık. RedCode onu üretimde kullanır. 13.000'den fazla GitHub yıldızı.",
         },
         "models-dev": {
           name: "Models.dev",
@@ -773,31 +773,31 @@ export const content = {
       },
     },
     about: {
-      title: "OpenCode hakkında",
-      body: "OpenCode ve ürünleri için uzun ve kısa sürümlerde, kopyalanmaya hazır tanıtım metinleri.",
+      title: "RedCode hakkında",
+      body: "RedCode ve ürünleri için uzun ve kısa sürümlerde, kopyalanmaya hazır tanıtım metinleri.",
       boilerplate: {
-        long: "OpenCode açık kaynaklı bir kodlama ajanıdır. Masaüstü uygulaması, terminal arayüzü, mobil uygulama ve SDK olarak gelir ve Claude, GPT ve Gemini dahil her sağlayıcının modelleriyle çalışır. OpenCode MIT lisanslıdır ve Anomaly tarafından geliştirilir. 220.000'den fazla GitHub yıldızı ve 1.000'den fazla katkıcısı vardır, her ay 22 milyondan fazla geliştirici onu kullanır.",
+        long: "RedCode açık kaynaklı bir kodlama ajanıdır. Masaüstü uygulaması, terminal arayüzü, mobil uygulama ve SDK olarak gelir ve Claude, GPT ve Gemini dahil her sağlayıcının modelleriyle çalışır. RedCode MIT lisanslıdır ve Anomaly tarafından geliştirilir. 220.000'den fazla GitHub yıldızı ve 1.000'den fazla katkıcısı vardır, her ay 22 milyondan fazla geliştirici onu kullanır.",
         short:
-          "OpenCode, Anomaly'nin masaüstü, terminal ve mobil uygulamaları ile bir SDK'sı olan açık kaynaklı kodlama ajanıdır.",
+          "RedCode, Anomaly'nin masaüstü, terminal ve mobil uygulamaları ile bir SDK'sı olan açık kaynaklı kodlama ajanıdır.",
       },
       products: {
         "opencode-console": {
-          name: "OpenCode Console",
-          long: "OpenCode Console, geliştiricilerin ve ekiplerin OpenCode ve diğer kodlama ajanları için AI model erişimi satın alıp yönettiği web uygulamasıdır. Sınır modeller ve açık ağırlıklı modeller için ön ödemeli kredilerden istek başına ücretlendirilen kullandıkça öde çıkarımı ve OpenCode Go abonelikleri sunar. Ekipler Member, Admin ve Owner rollerine sahip çalışma alanları, çalışma alanı ve kullanıcı başına harcama limitleri, Okta, Microsoft Entra ID ya da Google Workspace ile tek oturum açma ve SCIM elde eder. Console 30'dan fazla sağlayıcıyı destekler, böylece ekipler mevcut sağlayıcı hesaplarını bağlayabilir ve Console'un kendi çıkarımı isteğe bağlıdır. Adresi opencode.ai/console.",
+          name: "RedCode Console",
+          long: "RedCode Console, geliştiricilerin ve ekiplerin RedCode ve diğer kodlama ajanları için AI model erişimi satın alıp yönettiği web uygulamasıdır. Sınır modeller ve açık ağırlıklı modeller için ön ödemeli kredilerden istek başına ücretlendirilen kullandıkça öde çıkarımı ve RedCode Go abonelikleri sunar. Ekipler Member, Admin ve Owner rollerine sahip çalışma alanları, çalışma alanı ve kullanıcı başına harcama limitleri, Okta, Microsoft Entra ID ya da Google Workspace ile tek oturum açma ve SCIM elde eder. Console 30'dan fazla sağlayıcıyı destekler, böylece ekipler mevcut sağlayıcı hesaplarını bağlayabilir ve Console'un kendi çıkarımı isteğe bağlıdır. Adresi opencode.ai/console.",
           short:
-            "OpenCode Console, Anomaly'nin kullandıkça öde AI model erişimi, OpenCode Go abonelikleri ve bütçe ile tek oturum açma gibi ekip denetimleri sunan web uygulamasıdır.",
+            "RedCode Console, Anomaly'nin kullandıkça öde AI model erişimi, RedCode Go abonelikleri ve bütçe ile tek oturum açma gibi ekip denetimleri sunan web uygulamasıdır.",
         },
         "opencode-go": {
-          name: "OpenCode Go",
-          long: "OpenCode Go, kodlama modelleri için sabit aylık fiyat isteyen geliştiricilere yönelik bir aboneliktir. Go aylık 10 $, daha yüksek limitli Go Plus aylık 40 $, Go Teams ise üye başına aylık 20 $'dır. Her plan, ajanlı kodlama için test edilmiş seçkin bir model kümesi içerir. Kullanım limitleri her model için aylık dolar tutarlarıdır, aylık limitin %20'si ve %50'si olan kayan 5 saatlik ve haftalık paylarla birlikte. Aboneler kredi yükleyebilir, kullandıkça öde bakiyesine geçebilir ve istedikleri zaman iptal edebilir. Go, OpenCode ve diğer ajanlarla çalışır. Adresi opencode.ai/console/go.",
+          name: "RedCode Go",
+          long: "RedCode Go, kodlama modelleri için sabit aylık fiyat isteyen geliştiricilere yönelik bir aboneliktir. Go aylık 10 $, daha yüksek limitli Go Plus aylık 40 $, Go Teams ise üye başına aylık 20 $'dır. Her plan, ajanlı kodlama için test edilmiş seçkin bir model kümesi içerir. Kullanım limitleri her model için aylık dolar tutarlarıdır, aylık limitin %20'si ve %50'si olan kayan 5 saatlik ve haftalık paylarla birlikte. Aboneler kredi yükleyebilir, kullandıkça öde bakiyesine geçebilir ve istedikleri zaman iptal edebilir. Go, RedCode ve diğer ajanlarla çalışır. Adresi opencode.ai/console/go.",
           short:
-            "OpenCode Go, Anomaly'nin geliştiricilere seçkin kodlama modellerinde aylık kullanım limitleri veren, aylık 10 $'dan başlayan aboneliğidir.",
+            "RedCode Go, Anomaly'nin geliştiricilere seçkin kodlama modellerinde aylık kullanım limitleri veren, aylık 10 $'dan başlayan aboneliğidir.",
         },
         "opencode-data": {
-          name: "OpenCode Data",
-          long: "OpenCode Data, geliştiricilerin OpenCode'da hangi AI modellerini kullandığını ve bu dağılımın zamanla nasıl değiştiğini gösteren herkese açık bir panodur. En çok kullanılan modellerin sıralamasını, token kullanımını, oturum ve token maliyetlerini, önbellek oranlarını, pazar payını ve ülkelere göre dağılımı yayımlar. Rakamlar saatte bir toplanır, günler ve haftalar UTC'ye göredir. Kullanıcı ve oturum sayıları yaklaşıktır, maliyetler OpenCode model kataloğundaki liste fiyatlarını kullanır. Gazeteciler, sayfada gösterilen güncelleme saatiyle birlikte OpenCode Data (opencode.ai/data) olarak kaynak gösterebilir.",
+          name: "RedCode Data",
+          long: "RedCode Data, geliştiricilerin RedCode'da hangi AI modellerini kullandığını ve bu dağılımın zamanla nasıl değiştiğini gösteren herkese açık bir panodur. En çok kullanılan modellerin sıralamasını, token kullanımını, oturum ve token maliyetlerini, önbellek oranlarını, pazar payını ve ülkelere göre dağılımı yayımlar. Rakamlar saatte bir toplanır, günler ve haftalar UTC'ye göredir. Kullanıcı ve oturum sayıları yaklaşıktır, maliyetler RedCode model kataloğundaki liste fiyatlarını kullanır. Gazeteciler, sayfada gösterilen güncelleme saatiyle birlikte RedCode Data (opencode.ai/data) olarak kaynak gösterebilir.",
           short:
-            "OpenCode Data, opencode.ai/data adresinde AI modellerini OpenCode'daki gerçek kullanıma göre sıralayan, token, maliyet ve pazar payını saatlik güncelleyen herkese açık bir panodur.",
+            "RedCode Data, opencode.ai/data adresinde AI modellerini RedCode'daki gerçek kullanıma göre sıralayan, token, maliyet ve pazar payını saatlik güncelleyen herkese açık bir panodur.",
         },
       },
     },
@@ -828,7 +828,7 @@ export const content = {
         },
         "opencode-1-0": {
           date: "Eki 2025",
-          text: "OpenCode 1.0",
+          text: "RedCode 1.0",
         },
         "desktop-app-ships": {
           date: "Ara 2025",
@@ -840,7 +840,7 @@ export const content = {
         },
         "opencode-2-0": {
           date: "Eyl 2026",
-          text: "OpenCode 2.0",
+          text: "RedCode 2.0",
         },
         "220-000-github-stars": {
           date: "Kas 2026",
@@ -850,7 +850,7 @@ export const content = {
     },
     news: {
       title: "Son sürümler",
-      intro: "OpenCode sık sık sürüm çıkarır. Yeni özellikler içeren en yeni sürümler bunlar.",
+      intro: "RedCode sık sık sürüm çıkarır. Yeni özellikler içeren en yeni sürümler bunlar.",
       changelog: {
         text: "Tüm sürüm notları",
       },
@@ -861,7 +861,7 @@ export const content = {
     media: {
       title: "Medya",
       intro:
-        "Her uygulamanın gerçek üründen kaydedilmiş görselleri ve kısa videoları. OpenCode hakkında yazarken kullanabilirsiniz.",
+        "Her uygulamanın gerçek üründen kaydedilmiş görselleri ve kısa videoları. RedCode hakkında yazarken kullanabilirsiniz.",
       note: "Tüm kayıtlar koyu temayı kullanır. Görseller ve kapaklar en fazla 1920 × 1080, dikeyde 1080 × 1350 boyutunda JPG'lerdir. Videolar sessiz MP4 kliplerdir.",
       products: {
         desktop: {
@@ -1021,13 +1021,13 @@ export const content = {
     brand: {
       title: "Marka",
       before:
-        "OpenCode logolarını ve yazı logolarını tek bir ZIP dosyasında indirin. Tek tek dosyalar, varyantlar ve kullanım kuralları için ",
+        "RedCode logolarını ve yazı logolarını tek bir ZIP dosyasında indirin. Tek tek dosyalar, varyantlar ve kullanım kuralları için ",
       link: {
         text: "Marka",
       },
       after: " sayfasına gidin.",
       usage:
-        "Bu dosyaları OpenCode hakkında yazmak için kullanabilirsiniz. Onları değiştirmeyin ve OpenCode'un çalışmanızı desteklediğini ima etmeyin.",
+        "Bu dosyaları RedCode hakkında yazmak için kullanabilirsiniz. Onları değiştirmeyin ve RedCode'un çalışmanızı desteklediğini ima etmeyin.",
     },
     product: {
       title: "Ürün",
@@ -1038,7 +1038,7 @@ export const content = {
         },
         mobile: {
           name: "Mobile",
-          body: "En yeni OpenCode uygulaması. Ajanla konuşmak için bir oturumu arayın, ardından değişikliklerini her yerden telefonunuzla inceleyip onaylayın.",
+          body: "En yeni RedCode uygulaması. Ajanla konuşmak için bir oturumu arayın, ardından değişikliklerini her yerden telefonunuzla inceleyip onaylayın.",
         },
         terminal: {
           name: "Terminal",
@@ -1059,7 +1059,7 @@ export const content = {
         },
         support: {
           title: "Destek",
-          body: "OpenCode ile ilgili yardım için bir issue açın ya da topluluğa sorun. Hesap ve faturalama soruları için bize e-posta gönderin.",
+          body: "RedCode ile ilgili yardım için bir issue açın ya da topluluğa sorun. Hesap ve faturalama soruları için bize e-posta gönderin.",
           links: {
             "github-issues": {
               text: "GitHub issue'ları",
@@ -1136,7 +1136,7 @@ export const content = {
       },
     },
     mini: {
-      lead: "Mini, OpenCode CLI ile gelir. Bunlardan biriyle kurun, sonra opencode mini çalıştırın.",
+      lead: "Mini, RedCode CLI ile gelir. Bunlardan biriyle kurun, sonra opencode mini çalıştırın.",
       commands: {
         curl: {
           name: "Betik",
@@ -1155,11 +1155,11 @@ export const content = {
     title: "Telefonunuzu bağlayın",
     cardTitle: "Telefonunuzu tek komutla eşleyin",
     intro:
-      "OpenCode Mobile, bilgisayarınızdaki OpenCode için bir uzaktan kumandadır. Oturumlarınız orada çalışmaya devam eder, uygulama onları gösterir ve yönlendirmenizi sağlar.",
+      "RedCode Mobile, bilgisayarınızdaki RedCode için bir uzaktan kumandadır. Oturumlarınız orada çalışmaya devam eder, uygulama onları gösterir ve yönlendirmenizi sağlar.",
     steps: {
       "get-the-app": {
         title: "Uygulamayı edinin",
-        body: "OpenCode betasını TestFlight üzerinden iPhone'unuza kurun. Android uygulaması çok yakında.",
+        body: "RedCode betasını TestFlight üzerinden iPhone'unuza kurun. Android uygulaması çok yakında.",
       },
       "run-this-on-your-computer": {
         title: "Bunu bilgisayarda çalıştırın",

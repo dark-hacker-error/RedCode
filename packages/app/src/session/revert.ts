@@ -1,5 +1,5 @@
-import type { SessionMessageUser } from "@opencode/client/promise"
-import { toaster } from "@opencode/ui/toast"
+import type { SessionMessageUser } from "@redcode/client/promise"
+import { toaster } from "@redcode/ui/toast"
 import { createMemo, createSignal, onCleanup, untrack } from "solid-js"
 import { useComposerState } from "@/composer/persistence"
 import { useData } from "@/runtime/server/current"

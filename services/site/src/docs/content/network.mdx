@@ -3,7 +3,7 @@ title: Network
 description: Configure proxies, custom certificate authorities and client certificates.
 ---
 
-Set the standard proxy variables and exclude loopback addresses. OpenCode uses local HTTP connections between the CLI and
+Set the standard proxy variables and exclude loopback addresses. RedCode uses local HTTP connections between the CLI and
 its background service, so the loopback exclusion is required when a proxy is configured in the CLI environment.
 
 ```bash
@@ -75,7 +75,7 @@ opencode service start
 ## Antivirus and HTTPS inspection
 
 Antivirus "HTTPS scanning" or "encrypted connection scanning" (Kaspersky, Avast, ESET and others) and corporate
-SSL-inspection proxies replace the server's certificate with their own. OpenCode rejects it and requests fail with
+SSL-inspection proxies replace the server's certificate with their own. RedCode rejects it and requests fail with
 errors such as:
 
 ```text
@@ -97,11 +97,11 @@ Fix it in one of two ways:
 Set `settings.tls` on a provider whose gateway requires mutual TLS. Its model requests present the certificate, and the
 TLS handshake only sends it to servers that ask for one.
 
-```jsonc title="opencode.jsonc"
+```jsonc title="redcode.jsonc"
 {
   "providers": {
     "company": {
-      "package": "@opencode/ai/providers/openai-compatible",
+      "package": "@redcode/ai/providers/openai-compatible",
       "settings": {
         "baseURL": "https://llm.company.example/v1",
         "tls": {

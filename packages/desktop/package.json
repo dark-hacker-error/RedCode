@@ -1,12 +1,12 @@
 {
-  "name": "@opencode/desktop",
+  "name": "@redcode/desktop",
   "private": true,
   "version": "2.3.0",
   "type": "module",
   "license": "MIT",
   "homepage": "https://opencode.ai",
   "author": {
-    "name": "OpenCode",
+    "name": "RedCode",
     "email": "hello@opencode.ai"
   },
   "scripts": {
@@ -32,12 +32,12 @@
     "@effect/platform-node": "catalog:",
     "@hona/strobe": "catalog:",
     "@lydell/node-pty": "catalog:",
-    "@opencode/app": "workspace:*",
-    "@opencode/gui-plugins": "workspace:*",
-    "@opencode/plugin": "workspace:*",
-    "@opencode/client": "workspace:*",
-    "@opencode/schema": "workspace:*",
-    "@opencode/ui": "workspace:*",
+    "@redcode/app": "workspace:*",
+    "@redcode/gui-plugins": "workspace:*",
+    "@redcode/plugin": "workspace:*",
+    "@redcode/client": "workspace:*",
+    "@redcode/schema": "workspace:*",
+    "@redcode/ui": "workspace:*",
     "@sentry/solid": "catalog:",
     "@solidjs/router": "catalog:",
     "@types/bun": "catalog:",

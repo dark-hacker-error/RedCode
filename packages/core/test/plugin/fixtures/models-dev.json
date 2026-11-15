@@ -44,7 +44,7 @@
   },
   "opencode": {
     "id": "opencode",
-    "name": "OpenCode",
+    "name": "RedCode",
     "env": [],
     "models": {
       "gpt-5.5": {

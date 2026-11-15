@@ -89,7 +89,7 @@ export function addServerViewModel(input: {
     addableInstalledDistros,
   )
 
-  const opencodeCheck = selectedDistro ? (state?.opencodeChecks[selectedDistro] ?? null) : null
+  const opencodeCheck = selectedDistro ? (state?.redcodeChecks[selectedDistro] ?? null) : null
   const installableDistros = addServerInstallableDistros(visibleInstalledDistros, visibleOnlineDistros)
   const filteredInstallableDistros = addServerFilteredInstallableDistros(installableDistros, catalogSearch)
   const catalogTarget = addServerCatalogTarget(selectWslDialogCatalogTarget(input.dialog), filteredInstallableDistros)
@@ -190,7 +190,7 @@ function addServerDistroStatus(input: {
     return { label: { key: "onboarding.distroStatus.missingTools" }, tone: "warning" }
   }
 
-  const check = input.state?.opencodeChecks[input.name]
+  const check = input.state?.redcodeChecks[input.name]
 
   if (!check) return probing ? checkingStatus() : undefined
 
@@ -213,7 +213,7 @@ function addServerPrimaryButton(input: {
   opencodeCheck: WslOpencodeCheck | null
   /** Main runs a job the dialog waits for, or the dialog waits for its own call. */
   busy: boolean
-  /** The dialog asked main to install OpenCode in the selected distro and waits for the answer. */
+  /** The dialog asked main to install RedCode in the selected distro and waits for the answer. */
   installingOpencode: boolean
   adding: boolean
   probingAddable: boolean

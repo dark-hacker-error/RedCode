@@ -17,7 +17,7 @@ pub struct Registration {
     pub features: Vec<String>,
 }
 
-/// Shared parent of runtime directories, inside OpenCode's state directory.
+/// Shared parent of runtime directories, inside RedCode's state directory.
 /// Registration files must not live in temporary directories, which macOS purges
 /// while daemons run.
 pub fn default_runtime_root() -> PathBuf {
@@ -106,15 +106,15 @@ mod tests {
         let home = Some(PathBuf::from("/home/user"));
         assert_eq!(
             resolve_runtime_root(Some("/state".into()), home.clone()),
-            PathBuf::from("/state/opencode/pty")
+            PathBuf::from("/state/redcode/pty")
         );
         assert_eq!(
             resolve_runtime_root(Some("relative".into()), home.clone()),
-            PathBuf::from("/home/user/.local/state/opencode/pty")
+            PathBuf::from("/home/user/.local/state/redcode/pty")
         );
         assert_eq!(
             resolve_runtime_root(None, home),
-            PathBuf::from("/home/user/.local/state/opencode/pty")
+            PathBuf::from("/home/user/.local/state/redcode/pty")
         );
     }
 

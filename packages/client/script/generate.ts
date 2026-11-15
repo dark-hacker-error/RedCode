@@ -1,55 +1,55 @@
 import { NodeFileSystem } from "@effect/platform-node"
-import { compile, emitEffectImported, emitEffectShape, emitPromise, write } from "@opencode/httpapi-codegen"
+import { compile, emitEffectImported, emitEffectShape, emitPromise, write } from "@redcode/httpapi-codegen"
 import {
   ClientApi,
   clientNamespace,
   effectOmitEndpoints,
   groupNames,
   promiseOmitEndpoints,
-} from "@opencode/protocol/client"
-import { Agent } from "@opencode/schema/agent"
-import { Artifact } from "@opencode/schema/artifact"
-import { Command } from "@opencode/schema/command"
-import { Config } from "@opencode/schema/config"
-import { Credential } from "@opencode/schema/credential"
-import { Event } from "@opencode/schema/event"
-import { EventLog } from "@opencode/schema/event-log"
-import { FileDiff } from "@opencode/schema/file-diff"
-import { FileSystem } from "@opencode/schema/filesystem"
-import { Form } from "@opencode/schema/form"
-import { Generate } from "@opencode/schema/generate"
-import { Instruction } from "@opencode/schema/instruction"
-import { InstructionEntry } from "@opencode/schema/instruction-entry"
-import { Integration } from "@opencode/schema/integration"
-import { Job } from "@opencode/schema/job"
-import { Location } from "@opencode/schema/location"
-import { Mcp } from "@opencode/schema/mcp"
-import { Model } from "@opencode/schema/model"
-import { Money } from "@opencode/schema/money"
-import { Permission } from "@opencode/schema/permission"
-import { PermissionSaved } from "@opencode/schema/permission-saved"
-import { Plugin } from "@opencode/schema/plugin"
-import { Project } from "@opencode/schema/project"
-import { Worktree } from "@opencode/schema/worktree"
-import { AgentAttachment, FileAttachment, Prompt, PromptMention } from "@opencode/schema/prompt"
-import { PromptInput } from "@opencode/schema/prompt-input"
-import { Provider } from "@opencode/schema/provider"
-import { Pty } from "@opencode/schema/pty"
-import { PtyTicket } from "@opencode/schema/pty-ticket"
-import { Question } from "@opencode/schema/question"
-import { Reference } from "@opencode/schema/reference"
-import { AbsolutePath, RelativePath } from "@opencode/schema/schema"
-import { Schedule } from "@opencode/schema/schedule"
-import { Session } from "@opencode/schema/session"
-import { SessionMessage } from "@opencode/schema/session-message"
-import { SessionInbox } from "@opencode/schema/session-inbox"
-import { Shell } from "@opencode/schema/shell"
-import { Skill } from "@opencode/schema/skill"
-import { Snapshot } from "@opencode/schema/snapshot"
-import { UsageLimits } from "@opencode/schema/usage-limits"
-import { Vcs } from "@opencode/schema/vcs"
-import { WebSearch } from "@opencode/schema/websearch"
-import { Workspace } from "@opencode/schema/workspace"
+} from "@redcode/protocol/client"
+import { Agent } from "@redcode/schema/agent"
+import { Artifact } from "@redcode/schema/artifact"
+import { Command } from "@redcode/schema/command"
+import { Config } from "@redcode/schema/config"
+import { Credential } from "@redcode/schema/credential"
+import { Event } from "@redcode/schema/event"
+import { EventLog } from "@redcode/schema/event-log"
+import { FileDiff } from "@redcode/schema/file-diff"
+import { FileSystem } from "@redcode/schema/filesystem"
+import { Form } from "@redcode/schema/form"
+import { Generate } from "@redcode/schema/generate"
+import { Instruction } from "@redcode/schema/instruction"
+import { InstructionEntry } from "@redcode/schema/instruction-entry"
+import { Integration } from "@redcode/schema/integration"
+import { Job } from "@redcode/schema/job"
+import { Location } from "@redcode/schema/location"
+import { Mcp } from "@redcode/schema/mcp"
+import { Model } from "@redcode/schema/model"
+import { Money } from "@redcode/schema/money"
+import { Permission } from "@redcode/schema/permission"
+import { PermissionSaved } from "@redcode/schema/permission-saved"
+import { Plugin } from "@redcode/schema/plugin"
+import { Project } from "@redcode/schema/project"
+import { Worktree } from "@redcode/schema/worktree"
+import { AgentAttachment, FileAttachment, Prompt, PromptMention } from "@redcode/schema/prompt"
+import { PromptInput } from "@redcode/schema/prompt-input"
+import { Provider } from "@redcode/schema/provider"
+import { Pty } from "@redcode/schema/pty"
+import { PtyTicket } from "@redcode/schema/pty-ticket"
+import { Question } from "@redcode/schema/question"
+import { Reference } from "@redcode/schema/reference"
+import { AbsolutePath, RelativePath } from "@redcode/schema/schema"
+import { Schedule } from "@redcode/schema/schedule"
+import { Session } from "@redcode/schema/session"
+import { SessionMessage } from "@redcode/schema/session-message"
+import { SessionInbox } from "@redcode/schema/session-inbox"
+import { Shell } from "@redcode/schema/shell"
+import { Skill } from "@redcode/schema/skill"
+import { Snapshot } from "@redcode/schema/snapshot"
+import { UsageLimits } from "@redcode/schema/usage-limits"
+import { Vcs } from "@redcode/schema/vcs"
+import { WebSearch } from "@redcode/schema/websearch"
+import { Workspace } from "@redcode/schema/workspace"
 import { Effect, Schema } from "effect"
 import { fileURLToPath } from "url"
 
@@ -66,54 +66,54 @@ const effectContract = compile(ClientApi, {
   aliases: true,
 })
 const effectTypeReferences = [
-  ...namespaceTypes("Agent", "@opencode/schema/agent", Agent),
-  ...namespaceTypes("Artifact", "@opencode/schema/artifact", Artifact),
-  ...namespaceTypes("Command", "@opencode/schema/command", Command),
-  ...namespaceTypes("Config", "@opencode/schema/config", Config),
-  ...namespaceTypes("Credential", "@opencode/schema/credential", Credential),
-  ...namespaceTypes("Event", "@opencode/schema/event", Event),
-  ...namespaceTypes("EventLog", "@opencode/schema/event-log", EventLog),
-  ...namespaceTypes("FileDiff", "@opencode/schema/file-diff", FileDiff),
-  ...namespaceTypes("FileSystem", "@opencode/schema/filesystem", FileSystem),
-  ...namespaceTypes("Form", "@opencode/schema/form", Form),
-  ...namespaceTypes("Generate", "@opencode/schema/generate", Generate),
-  ...namespaceTypes("Instruction", "@opencode/schema/instruction", Instruction),
-  ...namespaceTypes("InstructionEntry", "@opencode/schema/instruction-entry", InstructionEntry),
-  ...namespaceTypes("Integration", "@opencode/schema/integration", Integration),
-  ...namespaceTypes("Job", "@opencode/schema/job", Job),
-  typeReference("Location.PublicRef", "@opencode/schema/location", Location.PublicRef),
-  typeReference("Location.PublicInfo", "@opencode/schema/location", Location.PublicInfo),
-  ...namespaceTypes("Mcp", "@opencode/schema/mcp", Mcp),
-  ...namespaceTypes("Model", "@opencode/schema/model", Model),
-  ...namespaceTypes("Money", "@opencode/schema/money", Money),
-  ...namespaceTypes("Permission", "@opencode/schema/permission", Permission),
-  ...namespaceTypes("PermissionSaved", "@opencode/schema/permission-saved", PermissionSaved),
-  ...namespaceTypes("Plugin", "@opencode/schema/plugin", Plugin),
-  ...namespaceTypes("Project", "@opencode/schema/project", Project),
-  ...namespaceTypes("Worktree", "@opencode/schema/worktree", Worktree),
-  ...namespaceTypes("PromptInput", "@opencode/schema/prompt-input", PromptInput),
-  ...namespaceTypes("Provider", "@opencode/schema/provider", Provider),
-  ...namespaceTypes("Pty", "@opencode/schema/pty", Pty),
-  ...namespaceTypes("PtyTicket", "@opencode/schema/pty-ticket", PtyTicket),
-  ...namespaceTypes("Question", "@opencode/schema/question", Question),
-  ...namespaceTypes("Reference", "@opencode/schema/reference", Reference),
-  ...namespaceTypes("Schedule", "@opencode/schema/schedule", Schedule),
-  ...namespaceTypes("Session", "@opencode/schema/session", Session),
-  ...namespaceTypes("SessionMessage", "@opencode/schema/session-message", SessionMessage),
-  ...namespaceTypes("SessionInbox", "@opencode/schema/session-inbox", SessionInbox),
-  ...namespaceTypes("Shell", "@opencode/schema/shell", Shell),
-  ...namespaceTypes("Skill", "@opencode/schema/skill", Skill),
-  ...namespaceTypes("Snapshot", "@opencode/schema/snapshot", Snapshot),
-  ...namespaceTypes("UsageLimits", "@opencode/schema/usage-limits", UsageLimits),
-  ...namespaceTypes("Vcs", "@opencode/schema/vcs", Vcs),
-  ...namespaceTypes("WebSearch", "@opencode/schema/websearch", WebSearch),
-  ...namespaceTypes("Workspace", "@opencode/schema/workspace", Workspace),
-  typeReference("Prompt", "@opencode/schema/prompt", Prompt),
-  typeReference("PromptMention", "@opencode/schema/prompt", PromptMention),
-  typeReference("FileAttachment", "@opencode/schema/prompt", FileAttachment),
-  typeReference("AgentAttachment", "@opencode/schema/prompt", AgentAttachment),
-  typeReference("AbsolutePath", "@opencode/schema/schema", AbsolutePath),
-  typeReference("RelativePath", "@opencode/schema/schema", RelativePath),
+  ...namespaceTypes("Agent", "@redcode/schema/agent", Agent),
+  ...namespaceTypes("Artifact", "@redcode/schema/artifact", Artifact),
+  ...namespaceTypes("Command", "@redcode/schema/command", Command),
+  ...namespaceTypes("Config", "@redcode/schema/config", Config),
+  ...namespaceTypes("Credential", "@redcode/schema/credential", Credential),
+  ...namespaceTypes("Event", "@redcode/schema/event", Event),
+  ...namespaceTypes("EventLog", "@redcode/schema/event-log", EventLog),
+  ...namespaceTypes("FileDiff", "@redcode/schema/file-diff", FileDiff),
+  ...namespaceTypes("FileSystem", "@redcode/schema/filesystem", FileSystem),
+  ...namespaceTypes("Form", "@redcode/schema/form", Form),
+  ...namespaceTypes("Generate", "@redcode/schema/generate", Generate),
+  ...namespaceTypes("Instruction", "@redcode/schema/instruction", Instruction),
+  ...namespaceTypes("InstructionEntry", "@redcode/schema/instruction-entry", InstructionEntry),
+  ...namespaceTypes("Integration", "@redcode/schema/integration", Integration),
+  ...namespaceTypes("Job", "@redcode/schema/job", Job),
+  typeReference("Location.PublicRef", "@redcode/schema/location", Location.PublicRef),
+  typeReference("Location.PublicInfo", "@redcode/schema/location", Location.PublicInfo),
+  ...namespaceTypes("Mcp", "@redcode/schema/mcp", Mcp),
+  ...namespaceTypes("Model", "@redcode/schema/model", Model),
+  ...namespaceTypes("Money", "@redcode/schema/money", Money),
+  ...namespaceTypes("Permission", "@redcode/schema/permission", Permission),
+  ...namespaceTypes("PermissionSaved", "@redcode/schema/permission-saved", PermissionSaved),
+  ...namespaceTypes("Plugin", "@redcode/schema/plugin", Plugin),
+  ...namespaceTypes("Project", "@redcode/schema/project", Project),
+  ...namespaceTypes("Worktree", "@redcode/schema/worktree", Worktree),
+  ...namespaceTypes("PromptInput", "@redcode/schema/prompt-input", PromptInput),
+  ...namespaceTypes("Provider", "@redcode/schema/provider", Provider),
+  ...namespaceTypes("Pty", "@redcode/schema/pty", Pty),
+  ...namespaceTypes("PtyTicket", "@redcode/schema/pty-ticket", PtyTicket),
+  ...namespaceTypes("Question", "@redcode/schema/question", Question),
+  ...namespaceTypes("Reference", "@redcode/schema/reference", Reference),
+  ...namespaceTypes("Schedule", "@redcode/schema/schedule", Schedule),
+  ...namespaceTypes("Session", "@redcode/schema/session", Session),
+  ...namespaceTypes("SessionMessage", "@redcode/schema/session-message", SessionMessage),
+  ...namespaceTypes("SessionInbox", "@redcode/schema/session-inbox", SessionInbox),
+  ...namespaceTypes("Shell", "@redcode/schema/shell", Shell),
+  ...namespaceTypes("Skill", "@redcode/schema/skill", Skill),
+  ...namespaceTypes("Snapshot", "@redcode/schema/snapshot", Snapshot),
+  ...namespaceTypes("UsageLimits", "@redcode/schema/usage-limits", UsageLimits),
+  ...namespaceTypes("Vcs", "@redcode/schema/vcs", Vcs),
+  ...namespaceTypes("WebSearch", "@redcode/schema/websearch", WebSearch),
+  ...namespaceTypes("Workspace", "@redcode/schema/workspace", Workspace),
+  typeReference("Prompt", "@redcode/schema/prompt", Prompt),
+  typeReference("PromptMention", "@redcode/schema/prompt", PromptMention),
+  typeReference("FileAttachment", "@redcode/schema/prompt", FileAttachment),
+  typeReference("AgentAttachment", "@redcode/schema/prompt", AgentAttachment),
+  typeReference("AbsolutePath", "@redcode/schema/schema", AbsolutePath),
+  typeReference("RelativePath", "@redcode/schema/schema", RelativePath),
 ]
 
 await Effect.runPromise(
@@ -138,8 +138,8 @@ await Effect.runPromise(
           typeReferences: effectTypeReferences,
           outputTypes: {
             "event.subscribe": {
-              name: "OpenCodeEvent",
-              import: 'import type { OpenCodeEvent } from "@opencode/protocol/groups/event"',
+              name: "RedCodeEvent",
+              import: 'import type { RedCodeEvent } from "@redcode/protocol/groups/event"',
             },
           },
         }),

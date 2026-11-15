@@ -1,12 +1,12 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@opencode/client",
+  "name": "@redcode/client",
   "version": "2.3.0",
   "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anomalyco/opencode.git",
+    "url": "git+https://github.com/Vempire-X/RedCode.git",
     "directory": "packages/client"
   },
   "publishConfig": {
@@ -36,8 +36,8 @@
     "typecheck:tsc": "tsc --noEmit"
   },
   "dependencies": {
-    "@opencode/schema": "workspace:*",
-    "@opencode/protocol": "workspace:*"
+    "@redcode/schema": "workspace:*",
+    "@redcode/protocol": "workspace:*"
   },
   "peerDependencies": {
     "effect": "catalog:",
@@ -54,7 +54,7 @@
   "devDependencies": {
     "@effect/platform-node": "catalog:",
     "@modelcontextprotocol/client": "2.4.0",
-    "@opencode/httpapi-codegen": "workspace:*",
+    "@redcode/httpapi-codegen": "workspace:*",
     "@tsconfig/bun": "catalog:",
     "@types/bun": "catalog:",
     "@typescript/native": "catalog:",

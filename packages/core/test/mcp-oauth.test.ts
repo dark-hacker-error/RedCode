@@ -1,13 +1,13 @@
 import { afterAll, describe, expect, test } from "bun:test"
 import { OAuthError, UnauthorizedError, type AuthProvider } from "@modelcontextprotocol/client"
 import path from "path"
-import { ConfigMCP } from "@opencode/schema/config/mcp"
-import { Credential } from "@opencode/core/credential"
-import { Database } from "@opencode/core/database/database"
-import { AppNodeBuilder } from "@opencode/core/effect/app-node-builder"
-import { Integration } from "@opencode/core/integration"
-import { McpClient } from "@opencode/core/mcp/client"
-import { McpOAuth } from "@opencode/core/mcp/oauth"
+import { ConfigMCP } from "@redcode/schema/config/mcp"
+import { Credential } from "@redcode/core/credential"
+import { Database } from "@redcode/core/database/database"
+import { AppNodeBuilder } from "@redcode/core/effect/app-node-builder"
+import { Integration } from "@redcode/core/integration"
+import { McpClient } from "@redcode/core/mcp/client"
+import { McpOAuth } from "@redcode/core/mcp/oauth"
 import { Cause, Effect, Exit, ManagedRuntime } from "effect"
 import { TestClock } from "effect/testing"
 import { hostEnvironmentLayer } from "./fixture/environment"
@@ -460,7 +460,7 @@ describe("MCP OAuth connections", () => {
   const id = Credential.ID.make("cred_test")
 
   // Each instance has its own database connection, in-process lock table and file lock client over one file,
-  // like two OpenCode processes sharing a database.
+  // like two RedCode processes sharing a database.
   const instance = (file: string) =>
     ManagedRuntime.make(
       AppNodeBuilder.build(Credential.node, [Database.node.replace(Database.configured({ path: file }))]),
@@ -471,7 +471,7 @@ describe("MCP OAuth connections", () => {
     input: { expires?: number; metadata?: Record<string, unknown>; config?: typeof ConfigMCP.Remote.Type } = {},
   ) => {
     const tmp = await tmpdir()
-    const file = path.join(tmp.path, "opencode.db")
+    const file = path.join(tmp.path, "redcode.db")
     const first = instance(file)
     const second = instance(file)
     const row = credential({ access: "a1", refresh: "r1", url, expires: input.expires ?? Date.now() + 3_600_000 })

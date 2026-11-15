@@ -5,16 +5,16 @@ import {
   registerCustomTheme,
   type SelectedLineRange,
 } from "@pierre/diffs"
-import { OpenCodeTheme } from "@opencode/ui/context/highlight-theme"
+import { RedCodeTheme } from "@redcode/ui/context/highlight-theme"
 import { ComponentProps } from "solid-js"
 import { lineCommentStyles } from "../components/line-comment-styles"
 import quoteHighlightStyles from "../components/quote-highlight.css?inline"
 
 // Pierre resolves themes on the main thread and hands them to its workers, so register before any viewer renders.
-registerCustomTheme(OpenCodeTheme.name, () => Promise.resolve(OpenCodeTheme), "zed")
+registerCustomTheme(RedCodeTheme.name, () => Promise.resolve(RedCodeTheme), "zed")
 
 // Viewers and worker pools must agree: the pool's options win whenever it renders.
-export const highlightOptions = { theme: OpenCodeTheme.name, preferredHighlighter: "highlights" } as const
+export const highlightOptions = { theme: RedCodeTheme.name, preferredHighlighter: "highlights" } as const
 
 export type DiffProps<T = {}> = FileDiffOptions<T, undefined> & {
   before: FileContents

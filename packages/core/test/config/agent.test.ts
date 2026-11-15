@@ -2,21 +2,21 @@ import { describe, expect, test } from "bun:test"
 import fs from "fs/promises"
 import path from "path"
 import { Effect, Fiber, Schema, Stream } from "effect"
-import { Agent } from "@opencode/core/agent"
-import { Bus } from "@opencode/core/bus"
-import { Config } from "@opencode/core/config"
-import { Directory, Document, Event, Info } from "@opencode/schema/config"
-import { Model } from "@opencode/schema/model"
-import { ConfigAgentPlugin } from "@opencode/core/config/plugin/agent"
-import { AppNodeBuilder } from "@opencode/core/effect/app-node-builder"
-import { LayerNode } from "@opencode/util/effect/layer-node"
-import { FSUtil } from "@opencode/util/fs-util"
-import { Global } from "@opencode/util/global"
-import { Permission } from "@opencode/core/permission"
-import { AgentPlugin } from "@opencode/core/plugin/agent"
-import { AbsolutePath } from "@opencode/core/schema"
-import { ConfigNormalize } from "@opencode/core/config/normalize"
-import { ConfigAgentV1 } from "@opencode/core/v1/config/agent"
+import { Agent } from "@redcode/core/agent"
+import { Bus } from "@redcode/core/bus"
+import { Config } from "@redcode/core/config"
+import { Directory, Document, Event, Info } from "@redcode/schema/config"
+import { Model } from "@redcode/schema/model"
+import { ConfigAgentPlugin } from "@redcode/core/config/plugin/agent"
+import { AppNodeBuilder } from "@redcode/core/effect/app-node-builder"
+import { LayerNode } from "@redcode/util/effect/layer-node"
+import { FSUtil } from "@redcode/util/fs-util"
+import { Global } from "@redcode/util/global"
+import { Permission } from "@redcode/core/permission"
+import { AgentPlugin } from "@redcode/core/plugin/agent"
+import { AbsolutePath } from "@redcode/core/schema"
+import { ConfigNormalize } from "@redcode/core/config/normalize"
+import { ConfigAgentV1 } from "@redcode/core/v1/config/agent"
 import { advance, drain } from "../lib/clock"
 import { tmpdir, tmpdirScoped } from "../fixture/tmpdir"
 import { testEffect } from "../lib/effect"
@@ -193,12 +193,12 @@ permissions:
                   "*.env.*": "deny",
                   "*.env.example": "allow",
                   "*.dev.vars": "deny",
-                  "~/.local/share/opencode/mcp-auth.json": "deny",
-                  "$HOME/.local/share/opencode/mcp-auth.json": "deny",
+                  "~/.local/share/redcode/mcp-auth.json": "deny",
+                  "$HOME/.local/share/redcode/mcp-auth.json": "deny",
                 },
                 external_directory: {
                   "*": "ask",
-                  "~/.local/share/opencode/*": "deny",
+                  "~/.local/share/redcode/*": "deny",
                 },
               },
             }),
@@ -214,7 +214,7 @@ permissions:
                   { action: "external_directory", resource: "*", effect: "allow" },
                   {
                     action: "external_directory",
-                    resource: "~/.local/share/opencode/*",
+                    resource: "~/.local/share/redcode/*",
                     effect: "deny",
                   },
                   { action: "read", resource: "*.env", effect: "deny" },
@@ -442,9 +442,9 @@ permissions:
           yield* Effect.promise(async () => {
             await fs.mkdir(path.join(tmp.path, "agents", "team"), { recursive: true })
             await fs.mkdir(path.join(tmp.path, "modes"), { recursive: true })
-            await fs.mkdir(path.join(tmp.path, "agents", ".opencode", "node_modules", "probe"), { recursive: true })
+            await fs.mkdir(path.join(tmp.path, "agents", ".redcode", "node_modules", "probe"), { recursive: true })
             await fs.writeFile(
-              path.join(tmp.path, "agents", ".opencode", "node_modules", "probe", "README.md"),
+              path.join(tmp.path, "agents", ".redcode", "node_modules", "probe", "README.md"),
               "# Dependency README",
             )
             await fs.writeFile(
@@ -514,7 +514,7 @@ Use native v2 fields.`,
           expect(themed?.color).toBeUndefined()
           expect(yield* agents.get(Agent.ID.make("disabled"))).toBeUndefined()
           expect(yield* agents.get(Agent.ID.make("empty"))).toBeUndefined()
-          expect(yield* agents.get(Agent.ID.make(".opencode/node_modules/probe/README"))).toBeUndefined()
+          expect(yield* agents.get(Agent.ID.make(".redcode/node_modules/probe/README"))).toBeUndefined()
           expect(yield* agents.get(Agent.ID.make("plan"))).toMatchObject({ system: "Make a plan.", mode: "primary" })
         }),
       ),
@@ -691,7 +691,7 @@ Mixed fields.`,
           )
 
           yield* configTest.emitChange({ type: "create", path: path.join(tmp.path, "commands", "review.md") })
-          yield* configTest.emitChange({ type: "update", path: path.join(tmp.path, "opencode.json") })
+          yield* configTest.emitChange({ type: "update", path: path.join(tmp.path, "redcode.json") })
           yield* drain
           expect(reloads).toBe(0)
 

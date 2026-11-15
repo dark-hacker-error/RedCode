@@ -3,9 +3,9 @@ import { testRender } from "@opentui/solid"
 import { expect, test } from "bun:test"
 import { RGBA } from "@opentui/core"
 import { createTuiResolvedConfig } from "../../fixture/tui-runtime"
-import { getOpenCodeTheme } from "../../../src/theme"
-import opencodeSource from "../../../src/theme/assets/opencode.json" with { type: "json" }
-import type { ThemeV1Json } from "@opencode/theme/tui/v1"
+import { getRedCodeTheme } from "../../../src/theme"
+import opencodeSource from "../../../src/theme/assets/redcode.json" with { type: "json" }
+import type { ThemeV1Json } from "@redcode/theme/tui/v1"
 import { ConfigProvider } from "../../../src/config"
 import { ThemeContextProvider, ThemeProvider, type ThemeError, useTheme, useThemes } from "../../../src/context/theme"
 
@@ -29,8 +29,8 @@ test("uses an available mode while retaining the pinned preference", async () =>
   darkOnly.theme.background = "#111111"
   darkOnly.theme.text = "#eeeeee"
   const native = {
-    base: { ...getOpenCodeTheme().base, text: { ...getOpenCodeTheme().base.text, base: "#abcdef" } },
-    dark: { hue: getOpenCodeTheme().dark.hue },
+    base: { ...getRedCodeTheme().base, text: { ...getRedCodeTheme().base.text, base: "#abcdef" } },
+    dark: { hue: getRedCodeTheme().dark.hue },
   } as const
   let themes: ReturnType<typeof useThemes> | undefined
 
@@ -89,11 +89,11 @@ test.each([
   [
     "token reference",
     {
-      base: { ...getOpenCodeTheme().base, text: { ...getOpenCodeTheme().base.text, base: "$missing" } },
-      light: getOpenCodeTheme().light,
+      base: { ...getRedCodeTheme().base, text: { ...getRedCodeTheme().base.text, base: "$missing" } },
+      light: getRedCodeTheme().light,
     },
   ],
-] as const)("falls back to OpenCode when configured V2 theme %s is invalid", async (_label, source) => {
+] as const)("falls back to RedCode when configured V2 theme %s is invalid", async (_label, source) => {
   let themes: ReturnType<typeof useThemes> | undefined
   let failure: ThemeError | undefined
   let unsubscribe: (() => void) | undefined

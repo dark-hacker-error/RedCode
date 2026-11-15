@@ -1,9 +1,9 @@
 export * as Mcp from "./index.js"
 
-import { Mcp } from "@opencode/schema/mcp"
-import { McpEvent } from "@opencode/schema/mcp-event"
-import { ephemeral } from "@opencode/schema/event"
-import type { Session } from "@opencode/schema/session"
+import { Mcp } from "@redcode/schema/mcp"
+import { McpEvent } from "@redcode/schema/mcp-event"
+import { ephemeral } from "@redcode/schema/event"
+import type { Session } from "@redcode/schema/session"
 import type { Transport } from "@modelcontextprotocol/client"
 import { createHash } from "node:crypto"
 import { isDeepStrictEqual } from "node:util"
@@ -25,8 +25,8 @@ import {
   Types,
 } from "effect"
 import { FetchHttpClient } from "effect/http"
-import { makeLocationNode } from "@opencode/util/effect/app-node"
-import { httpFetch } from "@opencode/util/effect/app-node-platform"
+import { makeLocationNode } from "@redcode/util/effect/app-node"
+import { httpFetch } from "@redcode/util/effect/app-node-platform"
 import { Credential } from "../credential.js"
 import { Bus } from "../bus.js"
 import { Environment } from "../environment/index.js"
@@ -35,8 +35,8 @@ import { Form } from "../form.js"
 import { Integration } from "../integration.js"
 import { KeyedMutex } from "../effect/keyed-mutex.js"
 import { Location } from "../location.js"
-import { Hash } from "@opencode/util/hash"
-import { waitForAbort } from "@opencode/util/process"
+import { Hash } from "@redcode/util/hash"
+import { waitForAbort } from "@redcode/util/process"
 import { State } from "../state.js"
 import type { McpClient } from "./client.js"
 import { EventStreamRejectedError, EventStreamTerminatedError } from "./event-errors.js"
@@ -217,7 +217,7 @@ export interface Interface extends State.Transformable<Editor> {
   readonly subscriptions: () => Effect.Effect<ReadonlyArray<Subscription>>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@opencode/MCP") {}
+export class Service extends Context.Service<Service, Interface>()("@redcode/MCP") {}
 
 /**
  * Why `subscribe` cannot follow a server's events.

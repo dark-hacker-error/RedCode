@@ -1,12 +1,12 @@
 export * as Generate from "./generate.js"
 
-import { ai, AIError, DecisionClient, ImageClient, LLMClient, Media } from "@opencode/ai/effect"
-import type { DecisionRequest, DecisionResult, ImageRequest, ImageResult } from "@opencode/schema/generate"
-import { Money } from "@opencode/schema/money"
-import { SessionID } from "@opencode/schema/session-id"
+import { ai, AIError, DecisionClient, ImageClient, LLMClient, Media } from "@redcode/ai/effect"
+import type { DecisionRequest, DecisionResult, ImageRequest, ImageResult } from "@redcode/schema/generate"
+import { Money } from "@redcode/schema/money"
+import { SessionID } from "@redcode/schema/session-id"
 import { Context, Effect, Layer, Schema } from "effect"
-import { RequestExecutor } from "@opencode/ai/route"
-import { makeLocationNode } from "@opencode/util/effect/app-node"
+import { RequestExecutor } from "@redcode/ai/route"
+import { makeLocationNode } from "@redcode/util/effect/app-node"
 import { llmClient, requestExecutor } from "./effect/app-node-platform.js"
 import { Integration } from "./integration.js"
 import { ModelResolver } from "./model-resolver.js"
@@ -76,7 +76,7 @@ export interface Interface {
   readonly decisions: (input: DecisionRequest) => Effect.Effect<DecisionResult, Error>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@opencode/Generate") {}
+export class Service extends Context.Service<Service, Interface>()("@redcode/Generate") {}
 
 // Image and decision clients are built here, on the shared request executor, so only Generate depends on them.
 export const layer = Layer.effect(

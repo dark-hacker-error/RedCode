@@ -1,8 +1,8 @@
 import { batch, createEffect, createMemo, createSignal, on, onCleanup, untrack, type JSX } from "solid-js"
 import { createStore } from "solid-js/store"
 import { Option, Schema, SchemaGetter } from "effect"
-import { createSimpleContext } from "@opencode/ui/context"
-import { showToast } from "@opencode/ui/toast"
+import { createSimpleContext } from "@redcode/ui/context"
+import { showToast } from "@redcode/ui/toast"
 import {
   I18nProvider,
   type UiI18n,
@@ -11,11 +11,11 @@ import {
   type UiI18nPluralLookupKey,
   type UiI18nPluralKey,
   type UiPluralCategory,
-} from "@opencode/ui/context/i18n"
+} from "@redcode/ui/context/i18n"
 import { Persist, persisted } from "@/runtime/persistence/storage"
 import { Persistence } from "@/runtime/persistence/schema"
 import en from "@/runtime/i18n/en"
-import { dict } from "@opencode/ui/i18n/en"
+import { dict } from "@redcode/ui/i18n/en"
 import {
   createDesktopNativeBundle,
   detectDesktopNativeLocale,
@@ -114,68 +114,68 @@ const merge = (app: Promise<Source>, ui: Promise<Source>) =>
   Promise.all([app, ui]).then(([a, b]) => ({ ...base, ...a.dict, ...b.dict }) as Dictionary)
 
 const loaders: Record<Exclude<Locale, "en">, () => Promise<Dictionary>> = {
-  zh: () => merge(import("@/runtime/i18n/zh"), import("@opencode/ui/i18n/zh")),
-  zht: () => merge(import("@/runtime/i18n/zht"), import("@opencode/ui/i18n/zht")),
-  ko: () => merge(import("@/runtime/i18n/ko"), import("@opencode/ui/i18n/ko")),
-  de: () => merge(import("@/runtime/i18n/de"), import("@opencode/ui/i18n/de")),
-  es: () => merge(import("@/runtime/i18n/es"), import("@opencode/ui/i18n/es")),
-  fr: () => merge(import("@/runtime/i18n/fr"), import("@opencode/ui/i18n/fr")),
-  da: () => merge(import("@/runtime/i18n/da"), import("@opencode/ui/i18n/da")),
-  ja: () => merge(import("@/runtime/i18n/ja"), import("@opencode/ui/i18n/ja")),
-  pl: () => merge(import("@/runtime/i18n/pl"), import("@opencode/ui/i18n/pl")),
-  ru: () => merge(import("@/runtime/i18n/ru"), import("@opencode/ui/i18n/ru")),
-  uk: () => merge(import("@/runtime/i18n/uk"), import("@opencode/ui/i18n/uk")),
-  ar: () => merge(import("@/runtime/i18n/ar"), import("@opencode/ui/i18n/ar")),
-  he: () => merge(import("@/runtime/i18n/he"), import("@opencode/ui/i18n/he")),
-  no: () => merge(import("@/runtime/i18n/no"), import("@opencode/ui/i18n/no")),
-  br: () => merge(import("@/runtime/i18n/br"), import("@opencode/ui/i18n/br")),
-  th: () => merge(import("@/runtime/i18n/th"), import("@opencode/ui/i18n/th")),
-  bs: () => merge(import("@/runtime/i18n/bs"), import("@opencode/ui/i18n/bs")),
-  tr: () => merge(import("@/runtime/i18n/tr"), import("@opencode/ui/i18n/tr")),
-  hi: () => merge(import("@/runtime/i18n/hi"), import("@opencode/ui/i18n/hi")),
-  nl: () => merge(import("@/runtime/i18n/nl"), import("@opencode/ui/i18n/nl")),
-  id: () => merge(import("@/runtime/i18n/id"), import("@opencode/ui/i18n/id")),
-  vi: () => merge(import("@/runtime/i18n/vi"), import("@opencode/ui/i18n/vi")),
-  it: () => merge(import("@/runtime/i18n/it"), import("@opencode/ui/i18n/it")),
-  ur: () => merge(import("@/runtime/i18n/ur"), import("@opencode/ui/i18n/ur")),
-  pa: () => merge(import("@/runtime/i18n/pa"), import("@opencode/ui/i18n/pa")),
-  az: () => merge(import("@/runtime/i18n/az"), import("@opencode/ui/i18n/az")),
-  fi: () => merge(import("@/runtime/i18n/fi"), import("@opencode/ui/i18n/fi")),
-  sv: () => merge(import("@/runtime/i18n/sv"), import("@opencode/ui/i18n/sv")),
-  am: () => merge(import("@/runtime/i18n/am"), import("@opencode/ui/i18n/am")),
-  bg: () => merge(import("@/runtime/i18n/bg"), import("@opencode/ui/i18n/bg")),
-  bn: () => merge(import("@/runtime/i18n/bn"), import("@opencode/ui/i18n/bn")),
-  ca: () => merge(import("@/runtime/i18n/ca"), import("@opencode/ui/i18n/ca")),
-  cs: () => merge(import("@/runtime/i18n/cs"), import("@opencode/ui/i18n/cs")),
-  dv: () => merge(import("@/runtime/i18n/dv"), import("@opencode/ui/i18n/dv")),
-  dz: () => merge(import("@/runtime/i18n/dz"), import("@opencode/ui/i18n/dz")),
-  el: () => merge(import("@/runtime/i18n/el"), import("@opencode/ui/i18n/el")),
-  et: () => merge(import("@/runtime/i18n/et"), import("@opencode/ui/i18n/et")),
-  fa: () => merge(import("@/runtime/i18n/fa"), import("@opencode/ui/i18n/fa")),
-  fo: () => merge(import("@/runtime/i18n/fo"), import("@opencode/ui/i18n/fo")),
-  hr: () => merge(import("@/runtime/i18n/hr"), import("@opencode/ui/i18n/hr")),
-  hu: () => merge(import("@/runtime/i18n/hu"), import("@opencode/ui/i18n/hu")),
-  hy: () => merge(import("@/runtime/i18n/hy"), import("@opencode/ui/i18n/hy")),
-  is: () => merge(import("@/runtime/i18n/is"), import("@opencode/ui/i18n/is")),
-  ka: () => merge(import("@/runtime/i18n/ka"), import("@opencode/ui/i18n/ka")),
-  km: () => merge(import("@/runtime/i18n/km"), import("@opencode/ui/i18n/km")),
-  lo: () => merge(import("@/runtime/i18n/lo"), import("@opencode/ui/i18n/lo")),
-  lt: () => merge(import("@/runtime/i18n/lt"), import("@opencode/ui/i18n/lt")),
-  lv: () => merge(import("@/runtime/i18n/lv"), import("@opencode/ui/i18n/lv")),
-  mk: () => merge(import("@/runtime/i18n/mk"), import("@opencode/ui/i18n/mk")),
-  mn: () => merge(import("@/runtime/i18n/mn"), import("@opencode/ui/i18n/mn")),
-  ms: () => merge(import("@/runtime/i18n/ms"), import("@opencode/ui/i18n/ms")),
-  my: () => merge(import("@/runtime/i18n/my"), import("@opencode/ui/i18n/my")),
-  ne: () => merge(import("@/runtime/i18n/ne"), import("@opencode/ui/i18n/ne")),
-  ro: () => merge(import("@/runtime/i18n/ro"), import("@opencode/ui/i18n/ro")),
-  si: () => merge(import("@/runtime/i18n/si"), import("@opencode/ui/i18n/si")),
-  sk: () => merge(import("@/runtime/i18n/sk"), import("@opencode/ui/i18n/sk")),
-  sl: () => merge(import("@/runtime/i18n/sl"), import("@opencode/ui/i18n/sl")),
-  sq: () => merge(import("@/runtime/i18n/sq"), import("@opencode/ui/i18n/sq")),
-  sr: () => merge(import("@/runtime/i18n/sr"), import("@opencode/ui/i18n/sr")),
-  tg: () => merge(import("@/runtime/i18n/tg"), import("@opencode/ui/i18n/tg")),
-  tk: () => merge(import("@/runtime/i18n/tk"), import("@opencode/ui/i18n/tk")),
-  uz: () => merge(import("@/runtime/i18n/uz"), import("@opencode/ui/i18n/uz")),
+  zh: () => merge(import("@/runtime/i18n/zh"), import("@redcode/ui/i18n/zh")),
+  zht: () => merge(import("@/runtime/i18n/zht"), import("@redcode/ui/i18n/zht")),
+  ko: () => merge(import("@/runtime/i18n/ko"), import("@redcode/ui/i18n/ko")),
+  de: () => merge(import("@/runtime/i18n/de"), import("@redcode/ui/i18n/de")),
+  es: () => merge(import("@/runtime/i18n/es"), import("@redcode/ui/i18n/es")),
+  fr: () => merge(import("@/runtime/i18n/fr"), import("@redcode/ui/i18n/fr")),
+  da: () => merge(import("@/runtime/i18n/da"), import("@redcode/ui/i18n/da")),
+  ja: () => merge(import("@/runtime/i18n/ja"), import("@redcode/ui/i18n/ja")),
+  pl: () => merge(import("@/runtime/i18n/pl"), import("@redcode/ui/i18n/pl")),
+  ru: () => merge(import("@/runtime/i18n/ru"), import("@redcode/ui/i18n/ru")),
+  uk: () => merge(import("@/runtime/i18n/uk"), import("@redcode/ui/i18n/uk")),
+  ar: () => merge(import("@/runtime/i18n/ar"), import("@redcode/ui/i18n/ar")),
+  he: () => merge(import("@/runtime/i18n/he"), import("@redcode/ui/i18n/he")),
+  no: () => merge(import("@/runtime/i18n/no"), import("@redcode/ui/i18n/no")),
+  br: () => merge(import("@/runtime/i18n/br"), import("@redcode/ui/i18n/br")),
+  th: () => merge(import("@/runtime/i18n/th"), import("@redcode/ui/i18n/th")),
+  bs: () => merge(import("@/runtime/i18n/bs"), import("@redcode/ui/i18n/bs")),
+  tr: () => merge(import("@/runtime/i18n/tr"), import("@redcode/ui/i18n/tr")),
+  hi: () => merge(import("@/runtime/i18n/hi"), import("@redcode/ui/i18n/hi")),
+  nl: () => merge(import("@/runtime/i18n/nl"), import("@redcode/ui/i18n/nl")),
+  id: () => merge(import("@/runtime/i18n/id"), import("@redcode/ui/i18n/id")),
+  vi: () => merge(import("@/runtime/i18n/vi"), import("@redcode/ui/i18n/vi")),
+  it: () => merge(import("@/runtime/i18n/it"), import("@redcode/ui/i18n/it")),
+  ur: () => merge(import("@/runtime/i18n/ur"), import("@redcode/ui/i18n/ur")),
+  pa: () => merge(import("@/runtime/i18n/pa"), import("@redcode/ui/i18n/pa")),
+  az: () => merge(import("@/runtime/i18n/az"), import("@redcode/ui/i18n/az")),
+  fi: () => merge(import("@/runtime/i18n/fi"), import("@redcode/ui/i18n/fi")),
+  sv: () => merge(import("@/runtime/i18n/sv"), import("@redcode/ui/i18n/sv")),
+  am: () => merge(import("@/runtime/i18n/am"), import("@redcode/ui/i18n/am")),
+  bg: () => merge(import("@/runtime/i18n/bg"), import("@redcode/ui/i18n/bg")),
+  bn: () => merge(import("@/runtime/i18n/bn"), import("@redcode/ui/i18n/bn")),
+  ca: () => merge(import("@/runtime/i18n/ca"), import("@redcode/ui/i18n/ca")),
+  cs: () => merge(import("@/runtime/i18n/cs"), import("@redcode/ui/i18n/cs")),
+  dv: () => merge(import("@/runtime/i18n/dv"), import("@redcode/ui/i18n/dv")),
+  dz: () => merge(import("@/runtime/i18n/dz"), import("@redcode/ui/i18n/dz")),
+  el: () => merge(import("@/runtime/i18n/el"), import("@redcode/ui/i18n/el")),
+  et: () => merge(import("@/runtime/i18n/et"), import("@redcode/ui/i18n/et")),
+  fa: () => merge(import("@/runtime/i18n/fa"), import("@redcode/ui/i18n/fa")),
+  fo: () => merge(import("@/runtime/i18n/fo"), import("@redcode/ui/i18n/fo")),
+  hr: () => merge(import("@/runtime/i18n/hr"), import("@redcode/ui/i18n/hr")),
+  hu: () => merge(import("@/runtime/i18n/hu"), import("@redcode/ui/i18n/hu")),
+  hy: () => merge(import("@/runtime/i18n/hy"), import("@redcode/ui/i18n/hy")),
+  is: () => merge(import("@/runtime/i18n/is"), import("@redcode/ui/i18n/is")),
+  ka: () => merge(import("@/runtime/i18n/ka"), import("@redcode/ui/i18n/ka")),
+  km: () => merge(import("@/runtime/i18n/km"), import("@redcode/ui/i18n/km")),
+  lo: () => merge(import("@/runtime/i18n/lo"), import("@redcode/ui/i18n/lo")),
+  lt: () => merge(import("@/runtime/i18n/lt"), import("@redcode/ui/i18n/lt")),
+  lv: () => merge(import("@/runtime/i18n/lv"), import("@redcode/ui/i18n/lv")),
+  mk: () => merge(import("@/runtime/i18n/mk"), import("@redcode/ui/i18n/mk")),
+  mn: () => merge(import("@/runtime/i18n/mn"), import("@redcode/ui/i18n/mn")),
+  ms: () => merge(import("@/runtime/i18n/ms"), import("@redcode/ui/i18n/ms")),
+  my: () => merge(import("@/runtime/i18n/my"), import("@redcode/ui/i18n/my")),
+  ne: () => merge(import("@/runtime/i18n/ne"), import("@redcode/ui/i18n/ne")),
+  ro: () => merge(import("@/runtime/i18n/ro"), import("@redcode/ui/i18n/ro")),
+  si: () => merge(import("@/runtime/i18n/si"), import("@redcode/ui/i18n/si")),
+  sk: () => merge(import("@/runtime/i18n/sk"), import("@redcode/ui/i18n/sk")),
+  sl: () => merge(import("@/runtime/i18n/sl"), import("@redcode/ui/i18n/sl")),
+  sq: () => merge(import("@/runtime/i18n/sq"), import("@redcode/ui/i18n/sq")),
+  sr: () => merge(import("@/runtime/i18n/sr"), import("@redcode/ui/i18n/sr")),
+  tg: () => merge(import("@/runtime/i18n/tg"), import("@redcode/ui/i18n/tg")),
+  tk: () => merge(import("@/runtime/i18n/tk"), import("@redcode/ui/i18n/tk")),
+  uz: () => merge(import("@/runtime/i18n/uz"), import("@redcode/ui/i18n/uz")),
 }
 
 function loadDict(locale: Locale) {
@@ -217,7 +217,7 @@ function readStoredLocale() {
   if (typeof localStorage !== "object") return
 
   try {
-    const raw = localStorage.getItem("opencode.global.dat:language")
+    const raw = localStorage.getItem("redcode.global.dat:language")
 
     if (!raw) return
     const next = Schema.decodeUnknownOption(Schema.fromJsonString(StoredLocaleSchema))(raw)

@@ -1,9 +1,9 @@
-import type { OpenCodeEvent, SessionMessageInfo } from "@opencode/client/promise"
+import type { RedCodeEvent, SessionMessageInfo } from "@redcode/client/promise"
 import { expect, test, type Locator, type Page } from "@playwright/test"
-import { base64Encode } from "@opencode/util/encode"
+import { base64Encode } from "@redcode/util/encode"
 import { SERVER, holdRoute, project, provider, session } from "../utils/app"
 import { browseFiles, openFileLauncher, openReviewLauncher, reviewTabs } from "../utils/side-panel"
-import { mockOpenCodeServer } from "../utils/mock-server"
+import { mockRedCodeServer } from "../utils/mock-server"
 import { fileDiff, fileNode, openSession } from "../utils/workspace"
 import { expectSessionTitle } from "../utils/waits"
 import { readFile } from "node:fs/promises"
@@ -77,7 +77,7 @@ test("Git initialization belongs to its session and refreshes after a session sw
     ],
     seed: {
       panes: { ses_init_a: { review: true }, ses_init_b: { review: true } },
-      storage: reviewTabs("C:/OpenCode/ReviewInitSwitch", "ses_init_a", "ses_init_b"),
+      storage: reviewTabs("C:/RedCode/ReviewInitSwitch", "ses_init_a", "ses_init_b"),
     },
   })
 
@@ -132,7 +132,7 @@ test("a rejected Git init releases its session's button without showing an error
     ],
     seed: {
       panes: { ses_init_failure_a: { review: true }, ses_init_failure_b: { review: true } },
-      storage: reviewTabs("C:/OpenCode/ReviewInitFailure", "ses_init_failure_a", "ses_init_failure_b"),
+      storage: reviewTabs("C:/RedCode/ReviewInitFailure", "ses_init_failure_a", "ses_init_failure_b"),
     },
   })
   const request = await holdRoute(page, (url) => url.pathname === "/api/vcs/init", { method: "POST" })
@@ -161,7 +161,7 @@ test("a created Git repository whose project refresh fails still refreshes the s
     sessions: [{ id: "ses_init_refresh", title: "Initialize Refresh" }],
     seed: {
       panes: { ses_init_refresh: { review: true } },
-      storage: reviewTabs("C:/OpenCode/ReviewInitRefresh", "ses_init_refresh"),
+      storage: reviewTabs("C:/RedCode/ReviewInitRefresh", "ses_init_refresh"),
     },
   })
   const panel = page.locator("#review-panel")
@@ -206,7 +206,7 @@ test("opens file picker launchers when randomUUID is unavailable on insecure HTT
 
 test("open file tab browses, searches, and tracks missing files", async ({ page }) => {
   const searches: { query: string; dirs?: string; limit?: number; directory: string }[] = []
-  const directory = "C:/OpenCode/ReviewOpenFile"
+  const directory = "C:/RedCode/ReviewOpenFile"
   const files = Array.from({ length: 80 }, (_, index) => `file-${String(index).padStart(2, "0")}.ts`)
 
   const workspace = await openSession(page, {
@@ -229,8 +229,8 @@ test("open file tab browses, searches, and tracks missing files", async ({ page 
     seed: {
       panes: { ses_reviewopenfile: { review: true } },
       storage: {
-        ...reviewTabs("C:/OpenCode/ReviewOpenFile", "ses_reviewopenfile"),
-        "opencode.global.dat:review-panel-v2": { sidebarOpened: false },
+        ...reviewTabs("C:/RedCode/ReviewOpenFile", "ses_reviewopenfile"),
+        "redcode.global.dat:review-panel-v2": { sidebarOpened: false },
       },
     },
   })
@@ -372,7 +372,7 @@ for (const listed of [false, true]) {
   test(`the open file heading names a subfolder session ${listed ? "after its sidebar project" : "after its folder"}`, async ({
     page,
   }) => {
-    const root = "C:/OpenCode/BrowserRepo"
+    const root = "C:/RedCode/BrowserRepo"
     const directory = `${root}/packages/app`
     await openSession(page, {
       name: "BrowserRepo",
@@ -402,9 +402,9 @@ test("context closes the side region only when its button opened it", async ({ p
     name: "ReviewContextOpener",
     seed: {
       storage: {
-        "opencode.global.dat:layout": {
+        "redcode.global.dat:layout": {
           sessionTabs: {
-            [`local\u0000${base64Encode("C:/OpenCode/ReviewContextOpener")}/ses_reviewcontextopener`]: {
+            [`local\u0000${base64Encode("C:/RedCode/ReviewContextOpener")}/ses_reviewcontextopener`]: {
               all: ["btw"],
               active: "btw",
             },
@@ -537,7 +537,7 @@ test("context hides free-model cost but keeps paid-model zero cost", async ({ pa
 })
 
 test("file tree expands Windows paths and scrolls long names in both directions", async ({ page }) => {
-  const directory = "C:/OpenCode/OpenFileExpand"
+  const directory = "C:/RedCode/OpenFileExpand"
   const longFilename = "a-very-long-file-name-that-must-overflow-the-file-sidebar-instead-of-being-truncated.ts"
   const longPath = `frontend/${longFilename}`
   await openSession(page, {
@@ -579,7 +579,7 @@ test("file tree expands Windows paths and scrolls long names in both directions"
     fileContent: (path) => ({ type: "text", content: `contents:${path}` }),
     seed: {
       panes: { ses_openfileexpand: { review: true } },
-      storage: { "opencode.global.dat:review-panel-v2": { sidebarOpened: true } },
+      storage: { "redcode.global.dat:review-panel-v2": { sidebarOpened: true } },
     },
   })
 
@@ -644,7 +644,7 @@ test("file tree expands Windows paths and scrolls long names in both directions"
     .toBeGreaterThan(0)
   await expect(status).toHaveText("A")
   await expect.poll(() => statusInset(status, "right")).toBeLessThanOrEqual(24)
-  const treeScroll = panel.locator(".opencode-pierre-file-tree")
+  const treeScroll = panel.locator(".redcode-pierre-file-tree")
 
   const scrollTree = (position: { left?: number; top?: number }) =>
     treeScroll.evaluate((element, position) => {
@@ -705,7 +705,7 @@ test("file tree expands Windows paths and scrolls long names in both directions"
 })
 
 test("the file tree follows a folder the review closes and lists a recreated folder's files", async ({ page }) => {
-  const directory = "C:/OpenCode/TreeFollow"
+  const directory = "C:/RedCode/TreeFollow"
   const disk = { src: true }
 
   const workspace = await openSession(page, {
@@ -721,7 +721,7 @@ test("the file tree follows a folder the review closes and lists a recreated fol
     fileContent: (path) => ({ type: "text", content: `contents:${path}` }),
     seed: {
       panes: { ses_treefollow: { review: true } },
-      storage: { "opencode.global.dat:review-panel-v2": { sidebarOpened: true } },
+      storage: { "redcode.global.dat:review-panel-v2": { sidebarOpened: true } },
     },
   })
 
@@ -1145,7 +1145,7 @@ test("Markdown and DOCX sheets stay aligned when switching at wide and narrow pr
         },
       ],
     }),
-    seed: { storage: { "opencode.global.dat:review-panel-v2": { sidebarOpened: false } } },
+    seed: { storage: { "redcode.global.dat:review-panel-v2": { sidebarOpened: false } } },
   })
 
   const panel = page.locator("#review-panel")
@@ -1429,7 +1429,7 @@ test("image gestures anchor zoom, pan, and reset independently of the pane", asy
 
 test("image files load into the review panel and keep it painted while loading", async ({ page }) => {
   await page.setViewportSize({ width: 960, height: 900 })
-  const directory = "C:/OpenCode/ReviewImage"
+  const directory = "C:/RedCode/ReviewImage"
   const image = "assets/preview.png"
   const read = Promise.withResolvers<void>()
   const release = Promise.withResolvers<void>()
@@ -1524,7 +1524,7 @@ test("image files load into the review panel and keep it painted while loading",
 test("video files stream into the viewer behind a loading state, open into the preview, and come back on Escape without remounting", async ({
   page,
 }) => {
-  const directory = "C:/OpenCode/ReviewVideo"
+  const directory = "C:/RedCode/ReviewVideo"
   const file = "arcade-update-draft.mp4"
 
   const head = Buffer.from(
@@ -1637,8 +1637,8 @@ test("review file navigation focuses the arrow for the keyboard direction", asyn
     seed: {
       panes: { ses_reviewarrowfocus: { review: true } },
       storage: {
-        ...reviewTabs("C:/OpenCode/ReviewArrowFocus", "ses_reviewarrowfocus"),
-        "opencode.global.dat:review-panel-v2": { sidebarOpened: false },
+        ...reviewTabs("C:/RedCode/ReviewArrowFocus", "ses_reviewarrowfocus"),
+        "redcode.global.dat:review-panel-v2": { sidebarOpened: false },
       },
     },
   })
@@ -1680,7 +1680,7 @@ test("restores review state and the side-panel tab per session", async ({ page }
     { id: "ses_review_state_c", title: "Gamma review state" },
   ]
 
-  const directory = "C:/OpenCode/ReviewState"
+  const directory = "C:/RedCode/ReviewState"
   await openSession(page, {
     name: "ReviewState",
     sessions,
@@ -1803,7 +1803,7 @@ test("shows and restores last turn changes from the session diff", async ({ page
 })
 
 test("keeps the review state a session stored before plugins", async ({ page }) => {
-  const directory = "C:/OpenCode/ReviewLegacy"
+  const directory = "C:/RedCode/ReviewLegacy"
   await openSession(page, {
     name: "ReviewLegacy",
     vcs: { current: "feature", default: "dev" },
@@ -1811,7 +1811,7 @@ test("keeps the review state a session stored before plugins", async ({ page }) 
       mode === "branch" ? [fileDiff("alpha.ts"), fileDiff("beta.ts")] : [fileDiff("alpha.ts"), fileDiff("gamma.ts")],
     seed: {
       storage: {
-        "opencode.global.dat:layout": {
+        "redcode.global.dat:layout": {
           sessionView: {
             [`local\u0000${base64Encode(directory)}/ses_reviewlegacy`]: {
               scroll: {},
@@ -1853,10 +1853,10 @@ test("keeps the review state a session stored before plugins", async ({ page }) 
 })
 
 test("desktop review waits for the session's stored mode before it loads changes", async ({ page }) => {
-  const directory = "C:/OpenCode/ReviewDesktop"
+  const directory = "C:/RedCode/ReviewDesktop"
   const id = "ses_review_desktop"
   const title = "Desktop review"
-  await mockOpenCodeServer(page, {
+  await mockRedCodeServer(page, {
     directory,
     project: project({ id: "proj_review_desktop", directory }),
     provider: provider(),
@@ -1968,7 +1968,7 @@ test("a large file whose full diff fails to load says so, and loads on Try again
 
 // A failed search used to read "No results found", as if the workspace had no such file.
 test("a failed file search offers a retry instead of no results", async ({ page }) => {
-  const directory = "C:/OpenCode/ReviewSearchFailure"
+  const directory = "C:/RedCode/ReviewSearchFailure"
   await openSession(page, {
     name: "ReviewSearchFailure",
     fileList: () => [fileNode(directory, "README.md")],
@@ -2122,14 +2122,14 @@ test("names a single change source and keeps the review header rows at 48px", as
 })
 
 test("Review from a new tab keeps the file browser and preview open", async ({ page }) => {
-  const directory = "C:/OpenCode/ReviewNewTabFile"
+  const directory = "C:/RedCode/ReviewNewTabFile"
   await openSession(page, {
     name: "ReviewNewTabFile",
     fileList: (path) => (path ? [] : [fileNode(directory, "README.md")]),
     fileContent: (path) => ({ type: "text", content: `contents:${path}` }),
     seed: {
       panes: { ses_reviewnewtabfile: { review: true } },
-      storage: { "opencode.global.dat:review-panel-v2": { sidebarOpened: false } },
+      storage: { "redcode.global.dat:review-panel-v2": { sidebarOpened: false } },
     },
   })
   const panel = page.locator("#review-panel")
@@ -2235,7 +2235,7 @@ async function statusInset(status: Locator, side: "left" | "right") {
   }, side)
 }
 
-function filesystemEvent(directory: string, file: string, event: "add" | "change" | "unlink"): OpenCodeEvent {
+function filesystemEvent(directory: string, file: string, event: "add" | "change" | "unlink"): RedCodeEvent {
   return {
     id: `evt_${file}_${event}`,
     created: 1,

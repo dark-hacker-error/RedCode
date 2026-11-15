@@ -1,9 +1,9 @@
 import { expect, test, type Page } from "@playwright/test"
-import type { OpenCodeEvent, SessionInboxInfo, SessionMessageInfo, ShellInfo } from "@opencode/client/promise"
-import { PromptInput } from "@opencode/schema/prompt-input"
-import { SessionInbox } from "@opencode/schema/session-inbox"
-import { SessionMessage } from "@opencode/schema/session-message"
-import { timelinePresets } from "@opencode/session-ui/timeline/detail"
+import type { RedCodeEvent, SessionInboxInfo, SessionMessageInfo, ShellInfo } from "@redcode/client/promise"
+import { PromptInput } from "@redcode/schema/prompt-input"
+import { SessionInbox } from "@redcode/schema/session-inbox"
+import { SessionMessage } from "@redcode/schema/session-message"
+import { timelinePresets } from "@redcode/session-ui/timeline/detail"
 import { Schema } from "effect"
 import { holdRoute, provider, seed, SERVER } from "../utils/app"
 import type { MockServerConfig } from "../utils/mock-server"
@@ -63,7 +63,7 @@ function createQueueMock(seed: string[], messages: SessionMessageInfo[] = []) {
     delivery: "queue",
   }))
 
-  const events: OpenCodeEvent[] = []
+  const events: RedCodeEvent[] = []
   const prompts: (typeof PromptBody.Type)[] = []
   const compactions: SessionInboxInfo[] = []
   const changes: { inboxID: string; action: "cancel" | "steer" | "queue" }[] = []
@@ -72,19 +72,19 @@ function createQueueMock(seed: string[], messages: SessionMessageInfo[] = []) {
   const shells: ShellInfo[] = []
   let sequence = 0
 
-  const emit = <Type extends OpenCodeEvent["type"]>(
+  const emit = <Type extends RedCodeEvent["type"]>(
     type: Type,
-    data: Extract<OpenCodeEvent, { type: Type }>["data"],
+    data: Extract<RedCodeEvent, { type: Type }>["data"],
   ) => {
     sequence += 1
-    // SAFETY: `type` selects `data` from the same OpenCodeEvent member, so the pair is that member.
+    // SAFETY: `type` selects `data` from the same RedCodeEvent member, so the pair is that member.
     events.push({
       id: `evt_queue_${sequence}`,
       type,
       created: Date.now(),
       durable: { aggregateID: sessionID, seq: sequence, version: type === "session.tool.success" ? 2 : 1 },
       data,
-    } as OpenCodeEvent)
+    } as RedCodeEvent)
   }
 
   return {
@@ -1611,7 +1611,7 @@ test("a steer moves a blocking shell to the background after its admission, so t
     id: "sh_steer_background",
     status: "running",
     command: "bun test --timeout 600000",
-    cwd: "C:/OpenCode/SessionQueueRegression",
+    cwd: "C:/RedCode/SessionQueueRegression",
     shell: "bash",
     file: "/tmp/steer-background.out",
     metadata: { sessionID },

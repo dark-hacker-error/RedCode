@@ -1,15 +1,15 @@
-import type { SessionMessageAssistant, SessionMessageAssistantTool, SessionMessageInfo } from "@opencode/client/promise"
-import { SourcesProvider } from "@opencode/session-ui/context/sources"
-import type { SessionDocument } from "@opencode/session-ui/document"
-import { turnMessages, turnSources } from "@opencode/session-ui/sources"
-import type { SiteIconMode } from "@opencode/session-ui/sources/experiment"
-import { SourcesPanel } from "@opencode/session-ui/sources/panel"
-import { SourcesTitle } from "@opencode/session-ui/sources/title"
-import { CURRENT_SESSION_ID, STORY_MODEL, STORY_TIME } from "@opencode/session-ui/storybook"
-import { timelinePresets } from "@opencode/session-ui/timeline/detail"
-import { Icon } from "@opencode/ui/icon"
-import { IconButton } from "@opencode/ui/icon-button"
-import { Tabs } from "@opencode/ui/tabs"
+import type { SessionMessageAssistant, SessionMessageAssistantTool, SessionMessageInfo } from "@redcode/client/promise"
+import { SourcesProvider } from "@redcode/session-ui/context/sources"
+import type { SessionDocument } from "@redcode/session-ui/document"
+import { turnMessages, turnSources } from "@redcode/session-ui/sources"
+import type { SiteIconMode } from "@redcode/session-ui/sources/experiment"
+import { SourcesPanel } from "@redcode/session-ui/sources/panel"
+import { SourcesTitle } from "@redcode/session-ui/sources/title"
+import { CURRENT_SESSION_ID, STORY_MODEL, STORY_TIME } from "@redcode/session-ui/storybook"
+import { timelinePresets } from "@redcode/session-ui/timeline/detail"
+import { Icon } from "@redcode/ui/icon"
+import { IconButton } from "@redcode/ui/icon-button"
+import { Tabs } from "@redcode/ui/tabs"
 import { createEffect, createMemo, on, onMount, Show, type ParentProps } from "solid-js"
 import { createStore } from "solid-js/store"
 import { useLanguage } from "@/runtime/i18n/language"
@@ -306,7 +306,7 @@ function Side(props: ParentProps<{ expand: boolean; count: number; onClose: () =
 }
 
 export default {
-  title: "OpenCode/Session/Sources",
+  title: "RedCode/Session/Sources",
   id: "session-sources",
   render: (args: SourcesArgs) => <Sources {...args} />,
   args: { turn: "three", icons: "letters", panel: false, expand: false },

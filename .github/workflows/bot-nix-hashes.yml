@@ -15,7 +15,7 @@ permissions:
 on:
   workflow_dispatch:
   push:
-    branches: [dev]
+    branches: [main]
     # Mirrored in .github/nix-hashes/publish.sh.
     paths:
       - "bun.lock"
@@ -41,11 +41,11 @@ jobs:
       matrix:
         include:
           - system: x86_64-linux
-            runner: blacksmith-4vcpu-ubuntu-2404
+            runner: ubuntu-24.04
           - system: aarch64-linux
-            runner: blacksmith-4vcpu-ubuntu-2404-arm
+            runner: ubuntu-24.04-arm
           - system: aarch64-darwin
-            runner: blacksmith-6vcpu-macos-latest
+            runner: macos-latest
     runs-on: ${{ matrix.runner }}
 
     steps:
@@ -160,7 +160,7 @@ jobs:
   # Runs even when compute found no change, so an open bot pull request with stale hashes is closed, not merged.
   publish:
     needs: compute
-    if: github.repository == 'anomalyco/opencode' && github.ref == 'refs/heads/dev'
+    if: github.repository == 'Vempire-X/RedCode' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     concurrency:
       group: bot-nix-hashes-publish
@@ -184,7 +184,7 @@ jobs:
       - name: Check out dev
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
-          ref: dev
+          ref: main
           path: repo
           sparse-checkout: /nix/hashes.json
           sparse-checkout-cone-mode: false

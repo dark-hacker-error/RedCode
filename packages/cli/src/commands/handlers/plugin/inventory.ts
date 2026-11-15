@@ -1,8 +1,8 @@
 import { EOL } from "node:os"
 import { Cause, Effect, Exit } from "effect"
-import { OpenCode } from "@opencode/client"
-import { Service } from "@opencode/client/effect/service"
-import { Npm } from "@opencode/util/npm"
+import { RedCode } from "@redcode/client"
+import { Service } from "@redcode/client/effect/service"
+import { Npm } from "@redcode/util/npm"
 import { Config } from "../../../config"
 import { ServerConnection } from "../../../services/server-connection"
 
@@ -17,7 +17,7 @@ export interface Item {
 
 export const inspect = Effect.fn("cli.plugin.inspect")(function* (selected?: string) {
   const { endpoint } = yield* ServerConnection.resolve()
-  const client = OpenCode.make({ baseUrl: endpoint.url, headers: Service.headers(endpoint) })
+  const client = RedCode.make({ baseUrl: endpoint.url, headers: Service.headers(endpoint) })
   const location = { directory: process.cwd() }
   const listed = yield* Effect.promise(() => client.plugin.list({ location }))
   const serverTargets = new Set(

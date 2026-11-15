@@ -15,7 +15,7 @@ const listing = (overrides: Record<string, unknown> = {}) => ({
 })
 
 describe("stealth model specs", () => {
-  test("reads public specs for stealth models from OpenCode provider listings", () => {
+  test("reads public specs for stealth models from RedCode provider listings", () => {
     const catalog = buildModelCatalog([], {
       opencode: {
         id: "opencode",

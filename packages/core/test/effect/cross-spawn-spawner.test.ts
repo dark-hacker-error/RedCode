@@ -5,9 +5,9 @@ import path from "node:path"
 import { inspect } from "node:util"
 import { Cause, Deferred, Effect, Exit, PlatformError, Redacted, Stream } from "effect"
 import { ChildProcess, ChildProcessSpawner } from "effect/process"
-import { CrossSpawnSpawner } from "@opencode/util/cross-spawn-spawner"
-import { LayerNode } from "@opencode/util/effect/layer-node"
-import { Teardown } from "@opencode/util/teardown"
+import { CrossSpawnSpawner } from "@redcode/util/cross-spawn-spawner"
+import { LayerNode } from "@redcode/util/effect/layer-node"
+import { Teardown } from "@redcode/util/teardown"
 import { appExecutionAlias } from "../fixture/app-execution-alias"
 import { testEffect } from "../lib/effect"
 
@@ -543,14 +543,14 @@ describe("cross-spawn spawner", () => {
 
         const out = yield* ChildProcessSpawner.ChildProcessSpawner.use((svc) =>
           svc.string(
-            ChildProcess.make("set", ["OPENCODE_TEST_SHELL"], {
+            ChildProcess.make("set", ["REDCODE_TEST_SHELL"], {
               shell: true,
               extendEnv: true,
-              env: { OPENCODE_TEST_SHELL: "ok" },
+              env: { REDCODE_TEST_SHELL: "ok" },
             }),
           ),
         )
-        expect(out).toContain("OPENCODE_TEST_SHELL=ok")
+        expect(out).toContain("REDCODE_TEST_SHELL=ok")
       }),
     )
 

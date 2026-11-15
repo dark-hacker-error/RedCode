@@ -1,8 +1,8 @@
-import type { LocationGetOutput, OpenCodeClient } from "@opencode/client/promise"
-import type { Data } from "@opencode/client/solid"
+import type { LocationGetOutput, RedCodeClient } from "@redcode/client/promise"
+import type { Data } from "@redcode/client/solid"
 
 export async function createWorktree(input: {
-  api: Pick<OpenCodeClient, "location" | "worktree">
+  api: Pick<RedCodeClient, "location" | "worktree">
   data: Pick<Data, "location">
   directory: string
   project?: LocationGetOutput["project"]

@@ -1,8 +1,8 @@
 import { expect } from "bun:test"
-import { RequestExecutor } from "@opencode/ai/route"
-import { Credential } from "@opencode/core/credential"
-import { Integration } from "@opencode/core/integration"
-import { Voice } from "@opencode/core/voice"
+import { RequestExecutor } from "@redcode/ai/route"
+import { Credential } from "@redcode/core/credential"
+import { Integration } from "@redcode/core/integration"
+import { Voice } from "@redcode/core/voice"
 import { Effect, Layer } from "effect"
 import { HttpClient, type HttpClientRequest, HttpClientResponse } from "effect/http"
 import { TestClock } from "effect/testing"
@@ -22,10 +22,10 @@ const keys: Record<string, string> = {
   stored: "sk-stored",
   XAI_API_KEY: "xai-env-key",
   GEMINI_API_KEY: "gemini-env-key",
-  OPENCODE_API_KEY: "opencode-env-key",
+  REDCODE_API_KEY: "opencode-env-key",
 }
 
-// A ChatGPT sign-in can't start voice sessions, so resolving one fails the test; an OpenCode Console sign-in can.
+// A ChatGPT sign-in can't start voice sessions, so resolving one fails the test; an RedCode Console sign-in can.
 const resolveCredential: Integration.Interface["connection"]["resolve"] = (connection) => {
   if (connection.type === "env") return Effect.succeed(Credential.Key.make({ type: "key", key: keys[connection.name] }))
   if (connection.id === "chatgpt") return Effect.die("a ChatGPT sign-in was resolved")
@@ -153,15 +153,15 @@ it.effect("uses the first key or env connection Integration lists and never a Ch
 )
 
 it.effect(
-  "starts GPT-Live on OpenCode's hosted endpoint with an OpenCode Console connection only without an OpenAI key",
+  "starts GPT-Live on RedCode's hosted endpoint with an RedCode Console connection only without an OpenAI key",
   () =>
     Effect.gen(function* () {
       const requests: HttpClientRequest.HttpClientRequest[] = []
       const opencode = { opencode: [credential("console", "oauth")] }
 
-      yield* start("gpt-live-1", { openai: [credential("chatgpt", "oauth")], ...opencode }, requests)
-      yield* start("gpt-live-1", { opencode: [{ type: "env", name: "OPENCODE_API_KEY" }] }, requests)
-      yield* start("gpt-live-1", { openai: [credential("active", "key")], ...opencode }, requests)
+      yield* start("gpt-live-1", { openai: [credential("chatgpt", "oauth")], ...redcode }, requests)
+      yield* start("gpt-live-1", { opencode: [{ type: "env", name: "REDCODE_API_KEY" }] }, requests)
+      yield* start("gpt-live-1", { openai: [credential("active", "key")], ...redcode }, requests)
       expect(
         requests.map((req): (string | undefined)[] => [
           req.url,

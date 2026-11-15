@@ -30,9 +30,9 @@ import {
   type VersionNegotiationOptions,
 } from "@modelcontextprotocol/client"
 import { Cause, Clock, Duration, Effect, Exit, PlatformError, Queue, Schedule, Schema, Stream } from "effect"
-import { ConfigMCP } from "@opencode/schema/config/mcp"
-import type { Session } from "@opencode/schema/session"
-import { isRecord } from "@opencode/util/record"
+import { ConfigMCP } from "@redcode/schema/config/mcp"
+import type { Session } from "@redcode/schema/session"
+import { isRecord } from "@redcode/util/record"
 import { McpStdio } from "./stdio.js"
 import { EventStreamRejectedError, EventStreamTerminatedError } from "./event-errors.js"
 
@@ -357,7 +357,7 @@ export const connect = Effect.fnUntraced(function* (options: ConnectOptions) {
       capabilities: {
         ...(elicitation ? { elicitation: { form: {}, url: {} } } : {}),
         // Legacy era only: roots are deprecated as of 2026-07-28 and modern servers cannot request them.
-        // Some legacy servers refuse to run without one (https://github.com/anomalyco/opencode/issues/2308).
+        // Some legacy servers refuse to run without one (https://github.com/Vempire-X/RedCode/issues/2308).
         ...(options.roots === false ? {} : { roots: {} }),
         ...(options.events ? { extensions: { [EVENTS]: {} } } : {}),
       },

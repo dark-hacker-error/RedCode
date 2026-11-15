@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test"
-import type { OpenCodeEvent, SessionInfo } from "@opencode/client/promise"
+import type { RedCodeEvent, SessionInfo } from "@redcode/client/promise"
 import { resolveServerList, ServerConnection } from "@/runtime/server/registry"
 import {
   addPin,
@@ -647,7 +647,7 @@ test("run ends reload Recent except a known subagent's or a shutdown, as do new 
     data: { sessionID, projectID: "project", location: { directory: "/project" }, slug: sessionID, version: "1", parentID },
   })
 
-  const cases: [OpenCodeEvent, boolean][] = [
+  const cases: [RedCodeEvent, boolean][] = [
     [ended("ses_root"), true],
     [failed("ses_root"), true],
     [interrupted("ses_root", "user"), true],

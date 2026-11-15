@@ -1,4 +1,4 @@
-import type { ConnectionInfo, IntegrationInfo } from "@opencode/client/promise"
+import type { ConnectionInfo, IntegrationInfo } from "@redcode/client/promise"
 
 export type ProviderAccount = Extract<ConnectionInfo, { type: "credential" }>
 

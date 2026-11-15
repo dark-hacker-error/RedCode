@@ -1,7 +1,7 @@
-import type { PluginInfo, SessionMessageInfo } from "@opencode/client/promise"
-import { DialogProvider, useDialog } from "@opencode/ui/context/dialog"
-import { Menu } from "@opencode/ui/menu"
-import { Toast } from "@opencode/ui/toast"
+import type { PluginInfo, SessionMessageInfo } from "@redcode/client/promise"
+import { DialogProvider, useDialog } from "@redcode/ui/context/dialog"
+import { Menu } from "@redcode/ui/menu"
+import { Toast } from "@redcode/ui/toast"
 import {
   Panel,
   type Appearance,
@@ -18,8 +18,8 @@ import {
   type Storage,
   type StoreOptions,
   type Workspaces,
-} from "@opencode/plugin/gui"
-import type { BuiltinLayout, BuiltinLocale } from "@opencode/plugin/gui/builtin"
+} from "@redcode/plugin/gui"
+import type { BuiltinLayout, BuiltinLocale } from "@redcode/plugin/gui/builtin"
 import {
   createComponent,
   createMemo,
@@ -40,14 +40,14 @@ import { Persist, persisted } from "@/runtime/persistence/storage"
 import { ServerScope } from "@/runtime/server/scope"
 import { PluginHostProvider, usePluginHost, type HostApiFactories, type PluginInput } from "../src/runtime/plugin/host"
 import { createHostApis } from "../src/runtime/plugin/host-apis"
-import type { Bridge, Entry } from "@opencode/plugin/gui/host"
+import type { Bridge, Entry } from "@redcode/plugin/gui/host"
 import { createRegion, RegionContent } from "../src/runtime/plugin/panels"
 import { createSessionScreenLayout } from "../src/session/screen-layout"
 import type { SessionModel } from "../src/session/model"
 import { createClosedTabs } from "../src/runtime/plugin/closed-tabs"
 import { PluginLinks, PluginSlot, PluginThemes } from "../src/runtime/plugin/render"
-import { Markdown } from "@opencode/session-ui/markdown"
-import { ThemeProvider, useTheme, type ColorScheme } from "@opencode/ui/theme/context"
+import { Markdown } from "@redcode/session-ui/markdown"
+import { ThemeProvider, useTheme, type ColorScheme } from "@redcode/ui/theme/context"
 import { persistedHandle } from "../src/runtime/plugin/stores"
 import { LanguageProvider } from "../src/runtime/i18n/language"
 import { ExtensionPlugins } from "../src/runtime/plugin/extension-plugins"
@@ -67,7 +67,7 @@ export {
   Slot,
   Store,
   Theme,
-} from "@opencode/plugin/gui"
+} from "@redcode/plugin/gui"
 
 export { Schema }
 
