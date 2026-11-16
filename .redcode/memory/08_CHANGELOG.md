@@ -53,3 +53,29 @@ Har kaam ki entry yahan: date, kya hua, affected files.
 - GitHub repo secret `NPM_TOKEN` set kiya (Actions secrets API + libsodium sealed box; value commit/disk par save nahi ki).
 - Next: `v0.1.0` tag push -> `.github/workflows/redcode-release.yml` build + npm publish + GitHub Release.
 
+
+### Fix rounds (2026-11-15/16, GitHub Actions par)
+- `a5bf97c8` composite `setup-bun` (jo `--frozen-lockfile` hard-code karta tha) hataya; stale `bun.lock`
+  workspace names (`redcode-aient` -> `@redcode/client`) theek kiye.
+- `c4e464ac` release ko `plan` + 12-target `build` matrix + `pack` me toda (single job `ENOSPC` se fail hota tha).
+- `470eb199` `.opencode` prefix replacement se toote identifiers wapas kiye: `sdk?.opencodeai`,
+  `target.opencodePtyAsset`, `state?.opencodeChecks`, `opencodeLight`/`opencodeDark`, winget `anomaly.opencode_`.
+- `7b5a8d21` `services/site` ka `window.opencode` console API wapas (site.tsx, console-stub.ts).
+- `2f71b7bc` + `20fad234` 29 symlinks (jo Android checkout me regular files ban gaye the) git mode `120000` par wapas.
+- `ba69cd05` round-2 identifier fixes: `...opencode` spread (voice.test), `?.opencode` (keymap test),
+  `.opencode-pierre-file-tree` (e2e spec), `console\.opencode\.ai` (escaped dot ne protection bypass kiya).
+- `b2e61df9` CLI packaging paths `redcode-ai-*` par: `remote-cli.ts`, `bootstrap.test.ts`, `wsl/local.ts`,
+  `service-smoke.ts` (target + binary `redcode`).
+- `6509fa8e` `patches/@silvia-odwyer%2Fphoton-node@0.3.4.patch` ab `__REDCODE_PHOTON_WASM_PATH` padhta hai
+  (warna Node build `dist-node/photon_rs_bg.wasm` ENOENT); site ka `architectPatterns` id `redcode-grid`.
+- Typecheck (`check.yml`) `ba69cd05` par **green**.
+
+### Release blocker (root cause: billing, not code)
+- Run `43684847437` (tag `v0.1.0`, sha `b2e61df9`): `plan` + **12/12 platform builds success**, lekin `pack` job
+  start hi nahi hua — annotation: *"The job was not started because recent account payments have failed or your
+  spending limit needs to be increased."* `Vempire-X` account par Actions billing fail hai.
+- Isliye project `dark-hacker-error/RedCode` (private) par shift kiya (transfer API 422 de raha tha, isliye fresh
+  repo + full push). Wahan `NPM_TOKEN` set kiya aur tag `v0.1.0` push kiya -> release dobara queue hua.
+- `legal-search.json` fixture stale hai (rebrand ne text 1 char chhota kiya, truncation shift ho gayi):
+  `services/site/test/legal-search.test.ts` fail. Regenerate ke liye temporary `regen-legal.yml` workflow.
+- **npm par kuch bhi publish nahi hua** jab tak release run complete na ho.

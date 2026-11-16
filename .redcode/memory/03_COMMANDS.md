@@ -100,13 +100,23 @@ bun run check                   # lint + typecheck
 # npm se install (GitHub Actions me publish hone ke baad)
 npm install -g redcode-ai       # `redcode` command
 # ya installer
-curl -fsSL https://raw.githubusercontent.com/Vempire-X/RedCode/main/install | bash
+curl -fsSL https://raw.githubusercontent.com/dark-hacker-error/RedCode/main/install | bash
 
 # release (GitHub Actions)
-git tag v0.1.0 && git push origin v0.1.0   # .github/workflows/redcode-release.yml trigger
+git tag -f v0.1.0 && git push -f origin v0.1.0   # .github/workflows/redcode-release.yml trigger
 ```
 - Env vars ab `REDCODE_*` (pehle `OPENCODE_*`): e.g. `REDCODE_CONFIG`, `REDCODE_DB`, `REDCODE_BIN_PATH`,
   `REDCODE_CHANNEL`, `REDCODE_VERSION`.
 - Config: `~/.config/redcode/redcode.json(c)`, project `.redcode/redcode.json(c)`, DB `redcode.db`.
 - **Note:** inme se koi command yahan execute nahi hui (local build possible nahi). Sab CI par unverified.
 
+
+## Repo / account (2026-11-16 se)
+- Build + release ab **`dark-hacker-error/RedCode`** (private) se hota hai; `Vempire-X/RedCode` par GitHub Actions
+  billing fail tha ("recent account payments have failed"), isliye `pack` job start hi nahi hota tha.
+- Push: `GIT_ASKPASS=/tmp/gh-askpass2.sh git push https://x-access-token@github.com/dark-hacker-error/RedCode.git main`
+  (token `/root/.config/opencode/gh-token-2` me, disk par repo ke andar nahi).
+- `NPM_TOKEN` naye repo me bhi set hai (sealed box; value kabhi commit nahi hui).
+- Noise workflows disable: triage-*, nightly-beta, upstream `release.yml`, `deploy-*`, `release-process-daemon`.
+  Chalu: `check.yml`, `check-test.yml`, `check-nix.yml`, `check-docs.yml`, `check-process-daemon.yml`,
+  `redcode-release.yml` (+ temporary `regen-legal.yml`).

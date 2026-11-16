@@ -117,3 +117,15 @@
   provenance public repo maangta hai.
 - `--provenance`/AWS signing/Homebrew/AUR/winget/Docker/Discord publish upstream infra par the; RedCode workflow sirf
   npm + GitHub Release karta hai.
+
+## Execution log (later)
+- Repo `Vempire-X/RedCode` -> `dark-hacker-error/RedCode`: GitHub Actions billing failure ki wajah se (builds chalte
+  the, `pack`/publish job runner se reject hota tha). Transfer API 422 ("Repository has already been taken") ke baad
+  fresh private repo banaya aur `main` + `v0.1.0` push kiye.
+- Rebrand ke baad `.opencode` -> `.redcode` replacement ki **prefix-collision class** 3 baar maari: (1) 220 path
+  reverts, (2) 13 identifier restores, (3) test/property/CSS-class + escaped-regex cases. Ab precedence class scan
+  (`redcode-X` vs `opencode-X` dono present) clean hai.
+- Text-length side effect: brand replacement ne legal text ki length badli -> generated `legal-search.json` stale.
+  Pattern: **generated fixtures ko rebrand ke baad regenerate karna zaroori hai**.
+- Patches (`patches/*.patch`) rebrand ke dayre se bahar reh gaye the; `__OPENCODE_PHOTON_WASM_PATH` mismatch ne
+  Node build toda. Rule: patch files ko bhi rename ke liye check karo.
