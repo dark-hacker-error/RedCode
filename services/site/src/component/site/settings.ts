@@ -399,7 +399,7 @@ export const architectPatterns = [
   "grid",
   "aligned-grid",
   "lines",
-  "opencode-grid",
+  "redcode-grid",
   "molnar-squares",
   "rotating-ticks",
   "moire-grids",
