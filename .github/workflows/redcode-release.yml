@@ -116,7 +116,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cli-${{ matrix.target }}
-          path: packages/cli/dist/redcode-ai-${{ matrix.target }}
+          # The directory itself has to survive the upload: uploading the package directory directly
+          # flattens it to its contents, so the merged download has no redcode-ai-<target> package.
+          path: packages/cli/dist
           if-no-files-found: error
 
   pack:
