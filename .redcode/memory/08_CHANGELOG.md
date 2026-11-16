@@ -90,3 +90,21 @@ Har kaam ki entry yahan: date, kya hua, affected files.
 - Yaad rahe: repo **public** hai ab, isliye Actions minutes/concurrency free hain. Naye account par jobs
   pehle 1-2 concurrency par serialise ho rahe the; release ke waqt check/check-test runs cancel karna
   build ko tez karta hai.
+
+### Release run 3 + 4 (publish par npm 429)
+- Run 3 (`43810106883`): 12/12 builds + pack **success**, phir `Publish to npm` par
+  `npm error code E429  429 Too Many Requests - PUT https://registry.npmjs.org/redcode-ai-windows-x64
+  - Could not publish, as user undefined: rate limited exceeded`. 10 packages publish ho gaye, 11th par throttle.
+- `redcode-ai-*` par `dist-tags.latest` check karo, `versions` me `0.0.0-stage` **npm ka staged-publish
+  placeholder** hai (stub tarball); asli version `dist-tags.latest` = `0.1.0` hota hai. Panic mat karo.
+- Run 4 (`43812494740`, retry-with-backoff ke saath): 12/12 builds success, publish ne ~21 min retry kiya
+  (60/120/180/240/300/360s) lekin windows-x64 par 429 bana raha -> fail. Matlab block window >20 min.
+- Structural fix (commit `1228dd3b`): `pack` job ab `npm-tarballs` + `archives` artifacts upload karta hai,
+  aur publishing alag `publish` job me hai (`needs: [plan, pack]`, timeout 150 min) jo wahi tarballs
+  download karke 7 attempts x 180s backoff ke saath publish karta hai, har success ke baad 20s gap.
+  Fayda: publish fail hone par `gh run rerun --failed` sirf publish job rerun karega, 12 builds dobara nahi.
+- GitHub Release ab apna alag `release` job hai (`needs: [plan, pack]`), publish par depend nahi karta —
+  npm throttle hone par bhi archives/tarballs release me mil jate hain. `gh release create ... ||
+  gh release upload --clobber`.
+- Publish loop already-published versions ko `npm view <name>@<version>` se skip karta hai, isliye retry
+  sirf bache hue packages publish karta hai (platform packages pehle, wrapper `redcode-ai` sabse aakhir me).

@@ -120,3 +120,11 @@ git tag -f v0.1.0 && git push -f origin v0.1.0   # .github/workflows/redcode-rel
 - Noise workflows disable: triage-*, nightly-beta, upstream `release.yml`, `deploy-*`, `release-process-daemon`.
   Chalu: `check.yml`, `check-test.yml`, `check-nix.yml`, `check-docs.yml`, `check-process-daemon.yml`,
   `redcode-release.yml` (+ temporary `regen-legal.yml`).
+
+## Release workflow ka shape (`redcode-release.yml`)
+- `plan` -> `build` (12-target matrix, har job `packages/cli/dist` upload karta hai) -> `pack`
+  (`npm-tarballs` + `archives` artifacts) -> `publish` (npm, retries) + `release` (GitHub Release).
+- Publish fail ho to: `gh run rerun <run-id> --failed` (sirf publish/release rerun, rebuild nahi).
+- Status check: `curl -s https://registry.npmjs.org/redcode-ai | python3 -c "import json,sys;print(json.load(sys.stdin)['dist-tags'])"`
+  -> `{'latest': '0.1.0'}` hona chahiye.
+- Install: `npm install -g redcode-ai` phir `redcode --version`.
