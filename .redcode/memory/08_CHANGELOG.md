@@ -79,3 +79,14 @@ Har kaam ki entry yahan: date, kya hua, affected files.
 - `legal-search.json` fixture stale hai (rebrand ne text 1 char chhota kiya, truncation shift ho gayi):
   `services/site/test/legal-search.test.ts` fail. Regenerate ke liye temporary `regen-legal.yml` workflow.
 - **npm par kuch bhi publish nahi hua** jab tak release run complete na ho.
+
+### Release run 2 (account dark-hacker-error, 12/12 builds, pack fail)
+- `pack` fail: `No binary packages found for redcode-ai`. Cause: `actions/upload-artifact` me
+  `path: packages/cli/dist/redcode-ai-<target>` dene se directory ka naam drop ho jata hai (artifact root =
+  directory ke contents), aur 12 artifacts merge hone par `redcode-ai-*` dirs banti hi nahi.
+  Fix: `path: packages/cli/dist` (poora dist) -> `redcode-ai-<target>/...` structure bachta hai.
+- `packages/script/test/highlights.test.ts` fail: test RedCode expect karta tha, `CHANGELOG.md` upstream
+  "OpenCode" wording rakhta hai (rebrand ne CHANGELOG ko chhua nahi). Fix: expectations upstream wording par.
+- Yaad rahe: repo **public** hai ab, isliye Actions minutes/concurrency free hain. Naye account par jobs
+  pehle 1-2 concurrency par serialise ho rahe the; release ke waqt check/check-test runs cancel karna
+  build ko tez karta hai.
