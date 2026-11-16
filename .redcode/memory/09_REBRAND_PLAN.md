@@ -129,3 +129,9 @@
   Pattern: **generated fixtures ko rebrand ke baad regenerate karna zaroori hai**.
 - Patches (`patches/*.patch`) rebrand ke dayre se bahar reh gaye the; `__OPENCODE_PHOTON_WASM_PATH` mismatch ne
   Node build toda. Rule: patch files ko bhi rename ke liye check karo.
+
+## Status 2026-11-16 (sha `340ee417`)
+- npm par live: 10/12 platform packages @ `0.1.0` (darwin x3, linux x6, windows-arm64).
+- Pending (npm rate limit E429): `redcode-ai-windows-x64`, `redcode-ai-windows-x64-baseline`, wrapper `redcode-ai`.
+- GitHub Release `v0.1.0` **ban gaya** (13 npm tgz + 6 linux tar.gz, 19 assets).
+- Install command (publish complete hone ke baad): `npm install -g redcode-ai`.

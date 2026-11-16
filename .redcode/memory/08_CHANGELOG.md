@@ -108,3 +108,17 @@ Har kaam ki entry yahan: date, kya hua, affected files.
   gh release upload --clobber`.
 - Publish loop already-published versions ko `npm view <name>@<version>` se skip karta hai, isliye retry
   sirf bache hue packages publish karta hai (platform packages pehle, wrapper `redcode-ai` sabse aakhir me).
+
+### Release run 5 (`43817563726`) — release job ka bug, npm still 429
+- `plan` + **12/12 builds** + `pack` sab **success**. `release` job fail:
+  `failed to run git: fatal: not a git repository (or any of the parent directories): .git`
+  Cause: GitHub Release ko alag job banaya tha par usme `checkout` step nahi tha, isliye `gh` ko repo context
+  nahi mila. Fix (`340ee417`): `gh release create/upload` me `--repo "$GITHUB_REPOSITORY"` + `permissions:
+  contents: write`. **Rerun is fix ko nahi uthata** (rerun purane commit ka workflow chalta hai).
+- Recovery: temporary `redcode-attach-release.yml` (`workflow_dispatch` with `run_id` + `version`) jo kisi bhi
+  run ke `npm-tarballs`/`archives` artifacts cross-run download karke release attach karta hai — rebuild zero.
+  Isse `v0.1.0` GitHub Release ban gaya (19 assets: 13 npm tgz + 6 linux tar.gz). Use ke baad delete karna hai.
+- Wrapper tarball verify kiya (release se download karke): `bin` = `redcode` + `redcode2`, `postinstall.mjs`
+  present, aur 12 platform `optionalDependencies` sab `0.1.0` par pinned. `repository.url` abhi bhi
+  `Vempire-X/RedCode` hai — user ne kaha Vempire-X mat chhedo, isliye waisa hi hai.
+- `publish` job abhi bhi `npm publish` par E429 retry kar raha hai (windows-x64). Uska backoff total ~84 min.
