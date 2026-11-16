@@ -1,0 +1,55 @@
+name: attach-release
+
+# One-off recovery: attach an already-built run's artifacts to a GitHub Release without
+# rebuilding the twelve platform binaries. Temporary; delete once v0.1.0 ships.
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: Workflow run id whose npm-tarballs and archives artifacts to attach
+        required: true
+      version:
+        description: Release version without the v prefix
+        required: true
+      notes:
+        description: Release notes
+        required: false
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Download npm tarballs from the build run
+        uses: actions/download-artifact@v4
+        with:
+          name: npm-tarballs
+          path: dist/npm
+          run-id: ${{ inputs.run_id }}
+          github-token: ${{ github.token }}
+
+      - name: Download standalone archives from the build run
+        uses: actions/download-artifact@v4
+        with:
+          name: archives
+          path: dist/archives
+          run-id: ${{ inputs.run_id }}
+          github-token: ${{ github.token }}
+
+      - name: Create the GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ inputs.version }}
+          NOTES: ${{ inputs.notes }}
+        run: |
+          gh release create "v${VERSION}" \
+            dist/archives/* dist/npm/redcode-ai-*.tgz \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "RedCode v${VERSION}" \
+            --notes "${NOTES:-RedCode v${VERSION}}" \
+          || gh release upload "v${VERSION}" dist/archives/* dist/npm/redcode-ai-*.tgz \
+            --repo "$GITHUB_REPOSITORY" --clobber

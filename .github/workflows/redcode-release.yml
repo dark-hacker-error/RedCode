@@ -247,6 +247,8 @@ jobs:
     needs: [plan, pack]
     runs-on: ubuntu-24.04
     timeout-minutes: 15
+    permissions:
+      contents: write
     steps:
       - name: Download npm tarballs
         uses: actions/download-artifact@v4
@@ -266,8 +268,11 @@ jobs:
           VERSION: ${{ needs.plan.outputs.version }}
           NOTES: ${{ inputs.release_notes }}
         run: |
+          # This job has no checkout, so name the repository explicitly instead of relying on git.
           gh release create "v${VERSION}" \
             dist/archives/* dist/npm/redcode-ai-*.tgz \
+            --repo "$GITHUB_REPOSITORY" \
             --title "RedCode v${VERSION}" \
             --notes "${NOTES:-RedCode v${VERSION}}" \
-          || gh release upload "v${VERSION}" dist/archives/* dist/npm/redcode-ai-*.tgz --clobber
+          || gh release upload "v${VERSION}" dist/archives/* dist/npm/redcode-ai-*.tgz \
+            --repo "$GITHUB_REPOSITORY" --clobber
